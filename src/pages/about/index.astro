@@ -5,6 +5,7 @@ import PageLayout from '@/layouts/CommonPage.astro'
 import Substats from '@/components/about/Substats.astro'
 import ToolSection from '@/components/about/ToolSection.astro'
 import { GithubCard } from 'astro-pure/advanced'
+import { Image } from 'astro:assets'
 
 const headings = [
   { depth: 2, slug: 'hobbies', text: 'Hobbies' },
@@ -21,6 +22,15 @@ const headings = [
     Trabajo como Data Engineer en BB-Media, especializado en Web Scaping usando Python, MongoDB, Insomia y demas Tecnologias. Tambien soy Tecnico y Estoy cursando 4to año de Licenciatura en Sistemas en UNLP Informatica
   </p>
   
+  <p>
+    <Image
+      src='https://ghchart.rshah.org/659eb9/fabian-martinez-rincon'
+      alt='github activities'
+      inferSize
+      loading='lazy'
+    />
+  </p>
+
   {/* general-talk */}
   <h2 id='hobbies'>Testing Engineer (Gaming Labs Sudamerica) 01/07/2023 - 17/09/2024</h2>
   <p>
@@ -39,6 +49,88 @@ const headings = [
   </p>
   <p>Optimicé la gestión de permisos de usuario implementando y administrando Listas de Control de Acceso (<a>ACL</a>) en un entorno <a>Linux</a>. Posteriormente, automatice el proceso mediante <a>Bash Scripting</a> desarrollado en <a>Vim</a>, que asigna eficientemente los permisos necesarios a los grupos correspondientes en toda la infraestructura empresarial</li>
 
+
+
+  <h2 id='hobbies'>Hobbies</h2>
+    <div class="max-w-5xl mx-auto p-4">
+      <div class="flex gap-4">
+        <!-- Tarjeta de imagen -->
+        <a
+          href="#"
+          class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
+        >
+          <img
+            src="/src/assets/certificaciones/diploma-fundamentos-ingenieria-datos_page-0001.jpg"
+            alt="Placeholder Image"
+            class="h-60 w-full object-cover"
+            loading="lazy"
+          />
+        </a>
+        <!-- Otra tarjeta de imagen -->
+        <a
+          href="#"
+          class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
+        >
+          <img
+            src="/src/assets/certificaciones/spaceApps.webp"
+            alt="Placeholder Image"
+            class="h-60 w-full object-cover"
+            loading="lazy"
+          />
+        </a>
+        <a
+        href="#"
+        class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
+      >
+        <img
+          src="/src/assets/certificaciones/tecnico.webp"
+          alt="Placeholder Image"
+          class="h-60 w-full object-cover"
+          loading="lazy"
+        />
+      </a>
+      </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto p-4">
+      <div class="flex gap-4">
+        <!-- Tarjeta de imagen -->
+        <a
+          href="#"
+          class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
+        >
+          <img
+            src="/src/assets/certificaciones/unidea.webp"
+            alt="Placeholder Image"
+            class="h-60 w-full object-cover"
+            loading="lazy"
+          />
+        </a>
+        <!-- Otra tarjeta de imagen -->
+        <a
+          href="#"
+          class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
+        >
+          <img
+            src="/src/assets/certificaciones/diploma-git-github_page-0001.jpg"
+            alt="Placeholder Image"
+            class="h-60 w-full object-cover"
+            loading="lazy"
+          />
+        </a>
+        <a
+        href="#"
+        class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
+      >
+        <img
+          src="/src/assets/certificaciones/unitec.webp"
+          alt="Placeholder Image"
+          class="h-60 w-full object-cover"
+          loading="lazy"
+        />
+      </a>
+      </div>
+    </div>
 
   {/* tools */}
   <h2 id='tools'>Tools</h2>
