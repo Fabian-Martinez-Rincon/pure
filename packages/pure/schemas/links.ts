@@ -22,7 +22,7 @@ export const FriendLinksSchema = () =>
         name: 'Astro Pure',
         desc: 'Stay hungry, stay foolish.',
         url: 'https://astro-pure.js.org',
-        avatar: 'https://astro-pure.js.org/favicon/favicon.ico'
+        avatar: 'https://astro-pure.js.org/favicon/f.svg'
       }
     })
     .describe('Friend links for your website.')

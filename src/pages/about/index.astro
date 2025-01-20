@@ -1,9 +1,10 @@
 ---
 import { Comment } from 'astro-pure/advanced'
-import { Button, Collapse, Spoiler, Timeline } from 'astro-pure/user'
+import { Button, Collapse, Spoiler, Timeline} from 'astro-pure/user'
 import PageLayout from '@/layouts/CommonPage.astro'
 import Substats from '@/components/about/Substats.astro'
 import ToolSection from '@/components/about/ToolSection.astro'
+import { GithubCard } from 'astro-pure/advanced'
 
 const headings = [
   { depth: 2, slug: 'hobbies', text: 'Hobbies' },
@@ -15,90 +16,33 @@ const headings = [
 ---
 
 <PageLayout title='About' {headings} info='/about'>
-  <p>Developer / Designer</p>
+  <p>💻 💵 Data Engineer / 📚 👨‍🎓Analista Programador Universitario / 📔👨‍🔧 Tecnico En Electronica</p>
   <p>
-    Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione indoctum
-    dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel, at eum oratio
-    possit voluptatum.
+    Trabajo como Data Engineer en BB-Media, especializado en Web Scaping usando Python, MongoDB, Insomia y demas Tecnologias. Tambien soy Tecnico y Estoy cursando 4to año de Licenciatura en Sistemas en UNLP Informatica
   </p>
-  <p>My motto: Stay hungry, Stay foolish. <Spoiler>这里可以夹私货</Spoiler></p>
-  <Button title='Sponsor Me' class='w-fit' href='/projects#sponsorship' style='ahead' />
-
+  
   {/* general-talk */}
-  <h2 id='hobbies'>Hobbies</h2>
-  <ul>
-    <li>Lorem ipsum dolor sit amet, vidit suscipit at mei.</li>
-    <li>
-      Quem denique mea id. Usu ei regione indoctum dissentiunt, cu meliore fuisset mei, vel quod
-      voluptua ne.
-    </li>
-    <li>Ex dicat impedit mel, at eum oratio possit voluptatum.</li>
-    <li>Impetus fuisset ullamcorper pri cu, his posse iisque ad, aliquam honestatis usu id.</li>
-  </ul>
+  <h2 id='hobbies'>Testing Engineer (Gaming Labs Sudamerica) 01/07/2023 - 17/09/2024</h2>
+  <p>
+    Desarrollé un software en Python usando <a>Pandas</a>, <a>PyGetWindow</a>, <a>OpenPyXL</a>, <a>PyAutoGUI</a> y <a>Tkinter</a> para automatizar la entrada de datos en máquinas de juego, mejorando notablemente la eficiencia, reduciendo el tiempo de pruebas de 60hs a solo 5hs con un margen de error del 0%.
+  </p>
+  
+  <p>
+    Desarrollé una herramienta en Python utilizando la biblioteca <a>Difflib</a> para comparar dos bases de datos y detectar diferencias entre ellas, optimizando el tiempo de comparación de aproximadamente 5 horas a solo unos minutos. Para la gestión de archivos y directorios, implementé funciones con <a>OS</a>, y para la generación de informes detallados, utilicé <a>Xlsxwriter</a>, creando hojas de cálculo en Excel que resumen visualmente las modificaciones realizadas.
+  </p>
+
+  <p>
+    Desarrollé un programa en <a>Python</a> que proporciona comandos para formatear permisos a través de un archivo <a>Excel</a>. Este programa cuenta con una interfaz gráfica creada con <a>Tkinter</a> que permite cargar, consultar, setear y eliminar permisos de forma individual o recursiva. Utiliza bibliotecas como <a>Pandas</a> para la manipulación de datos y <a>OpenPyXL</a> para la creación y formateo de archivos Excel. Este software es aplicable a cualquier empresa que necesite gestionar permisos de forma eficiente y segura.
+  </p>
+  <p>
+    Desarrollé un programa en <a>Python</a> que extrae elementos <a>HTML</a> de una página web y los guarda en un archivo Excel para facilitar el trabajo del equipo de QA. Este programa utiliza bibliotecas como <a>BeautifulSoup</a> para el procesamiento de <a>HTML</a>, <a>Pandas</a> para la manipulación de datos y <a>OpenPyXL</a> para la creación y formateo de archivos Excel. Esto ha mejorado la eficiencia y precisión en la captura y manejo de datos relevantes.
+  </p>
+  <p>Optimicé la gestión de permisos de usuario implementando y administrando Listas de Control de Acceso (<a>ACL</a>) en un entorno <a>Linux</a>. Posteriormente, automatice el proceso mediante <a>Bash Scripting</a> desarrollado en <a>Vim</a>, que asigna eficientemente los permisos necesarios a los grupos correspondientes en toda la infraestructura empresarial</li>
+
 
   {/* tools */}
   <h2 id='tools'>Tools</h2>
   <p>Current support tools as follow:</p>
-  <ToolSection
-    class='mb-5'
-    title='Design'
-    tools={[
-      {
-        name: 'Photoshop',
-        description: 'Picture Editing',
-        href: 'https://www.adobe.com/products/photoshop',
-        icon: import('@/assets/icons/photoshop.svg?raw')
-      },
-      {
-        name: 'Illustrator',
-        description: 'Vector Drawing',
-        href: 'https://www.adobe.com/products/illustrator',
-        icon: import('@/assets/icons/illustrator.svg?raw')
-      },
-      {
-        name: 'After Effects',
-        description: 'Motion Graphics',
-        href: 'https://www.adobe.com/products/aftereffects',
-        icon: import('@/assets/icons/aftereffects.svg?raw')
-      },
-      {
-        name: 'Premiere Pro',
-        description: 'Video Editing',
-        href: 'https://www.adobe.com/products/premiere',
-        icon: import('@/assets/icons/premiere.svg?raw')
-      }
-    ]}
-  />
-  <ToolSection
-    class='mb-5'
-    title='Productivity'
-    tools={[
-      {
-        name: 'Chrome',
-        description: 'Broswer',
-        href: 'https://www.google.com/chrome/',
-        icon: import('@/assets/icons/chrome.svg?raw')
-      },
-      {
-        name: 'Firefox',
-        description: 'Broswer',
-        href: 'https://www.mozilla.org/en-US/firefox',
-        icon: import('@/assets/icons/firefox.svg?raw')
-      },
-      {
-        name: 'Notion',
-        description: 'Note Taking',
-        href: 'https://www.notion.so/',
-        icon: import('@/assets/icons/notion.svg?raw')
-      },
-      {
-        name: 'Typora',
-        description: 'Markdown Editor',
-        href: 'https://typora.io/',
-        icon: import('@/assets/icons/typora.svg?raw')
-      }
-    ]}
-  />
   <ToolSection
     class='mb-5'
     title='Development'
@@ -110,150 +54,61 @@ const headings = [
         icon: import('@/assets/icons/vscode.svg?raw')
       },
       {
-        name: 'Neovim',
-        description: 'IDE',
+        name: 'Insomnia',
+        description: 'Request Testing',
         href: 'https://neovim.io/',
-        icon: import('@/assets/icons/neovim.svg?raw')
+        icon: import('@/assets/icons/insomnia.svg?raw')
       },
       {
-        name: 'Sublime Text',
-        description: 'IDE',
-        href: 'https://www.sublimetext.com/',
-        icon: import('@/assets/icons/sublime.svg?raw')
+        name: 'Studio 3T',
+        description: 'MongoDB Client',
+        href: 'https://neovim.io/',
+        icon: import('@/assets/icons/Studio_3T.svg?raw')
+      },
+      {
+        name: 'MongoDB',
+        description: 'Database',
+        href: 'https://neovim.io/',
+        icon: import('@/assets/icons/mongodb.svg?raw')
+      },
+      {
+        name: 'Python',
+        description: 'Programming Language',
+        href: 'https://www.python.org/',
+        icon: import('@/assets/icons/icons8-python.svg?raw')
+      },
+      {
+        name: 'Git',
+        description: 'Version Control',
+        href: 'https://git-scm.com/',
+        icon: import('@/assets/icons/icons8-git.svg?raw')
+      },
+      {
+        name: 'PostgreSQL',
+        description: 'Database',
+        href: 'https://postgrest.org/',
+        icon: import('@/assets/icons/icons8-postgresql.svg?raw')
       }
-    ]}
-  />
-  <ToolSection
-    class='mb-5'
-    title='Environment'
-    tools={[
-      {
-        name: 'Arch Linux',
-        description: 'Linux Distribution',
-        href: 'https://archlinux.org/',
-        icon: import('@/assets/icons/archlinux.svg?raw')
-      },
-      {
-        name: 'Ubuntu 24.04 LTS',
-        description: 'Linux Distribution',
-        href: 'https://ubuntu.com/',
-        icon: import('@/assets/icons/ubuntu.svg?raw')
-      },
-      {
-        name: 'MacOS Sonoma',
-        description: 'MacBook Air',
-        href: 'https://www.apple.com/macos/',
-        icon: import('@/assets/icons/apple.svg?raw')
-      },
-      {
-        name: 'Windows 11',
-        description: 'Rog Strix G15',
-        href: 'https://news.microsoft.com/windows11-general-availability/',
-        icon: import('@/assets/icons/windows11.svg?raw')
-      }
+
     ]}
   />
 
   {/* social-networks */}
   <h2 id='social-networks'>Social Networks</h2>
   <p>
-    Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione indoctum
-    dissentiunt, cu meliore fuisset mei, vel quod voluptua ne.
+    Dejo mi github con algunos proyectos/blogs
   </p>
   <Substats
     stats={[
       {
         platform: 'GitHub',
         icon: 'github',
-        link: 'https://github.com/cworld1',
+        link: 'https://github.com/fabian-martinez-rincon',
         text: 'followers',
-        api: 'github/cworld1'
-      },
-      {
-        platform: 'Telegram',
-        icon: 'telegram',
-        color: '#2ca5e0',
-        link: 'https://t.me/cworld0_cn',
-        text: 'subscribers',
-        api: 'telegram/cworld0_cn'
-      },
-      {
-        platform: 'Weibo',
-        icon: 'weibo',
-        color: '#e71f19',
-        link: 'https://weibo.com/cworld0',
-        text: 'followers',
-        api: 'weibo/5501674056'
-      },
-      {
-        platform: 'Steam',
-        icon: 'steam',
-        color: '#50769d',
-        link: 'https://steamcommunity.com/id/cworld',
-        text: 'games',
-        api: 'steamgames/76561199021278120'
+        api: 'github/fabian-martinez-rincon'
       }
     ]}
   />
 
-  {/* gossips */}
-  <h2 id='gossips'>Gossips</h2>
-  <Collapse title='Lorem ipsum'>
-    Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione indoctum
-    dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel, at eum oratio
-    possit voluptatum.
-  </Collapse>
-
-  {/* about-blog */}
-  <h2 id='about-blog'>About Blog</h2>
-  <p>Website history:</p>
-  <Timeline
-    events={[
-      {
-        date: '2024-04-29',
-        content:
-          'Website refectered using <a href="https://astro.build/" target="_blank">Astro</a> and <a href="https://github.com/srleom/astro-theme-resume" target="_blank">Astro Theme Resume</a>'
-      },
-      {
-        date: '2024-07-26',
-        content:
-          'Website abstracted as a theme and published on <a href="https://github.com/cworld1/astro-theme-pure"target="_blank">Github</a>'
-      },
-      {
-        date: '2024-07-27',
-        content: 'Writed website docs'
-      }
-    ]}
-  />
-  <p>
-    The smooth operation and personalized customization of website also rely on the resources and
-    technical support provided by the following excellent projects/service providers:
-  </p>
-  <ul>
-    <li>Domain: <a href='#' target='_blank'>Vercel</a></li>
-    <li>
-      Framework & Theme: <a href='https://astro.build/' target='_blank'>Astro</a> + <a
-        href='https://github.com/cworld1/astro-theme-pure'
-        target='_blank'>Astro Theme Pure</a
-      >
-    </li>
-    <li>
-      Site hosting: <a href='https://vercel.com/' target='_blank'>Vercel</a>
-    </li>
-    <li>
-      CI/CD: <a href='https://vercel.com/workflow' target='_blank'>Vercel Workflow</a>
-    </li>
-    <!-- <li>Resources speedup: <a href='https://cdn.cbd.int/' target='_blank'>CBD CDN</a></li> -->
-    <li>Comment system: <a href='https://waline.js.org' target='_blank'>Waline</a></li>
-    <li>
-      Visits: <a href='https://supabase.com/' target='_blank'>Supabase</a> +
-      <a href='https://waline.js.org/' target='_blank'>Waline</a>
-    </li>
-    <li>
-      Other statistics: <a href='https://github.com/spencerwooo/substats' target='_blank'
-        >Substats</a
-      >
-    </li>
-  </ul>
   <Comment slot='bottom' />
 </PageLayout>
