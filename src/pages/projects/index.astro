@@ -7,10 +7,9 @@ import KeyIcon from '@/assets/icons/key.svg'
 import config from '@/site-config'
 
 const headings = [
-  { depth: 2, slug: 'proyectos_web', text: 'Proyectos Web' },
   { depth: 2, slug: 'proyectos_python', text: 'Proyectos Python' },
-  { depth: 2, slug: 'learnings', text: 'Learnings' },
-  { depth: 2, slug: 'others', text: 'Others' },
+  { depth: 2, slug: 'proyectos_web', text: 'Proyectos Web' },
+  { depth: 2, slug: 'others', text: 'Otros Proyectos' },
 ]
 ---
 
@@ -31,6 +30,69 @@ const headings = [
   <Button title='fabianmartinezrincon@gmail.com' class='w-fit' href='#sponsorship'>
     <Icon class='size-5' name='receive-money' slot='before' />
   </Button>
+
+  <h2 id='proyectos_python'>Proyectos Python</h2>
+  <ProjectSection
+    project={[
+      {
+        name: 'Chart IT',
+        description: 'Web con Flask, que permite a los usuarios registrarse, iniciar sesión, donar e intercambiar productos, con roles diferenciados. Usamos SQLAlchemy para la base de datos PostgreSQL, Flask-Bcrypt para la seguridad de contraseñas, Flask-Session para sesiones, Flask-WTF para formularios, y Flask-M',
+        image: 'hopetrade.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Char-IT' },
+        ]
+      },
+      {
+        name: 'Emuti',
+        description: 'Automatización para el ingreso de datos en RNG',
+        image: 'emuti.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/EmuTi' },
+        ]
+      },
+      {
+        name: 'ACL Manager',
+        description: 'Proyecto para poder gestionar ACLs (Access Control List) en un entorno Linux, al tener muchos comandos repetidos basados en un excel se me ocurrio que seria mas comodo poder formater los comandos de forma automatica usando una interfaz "Amigable".',
+        image: 'acl-manager.jpg',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/acl-manager' },
+        ]
+      },
+      {
+        name: 'MidFlash',
+        description: 'Telegram Bot for Arknights',
+        image: 'midflash.png',
+        links: [
+          { type: 'github', href: 'https://github.com/IJNKAWAKAZE/arknights_bot' },
+        ]
+      },
+      {
+        name: 'Scraping PlutoTV',
+        description: 'Telegram Bot for ',
+        image: 'pluto_tv.jpg',
+        links: [
+          { type: 'github', href: 'https://github.com/IJNKAWAKAZE/arknights_bot' },
+        ]
+      },
+      {
+        name: 'SQL Modify',
+        description: '📷 Automatizacion de operaciones que hago para las imagenes individualmente, recortar las imagenes y aumentar las resoluciones de forma automatica',
+        image: 'sqlmodify.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/MidFlash' },
+        ]
+      },
+      {
+        name: 'Lab-Genetics',
+        description: '“Un laboratorio que centraliza muestras biológicas (de otros laboratorios) para mandarlas a analizarlas al exterior quiere digitalizar su funcionamiento ya que actualmente no cuentan con un soporte digital”',
+        image: 'lab-genetics.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Lab-Genetics' },
+          
+        ]
+      }
+    ]}
+  />
 
   <h2 id='proyectos_web'>Proyectos Webs</h2>
   <ProjectSection
@@ -161,7 +223,7 @@ const headings = [
         ]
       },
       {
-        name: '🍭 El Rincon de Fabo',
+        name: 'El Rincon de Fabo',
         description: 'Portfolio con proyectos personales, blogs y un poco de historia sobre mi',
         image: 'rinconfabo.png',
         links: [
@@ -171,7 +233,7 @@ const headings = [
       },
       {
         name: 'Resume',
-        description: 'A simple, clean but powerful blog theme build by astro.',
+        description: 'Resume de todos los datos (Es el resume viejo).',
         image: 'resume.png',
         links: [
           { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Resume' },
@@ -181,55 +243,32 @@ const headings = [
     ]}
   />
 
-  <h2 id='proyectos_python'>Proyectos Python</h2>
-  <ProjectSection
-    project={[
-      {
-        name: '🤖 Arknights Telegram Bot',
-        description: 'Telegram Bot for Arknights',
-        links: [
-          { type: 'github', href: 'https://github.com/IJNKAWAKAZE/arknights_bot' },
-          { type: 'site', href: 'https://t.me/PtiIopsis_bot' },
-          {
-            type: 'doc',
-            href: 'https://github.com/IJNKAWAKAZE/arknights_bot/blob/main/docs/Development.md'
-          }
-        ]
-      },
-      {
-        name: '💄 PKU Art',
-        description: 'A script to beautify pku course website',
-        links: [
-          { type: 'github', href: 'https://github.com/zhuozhiyongde/pku-art' },
-          { type: 'site', href: 'https://github.com/zhuozhiyongde/pku-art' },
-          { type: 'doc', href: 'https://docs.arthals.ink/docs/pku-art' }
-        ]
-      }
-    ]}
-  />
-
   <h2 id='others'>Otros Proyectos</h2>
   <ProjectSection
     project={[
       {
         name: 'Converter OC',
-        description: "CWorld's Github",
-        links: [{ type: 'github', href: 'https://github.com/cworld1' }]
+        image: 'converter-oc.png',
+        description: "📟 Shows all the characteristics of a decimal or binary number.",
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Converter-OC' }]
       },
       {
         name: 'Keypad',
-        description: 'Arthals Github',
-        links: [{ type: 'github', href: 'https://github.com/zhuozhiyongde' }]
+        image: 'keypad.png',
+        description: '⌨️ Keyboard connected by a bluetoh module and LCD screen',
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Keypad' }]
       },
       {
         name: 'Lock',
-        description: 'Arthals Github',
-        links: [{ type: 'github', href: 'https://github.com/zhuozhiyongde' }]
+        image: 'lock.png',
+        description: '🔒 In this report we will see both the circuit simulation and the actual programming of a safe.',
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Lock' }]
       },
       {
         name: 'Transform-Pokemon-Resolution',
-        description: 'Arthals Github',
-        links: [{ type: 'github', href: 'https://github.com/zhuozhiyongde' }]
+        image: 'transform-pokemon.png',
+        description: '🎮 Remove focus from an image using IA - Pix2Pix',
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Transform-Pokemon-Resolution' }]
       }
       
     ]}
