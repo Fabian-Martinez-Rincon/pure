@@ -24,7 +24,7 @@ export const theme: ThemeUserConfig = {
   },
   /** Set a logo image to show in the homepage. */
   logo: {
-    src: 'src/assets/fabian.jpg',
+    src: 'src/assets/fabian2.jpg',
     alt: 'Avatar'
   },
 
@@ -49,8 +49,8 @@ export const theme: ThemeUserConfig = {
     menu: [
       { title: 'Blog', link: '/blog' },
       // { title: 'Docs', link: '/docs/list' },
-      // { title: 'Projects', link: '/projects' },
-      { title: 'About', link: '/about' }
+      { title: 'Projects', link: '/projects' },
+      { title: 'Sobre Mi', link: '/about' }
     ]
   },
 

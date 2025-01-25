@@ -1,27 +1,20 @@
 ---
 import { Image } from 'astro:assets'
-
-import type { iconsType } from 'astro-pure/types'
 import { Button, Collapse, Icon } from 'astro-pure/user'
 import PageLayout from '@/layouts/CommonPage.astro'
 import ProjectSection from '@/components/projects/ProjectSection.astro'
-import Sponsors from '@/components/projects/Sponsors.astro'
-import alipay from '@/assets/alipay-qrcode.jpg'
 import KeyIcon from '@/assets/icons/key.svg'
-import wechat from '@/assets/wechat-qrcode.jpg'
 import config from '@/site-config'
 
 const headings = [
-  { depth: 2, slug: 'theme', text: 'Theme' },
-  { depth: 2, slug: 'programs', text: 'Programs' },
+  { depth: 2, slug: 'proyectos_web', text: 'Proyectos Web' },
+  { depth: 2, slug: 'proyectos_python', text: 'Proyectos Python' },
   { depth: 2, slug: 'learnings', text: 'Learnings' },
   { depth: 2, slug: 'others', text: 'Others' },
-  { depth: 2, slug: 'gpg-signature', text: 'GPG Signature' },
-  { depth: 2, slug: 'sponsorship', text: 'Sponsorship' }
 ]
 ---
 
-<PageLayout title='Projects' {headings} info={{ slug: '/projects', hideComment: true }}>
+<PageLayout title='Proyectos' {headings} info={{ slug: '/projects', hideComment: true }}>
   <p>Github Activities:</p>
   <p>
     <Image
@@ -32,32 +25,163 @@ const headings = [
     />
   </p>
   <p>
-    If you think it would be useful or interesting to collaborate on a project, you can donate to
-    support my work or contact me to discuss a project.
+    En este apartado se encuentran todos los proyectos relevantes que fui programando a lo largo de mi vida como desarrollador 😀. 
+    Todos los dias trato de mejorar y seguir aprendiendo, si necesitas una mano o me queres consultar para algun trabajo no dudes en contactarme.
   </p>
-  <Button title='Checkout sponsorship' class='w-fit' href='#sponsorship'>
+  <Button title='fabianmartinezrincon@gmail.com' class='w-fit' href='#sponsorship'>
     <Icon class='size-5' name='receive-money' slot='before' />
   </Button>
 
-  <h2 id='theme'>Theme</h2>
+  <h2 id='proyectos_web'>Proyectos Webs</h2>
   <ProjectSection
     project={[
       {
-        name: '🍭 Astro-theme-pure',
-        description: 'A simple, clean but powerful blog theme build by astro.',
+        name: 'Eficiencia X',
+        description: 'Calcula la memoria estática de un programa en Pascal',
+        image: 'eficiencia_x.png',
         links: [
-          { type: 'github', href: 'https://github.com/cworld1/astro-theme-pure' },
-          { type: 'site', href: 'https://github.com/cworld1/astro-theme-pure' },
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Efficiency_X' },
+          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/Efficiency_X/' },
           {
             type: 'doc',
-            href: 'https://github.com/cworld1/astro-theme-pure/blob/main/src/content/blog/customize/index.md'
+            href: 'https://github.com/Fabian-Martinez-Rincon/Efficiency_X/blob/main/README.md'
           }
         ]
-      }
+      },
+      {
+        name: 'Ei Materias',
+        description: '✏️ Readme con apuntes, prácticas y códigos relacionados a la UNLP informática.',
+        image: 'eiMaterias.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/EI-Materias' },
+          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/EI-Materias/' },
+          {
+            type: 'doc',
+            href: 'https://github.com/Fabian-Martinez-Rincon/EI-Materias/blob/main/README.md'
+          }
+        ]
+      },
+      {
+        name: 'Fablog',
+        description: 'Blog en astro con codigos y temas de interes',
+        image: 'fablog.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Fablog' },
+          { type: 'site', href: 'https://fablogg.vercel.app/' },
+          {
+            type: 'doc',
+            href: 'https://github.com/Fabian-Martinez-Rincon/Fablog/blob/main/README.md'
+          }
+        ]
+      },
+      {
+        name: 'Gallerix',
+        description: 'Galeria de Imagenes con Logos Echos en IA',
+        image: 'gallerix.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Galleriix-Frontend' },
+          { type: 'site', href: 'https://galleriix-frontend.vercel.app/' },
+          {
+            type: 'doc',
+            href: 'https://github.com/Fabian-Martinez-Rincon/Galleriix-Backend/blob/main/README.md'
+          }
+        ]
+      },
+      {
+        name: 'LinkTree',
+        description: 'El Linktree de instagram, que es basicamente un conjunto de links',
+        image: 'linktree.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Linktree' },
+          { type: 'site', href: 'https://linktree-fabian.vercel.app/' },
+          {
+            type: 'doc',
+            href: 'https://github.com/Fabian-Martinez-Rincon/Linktree/blob/main/README.md'
+          }
+        ]
+      },
+      {
+        name: 'Mega-Conversor-OC',
+        description: '👾 automatización de muchas conversiones y operaciones en la materia “Organización de computadoras”.',
+        image: 'megaconversor.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Mega-Conversor-OC' },
+          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/Mega-Conversor-OC/' },
+          {
+            type: 'doc',
+            href: 'https://github.com/Fabian-Martinez-Rincon/Mega-Conversor-OC/blob/main/Readme.md'
+          }
+        ]
+      },
+      {
+        name: 'Nomadiix',
+        description: 'Web principal de Nomadiix en Astro',
+        image: 'nomadiix.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Nomadiix-Website' },
+          { type: 'site', href: 'https://nomadiix-website.vercel.app/' },
+          {
+            type: 'doc',
+            href: 'https://github.com/Fabian-Martinez-Rincon/Nomadiix-Website/blob/main/README.md'
+          }
+        ]
+      },
+      {
+        name: 'Old Porfolio',
+        description: 'Mi primer Porfolio, con html css y un poco de js',
+        image: 'oldPortfolio.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Old_Portfolio' },
+          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/Old_Portfolio/' },
+          {
+            type: 'doc',
+            href: 'https://github.com/Fabian-Martinez-Rincon/Old_Portfolio/blob/master/README.md'
+          }
+        ]
+      },
+      {
+        name: 'Portfolio Old',
+        description: 'Porfolio en React (Quedo obsoleto xd).',
+        image: 'portfolioOld.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Fabian-Martinez-Rincon-old' },
+        ]
+      },
+      {
+        name: 'Space Apps',
+        description: 'Organización creada con fines educativos para la hackaton Space Apps',
+        image: 'spaceApps.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Cuestion-de-Espacio' },
+          { type: 'site', href: 'https://cuestion-de-espacio.github.io/Frontend/' },
+          {
+            type: 'doc',
+            href: 'https://github.com/Cuestion-de-Espacio/.github/blob/main/profile/README.md'
+          }
+        ]
+      },
+      {
+        name: '🍭 El Rincon de Fabo',
+        description: 'Portfolio con proyectos personales, blogs y un poco de historia sobre mi',
+        image: 'rinconfabo.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Rincon-De-Fabo' },
+          { type: 'site', href: 'https://github.com/Fabian-Martinez-Rincon/Rincon-De-Fabo' },
+        ]
+      },
+      {
+        name: 'Resume',
+        description: 'A simple, clean but powerful blog theme build by astro.',
+        image: 'resume.png',
+        links: [
+          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Resume' },
+          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/Resume/' },
+        ]
+      },
     ]}
   />
 
-  <h2 id='programs'>Programs</h2>
+  <h2 id='proyectos_python'>Proyectos Python</h2>
   <ProjectSection
     project={[
       {
@@ -83,106 +207,34 @@ const headings = [
       }
     ]}
   />
-  <Collapse title='Some old projects'>
-    <ProjectSection
-      project={[
-        {
-          name: 'Search Switcher',
-          description: 'Add links to each other in search engines',
-          links: [{ type: 'github', href: 'https://github.com/cworld1/search-switcher' }]
-        },
-        {
-          name: 'Pure Baidu',
-          description: 'Baidu search page beautification module',
-          links: [
-            { type: 'doc', href: 'https://cworld0.com/blog/pure-baidu' },
-            { type: 'site', href: 'https://userstyles.org/styles/173673/pure' }
-          ]
-        }
-      ]}
-    />
-  </Collapse>
 
-  <h2 id='learnings'>Learnings</h2>
-  <ProjectSection
-    class='my-2'
-    project={[
-      {
-        name: 'Rust Learning',
-        description: 'Some notes and code about CWorld learning Rust',
-        links: [{ type: 'github', href: 'https://github.com/cworld1/rust-learning' }]
-      },
-      {
-        name: 'CS 213 Learning',
-        description: 'Notes, code and experiences for Introduction to Computer Systems course',
-        links: [
-          {
-            type: 'github',
-            href: 'https://github.com/zhuozhiyongde/Introduction-To-Computer-System-2023Fall-PKU'
-          }
-        ]
-      }
-    ]}
-  />
-
-  <h2 id='others'>Others</h2>
+  <h2 id='others'>Otros Proyectos</h2>
   <ProjectSection
     project={[
       {
-        name: 'CWorld',
+        name: 'Converter OC',
         description: "CWorld's Github",
         links: [{ type: 'github', href: 'https://github.com/cworld1' }]
       },
       {
-        name: 'Arthals',
+        name: 'Keypad',
+        description: 'Arthals Github',
+        links: [{ type: 'github', href: 'https://github.com/zhuozhiyongde' }]
+      },
+      {
+        name: 'Lock',
+        description: 'Arthals Github',
+        links: [{ type: 'github', href: 'https://github.com/zhuozhiyongde' }]
+      },
+      {
+        name: 'Transform-Pokemon-Resolution',
         description: 'Arthals Github',
         links: [{ type: 'github', href: 'https://github.com/zhuozhiyongde' }]
       }
+      
     ]}
   />
-
-  <!-- gpg signature -->
-  <h2 id='gpg-signature'>GPG Signature</h2>
-  <p>
-    You can verify the authenticity of the files I signed by checking the GPG signature. My GPG key
-    is <code>APTX4869</code>, and you can find it on the opengpg key servers or download from it.
-  </p>
-  <Button href='https://keys.openpgp.org/search?q=APTX4869' title='Checkout my key' target='_blank'>
-    <KeyIcon class='size-5' slot='before' />
-  </Button>
-
-  <!-- sponsorship -->
-  <h2 id='sponsorship'>Sponsorship</h2>
-  <p>Please leave a message or contact me proactively after sponsorship.</p>
-  <div class='flex flex-col justify-center gap-4 sm:flex-row'>
-    {
-      [
-        { name: 'WeChat', icon: 'wechat-pay', image: wechat },
-        { name: 'Alipay', icon: 'alipay', image: alipay }
-      ].map((item) => (
-        <div class='group relative justify-center overflow-hidden rounded-xl border bg-white'>
-          <div class='absolute bottom-0 end-0 start-0 top-0 flex items-center justify-center transition-opacity group-hover:opacity-0'>
-            <Icon class='size-20' name={item.icon as iconsType} />
-          </div>
-          <Image
-            class='mx-auto my-0 max-w-60 opacity-30 blur-sm transition-opacity group-hover:opacity-100 group-hover:blur-none'
-            src={item.image}
-            alt={item.name}
-            loading='lazy'
-          />
-        </div>
-      ))
-    }
-  </div>
-  <p>Thanks to the following sponsors:</p>
-  <Sponsors
-    sponsors={[
-      { name: 'C*a（酷安@暴走の蜗牛）', amount: '2.00', date: '2019-07-02' },
-      { name: '华雄(QQ：1300****71)', amount: '5.00', date: '2019-12-30' },
-      { name: '◌(QQ：1934****45)', amount: '3.00', date: '2019-12-30' },
-      { name: 'Anonymous', amount: '20.00', date: '2022-04-06' }
-    ]}
-  />
+  
 </PageLayout>
 
 <script

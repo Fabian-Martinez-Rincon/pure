@@ -8,11 +8,11 @@ import { GithubCard } from 'astro-pure/advanced'
 import { Image } from 'astro:assets'
 
 const headings = [
-  { depth: 2, slug: 'hobbies', text: 'Hobbies' },
+  { depth: 2, slug: 'resume', text: 'Resume' },
+  { depth: 2, slug: 'imagenes', text: 'Algunas Imagenes' },
+  { depth: 2, slug: 'certificados', text: 'Certificados' },
   { depth: 2, slug: 'tools', text: 'Tools' },
-  { depth: 2, slug: 'social-networks', text: 'Social Networks' },
-  { depth: 2, slug: 'gossips', text: 'Gossips' },
-  { depth: 2, slug: 'about-blog', text: 'About Blog' }
+  { depth: 2, slug: 'social', text: 'Redes' }
 ]
 ---
 
@@ -32,7 +32,7 @@ const headings = [
   </p>
 
   {/* general-talk */}
-  <h2 id='hobbies'>Testing Engineer (Gaming Labs Sudamerica) 01/07/2023 - 17/09/2024</h2>
+  <h2 id='resume'>Testing Engineer (Gaming Labs Sudamerica) 01/07/2023 - 17/09/2024</h2>
   <p>
     Desarrollé un software en Python usando <a>Pandas</a>, <a>PyGetWindow</a>, <a>OpenPyXL</a>, <a>PyAutoGUI</a> y <a>Tkinter</a> para automatizar la entrada de datos en máquinas de juego, mejorando notablemente la eficiencia, reduciendo el tiempo de pruebas de 60hs a solo 5hs con un margen de error del 0%.
   </p>
@@ -49,92 +49,89 @@ const headings = [
   </p>
   <p>Optimicé la gestión de permisos de usuario implementando y administrando Listas de Control de Acceso (<a>ACL</a>) en un entorno <a>Linux</a>. Posteriormente, automatice el proceso mediante <a>Bash Scripting</a> desarrollado en <a>Vim</a>, que asigna eficientemente los permisos necesarios a los grupos correspondientes en toda la infraestructura empresarial</li>
 
+    <h2 id='imagenes'>Algunas Imagenes</h2>
+    <p>Imagenes que me parecieron interesantes mostrar en la pagina para que sea un poco mas entretenida :D</p>
+    <div class="flex flex-col min-[410px]:flex-row">
+      <Image
+        src="https://rincondelfabo.vercel.app/images/3.webp"
+        alt="https://rincondelfabo.vercel.app/images/3.webp"
+        width={350}
+        height={250}
+        class="w-[350px] h-[250px] object-cover rounded-xl -rotate-6"
+      />
+      <Image
+        src="https://rincondelfabo.vercel.app/images/6.webp"
+        alt="https://rincondelfabo.vercel.app/images/6.webp"
+        width={150}
+        height={250}
+        class="w-[150px] h-[250px] object-cover rounded-xl rotate-6 mx-auto sm:ml-auto"
+      />
+    </div>
 
-
-  <h2 id='hobbies'>Hobbies</h2>
+  <h2 id='certificados'>Certificados</h2>
+  <p>Diplomas/Certificados que consiguiendo a lo largo del tiempo</p>
     <div class="max-w-5xl mx-auto p-4">
       <div class="flex gap-4">
         <!-- Tarjeta de imagen -->
-        <a
-          href="#"
-          class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
-        >
+
           <img
             src="https://rincondelfabo.vercel.app/certificaciones/diploma-fundamentos-ingenieria-datos_page-0001.jpg"
             alt="Placeholder Image"
             class="h-60 w-full object-cover"
             loading="lazy"
           />
-        </a>
         <!-- Otra tarjeta de imagen -->
-        <a
-          href="#"
-          class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
-        >
           <img 
             src="https://rincondelfabo.vercel.app/certificaciones/spaceApps.webp"
             alt="Placeholder Image"
             class="h-60 w-full object-cover"
             loading="lazy"
           />
-        </a>
-        <a
-        href="#"
-        class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
-      >
-        <img
-          src="https://rincondelfabo.vercel.app/certificaciones/tecnico.webp"
-          alt="Placeholder Image"
-          class="h-60 w-full object-cover"
-          loading="lazy"
-        />
-      </a>
+
       </div>
     </div>
 
     <div class="max-w-5xl mx-auto p-4">
       <div class="flex gap-4">
         <!-- Tarjeta de imagen -->
-        <a
-          href="#"
-          class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
-        >
           <img
             src="https://rincondelfabo.vercel.app/certificaciones/unidea.webp"
             alt="Placeholder Image"
             class="h-60 w-full object-cover"
             loading="lazy"
           />
-        </a>
         <!-- Otra tarjeta de imagen -->
-        <a
-          href="#"
-          class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
-        >
-          <img
-            src="https://rincondelfabo.vercel.app/certificaciones/diploma-git-github_page-0001.jpg"
-            alt="Placeholder Image"
-            class="h-60 w-full object-cover"
-            loading="lazy"
-          />
-        </a>
-        <a
-        href="#"
-        class="group relative flex flex-col w-1/2 overflow-hidden rounded-2xl border border-border bg-muted transition-all hover:border-foreground/25 hover:shadow-sm"
-      >
         <img
-          src="https://rincondelfabo.vercel.app/certificaciones/unitec.webp"
+          src="https://rincondelfabo.vercel.app/certificaciones/tecnico.webp"
           alt="Placeholder Image"
           class="h-60 w-full object-cover"
           loading="lazy"
         />
-      </a>
+      </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto p-4">
+      <div class="flex gap-4">
+        <!-- Tarjeta de imagen -->
+
+        <img
+        src="https://rincondelfabo.vercel.app/certificaciones/unitec.webp"
+        alt="Placeholder Image"
+        class="h-60 w-full object-cover"
+        loading="lazy"
+      />
+      <img
+      src="https://rincondelfabo.vercel.app/certificaciones/diploma-git-github_page-0001.jpg"
+      alt="Placeholder Image"
+      class="h-60 w-full object-cover"
+      loading="lazy"
+    />
       </div>
     </div>
 
   {/* tools */}
   <h2 id='tools'>Tools</h2>
-  <p>Current support tools as follow:</p>
+  <p>Mi stack de herramientas con las que me siento comodo trabajando:</p>
   <ToolSection
     class='mb-5'
     title='Development'
@@ -186,7 +183,7 @@ const headings = [
   />
 
   {/* social-networks */}
-  <h2 id='social-networks'>Social Networks</h2>
+  <h2 id='social'>Redes sociales</h2>
   <p>
     Dejo mi github con algunos proyectos/blogs
   </p>

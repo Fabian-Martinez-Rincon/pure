@@ -10,7 +10,7 @@ export const HeaderMenuSchema = () =>
     )
     .default([
       { title: 'Blog', link: '/blog' },
-      // { title: 'Projects', link: '/projects' },
-      { title: 'About', link: '/about' }
+      { title: 'Projects', link: '/projects' },
+      { title: 'Sobre Mi', link: '/about' }
     ])
     .describe('The header menu items for your site.')

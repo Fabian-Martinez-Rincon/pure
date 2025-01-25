@@ -9,7 +9,7 @@ import PageLayout from '@/layouts/BaseLayout.astro'
 import ProjectCard from '@/components/home/ProjectCard.astro'
 import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
-import avatar from '@/assets/fabian.jpg'
+import avatar from '@/assets/fabian2.jpg'
 import config from '@/site-config'
 
 const languages = ['Python', 'Html', 'JavaScript', 'CSS', 'Shell', 'C++', 'Bash', 'SQL']
@@ -24,12 +24,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 <PageLayout meta={{ title: 'Home' }} highlightColor='#659EB966'>
   <main class='flex w-full flex-col items-center'>
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
-      <Image
-        src={avatar}
-        alt='profile'
-        class='h-28 w-auto rounded-full border p-1  '
-        loading='eager'
-      />
+      
 
       <div class='flex flex-col items-center gap-y-4'>
         <h1 class='text-3xl font-bold'>{config.author}</h1>
@@ -63,7 +58,12 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           </Label>
         </div>
       </div>
-
+      <Image
+      src={avatar}
+      alt='profile'
+      class='h-96 w-auto border p-1  '
+      loading='eager'
+    />
       {/* Get template */}
       <div class="flex gap-x-4">
         <!-- Botón 1 -->
@@ -107,6 +107,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           Trabajo como Data Engineer en BB-Media, especializado en Web Scaping usando Python, MongoDB, Insomia y demas Tecnologias. Tambien soy Tecnico y Estoy cursando 4to año de Licenciatura en Sistemas en UNLP Informatica
         </p>
         <Button title='Leer Mas sobre mi' class='w-fit self-end' href='/about' style='ahead' />
+
+
+        
       </Section>
       {
         allPostsByDate.length > 0 && (
@@ -184,7 +187,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         </Card>
       </Section>
 
-      <Section title='Proyectos'>
+      <!-- <Section title='Proyectos'>
         <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           <ProjectCard
             href='https://github.com/Fabian-Martinez-Rincon/Scraping_PLUTO_TV'
@@ -223,7 +226,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
             imagePath='/src/assets/projects/sqlmodify.png'
           />
         </div>
-      </Section>
+      </Section> -->
 
       <Section title='Skills'>
         <SkillLayout title='Languages' skills={languages} />
