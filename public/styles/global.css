@@ -113,7 +113,7 @@ span.katex-display {
   }
   & button.copy {
     & .success::before {
-      content: 'Copied!';
+      content: 'Roba2!';
       position: absolute;
       right: 100%;
       top: 0;
