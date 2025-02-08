@@ -390,6 +390,12 @@ ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 <details><summary><b>4) De que depende el paralelismo de una maquina super escalar</b></summary>
 
+- 1. **Dependecia de datos verdadera**: Cuando una instrucción necesita el resultado de una instrucción previa antes de poder ejecutarse.
+- 2. **Dependencia relativa del procesamiento**: Se refiere a las restricciones impuestas por el orden en que se deben emitir y ejecutar las instrucciones en un procesador. 
+- 3. **Conflicto en los recursos**: Cuando múltiples instrucciones compiten por un mismo recurso al mismo tiempo.
+- 4. **Dependencia de salida**: Cuando dos instrucciones intentan escribir en el mismo registro. 
+- 5. **Antidependencia**: Cuando una instrucción quiere escribir en un registro que todavía está siendo usada por otra instrucción previa.
+
 </details>
 
 ---
@@ -397,11 +403,19 @@ ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 <details><summary><b>5) Cual es el objetivo de usar la tecnica de renombre de registros en un procesador super escalar</b></summary>
 
+Es resolver problemas de dependencia entre instrucciones que intentan usar los mismos registros. Esto permite una ejecucion más eficiente y paralela de instrucciones.
 </details>
 
 ---
 
 <details><summary><b>6) Que es el paralelismo y de que depende el paralelismo de una maquina</b></summary>
+
+El paralelismo es la capacidad de un sistema para ejecutar múltiples operaciones al mismo tiempo, en lugar de procesarlas de manera secuencial. 
+
+El paralelismo de una maquina depende: 
+- 1. **Numero de instrucciones captadas por ciclo**: Cuantas más instrucciones se puedan decodificar y enviar al procesador en cada ciclo de reloj , mayor va a ser el aprovechamiento del paralelismo a nivel de instrucción. 
+- 2. **Número de unidades funcionales**: A mayor número de unidades funcionales logra que más instrucciones se procesen en paralelo, siempre que sean independientes entre sí. 
+- 3. **Mecanismo de localización de instrucciones independientes**: El procesador detecta las instrucciones que puedan ejecutarse en paralelo sin violar dependencias de datos o de control. Usando técnicas como el renombre de registros, predicción de saltos y la ejecución fuera de orden.
 
 </details>
 
@@ -411,11 +425,28 @@ ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 <details><summary><b>1) Por que funciona un sistema de memoria basado en la jerarquia.</b></summary>
 
+Funciona gracias al principio de localidad de referencia basado en 2 tipos de acceso a memoria:
+
+- **Localidad Temporal**: hace referencia a que los elementos de memoria que fueron recientemente referenciados (como datos e instrucciones) se vuelvan a referenciar en el futuro cercano. 
+- **Localidad Espacial**: hace referencia a que si un elemento de memoria fue referenciado, es probable que otros elementos cuyas direcciones están cercanas también sean referenciados.
+
+
 </details>
 
 ---
 
 <details><summary><b>2) Analice las politicas de escritura desde el punto de vista de la coerencia de datos</b></summary>
+
+### Acierto
+
+- **Escritura inmediata (write-through)**: Cada escritura en caché se refleja inmediatamente en la memoria principal, por lo que se mantiene la coherencia de datos en todo momento, suele combinarse con la técnica **no-write-allocate.**
+- **Postescritura (write-back)**: Las actualizaciones se hacen en la cache y se marca un bit de “actualizar o sucio”. Cuando el bloque se saca de la cache se chequea ese bit si está activo, se escribe ese bloque en la memoria principal. Esto puede producir que la memoria principal tenga informacion errónea durante un tiempo. Suele combinarse con la técnica **write-allocate.**
+
+### Fallo
+
+- **Write Allocate**: la informacion se lleva de memoria principal a la cache y se sobrescribe sobre ella , por lo que se puede alterar la coherencia de datos hasta que haya un remplazo de memoria principal.
+- **No write Allocate**: El bloque no se lleva a la memoria cache ,se escribe directamente en memoria principal.
+
 
 </details>
 
@@ -423,11 +454,17 @@ ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 <details><summary><b>3) Analice cuales son las ventajas y desventajas de tener varios niveles de cache</b></summary>
 
+Tener varios niveles de caché (L1, L2, L3) mejora el rendimiento al reducir la latencia y aprovechar la localidad temporal y espacial, optimizando el acceso. Además, permite un balance entre capacidad y velocidad. Sin embargo, aumenta la complejidad del diseño, incrementa los costos y el consumo de energía, y requiere mecanismos de coherencia entre niveles que pueden afectar el rendimiento.
+
 </details>
 
 ---
 
 <details><summary><b>4) Compare la correspondencia entre la memoria principal y la memoria cache.</b></summary>
+
+- **1. DIRECTA**: cada bloque de la memoria principal se mapea a una única línea en la caché. la dirección de memoria se divide en 3 campos para determinar en qué línea de caché se almacena el bloque de datos correspondiente.
+- **2. ASOCIATIVA**: cada bloque de memoria principal puede cargarse en cualquier línea de la cache. La lógica del control de la cache interpreta una dirección de memoria como una etiqueta y un campo de palabras.
+- **3. ASOCIATIVA POR CONJUNTO**: la cache se divide en v conjuntos, cada uno con k líneas. La lógica de control de la cache interpreta una dirección de memoria como 3 campos: etiqueta, conjunto y palabra.
 
 </details>
 
@@ -436,11 +473,63 @@ ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 <details><summary><b>5) Describe las funciones de correspondencia entre la cache y la memoria principal</b></summary>
 
+- **DIRECTA**: cada bloque de la memoria principal se mapea a una única línea en la caché.
+- **ASOCIATIVA**: cada bloque de memoria principal puede cargarse en cualquier línea de la cache.
+- **ASOCIATIVA POR CONJUNTO**: Un bloque puede almacenarse en un conjunto restringido de la cache.
 </details>
 
 ---
 
 <details><summary><b>6) Cuales son los elementos a tener en cuenta en el diseño de una memoria cache</b></summary>
+
+### 1.El tamaño de la cache
+
+No se puede determinar un tamaño fijo optimo, pero a mayor tamaño se necesitas más circuitos para su gestión, las caches más grandes suelen ser un poco más lentas y su tamaño está limitado por el espacio disponible en el chip y las tarjetas.
+
+### 2.Funcion de correspondencia
+
+Define cómo se asignan los bloques de memoria en la caché.
+- **DIRECTA**: cada bloque puede ir solo a una línea especifica.
+- **ASOCIATIVA**: cualquier bloque puede ir a cualquier línea.
+- **ASOCIATIVA POR CONJUNTO**: los bloques se asignas a un conjunto de líneas específicas.
+
+### 3.Algoritmo de sustitución
+
+Decide qué bloque se reemplaza cuando la caché está llena.
+
+- **LRU**: se remplaza el bloque menos usado recientemente.
+- **LFU**: se remplaza el bloque menos accedido.
+- **FIFO**: se remplaza el bloque más antiguo.
+- **ALEATORIA**: Se reemplaza un bloque al azar.
+
+### 4.Politica de escritura
+
+Cuando se debe reemplazar un bloque de la caché, si se ha realizado algún cambio en una línea de caché, es necesario escribir esos datos modificados en la memoria principal antes de hacer el reemplazo.
+
+- **Escritura inmediata**: Cada escritura en caché se refleja inmediatamente en la memoria principal.
+- **Postescritura**: Las actualizaciones se hacen en la cache y luego se sobrescriben en la memoria principal cuando el bloque se remplaza.
+
+### 5.Tamaño de línea: Define cuántas palabras o bytes conforman un bloque en la caché.
+
+A Líneas más grandes se reducen la cantidad de accesos a la memoria principal, pero pueden generar desperdicio de almacenamiento si los datos no se utilizan completamente.
+
+### 6.Numero de caches
+
+El diseño de caché en un sistema de cómputo puede abordarse desde dos perspectivas:'
+
+**1.Número de niveles de caché (caché multinivel vs. caché de un solo nivel)**
+
+- **Caché de un solo nivel** (L1 única):Es la primera y única caché entre el procesador y la memoria principal. Su acceso es rápido, pero si la información no está en caché, se debe ir directamente a la RAM, aumentando la latencia.
+- **Caché multinivel** (L1, L2, L3): Divide la caché en varios niveles, cada uno con diferentes tamaños y velocidades.
+    - **L1**: Más rápida pero pequeña (cercana al procesador).
+    - **L2**: Más grande que L1, pero más lenta.
+    - **L3**: Mayor capacidad, compartida entre núcleos del procesador en muchos casos.
+Reduce la cantidad de accesos a la memoria RAM, mejorando el rendimiento.
+
+**2.Organización de la caché (unificada vs. separada):**
+
+- **Caché unificada**: Almacena tanto instrucciones como datos en una única caché.
+- **Cache separada**: Se divide en caché de instrucciones y caché de datos. Evita conflictos cuando el procesador necesita acceder a instrucciones y datos simultáneamente. Mejora el rendimiento en procesadores con segmentación de instrucciones.
 
 </details>
 
@@ -448,6 +537,15 @@ ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 <details><summary><b>7) Si se pretende el tiempo de acceso mediante la memoria cache sobre que parametro sera necesario trabajar y que propone como medidas para hacerlo.</b></summary>
 
+Para mejorar el tiempo de acceso medio en la memoria caché, es necesario optimizar los siguientes parámetros: 
+
+- **1.Tamaño de la caché**: Aumentarlo puede reducir fallos, pero si es demasiado grande, puede volverse más lenta. Se debe encontrar un equilibrio. 
+- **2.Función de correspondencia**: Usar asociatividad por conjuntos en lugar de mapeo directo reduce colisiones y mejora la tasa de aciertos.
+- **3.Tamaño de bloque**: Un tamaño adecuado minimiza reemplazos innecesarios y mejora la localidad espacial. 
+- **4.Algoritmo de reemplazo**: LRU (menos recientemente usado) es eficiente, pero puede ser costoso en hardware. Alternativas como FIFO o reemplazo aleatorio pueden simplificar la implementación.
+- **5.Política de escritura**: Write-back en lugar de write-through reduce accesos innecesarios a la memoria principal. 
+- **6.Cachés multinivel**: Usar una caché L2 o L3 de mayor tamaño y menor velocidad que L1 ayuda a reducir la frecuencia de accesos a la RAM. 
+- **7.Separación de instrucciones y datos**: Evita competencia por el acceso y mejora el rendimiento en arquitecturas segmentadas.
 
 </details>
 
@@ -457,17 +555,56 @@ ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 <details><summary><b>1) Como es la estructura de un modulo de entrada y salida, esquematice y describa</b></summary>
 
+![image](https://github.com/user-attachments/assets/4956384b-96e2-4221-bf30-86fde8cae56e)
+
+- **Conexión del sistema**: el módulo de E/S se conecta con el resto del computador a través de las líneas del bus del sistema (datos, dirección, control).
+- Registro de Datos y estados:
+    - **Registro de datos**: almacena temporalmente los datos que entran o salen de los dispositivos.
+    - **Registro de estado**: indica el estado actual del dispositivo ( listo, ocupado, error). Puede funcionar también como registro de control para recibir instrucciones del procesador.
+- **Interacción con CPU:** La CPU utiliza las líneas de control para enviar ordenes al módulo E/S por ejemplo leer datos o escribir en un dispositivo.
+- **Reconocimiento de direcciones**: el módulo reconoce una dirección única para identificar que dispositivo controla. Si controla varios tiene un conjunto único de direcciones.
+- **Interfaz específica para dispositivos:** Contiene la lógica necesaria para comunicarse directamente con cada uno de los dispositivos conectados.
+
+
 </details>
 
 ---
 
 <details><summary><b>2) La coerencia de un sistema jerarquico se ve afectado por el uso del DMA</b></summary>
 
+Puede verse afectado, ya que si se realizan operaciones sobre un dato, este se actualiza en cache y si no se vacía la memoria antes de que un dispositivo intente accederlo, se podría estar usando un valor erróneo y viceversa.
 </details>
 
 ---
 
 <details><summary><b>3) Describa las caracteristicas funcionales del acceso directo a memoria</b></summary>
+
+El Acceso Directo a Memoria permite que un dispositivo periférico acceda a memoria principal (RAM) directamente sin la intervención de la CPU. El DMA acelera la transferencia de datos entre la memoria y los dispositivos periféricos, lo que libera recursos de la CPU para otras tareas. Las características funcionales del DMA incluyen varias etapas de transferencia:
+
+**Solicitud**
+
+La primera etapa implica que un dispositivo periférico envíe una solicitud de acceso a la memoria al controlador DMA. Esta solicitud incluye información sobre la dirección de memoria de origen y destino, la cantidad de datos a transferir y el sentido de la transferencia.
+Selección del Canal DMA: Los sistemas informáticos pueden tener múltiples canales, cada uno dedicado a un tipo específico de dispositivo o función. En esta etapa, el sistema debe asignar el canal DMA a la solicitud entrante.
+
+**Configuración**
+
+Una vez seleccionado el canal DMA, se configura para que coincida con los requisitos de la transferencia de datos. Esto incluye la configuración de las direcciones de inicio y finalización en la memoria, el tamaño de la transferencia y otras características relevantes.
+
+**Acceso Directo:**
+
+El controlador DMA se comunica directamente con la memoria principal y el dispositivo periférico para iniciar la transferencia de datos. La CPU no participa en la transferencia en sí, lo que permite que la CPU realice otras tareas mientras se lleva a cabo la transferencia.
+
+**Transferencia de Datos:**
+
+El controlador DMA transfiere datos entre la memoria y el dispositivo periférico utilizando el canal DMA configurado previamente. La transferencia puede ser en una dirección o bidireccional.
+
+**Finalización**
+
+Cuando se completa la transferencia, el controlador DMA notifica al dispositivo periférico y actualiza cualquier estado relevante. La CPU puede ser notificada de la finalización de la transferencia mediante una interrupción o un mecanismo similar.
+
+**Liberación del Canal DMA**
+
+Después de completar la transferencia, el canal DMA se libera para su uso posterior. Esto permite que otros dispositivos o solicitudes utilicen el canal DMA según sea necesario.
 
 </details>
 
@@ -475,11 +612,33 @@ ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 <details><summary><b>4) Describa el funcionamiento de gestion de entrada y salida programada con espera de respuesta</b></summary>
 
+inicia una operación de E/S (como leer o escribir datos en un dispositivo de almacenamiento, por ejemplo), y luego espera a que el dispositivo de E/S termine la operación antes de continuar con su ejecución. En este modelo, el procesador se "bloquea" o "espera" mientras la operación de E/S se lleva a cabo.
+
+**Funcionamiento paso a paso:**
+
+- **Iniciar la operación de E/S**: El procesador envía una solicitud al dispositivo de E/S para realizar una operación específica (por ejemplo, leer un bloque de datos de un disco duro o escribir datos en una impresora).
+- **Espera de respuesta**: Una vez que el procesador emite la solicitud de E/S, espera que el dispositivo termine la operación. Durante este tiempo, el procesador no realiza ninguna otra tarea, ya que está esperando que se complete la operación solicitada.
+- **Polling**: El procesador revisa periódicamente el estado del dispositivo de E/S para determinar si la operación ha finalizado. Esto es menos eficiente que el uso de interrupciones.
+- **Procesamiento de los datos**: Después de que el dispositivo ha terminado la operación, y el procesador ha recibido la respuesta el procesador puede procesar los datos que fueron leídos o verificar que los datos fueron escritos correctamente.
+
 </details>
 
 ---
 
 <details><summary><b>5) Desarrolle el funcionamiento del DMA y a los usos que de el se hacen.</b></summary>
+
+El controlador de DMA recibe el control del sistema cedido por el procesador, para transferir datos a y desde memoria a través del bus del sistema.
+
+Para hacerlo, el DMAC debe utilizarlo sólo cuando el procesador no lo necesita, o forzar al procesador a que suspenda temporalmente su funcionamiento, a esto se lo conoce como robo de ciclo.
+
+Cuando el procesador desea leer o escribir un bloque de datos, envía una orden al módulo de DMA, incluyendo:
+- Si se solicita una lectura o una escritura.
+- La dirección del dispositivo de E/S en cuestión, indicada a través de las líneas de datos.
+- La posición inicial de memoria a partir de donde se lee o se escribe, indicada a través del bus de datos y almacenada por el DMAC en su registro de direcciones.
+- El número de palabras a leer o escribir, indicado a través de las líneas de datos y almacenado en el registro de cuenta de datos.
+
+El procesador continúa su trabajo y el DMAC transfiere el bloque completo de datos, palabra a palabra, directamente desde o hacia la memoria. Cuando la transferencia ha terminado, el DMAC envía una señal de interrupción al procesador.
+
 
 </details>
 
@@ -529,3 +688,25 @@ Ademas, algunos buses permiten transferencias de bloques de datos donde multiple
 
 1) Que elementos componen una maquina con arquitectura Von Newman descrir funcion de cada componente
 
+***Unidad Central de Procesamiento (CPU):***
+
+Es el componente principal encargado de ejecutar las instrucciones del programa. Se divide en:
+
+- **Unidad de Control (CU)**: Coordina la ejecución de instrucciones, decodificándolas y enviando señales de control a los demás componentes.
+- **Unidad Aritmético-Lógica (ALU)**: Realiza operaciones matemáticas y lógicas.
+- **Registros**: Pequeñas unidades de almacenamiento dentro de la CPU que guardan datos temporales y direcciones.
+
+**Memoria Principal:**
+
+Almacena datos e instrucciones de los programas en ejecución. Es de acceso aleatorio (RAM), lo que permite una lectura y escritura rápida por parte del procesador.
+
+**Bus de Datos, Dirección y Control:**
+
+Permiten la comunicación entre los componentes de la máquina.
+- **Bus de Datos**: Transporta los datos entre la memoria, la CPU y los dispositivos de entrada/salida.
+- **Bus de Direcciones**: Indica la ubicación de los datos en la memoria.
+- **Bus de Control**: Transporta señales de control que coordinan el funcionamiento de los demás buses y dispositivos.
+
+**Unidad de Entrada/Salida (E/S)**:
+
+Permite la interacción entre la computadora y el usuario o dispositivos externos. Incluye teclados, pantallas, discos duros, impresoras, entre otros.
