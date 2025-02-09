@@ -13,66 +13,6 @@ category: certificacion
 
 Link de donde me mire todas las clases [Drive](https://drive.google.com/drive/folders/1xNWfH0CDXUGWf-5Ul0EFcQn47hbeB1sL)
 
-## Clase 1 y 2 Subrutinas
-
-- [Clase 1 Subrutinas](https://drive.google.com/file/d/183v4LEjKWQxPJM05hJLrN3OkRlwL02Lh/view?usp=sharing)
-- [Clase 2 Subrutinas](https://drive.google.com/file/d/1GSLI5encA4WBF0caLYn-W8uuvWz7DD1N/view?usp=sharing)
-
-### Clase 1 Pasaje de Parametros
-
-<details><summary>Subrutinas</summary>
-
-![image](https://github.com/user-attachments/assets/1799e09c-d06c-4650-9a22-f8fc19dcf50a)
-![image](https://github.com/user-attachments/assets/7503758a-0b59-4916-90e3-6b452f410d73)
-</details>
-
-<details><summary>Pasaje de parámetros a subrutinas</summary>
-
-![image](https://github.com/user-attachments/assets/f3793408-5107-4696-8dae-9e8bfb64f94a)
-![image](https://github.com/user-attachments/assets/ca6619f1-c536-4c25-acd0-23c49c2c8a71)
-![image](https://github.com/user-attachments/assets/c70deab6-df4a-4c4d-909c-77cb7d7e106d)
-</details>
-
-<details><summary>¿Dónde se pasan los parámetros?</summary>
-
-![image](https://github.com/user-attachments/assets/36907403-3668-41d9-8df8-f125c5c20764)
-![image](https://github.com/user-attachments/assets/fb1164d7-d1aa-4ffa-93a2-9f969826d262)
-</details>
-
-<details><summary>Funcionamiento de la Pila</summary>
-
-![image](https://github.com/user-attachments/assets/8a744875-f2d2-4b7c-b03c-1396d0101840)
-</details>
-
-<details><summary>Operaciones de apilas/desapilar</summary>
-
-![image](https://github.com/user-attachments/assets/e856a3ba-af50-477c-af2a-814eb480b6ca)
-![image](https://github.com/user-attachments/assets/db6962b8-7679-46d6-b15b-334971560a84)
-![image](https://github.com/user-attachments/assets/09e1339f-95c0-4159-a4ea-fcb19880f23d)
-![image](https://github.com/user-attachments/assets/219f2717-372c-4864-b7e0-adddc59c0549)
-![image](https://github.com/user-attachments/assets/ab6a30d9-ea3f-4781-8e79-04763d86742f)
-</details>
-
-<details><summary>Llamada al procedimiento y pasaje de parámetros por pila</summary>
-
-![image](https://github.com/user-attachments/assets/e907c2c6-6800-4501-b7c5-4603ceba1f87)
-![image](https://github.com/user-attachments/assets/0938db42-f32d-4cf5-aa8d-5b22999e1d45)
-![image](https://github.com/user-attachments/assets/90d68170-cf68-42f5-a09d-261a77529a29)
-</details>
-
----
-
-## Clase 3 Interrupciones
-
-- [Clase 3 Interrupciones](https://drive.google.com/file/d/1GSLI5encA4WBF0caLYn-W8uuvWz7DD1N/view?usp=sharing)
-
-## Clase 4 y 5 ES
-
-- [Clase 4](https://drive.google.com/file/d/1ldWAxzR_vgMQoapMfn910WXMGsTgeVVg/view?usp=sharing)
-- [Clase 5]()
-
----
-
 Esto ya es lo ultimo para el final (Me queda este y el de concurrente y termino el Analista Programador Universitario). A meterle!!!
 
 <div align="center">
@@ -80,9 +20,9 @@ Esto ya es lo ultimo para el final (Me queda este y el de concurrente y termino 
 
 </div>
 
-## Parametros e Interrupciones
-
 > @carolina
+
+## Parametros e Interrupciones
 
 <details><summary><b>1) Que métodos como pasaje de parametros podemos utilizar en una computadora?</b></summary>
 
@@ -102,9 +42,6 @@ Los parametros se colocan en la pila. Es el metodo mas utilizado, no depende ni 
 
 </details>
 
-> 🔎 Pista: Son 3 🤫
-
----
 
 <details><summary><b>2) Explique características y tratamiento de interrupciones múltiples.</b></summary>
 
@@ -130,9 +67,6 @@ El sistema debe ser capa de manejar nivel de anidación. Si esta atendiendo una 
 
 </details>
 
-> 🔎 Pista: PMN 🤫
-
----
 
 <details><summary><b>3) Describir el mecanismo de interrupciones</b></summary>
 
@@ -147,10 +81,6 @@ El sistema debe ser capa de manejar nivel de anidación. Si esta atendiendo una 
 
 </details>
 
-> 🔎 Pista: Son 7, Pensa en un pseudocodigo gestionando una interrupción de principio a fin 🤫
-
----
-
 <details><summary><b>4) Describa como se realiza el reconocimiento de interrupciones vectorizadas mediante el pic.</b></summary>
 
 - Se genera una interrupción de un dispositivo externo o una señal de sofware, el pic recibe esa interrupción y la clasifica segun la prioridad que tenga, le avisa al procesador/CPU que hay una interrupción que tiene que se atendida, por la linea (IntR).
@@ -161,9 +91,6 @@ El sistema debe ser capa de manejar nivel de anidación. Si esta atendiendo una 
 
 </details>
 
-> 🔎 Pista: Es como una interrupción normal pero especificando los componentes 🤫
-
----
 
 <details><summary><b>5) Cual son las diferencias entre la terminación de una subrutina y un gestor de interrupciones?</b></summary>
 
@@ -181,9 +108,6 @@ El sistema debe ser capa de manejar nivel de anidación. Si esta atendiendo una 
 
 </details>
 
-> 🔎 Pista: FCC 🤫
-
----
 
 
 <details><summary><b>6) Esquematice y describa la estructura interna de un PIC.</b></summary>
@@ -202,27 +126,24 @@ Estructura interna del PIC: El pic esta compuesto por un conjunto de registros.
 
 </details>
 
-> 🔎 Pista: 1 Finaliza, 3 son para la gestion de interrupciones y 8 para la configuración 🤫
-
 ---
 
 ## Tema Segmentación de Cause
 
-![segmentación](https://www.researchgate.net/profile/Leandro-Zambrano/publication/347483834/figure/fig5/AS:970292671291393@1608347208263/Comportamiento-en-el-tiempo-del-patron-segmentacion-de-cauce.ppm)
 
 <details><summary><b>1) A que se entiende por segmentación de cause (pipeline)</b></summary>
 
 Es la forma de organizar el hardware de la CPU para realizar mas de una operacion al mismo tiempo. Divide el proceso de ejecución de las instrucciones en etapas, permitiendo que se ejecuten de manera simultanea.
 
+![segmentación](https://www.researchgate.net/profile/Leandro-Zambrano/publication/347483834/figure/fig5/AS:970292671291393@1608347208263/Comportamiento-en-el-tiempo-del-patron-segmentacion-de-cauce.ppm)
+
 </details>
 
----
 
 <details><summary><b>2) Cual es el rendimiento de segmentación de cause</b></summary>
 
 El rendimiento es la mejora de eficiencia del procesador al ejecutar varias interrupciones al mismo tiempo, dividiendo el proceso en varias etapas. Cada etapa trabaja en una parte diferente de una instrucción, lo que permite que varias instrucción se ejecuten de manera concurrente. Esto reduce el nro de ciclos de reloj necesarios para ejecutar instrucciones y aumentar el rendimiento.
 
-> Dudas con el ciclo del reloj
 
 Sin enbargo existen riesgos como la dependencia de datos o saltos condicionales que pueden interrumpir el flujo y reducir la eficiencia. El rendimiento mejora cuando el procesador maneja bien estos riesgos, pudiendo manejar mas interrupciones en menos tiempo.
 
@@ -230,9 +151,6 @@ Sin enbargo existen riesgos como la dependencia de datos o saltos condicionales 
 
 </details>
 
-> 🔎 Pista: Acordate de decir los pros y los contras 🤫
-
----
 
 <details><summary><b>3) Describa el problema y posibles soluciones ante el riego por transferencia de control de programa</b></summary>
 
@@ -250,13 +168,9 @@ Sin enbargo existen riesgos como la dependencia de datos o saltos condicionales 
 
 **Predicción de salto:** El procesador intenta predecir si el salto sera tomado o no, para seguir ejecutando instrucciones mientras se confirma la condición del salto. Hay dos tipos de predicciones, estan las estaticas y las dinamicas
 - **Estaticas:** La predicción es fija, por ejemplo siempre se decide si se toman los saltos o no se toman
-- **Dinamica:** Se basa en el historial de ejecuciones anteriores de la misma instrucción de salto. Ejemplo: Tambla de historias de salto o buffer de destino (Branch Target Buffer)
+- **Dinamica:** Se basa en el historial de ejecuciones anteriores de la misma instrucción de salto. Ejemplo: Tabla de historias de salto o buffer de destino (Branch Target Buffer)
 
 </details>
-
-> 🔎 Pista: Tenemos 2 tecnicas y en una de ellas tenemos 3 soluciones (DAP) 🤫
-
----
 
 <details><summary><b>4) Ventajas de la segmentación de Cause</b></summary>
 
@@ -268,17 +182,6 @@ Sin enbargo existen riesgos como la dependencia de datos o saltos condicionales 
 
 </details>
 
-> 🔎 Pista: Son 5 MAMRM 🤫
-
----
-
-<details><summary><b>5) Cuanto mejora el rendimiento de la segmentación de cause de interrupciones</b></summary>
-
-</details>
-
-> Pregunta CAPSIOSA | Sin responder
-
----
 
 <details><summary><b>6) Describa la dependencia de datos que puede afectar un cause segmentado</b></summary>
 
@@ -288,9 +191,6 @@ Sin enbargo existen riesgos como la dependencia de datos o saltos condicionales 
 
 </details>
 
-> 🔎 Pista: Son 3 de 3 letras 🤫
-
----
 
 <details><summary><b>7) Describa 3 motivos de retardo de cause en la segmentación de cause</b></summary>
 
@@ -298,36 +198,33 @@ Sin enbargo existen riesgos como la dependencia de datos o saltos condicionales 
 - 2) **Dependencias Estructurales:** Cuando dos o mas instrucciones compiten por el mismo recurso en una etapa especifica del cause.
 - 3) **Dependencia de Control (Saltos):** Ocurre cuando hay instrucciones de salto y el procesador no sabe que instrucción ejecutar hasta que no termina de evaluar la condición de salto. Esto podria insterrumpir el flujo del cause porque el procesador debe esperar el resultado de la condición para poder seguir.
 
-</details>
-
-> 🔎 Pista: Son 3 DEC 🤫
-
----
-
 7.2) ¿Que retardo produce cada una?
 
 > NO SABEMOS QUE RETARDO EN CUANTO A TIMPO | SIN CONTESTAR
+
+</details>
+
+
+
 
 ---
 
 ## Taxonomia Flynn
 
-![TaxonomiaFlynn](https://www.filosofias.es/wiki/lib/exe/fetch.php/a2/2/flynns-taxonomy-of-computer-architectures.png)
 
----
 
 <details><summary><b>1) Describa las 4 variantes de arquitectura de la Taxonomia Flynn</b></summary>
 
+![TaxonomiaFlynn](https://www.filosofias.es/wiki/lib/exe/fetch.php/a2/2/flynns-taxonomy-of-computer-architectures.png)
+
 Las 4 principales variantes de taxonomia flynn son:
 
-- 1) **SISD** (Single Instruction Single Data): Una sola unidad de procesamiento que ejecuta una secuencia de instrucciones que opera sobre un unico conjunto de datos en cada ciclo de reloj
+- 1) **SISD** (Single Instruction Single Data): Una sola unidad de procesamiento que ejecuta una secuencia de instrucciones, opera sobre un unico conjunto de datos en cada ciclo de reloj
 - 2) **SIMD** (Single Instruction Multiple Data) Una unica instrucción se aplica simultaneamente a multiples conjuntos de datos. Esto permite que varias unidades de procesamiento ejecutan la misma operación en paralelo sobre diferentes datos al mismo tiempo.
 - 3) **MISD** (Multiple Instruction Single Data): Multiples secuencias de instrucciones se ejecutan en paralelo en un solo conjunto de datos.
 - 4) **MIMD** (Multiple Instruction Multiple Data): Multiples unidades de procesamientos que ejecutan diferentes instrucciones sobre diferentes conjuntos de datos al mismo tiempo.
 
 </details>
-
----
 
 <details><summary><b>2) Describa las características que diferencian un SMP con respecto a los Clusters/ Compare los sistemas SMP y Clusters</b></summary>
 
@@ -341,8 +238,6 @@ Las 4 principales variantes de taxonomia flynn son:
 
 </details>
 
----
-
 <details><summary><b>3) Que son los MIMD de la taxonomia Flynn</b></summary>
 
 **MIMD:** Multiples unidades de procesamientos que ejecutan diferentes instrucciones sobre diferentes conjuntos de datos al mismo tiempo. FIN
@@ -352,7 +247,6 @@ Las 4 principales variantes de taxonomia flynn son:
 ---
 
 ## Procesadores super escalares y Super segmentado
-
 
 <details><summary><b>1) Que caracteristicas tienen los procesadores superEscalares</b></summary>
 
@@ -364,9 +258,6 @@ Las 4 principales variantes de taxonomia flynn son:
 
 </details>
 
-> 🔎 Pista: Son 5 CGERE 🤫
-
----
 
 <details><summary><b>2) Compare las politicas de emisión de instrucciones</b></summary>
 
@@ -378,15 +269,11 @@ Políticas:
 
 </details>
 
----
-
 <details><summary><b>3) Elegir una de las 3 politicas emisión/finalización y justifique su elección.</b></summary>
 
 ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 </details>
-
----
 
 <details><summary><b>4) De que depende el paralelismo de una maquina super escalar</b></summary>
 
@@ -398,15 +285,10 @@ ACA ELEGI UNA DE LAS 3 QUE MAS TE CONVENGA Y JUSTIFICALA (CHAT GPT :v )
 
 </details>
 
----
-
-
 <details><summary><b>5) Cual es el objetivo de usar la tecnica de renombre de registros en un procesador super escalar</b></summary>
 
 Es resolver problemas de dependencia entre instrucciones que intentan usar los mismos registros. Esto permite una ejecucion más eficiente y paralela de instrucciones.
 </details>
-
----
 
 <details><summary><b>6) Que es el paralelismo y de que depende el paralelismo de una maquina</b></summary>
 
@@ -433,8 +315,6 @@ Funciona gracias al principio de localidad de referencia basado en 2 tipos de ac
 
 </details>
 
----
-
 <details><summary><b>2) Analice las politicas de escritura desde el punto de vista de la coerencia de datos</b></summary>
 
 ### Acierto
@@ -450,15 +330,11 @@ Funciona gracias al principio de localidad de referencia basado en 2 tipos de ac
 
 </details>
 
----
-
 <details><summary><b>3) Analice cuales son las ventajas y desventajas de tener varios niveles de cache</b></summary>
 
 Tener varios niveles de caché (L1, L2, L3) mejora el rendimiento al reducir la latencia y aprovechar la localidad temporal y espacial, optimizando el acceso. Además, permite un balance entre capacidad y velocidad. Sin embargo, aumenta la complejidad del diseño, incrementa los costos y el consumo de energía, y requiere mecanismos de coherencia entre niveles que pueden afectar el rendimiento.
 
 </details>
-
----
 
 <details><summary><b>4) Compare la correspondencia entre la memoria principal y la memoria cache.</b></summary>
 
@@ -468,8 +344,6 @@ Tener varios niveles de caché (L1, L2, L3) mejora el rendimiento al reducir la 
 
 </details>
 
----
-
 
 <details><summary><b>5) Describe las funciones de correspondencia entre la cache y la memoria principal</b></summary>
 
@@ -477,8 +351,6 @@ Tener varios niveles de caché (L1, L2, L3) mejora el rendimiento al reducir la 
 - **ASOCIATIVA**: cada bloque de memoria principal puede cargarse en cualquier línea de la cache.
 - **ASOCIATIVA POR CONJUNTO**: Un bloque puede almacenarse en un conjunto restringido de la cache.
 </details>
-
----
 
 <details><summary><b>6) Cuales son los elementos a tener en cuenta en el diseño de una memoria cache</b></summary>
 
@@ -533,8 +405,6 @@ Reduce la cantidad de accesos a la memoria RAM, mejorando el rendimiento.
 
 </details>
 
----
-
 <details><summary><b>7) Si se pretende el tiempo de acceso mediante la memoria cache sobre que parametro sera necesario trabajar y que propone como medidas para hacerlo.</b></summary>
 
 Para mejorar el tiempo de acceso medio en la memoria caché, es necesario optimizar los siguientes parámetros: 
@@ -568,14 +438,12 @@ Para mejorar el tiempo de acceso medio en la memoria caché, es necesario optimi
 
 </details>
 
----
 
 <details><summary><b>2) La coerencia de un sistema jerarquico se ve afectado por el uso del DMA</b></summary>
 
 Puede verse afectado, ya que si se realizan operaciones sobre un dato, este se actualiza en cache y si no se vacía la memoria antes de que un dispositivo intente accederlo, se podría estar usando un valor erróneo y viceversa.
 </details>
 
----
 
 <details><summary><b>3) Describa las caracteristicas funcionales del acceso directo a memoria</b></summary>
 
@@ -608,8 +476,6 @@ Después de completar la transferencia, el canal DMA se libera para su uso poste
 
 </details>
 
----
-
 <details><summary><b>4) Describa el funcionamiento de gestion de entrada y salida programada con espera de respuesta</b></summary>
 
 inicia una operación de E/S (como leer o escribir datos en un dispositivo de almacenamiento, por ejemplo), y luego espera a que el dispositivo de E/S termine la operación antes de continuar con su ejecución. En este modelo, el procesador se "bloquea" o "espera" mientras la operación de E/S se lleva a cabo.
@@ -622,8 +488,6 @@ inicia una operación de E/S (como leer o escribir datos en un dispositivo de al
 - **Procesamiento de los datos**: Después de que el dispositivo ha terminado la operación, y el procesador ha recibido la respuesta el procesador puede procesar los datos que fueron leídos o verificar que los datos fueron escritos correctamente.
 
 </details>
-
----
 
 <details><summary><b>5) Desarrolle el funcionamiento del DMA y a los usos que de el se hacen.</b></summary>
 
