@@ -544,11 +544,13 @@ Algunos buses permiten operaciones combinadas como:
 
 Ademas, algunos buses permiten transferencias de bloques de datos donde multiples datos se transfieren en un solo ciclo
 
-</div>
+</details>
 
 ---
 
 ## Maquina/Arquitectura
+
+<details><summary><b>1) Que elementos caracteristicos describen un bus</b></summary>
 
 1) Que elementos componen una maquina con arquitectura Von Newman descrir funcion de cada componente
 
@@ -574,3 +576,13 @@ Permiten la comunicación entre los componentes de la máquina.
 **Unidad de Entrada/Salida (E/S)**:
 
 Permite la interacción entre la computadora y el usuario o dispositivos externos. Incluye teclados, pantallas, discos duros, impresoras, entre otros.
+
+</details>
+
+---
+
+## Finales
+
+![image](https://github.com/user-attachments/assets/183b4a19-5c0d-46e9-bc9c-083854796011)
+![image](https://github.com/user-attachments/assets/9b5cbd08-8209-4cfc-b5d8-b7c07890c391)
+![image](https://github.com/user-attachments/assets/60e4083e-cbb4-4af3-b527-a0b863af6c33)
