@@ -4,7 +4,8 @@ description: "Practica 2 de Redes y Comunicaciones"
 heroImage: { src: './thumbnail.jpg', color: '#CEECF8' }
 publishDate: 2024-05-07
 tags: 
-    - Facultad
+ - Facultad
+ - Redes
 language: 'Spanish'
 ---
 
