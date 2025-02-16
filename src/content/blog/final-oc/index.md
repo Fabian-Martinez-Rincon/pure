@@ -4,7 +4,8 @@ description: "Material para el final de la materia Organizazción de Computadora
 heroImage: { src: './thumbnail.jpg', color: '#EBCD6A' }
 publishDate: '2022-07-15'
 tags: 
-    - Facultad
+ - Facultad
+ - Finales
 language: 'Spanish'
 ---
 

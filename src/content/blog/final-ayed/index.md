@@ -4,7 +4,8 @@ publishDate: '2023-12-23'
 description: 'Finales de la materias Algoritmos y Estructura de Datos'
 heroImage: { src: './thumbnail.jpg', color: '#F2AE6A' }
 tags: 
-    - Facultad
+ - Facultad
+ - Finales
 language: 'Spanish'
 ---
 

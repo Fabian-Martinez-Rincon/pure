@@ -4,7 +4,8 @@ publishDate: '2024-04-20'
 description: 'Patrón Strategy'
 heroImage: { src: './thumbnail.jpg', color: '#CEDECD' }
 tags: 
-    - Facultad
+ - Facultad
+ - Objetos
 language: 'Spanish'
 ---
 

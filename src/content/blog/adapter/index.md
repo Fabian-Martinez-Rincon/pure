@@ -4,7 +4,8 @@ publishDate: '2024-04-19'
 description: 'Patron Adapter'
 heroImage: { src: './thumbnail.jpg', color: '#FDDDB5' }
 tags: 
-    - Facultad
+ - Facultad
+ - Objetos
 language: 'Spanish'
 ---
 

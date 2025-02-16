@@ -4,7 +4,8 @@ publishDate: '2025-02-12'
 description: 'Finales de la materia programación concurrente'
 heroImage: { src: './thumbnail.jpg', color: '#5F5F5F' }
 tags: 
-    - Facultad
+ - Facultad
+ - Finales
 language: 'Spanish'
 ---
 

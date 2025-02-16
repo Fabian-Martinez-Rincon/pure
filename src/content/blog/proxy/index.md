@@ -4,7 +4,8 @@ publishDate: '2024-04-20'
 description: 'Patron Proxy'
 heroImage: { src: './thumbnail.jpg', color: '#97FEC3' }
 tags: 
-    - Facultad
+ - Facultad
+ - Objetos
 language: 'Spanish'
 ---
 

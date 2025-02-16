@@ -4,7 +4,8 @@ publishDate: 2025-02-06
 description: 'Material para el final de arquitectura de Computadoras UNLP'
 heroImage: { src: './thumbnail.jpg', color: '#37B4E3' }
 tags: 
-    - certificacion
+ - facultad
+ - finales
 language: 'Spanish'
 category: certificacion
 ---

@@ -4,7 +4,8 @@ description: "En esta página voy a tratar de explicar todo lo que se necesita p
 heroImage: { src: './thumbnail.jpg', color: '#D7C7C6' }
 publishDate: "2023-12-12"
 tags: 
-    - Facultad
+ - Facultad
+ - Finales
 language: 'Spanish'
 ---
 

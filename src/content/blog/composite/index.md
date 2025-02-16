@@ -4,7 +4,8 @@ publishDate: '2024-04-20'
 description: 'Patron Composite'
 heroImage: { src: './thumbnail.jpg', color: '#D0C8B6' }
 tags: 
-    - Facultad
+ - Facultad
+ - Objetos
 language: 'Spanish'
 ---
 

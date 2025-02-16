@@ -4,7 +4,8 @@ description: "Historias de Usuario y Casos de uso. Tuve que ir todas las practic
 heroImage: { src: './thumbnail.jpg', color: '#EEE2AB' }
 publishDate: 2023-05-07
 tags: 
-    - Facultad
+ - Facultad
+ - Parciales
 language: 'Spanish'
 ---
 

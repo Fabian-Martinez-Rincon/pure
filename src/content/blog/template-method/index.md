@@ -4,7 +4,8 @@ publishDate: 2024-04-20
 description: 'Patrón Template-Method'
 heroImage: { src: './thumbnail.jpg', color: '#A9D1E1' }
 tags: 
-    - Facultad
+ - Facultad
+ - Objetos
 language: 'Spanish'
 category: Patrones
 ---

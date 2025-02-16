@@ -4,7 +4,8 @@ description: "Material con parciales para la materias Orientación a Objetos 1"
 heroImage: { src: './thumbnail.jpg', color: '#9AD1EC' }
 publishDate: 2023-06-11
 tags: 
-    - Facultad
+ - Facultad
+ - Finales
 language: 'Spanish'
 ---
 

@@ -4,7 +4,8 @@ description: 'El objetivo de este blog es poder tener la información necesaria 
 heroImage: { src: './thumbnail.jpg', color: '#9AD1EC' }
 publishDate: '2023-12-12'
 tags: 
-    - Facultad
+ - Facultad
+ - Finales
 language: 'Spanish'
 ---
 

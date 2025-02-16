@@ -4,7 +4,8 @@ publishDate: '2022-11-27'
 description: 'Parciales practicas de la materia Diseño de Base de Datos'
 heroImage: { src: './thumbnail.jpg', color: '#B6AFEC' }
 tags: 
-    - Facultad
+ - Facultad
+ - Parciales
 language: 'Spanish'
 ---
 

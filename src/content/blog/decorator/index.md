@@ -4,7 +4,8 @@ publishDate: 2024-04-21
 description: 'Patron Decorator'
 heroImage: { src: './thumbnail.jpg', color: '#83D6D3' }
 tags: 
-    - Facultad
+ - Facultad
+ - Objetos
 language: 'Spanish'
 ---
 

@@ -4,7 +4,8 @@ publishDate: '2024-04-20'
 description: 'Patron State'
 heroImage: { src: './thumbnail.jpg', color: '#FDF6E9' }
 tags: 
-    - Facultad
+ - Facultad
+ - Objetos
 language: 'Spanish'
 ---
 

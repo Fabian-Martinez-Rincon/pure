@@ -4,7 +4,8 @@ publishDate: '2024-04-24'
 description: 'Tp de Refactoring'
 heroImage: { src: './thumbnail.jpg', color: '#DEDEDE' }
 tags: 
-    - Facultad
+ - Facultad
+ - Objetos
 language: 'Spanish'
 ---
 
