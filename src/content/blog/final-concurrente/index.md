@@ -14,36 +14,40 @@ language: 'Spanish'
 
 </div>
 
-No tengo idea de como voy a encarar este final pero voy a seguir el procedimiento que vengo haciendo con todo y que sea lo que dios quiera.
+# Clases
 
-- [Clases de teoria](https://www.youtube.com/playlist?list=PLH8A0IjFldaGLATsgRdmPBtiNcp5KmAHo)
+- Clase 1 - 1 Introducción a la Programación Concurrente
+- Clase 1 - 2 Conceptos básicos de Concurrencia
+- Clase 1 - 3 Concurrencia a Nivel de Hardware
+- Clase 2 - 1 Clases de Intrucciones
+- Clase 2 - 2 Acciones atómicas de sincronización
+- Clase 2 - 3 Propiedades y Fairness
+- Clase 3 Sincronización por Variables Compartidas
+- Clase 4 Semáforos 
+- Clase 5 Monitores
+- Clase 5 Ejemplos y Tecnicas de Monitoreo
+- Clase 6 - 1 Phtreads
+- Clase 6 - 2 Semaforos y monitores en Phtreads
+- Clase 7 Programación concurrente en memoria distribuida
+- Clase 7 Pasaje de Mensajes Asincrónicos (PMA)
+- Clase 8 Conceptos de PMS
+- Clase 8 CSP para PMS
+- Clase 9 Paradigmas de Interacción
+- Clase 9 Libreria para PM - MPI
+- Clase 10 Introducción a RPC y Rendezvous
+- Clase 10 RPC
+- Clase 10 Rendezvous
+- Clase 10 Rendezvous con ADA
+- Clase 11 Arquitecturas paralelas
+- Clase 11 Diseño de algoritmos paralelos
+- Clase 11 Métricas de rendimiento
+- Clase 11 Paradigmas de programación paralela
+
+
+
+
+
+
 
 ---
 
-# Teorias
-
-## Clase 1 - 1 - Introducción a la Programación Concurrente
-
-<details><summary><b>Concurrencia ¿Que es? ¿Donde está?</b></summary>
-
-![image](https://github.com/user-attachments/assets/2f61c783-30c5-468e-97f9-86c45068d07c)
-![image](https://github.com/user-attachments/assets/1b016aca-4699-4ced-95dd-34da218d15b7)
-</details>
-
-<details><summary><b>¿Por qué es necesaria la programación concurrente?</b></summary>
-
-![image](https://github.com/user-attachments/assets/f8bdf42c-91ad-40c3-8e59-ba975cd24308)
-</details>
-
-<details><summary><b>Objetivos de los sitemas concurrentes</b></summary>
-
-![image](https://github.com/user-attachments/assets/81b4173c-b59b-47d4-a0b1-3c6a4e6e3305)
-</details>
-
----
-
-
-
-## Finales
-
-![c37ac716-85f3-4a0a-ad50-a8fa778b2bb8](https://github.com/user-attachments/assets/70336fb2-632b-4e1c-80a8-37472ffa6b21)
