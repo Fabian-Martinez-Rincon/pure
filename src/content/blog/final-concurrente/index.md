@@ -185,60 +185,85 @@ Cumple las 4 propiedades si el scheduling es fuertemente fair. Una política dé
 
 <details><summary>Defina el problema general de alocación de recursos y su resolución mediante una política SJN(Shortest Job Next).</summary>
 
-**ALOCACION DE RECURSOS**
+Esta respuesta es excesivamente larga, voy a poner las imagenes
 
-La alocación de recursos es el problema de decidir cuándo se le puede dar a un proceso acceso a un recurso. En programas concurrentes, un recurso es cualquier cosa por la que un proceso podría ser demorado esperando adquirirla. Esto incluye entrada a una SC, acceso a una BD, un slot en un buffer limitado, una región de memoria, el uso de una impresora, etc.
-
-Ya hemos examinado varios problemas de alocación de recursos específicos. En la mayoría, se empleó la política de alocación posible más simple: si algún proceso está esperando y el recurso está disponible, se lo aloca.
-
-Por ejemplo, la solución al problema de la SC aseguraba que se le daba permiso para entrar a algún proceso que estaba esperando; no intentaba controlar a cuál proceso se le daba permiso si había una elección. De manera similar, la solución al problema del buffer limitado no intentaba controlar cuál productor o cuál consumidor eran el próximo en acceder al buffer. La política de alocación más compleja que consideramos fue en el problema de lectores/escritores.
-
-Sin embargo, nuestra atención estuvo en darle preferencia a clases de procesos, no a procesos individuales.
-
-Esta sección muestra cómo implementar políticas de alocación de recursos generales y en particular muestra cómo controlar explícitamente cuál proceso toma un recurso cuando hay más de uno esperando.
-
-Primero describimos el patrón de solución general. Luego implementamos una política de alocación específica (shortest job next). La solución emplea la técnica de passing the baton.
-
-También introduce el concepto de semáforos privados, lo cual provee la base para resolver otros problemas de alocación de recursos.
-
-**Definición del problema y Patrón de solución general**
-
-En cualquier problema de alocación de recursos, los procesos compiten por el uso de unidades de un recurso compartido. Un proceso pide una o más unidades ejecutando la operación request, la cual con frecuencia es implementada por un procedure.
-
-Los parámetros a request indican cuantas unidades se requieren, identifican alguna característica especial tal como el tamaño de un bloque de memoria, y dan la identidad del proceso que pide. Cada unidad del recurso compartido está libre o en uso. Un pedido puede ser satisfecho cuando todas las unidades del recurso compartido están libres.
-
-Por lo tanto request se demora hasta que esta condición es true, luego retorna el número requerido de unidades. Después de usar los recursos alocados, un proceso los retorna al pool de libres ejecutando la operación release.
-
-Los parámetros a release indican la identidad de las unidades que son retornadas. Ignorando la representación de las unidades del recurso, las operaciones request y release tienen la siguiente forma general:
-
-- **request(parámetros):** á await request puede ser satisfecho ® tomar unidades ñ
-- **release(parámetros):** á retornar unidades ñ
-
-Las operaciones necesitan ser atómicas dado que ambas necesitan acceder a la representación de las unidades del recurso. Siempre que esta representación use variables diferentes de otras variables del programa, las operaciones aparecerán como atómicas con respecto a otras acciones y por lo tanto pueden ejecutar concurrentemente con otras acciones.
-
-Este patrón de solución general puede ser implementado usando la técnica de passing the baton. En particular, request tiene la forma de F2 de modo que es implementada por un fragmento similar a (4.7):
-
-**request(parámetros):**
-
-```
-P(e)
-if request no puede ser satisfecho ® DELAY **fi**
-toma unidades
-SIGNAL`
-```
-
-Similarmente, release la forma de F1 de modo que es implementada por un fragmento de programa similar a (4.6):
-
-Release(parámetros)
-
-```
-P(e)
-retorna unidades
-SIGNAL
-```
+![image](https://github.com/user-attachments/assets/47b48450-e9b1-403a-b400-be247f879696)
+![image](https://github.com/user-attachments/assets/44e1df12-5208-4dba-ab73-c166291a594e)
+![image](https://github.com/user-attachments/assets/c6120641-2459-431a-8d94-0cf3730fc65d)
+![image](https://github.com/user-attachments/assets/dac52897-cf08-4929-9cdb-3a08ec93e811)
+![image](https://github.com/user-attachments/assets/d5b65aa7-5f5d-4af8-9a4f-8cabe8124b33)
+![image](https://github.com/user-attachments/assets/e3d311fe-3e1f-430c-8895-e78f93488232)
+![image](https://github.com/user-attachments/assets/b70d1a7e-bd1f-41b7-9384-624f2df07dc2)
+![image](https://github.com/user-attachments/assets/8c0e809f-b826-4043-bb2a-445fb7b42cfc)
+![image](https://github.com/user-attachments/assets/80c69d67-1306-4740-91f9-872dc6e3b6c6)
+![image](https://github.com/user-attachments/assets/167b7ad2-9f7e-4803-8c37-2e31780af86b)
+![image](https://github.com/user-attachments/assets/882f605c-10f8-47d6-b3b5-4b909c308e07)
+![image](https://github.com/user-attachments/assets/31b8e867-576c-4ab1-af48-ce12c4c7fb4f)
+![image](https://github.com/user-attachments/assets/426a7baf-e99b-4a76-9170-700c82813e68)
+![image](https://github.com/user-attachments/assets/69a96433-a1ea-40c9-88fc-405fde4990a3)
 
 </details>
 
 <details><summary>¿Minimiza el tiempo promedio de espera? ¿Es fair? Si no lo es, plantee una alternativa que lo sea.</summary>
+
+Minimiza el tiempo promedio de espera pero no es fair, ya que pueden llegar procesos de mayor duración que van quedando relegados por el scheduler a la hora de la elección del siguiente proceso, y viene siempre un proceso nuevo más corto que le gana la posición y lo deja relegado haciéndole inanición.
+
+Para evitar la inanición se plantea una alternativa fair que es igual a SJN agregando la técnica de Aging. Esta técnica toma en cuenta los tiempos de cada proceso en espera para considerar si un proceso que lleva más tiempo en el CPU pero su trabajo es más largo es elegido sobre otro proceso de más corta duración que acaba de entrar en la disputa por la CPU. Suele contar los ciclos de espera.
+
+**Wiki**: La técnica de aging es el proceso de aumentar gradualmente la prioridad de un proceso, en función de su tiempo de espera. El aging se puede utilizar para reducir la inanición de procesos de baja prioridad. El aging se utiliza para garantizar que los procesos en el menor nivel de las colas finalmente completen su ejecución.
+
+</details>
+
+**Pregunta 4**
+
+<details><summary> En qué consiste la técnica de “passing the baton”? ¿Cuál es su utilidad?</summary>
+
+Esta técnica se llama passing the baton por la manera en que los semáforos son señalizados.
+
+Cuando un proceso está ejecutando dentro de una región crítica, podemos pensar que mantiene el baton que significa permiso para ejecutar. Cuando ese proceso alcanza un fragmento SIGNAL, pasa el baton a otro proceso. Si algún proceso está esperando una condición que ahora es verdadera, el baton es paso a tal proceso, el cual a su turno ejecuta la región crítica y pasa el baton a otro proceso. Cuando ningún proceso está esperando una condición que es true, el baton es pasado al próximo proceso que trata de entrar a su región crítica por primera vez.
+
+Esta técnica es lo suficientemente poderosa para implementar cualquier sentencia await
+
+</details>
+
+<details><summary>Aplique este concepto a la resolución del problema de lectores y escritores.</summary>
+
+![image](https://github.com/user-attachments/assets/db9747f6-f1c6-4d0a-bf0d-915c5e2f548d)
+![image](https://github.com/user-attachments/assets/034bdc11-ee93-4a7d-bd8b-110b02f3a6b7)
+![image](https://github.com/user-attachments/assets/e1ab0c0c-9042-497d-baf1-1dfb0adc410e)
+![image](https://github.com/user-attachments/assets/355ce1e6-dd0d-4b11-88f7-2c63cfa7f43b)
+![image](https://github.com/user-attachments/assets/2a46c7ae-bfb5-470c-a1cc-f49b59a2fe14)
+![image](https://github.com/user-attachments/assets/6991b21b-f157-40af-ba8a-aad22d1274df)
+![image](https://github.com/user-attachments/assets/3552cb5b-ecd1-455c-9b1f-63df809c3fcb)
+</details>
+
+<details><summary>¿Qué relación encuentra con la técnica de “passing the condition”?</summary>
+
+Passing the condition es una técnica utilizada en monitores donde un proceso pasa una condición implícitamente a un proceso que está demorado en espera de esa condición sin que los demás procesos se perciban de ello.
+
+En la técnica passing the baton se consigue despertar a un proceso de un determinado tipo si se comprueba que la condición por la que estaba esperando es verdadera.
+
+De alguna manera, es como si se ocultara a los otros procesos que el baton a cambiado de dueño. Con “passing the condition” pasa algo similar ya que se consigue despertar a un proceso en particular pasándole la condición que se ha vuelto verdadera al proceso que se va a despertar. Al no hacer esta condición visible, sólo el proceso al que va a despertarse puede verla.
+
+</details>
+
+<details><summary>Utilice la técnica de “passing the condition” para implementar un semáforo fair usando monitores.</summary>
+
+![image](https://github.com/user-attachments/assets/7e039698-9345-4956-980d-825dbc43f93c)
+![image](https://github.com/user-attachments/assets/949b853f-b977-473c-bbd3-b12999ed096e)
+![image](https://github.com/user-attachments/assets/b33769ea-a7a7-4aae-ab97-9ed79041e392)
+
+</details>
+
+**Pregunta 5**
+
+<details><summary>Explique el concepto de broadcast y sus dificultades de implementación en un ambiente distribuido, con mensajes sincrónicos y asincrónicos.</summary>
+
+```
+Algoritmos broadcast
+Permiten alcanzar una información global en una arquitectura distribuida.
+Sirven para toma de decisiones descentralizadas.
+```
+> fuente: nuestra brillantez
 
 </details>
