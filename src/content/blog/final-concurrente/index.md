@@ -29,7 +29,3 @@ language: 'Spanish'
 
 ---
 
-Segun la gente que aprobo, estudio solo de estos dos pdfs
-
-- [PDF de teoria](/src/content/blog/final-concurrente/PreguntasdefinalTeoria.docx.pdf)
-- [PDF de practica](/src/content/blog/final-concurrente/PreguntasdefinalPractica.docx.pdf)
