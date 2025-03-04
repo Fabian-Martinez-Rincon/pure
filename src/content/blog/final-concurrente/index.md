@@ -16,65 +16,172 @@ language: 'Spanish'
 
 </div>
 
+# Enunciados
+
 ---
 
-Los unicos ejercicios que impo
+Suponga que N procesos poseen inicialmente cada uno un valor. Se debe calcular
+la suma de todos los valores y al finalizar la computación todos deben conocer
+dicha suma.
+Analice (desde el punto de vista del número de mensajes y la performance global)
+las soluciones posibles con memoria distribuida para arquitecturas en Estrella
+(centralizada), Anillo Circular, Totalmente Conectada y Árbol
 
-## Final de primera mesa de febrero del 2025
+**Arquitectura en estrella (centralizada)**
 
-![WhatsApp Image 2025-02-12 at 21 09 03](https://github.com/user-attachments/assets/319dcbf3-ad6b-40a1-b059-02bf4fbb3608)
+En este tipo de arquitectura, todos los procesos (*workers*) envían su valor local al procesador central (*coordinador*). Este suma los N datos y reenvía la información de la suma al resto de los procesos.  
 
-## Final de la segunda mesa de febrero del 2025
+Por lo tanto, se ejecutan `2(N-1)` mensajes. Si el procesador central dispone de una primitiva *broadcast*, se reduce a `N` mensajes.  
 
-![b0868fa1-eab1-479d-a276-3c7f98cc555e](https://github.com/user-attachments/assets/4951e333-c414-43e5-a671-715d98d2c9ce)
+En cuanto a la performance global, los mensajes al coordinador se envían casi al mismo tiempo. Estos se quedarán esperando hasta que el coordinador termine de computar la suma y envíe el resultado a todos.
 
-## Final segunda mesa de febrero del 2025
+```c
+chan valor (INT),
+resultados[n] (INT suma);
 
-![febrero 2024 final](https://github.com/user-attachments/assets/fbf43207-4c36-4781-9e64-2c12c9c0d131)
+Process P[0]{  # Coordinador, v está inicializado
+    INT v;
+    INT sum = 0;
+    sum = sum + v;
 
-## Final el 11-10-2023
+    for (i = 1 to n-1){
+        receive valor(v);
+        sum = sum + v;
+    }
 
-![final 11 10 2023](https://github.com/user-attachments/assets/bb6b87be-57c1-4859-bb4f-875ea61ff9ef)
+    for (i = 1 to n-1){
+        send resultado[i](sum);
+    }
+}
 
-## 2da Mesa de diciembre 18-12-2024
+Process P[i = 1 to n-1]{  # Worker, v está inicializado
+    INT v; INT sum;
+    send valor(v);
+    receive resultado[i](sum);
+}
+```
 
-![image](https://github.com/user-attachments/assets/1047f9d6-8277-4196-975d-185259b20821)
+---
 
-## Final de abril del 2024
+**Anillo circular**
 
-![final concurrente abril 2024](https://github.com/user-attachments/assets/b6cadfcd-a433-42fc-b256-0b6457e6beba)
+Se tiene un anillo donde P[i] recibe mensajes de P[i-1] y envía mensajes a P[i+1]. P[n-1] tiene como sucesor a P[0]. El primer proceso envía su valor local ya que es lo único que conoce.
 
-## Final de Febrero 21-02-2024
+Este esquema consta de dos etapas:
 
-![final concurrente](https://github.com/user-attachments/assets/174d8695-4d42-4d7a-a5da-300d182fdfee)
+1. Cada proceso recibe un valor y lo suma con su valor local, transmitiendo la suma local a su sucesor.  
+2. Todos reciben la suma global.
 
-## Final Junio 2023
+P[0] debe ser algo diferente para poder "arrancar" el procesamiento: debe enviar su valor local ya que es el único que conoce. Se requerirán **2(n-1)** mensajes.
 
-![image](https://github.com/user-attachments/assets/449c3f07-c026-449d-a756-59f1b8c533a6)
-![image](https://github.com/user-attachments/assets/3fe40821-642d-405f-9d47-dbaeb6fdca5b)
+A diferencia de la solución centralizada, esta reduce los requerimientos de memoria por proceso, pero tardará más en ejecutarse, por más que el número de mensajes requeridos sea el mismo. Esto se debe a que cada proceso debe esperar un valor para computar una suma parcial y luego enviársela al siguiente proceso; es decir, un proceso trabaja por vez, se pierde el paralelismo.
 
-## Final de Abril del 2024
+**Código en C para la implementación en anillo circular**
 
-![image](https://github.com/user-attachments/assets/e1ba48e8-0de7-4d51-ad95-ee5b82f3f029)
+```c
+// Se define un canal de comunicación para intercambiar valores entre procesos
+chan valor[n](suma);  
 
-## Final de febrero del 2024
+// Proceso P[0]: Actúa como el primer proceso en el anillo
+process p[0]{  
+    INT v;  // Valor inicial del proceso P[0]
+    INT suma = v;  // Inicializa la suma con su propio valor
 
-![image](https://github.com/user-attachments/assets/c58c847d-04f4-42e6-adce-d18807f71553)
+    send valor[1](suma);  // Envía su valor inicial al siguiente proceso P[1]
+    receive valor[0](suma);  // Espera recibir la suma global de vuelta desde el último proceso
+    send valor[1](suma);  // Reenvía la suma global a P[1] para que todos la conozcan
+}
 
-## Final febrero del 2023
+// Procesos P[i] (para i = 1 hasta n-1): Cada uno recibe, acumula y reenvía la suma
+process p[i = 1 to n-1]{  
+    INT v;  // Valor inicial del proceso P[i]
+    INT suma;  // Variable para almacenar la suma parcial
 
-![image](https://github.com/user-attachments/assets/979de0c2-fa66-420a-aa03-928a344a6a07)
-![image](https://github.com/user-attachments/assets/57767dcd-c72a-46be-a7c9-183ffbd6d5c6)
+    receive valor[i](suma);  // Recibe la suma parcial del proceso anterior (P[i-1])
+    suma = suma + v;  // Agrega su propio valor a la suma parcial
+    send valor[(i+1) mod n](suma);  // Envía la suma parcial al siguiente proceso en el anillo
+    receive valor[i](suma);  // Espera recibir la suma global de vuelta en el anillo
+    if (i < n-1)  // Si no es el último proceso en la secuencia
+        send valor[i+1](suma);  // Reenvía la suma global al siguiente proceso
+}
+```
 
-## Final Junio 2023
+---
 
-![image](https://github.com/user-attachments/assets/36ab48f6-1bbb-4a79-827b-f8b9bfff7a37)
+![image](https://github.com/user-attachments/assets/93626c52-5b27-47b0-870a-8dbe4add0a59)
 
-## Final Octubre 2023
+```c
+// Canal para enviar los valores al coordinador
+chan valor (INT);
 
-![image](https://github.com/user-attachments/assets/e52d834c-37f2-49aa-a0cf-98d1a3708bba)
+// Canal para enviar el promedio calculado a todos los procesos
+resultados[n] (FLOAT promedio);
 
-## Septiembre del 2023
+Process P[0]{  // Coordinador (Proceso central)
+    INT v;  // Valor inicial del coordinador
+    INT sum = 0;  // Variable para acumular la suma de los valores
+    FLOAT promedio;  // Variable para almacenar el promedio
 
-![image](https://github.com/user-attachments/assets/0533a9a9-43d5-4904-b3ae-721d259cc2a1)
+    sum = sum + v;  // El coordinador suma su propio valor primero
+
+    // Recibe los valores de los demás procesos y los acumula en sum
+    for (i = 1 to n-1){
+        receive valor(v);  // Recibe un valor de un proceso
+        sum = sum + v;  // Suma el valor recibido a la suma total
+    }
+
+    promedio = sum / n;  // Calcula el promedio dividiendo la suma por N
+
+    // Envía el promedio calculado a todos los procesos
+    for (i = 1 to n-1){
+        send resultado[i](promedio);  // Envia el promedio a cada proceso worker
+    }
+}
+
+Process P[i = 1 to n-1]{  // Worker (Procesos trabajadores)
+    INT v;  // Valor inicial del proceso worker
+    FLOAT promedio;  // Variable para recibir el promedio
+
+    send valor(v);  // Envía su valor al coordinador
+
+    receive resultado[i](promedio);  // Recibe el promedio calculado por el coordinador
+}
+```
+
+**Anillo Circular**
+
+```c
+// Canal para enviar y recibir valores en el anillo
+chan valor[n](promedio);
+
+process p[0]{  
+    INT v;                  // Valor inicial del proceso P[0]
+    INT suma = v;           // Inicializa la suma con su propio valor
+    send valor[1](suma);    // Envía su valor inicial al siguiente proceso P[1]
+
+    receive valor[0](suma); // Espera recibir la suma global de vuelta desde el último proceso
+    FLOAT promedio = suma / n;  // Calcula el promedio
+
+    send valor[1](promedio); // Reenvía el promedio a P[1] para que todos lo conozcan
+}
+
+process p[i = 1 to n-1]{  
+    INT v;               // Valor inicial del proceso P[i]
+    INT suma;            // Variable para almacenar la suma parcial
+
+    receive valor[i](suma);      // Recibe la suma parcial del proceso anterior (P[i-1])
+    suma = suma + v;             // Agrega su propio valor a la suma parcial
+    send valor[(i+1) mod n](suma); // Envía la suma parcial al siguiente proceso en el anillo
+
+    receive valor[i](suma);      // Espera recibir la suma global de vuelta en el anillo
+    if (i == n-1) {              // Último proceso calcula el promedio
+        FLOAT promedio = suma / n;
+        send valor[0](promedio); // Envía el promedio de vuelta a P[0]
+    }
+
+    receive valor[i](promedio);  // Recibe el promedio final
+    if (i < n-1)                 // Si no es el último, lo reenvía al siguiente proceso
+        send valor[i+1](promedio);
+}
+```
 
