@@ -110,6 +110,8 @@ process p[i = 1 to n-1]{
 
 ![image](https://github.com/user-attachments/assets/93626c52-5b27-47b0-870a-8dbe4add0a59)
 
+**Estrella Centralizada**
+
 ```c
 // Canal para enviar los valores al coordinador
 chan valor (INT);
