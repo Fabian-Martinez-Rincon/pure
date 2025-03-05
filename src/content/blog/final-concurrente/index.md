@@ -12,13 +12,13 @@ language: 'Spanish'
 ---
 
 <div align="center">
-<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWp1Mmh4NXQ3ZHZrZDBzOXNjaG12Nm9rM2x4NnJtcGZxMWkxcXBsOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W9G8OK82R3dfO/giphy.gif" width="400px">
+<img src="https://github.com/user-attachments/assets/d9e3ea61-bb8c-42d5-8eba-c9fc561e705e" width="400px">
 
 </div>
 
-# Enunciados
-
 ---
+
+## Final Viejo
 
 Suponga que N procesos poseen inicialmente cada uno un valor. Se debe calcular
 la suma de todos los valores y al finalizar la computación todos deben conocer
@@ -60,8 +60,6 @@ Process P[i = 1 to n-1]{  # Worker, v está inicializado
     receive resultado[i](sum);
 }
 ```
-
----
 
 **Anillo circular**
 
@@ -107,6 +105,8 @@ process p[i = 1 to n-1]{
 ```
 
 ---
+
+## Final del 26-02-2025
 
 ![image](https://github.com/user-attachments/assets/93626c52-5b27-47b0-870a-8dbe4add0a59)
 
