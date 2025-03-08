@@ -9,33 +9,40 @@ language: 'Spanish'
 category: certificacion
 ---
 
-# Aprendiendo ingles con chatGPT
+# 1) Bussu
 
-Ruta segun chatGPT para practicar ingles
+Me voy a aprender todo lo que dice este video
 
-**Fase 1: Construcción de Base (0-3 meses)**
+- [MR-Salas](https://youtu.be/inq8DrZqF4M?si=VNE-CDopX-jIzfCj)
 
-1. **Vocabulario clave**: Aprende las palabras y frases más usadas en el entorno de Data Engineering (ETL, pipelines, database, API, etc.).
-2. **Escucha diaria**: Podcasts sencillos como *The British Council Learn English* o *BBC Learning English*.
-3. **Aplicaciones**: Usa *Duolingo*, *Anki* (para tarjetas de vocabulario) y *Elsa Speak* (para pronunciación).
-4. **Lectura básica**: Blogs de tecnología en inglés y documentación técnica (ej. Python, SQL).
-5. **Clases básicas**: Considera clases online en plataformas como iTalki o Cambly con profesores nativos.
+Podemos usar Bussu para empezar y tener metas diarias.
 
-**Fase 2: Conversación y Práctica Activa (3-6 meses)**
+# 2) Ver una serie o película en Netflix o Youtube
 
-1. **Conversaciones estructuradas**: Practica con compañeros de trabajo o en plataformas como *Tandem* o *HelloTalk*.
-2. **Escritura técnica**: Redacta pequeños resúmenes en inglés sobre tareas que realizas en el trabajo.
-3. **Correcciones**: Usa Grammarly para revisar emails y documentación.
-4. **Ver series y videos**: Contenido en inglés con subtítulos (ej. *Tech With Tim*, *FreeCodeCamp*).
-5. **Clases con profesores**: Sesiones enfocadas en inglés técnico.
+Empezar con programas para niños :(.
+Cuando estes viendo la serie y cada vez que aparezca una 'FRASE' NO UNA PALABRA (De al menos dos palabras), Vamos a crear una tarjeta en Anki.
 
-**Fase 3: Inmersión y Confianza (6+ meses)**
+# 3) Crear tarjetas en Anki del vocabulario desconocido de la Serie/Pelicula
 
-1. **Simulación de reuniones**: Practica responder preguntas comunes en stand-ups y meetings.
-2. **Presentaciones**: Explica proyectos en inglés a un colega o graba tu explicación.
-3. **Redacción avanzada**: Escribe informes y documentación en inglés.
-4. **Hablar todos los días**: Aunque sea 5 minutos con alguien o en voz alta para ti mismo.
-5. **Participar en foros**: Contribuye en Stack Overflow, Reddit, o Medium en inglés.
+En teoria si la serie es facil, no vamos a hacer mas de 30 tarjetas de anki. Segun dice el chico, para el lo recomendable es no hacer mas de 15/17 tarjetas al dia.
 
-💡 **Consejo**: No esperes a estar "listo". Empieza a usar el inglés en pequeñas interacciones desde el primer mes.
+((Los Pasos serian los siguientes))
+- Ver la serie
+- Hiciste tus tarjetas de Anki
+- Descargas el episodio y lo escuchas pasivamente
 
+# 4) Ver/Escuchar el episodio/la película de manera pasiva en tu tiempo muerto
+Una vez que escuchaste el audio, leiste tus tarjetas y por ejemplo vas al gimnasio, vas con tus auriculares escuchando el audio del capitulo.
+
+Sino mientras estas lavando o haciendo otras cosas.
+
+# 5)  Repasar y volver a consumir la media
+
+Al siguiente dia antes de ponerte a ver la serie. Vas a leer las tarjetas del dia anterior de ANKI y vas a ver un nuevo episodio. Ver un nuevo episodio (o ver otra vez el del día anterior) y repetir los pasos anteriores.
+
+```
+Si en algun momento bajas de las 15 tarjetas de anki al dia, esta demasiado facil lo que estas viendo.
+```
+
+
+- [Usar anki para aprender idiomas](https://youtu.be/rXxrHDEeYIw?si=BhPxkOAJupRHORNP)
