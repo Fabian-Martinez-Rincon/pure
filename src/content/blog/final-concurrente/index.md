@@ -9,8 +9,6 @@ tags:
 language: 'Spanish'
 ---
 
----
-
 <div align="center">
 <img src="https://github.com/user-attachments/assets/d9e3ea61-bb8c-42d5-8eba-c9fc561e705e" width="400px">
 
@@ -18,7 +16,123 @@ language: 'Spanish'
 
 ---
 
-## Final Viejo
+
+![image](https://github.com/user-attachments/assets/6650d0ae-c1b2-4adc-9dba-5d68724bdf49)
+
+<details><summary>Respuesta</summary>
+
+Si el algoritmo se ejecuta secuencialmente se tienen:
+
+**Asignaciones**
+
+- 128^3 + 128^2
+- 2097152 + 16384
+- 2113536
+
+¿Por qué 128^3 y 128^2?
+
+![image](https://github.com/user-attachments/assets/01115fc1-ec0a-4724-9c8c-e2d4f131e889)
+
+**Sumas**
+
+- 128^3
+- 2097152
+
+![image](https://github.com/user-attachments/assets/ae892334-82aa-4884-94d3-e8c1141fe745)
+
+
+**Productos**
+- 128^3
+- 2097152
+
+![image](https://github.com/user-attachments/assets/f81d5dd9-7a52-4786-88bd-0723be012499)
+
+
+</details>
+
+
+![image](https://github.com/user-attachments/assets/c37c9c7e-c1a1-4ffd-ae67-7d6825e6a457)
+
+<details><summary>Respuesta</summary>
+
+Si tenemos 8 procesos cada uno con un strip de 16 (128/8) los cálculos de tiempo quedarían para cada proceso como:
+
+- La matriz de `C` es de tamaño `128x128`
+- La estrategia paralela divide las **filas** de `C` entre **8 procesos**
+- Y como hay `128` filas y `P=8`, cada proceso trabaja sobre `128/8` = `16 filas`
+
+**Asignaciones con 8 procesos**
+
+Anteriormente calculabamos las asignaciones de esta forma `128^3 + 128^2`, ahora vamos a hacer exactamente los mismo pero lo dividimos por la cantidad de procesos que tenemos
+
+- Con `P=1` -> `128^3` + `128^2`
+- Con `P=8` -> `(128^3)/8` + `(128^2)/8`
+
+`(128^3)/8` + `(128^2)/8` <=> `128^2 * 16` + `128 * 16`
+
+Podes usar la cuenta que quieras, son equivalentes, el resultado final te tendria que dar lo siguiente
+
+- 262144 + 2048
+- 264192
+
+**Sumas**
+
+- `(128^3)/8` <=> `128^2 * 16`
+- 262144
+
+**Productos**
+
+- `(128^3)/8` <=> `128^2 * 16`
+- 262144
+
+</details>
+
+![image](https://github.com/user-attachments/assets/8d2b8ec4-75e2-4888-bb95-823827ce131f)
+
+<details><summary>Respuesta</summary>
+
+**Problema Inicial: Distribución equitativa pero ineficiente**
+
+Inicialmente, cada procesador **P1** a **P8** procesa la misma cantidad de filas de la matriz. Dado que la matriz es de tamaño **128×128**, se divide en **8 partes iguales**, lo que significa que cada procesador maneja **16 filas**.
+
+> P1 a P8 tienen igual número de operaciones.
+> Es como tener 8 autos y a uno le faltan dos ruedas
+
+- **Asignaciones** -> `264192`
+- **Sumas** -> `262144`
+- **Producto** -> `262144`
+
+Los tiempos de ejecución para **P1** a **P7** son:
+
+- T(P1-P7)
+- (`264192` x 1) + (`262144` x 2) + (`262144` x 3)
+- `264192` + `524288` + `786432` = 1574912
+
+Sin embargo, P8 es 4 veces más lento, por lo que su tiempo total de ejecución es
+
+- T(P8)
+- 1574912 x 4
+- `6299648`
+
+Como el tiempo de ejecución total en paralelo está determinado por el procesador más lento, el tiempo total de ejecución es:
+
+Cálculo del speedup inicial:
+
+T(Secuencial) = 1574912 * 8  -> 12.599.296
+
+- Speedup
+- T(secuencial)/ T(paralelo)
+- 1574912 * 8 / 1574912 x 4
+- 2
+
+> 🔴 Problema:
+> Aunque tenemos 8 procesadores, el speedup es solo 2, lo cual es muy bajo. Esto ocurre porque P8, al ser más lento, arruina la eficiencia del paralelismo.
+
+---
+
+</details>
+
+## Final 1
 
 Suponga que N procesos poseen inicialmente cada uno un valor. Se debe calcular
 la suma de todos los valores y al finalizar la computación todos deben conocer
@@ -187,3 +301,4 @@ process p[i = 1 to n-1]{
 }
 ```
 
+---
