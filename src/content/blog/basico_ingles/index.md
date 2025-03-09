@@ -46,3 +46,10 @@ Si en algun momento bajas de las 15 tarjetas de anki al dia, esta demasiado faci
 
 
 - [Usar anki para aprender idiomas](https://youtu.be/rXxrHDEeYIw?si=BhPxkOAJupRHORNP)
+
+Codigo para los complementos
+
+ADDONS/complementos que utilizo: 
+Heatmap: 1771074083
+Pass/fail: 876946123
+More Stats: 738807903
