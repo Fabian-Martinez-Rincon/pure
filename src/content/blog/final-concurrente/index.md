@@ -122,13 +122,59 @@ T(Secuencial) = 1574912 * 8  -> 12.599.296
 
 - Speedup
 - T(secuencial)/ T(paralelo)
-- 1574912 * 8 / 1574912 x 4
+- (1574912 * 8) / (1574912 x 4)
 - 2
 
 > 🔴 Problema:
 > Aunque tenemos 8 procesadores, el speedup es solo 2, lo cual es muy bajo. Esto ocurre porque P8, al ser más lento, arruina la eficiencia del paralelismo.
 
+**Objetivo del Balance de Carga**
+
+La solución al problema es redistribuir la carga de trabajo para que `P8` tenga menos filas, y así termine aproximadamente en el mismo tiempo que `P1-P7`.
+
+Queremos encontrar cuántas filas `𝑓` debe procesar `P8` para que su tiempo total sea igual al tiempo de ejecución de `P1-P7`.
+
+Sabemos que el tiempo de ejecución de un procesador depende del número de filas que procesa.
+
+Como `P8` es `4` veces más lento, su tiempo de ejecución será:
+
+> Formula original n=128/8  -> 16 Filas
+
+![image](https://github.com/user-attachments/assets/2f0c423e-94bc-41df-82d1-8f086635ed76)
+
+- Calculamos f
+- f/16 x 4 = 1
+- f x 4 = 16
+- f = 16/4
+- f = 4
+
+> Por lo tanto, P8 debe procesar solo 4 filas.
+
+**Redistribución de Filas en P1-P7**
+
+Ahora que sabemos que P8 debe procesar 4 filas, debemos redistribuir las filas restantes entre los otros procesadores.
+
+- Total de filas en la matriz: 128
+- Filas asignadas a P8: 4
+- Filas restantes para los demás procesadores:
+
+128 − 4 = 124
+
+Distribuimos estas filas entre los 7 procesadores restantes (P1-P7):
+
+- `124/7` = 17.71 ≈ 18
+
+Creeeeo que esta bien, aca esta otra respuesta
+
+![image](https://github.com/user-attachments/assets/5efe7df8-630b-4df3-81f1-96fb8f792f80)
+
+</details>
+
 ---
+
+![image](https://github.com/user-attachments/assets/86e7c19f-e61d-4b44-9fb1-75a1a161a54d)
+
+<details><summary>Respuesta</summary>
 
 </details>
 
