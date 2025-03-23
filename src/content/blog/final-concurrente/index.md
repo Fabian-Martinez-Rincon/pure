@@ -420,9 +420,11 @@ Por lo tanto, **la política SJN se respeta correctamente bajo Signal and Wait**
 
 </details>
 
+<br>
 
+<details><summary>📊 Comparación entre <strong>Signal and Continue</strong> vs <strong>Signal and Wait en SJN</strong></summary>
 
-## 📊 Comparación entre **Signal and Continue** vs **Signal and Wait** en SJN
+## 
 
 | **Aspecto**                         | **Signal and Continue (S&C)**                                                                 | **Signal and Wait (S&W)**                                                                   |
 |-------------------------------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
@@ -433,5 +435,136 @@ Por lo tanto, **la política SJN se respeta correctamente bajo Signal and Wait**
 | **Uso recomendado en SJN**          | No recomendado, ya que puede romper la prioridad por tiempo.                                  | Recomendado, ya que respeta el orden de espera basado en el tiempo.                         |
 | **Control de acceso**               | Depende del planificador del sistema operativo.                                               | Controlado directamente por el monitor y su lógica de sincronización.                      |
 
+</details>
 
 ---
+
+**Utilice la técnica de “passing the condition” para implementar un semáforo fair usando monitores.**
+
+<details><summary>Codigo</summary>
+
+```cpp
+monitor Semaforo {
+    int s = 1, espera = 0;
+    cond pos;
+
+    procedure P() {
+        if (s == 0) {
+            espera++;
+            wait(pos);
+        } else {
+            s = s - 1;
+        }
+    };
+
+    procedure V() {
+        if (espera == 0) {
+            s = s + 1;
+        } else {
+            espera--;
+            signal(pos);
+        }
+    };
+};
+```
+</details>
+
+---
+
+![alt text](image-4.png)
+
+<details><summary>Codigo</summary>
+
+```cpp
+monitor Controlador_ListaEnlazada {
+    int numSearchers = 0, numInserters = 0, numDeleters = 0;
+    cond searchers, inserters, deleters;
+
+    procedure pedir_Deleter() {
+        while (numSearchers > 0 OR numInserters > 0 OR numDeleters > 0) {
+            wait(deleters);
+        }
+        numDeleters = numDeleters + 1;
+    }
+
+    procedure liberar_Deleter() {
+        numDeleters = numDeleters - 1;
+        signal(inserters);
+        signal(deleters);
+        signal_all(searchers);
+    }
+
+    procedure pedir_Searcher() {
+        while (numDeleters > 0) {
+            wait(searchers);
+        }
+        numSearchers = numSearchers + 1;
+    }
+
+    procedure liberar_Searcher() {
+        numSearchers = numSearchers - 1;
+        if (numSearchers == 0 AND numInserters == 0) {
+            signal(deleters);
+        }
+    }
+
+    procedure pedir_Inserter() {
+        while (numDeleters > 0 OR numInserters > 0) {
+            wait(inserters);
+        }
+        numInserters = numInserters + 1;
+    }
+
+    procedure liberar_Inserter() {
+        numInserters = numInserters - 1;
+        signal(inserters);
+        if (numSearchers == 0) {
+            signal(deleters);
+        }
+    }
+}
+```
+
+🧵 Procesos:
+
+```cpp
+process Searchers[i = 1..S] {
+    Controlador_ListaEnlazada.pedir_Searcher();
+    <Realiza búsqueda en la lista>
+    Controlador_ListaEnlazada.liberar_Searcher();
+}
+
+process Inserters[j = 1..I] {
+    Controlador_ListaEnlazada.pedir_Inserter();
+    <Inserta en la lista>
+    Controlador_ListaEnlazada.liberar_Inserter();
+}
+
+process Deleters[k = 1..D] {
+    Controlador_ListaEnlazada.pedir_Deleter();
+    <Borra en la lista>
+    Controlador_ListaEnlazada.liberar_Deleter();
+}
+```
+
+🧠 **Resumen: Monitor `Controlador_ListaEnlazada`**
+
+👥 Tipos de procesos:
+- **Searchers**: pueden acceder **concurrentemente**, salvo que haya un **Deleter**.
+- **Inserters**: acceden **de a uno**, pero **pueden convivir con Searchers**.
+- **Deleters**: requieren **exclusión total** (no pueden ejecutarse junto a ningún otro proceso).
+
+
+🔒 Comportamiento de sincronización:
+- `Searchers` esperan si hay un `Deleter`.
+- `Inserters` esperan si hay otro `Inserter` o un `Deleter`.
+- `Deleters` esperan si hay cualquier otro proceso activo (Searcher o Inserter).
+- Al liberar, se despiertan procesos bloqueados según condiciones.
+
+✅ ¿Funciona correctamente?
+Sí, **el monitor implementa correctamente las restricciones** de sincronización para los tres tipos de procesos.  
+Asegura exclusión mutua, convivencia segura y respeta la lógica de prioridades.
+
+
+
+</details>
