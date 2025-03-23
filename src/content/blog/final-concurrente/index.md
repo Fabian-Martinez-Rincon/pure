@@ -10,7 +10,7 @@ language: 'Spanish'
 ---
 
 <div align="center">
-<img src="https://github.com/user-attachments/assets/d9e3ea61-bb8c-42d5-8eba-c9fc561e705e" width="400px">
+<img src="https://media1.tenor.com/m/NZMQ6eTbFhMAAAAC/rambo-first-blood.gif" width="500px">
 
 </div>
 
@@ -20,7 +20,7 @@ language: 'Spanish'
 
 ![image](https://github.com/user-attachments/assets/6650d0ae-c1b2-4adc-9dba-5d68724bdf49)
 
-<details><summary>Respuesta</summary>
+<details><summary>👀 Respuesta</summary>
 
 Si el algoritmo se ejecuta secuencialmente se tienen:
 
@@ -51,10 +51,11 @@ Si el algoritmo se ejecuta secuencialmente se tienen:
 
 </details>
 
+<br>
 
 ![image](https://github.com/user-attachments/assets/c37c9c7e-c1a1-4ffd-ae67-7d6825e6a457)
 
-<details><summary>Respuesta</summary>
+<details><summary>👀 Respuesta</summary>
 
 Si tenemos 8 procesos cada uno con un strip de 16 (128/8) los cálculos de tiempo quedarían para cada proceso como:
 
@@ -88,9 +89,11 @@ Podes usar la cuenta que quieras, son equivalentes, el resultado final te tendri
 
 </details>
 
+<br>
+
 ![image](https://github.com/user-attachments/assets/8d2b8ec4-75e2-4888-bb95-823827ce131f)
 
-<details><summary>Respuesta</summary>
+<details><summary>👀 Respuesta</summary>
 
 **Problema Inicial: Distribución equitativa pero ineficiente**
 
@@ -175,7 +178,7 @@ Creeeeo que esta bien, aca esta otra respuesta
 
 ![image](https://github.com/user-attachments/assets/86e7c19f-e61d-4b44-9fb1-75a1a161a54d)
 
-<details><summary>Respuesta</summary>
+<details><summary>👀 Respuesta</summary>
 
 ```
 Co
@@ -273,9 +276,11 @@ Oc
 
 </details>
 
+<br>
+
 ![image](https://github.com/user-attachments/assets/052eabe9-b404-42c7-8227-1ef028305441)
 
-<details><summary>Respuesta</summary>
+<details><summary>👀 Respuesta</summary>
 
 ```
 x = 3; y = 2; z = 5;
@@ -314,15 +319,119 @@ El valor de Z es siempre el mismo ya que no posee ninguna referencia crítica. L
 
 ![alt text](image.png)
 
-<details><summary>Respuesta</summary>
+<details><summary>👀 Respuesta</summary>
 
 Siendo:
 ```
 A: x = y * z  Tiene 2 referencias críticas (a y, a z), por lo tanto no cumple ASV. (además x es leída en en C.)
 B: z = z * 2 No tiene referencia crítica y es leída por otro (en A se lee z), por lo tanto cumple ASV.
-C: y = y + 2x Tiene 1 referencia crítica (a x) y además es leída por otro proceso (en A se lee y), por lo
-tanto no cumple ASV.
+C: y = y + 2x Tiene 1 referencia crítica (a x) y además es leída por otro proceso (en A se lee y), por lo tanto no cumple ASV.
 ```
 
 > A chequear
 </details>
+
+<br>
+
+![alt text](image-1.png)
+
+<details><summary>👀 Respuesta</summary>
+
+| **#** | **Orden de ejecución**             | **Operaciones realizadas**                                                                                                                                         | **Resultado final**            |
+|------:|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| 1     | A → B → C                          | `x = 2*5 = 10`<br>`z = 5*2 = 10`<br>`y = 2 + 2*10 = 22`                                                                                                             | `x = 10`, `z = 10`, `y = 22`  |
+| 2     | A → C → B                          | `x = 2*5 = 10`<br>`y = 2 + 2*10 = 22`<br>`z = 5*2 = 10`                                                                                                             | `x = 10`, `z = 10`, `y = 22`  |
+| 3     | C → B → A                          | `y = 2 + 2*3 = 8`<br>`z = 5*2 = 10`<br>`x = 2*10 = 20`                                                                                                              | `x = 20`, `z = 10`, `y = 8`   |
+| 4     | B → C → A                          | `z = 5*2 = 10`<br>`y = 2 + 2*3 = 8`<br>`x = 2*10 = 20`                                                                                                              | `x = 20`, `z = 10`, `y = 8`   |
+| 5     | C → A → B                          | `y = 2 + 2*3 = 8`<br>`x = 2*5 = 10`<br>`z = 5*2 = 10`                                                                                                               | `x = 10`, `z = 10`, `y = 8`   |
+| 6     | B → A → C                          | `z = 5*2 = 10`<br>`x = 2*10 = 20`<br>`y = 2 + 2*20 = 42`                                                                                                            | `x = 20`, `z = 10`, `y = 42`  |
+| 7     | A lee `y=2`, C lee `x=3`, luego A termina, luego B | `A empieza: y=2`<br>`C: y = 2 + 2*3 = 8`<br>`A termina: x = 2*5 = 10`<br>`B: z = 5*2 = 10`                                 | `x = 10`, `z = 10`, `y = 8`   |
+| 8     | A lee `y=2`, C lee `x=3`, luego B, luego A termina | `A empieza: y=2`<br>`C: y = 2 + 2*3 = 8`<br>`B: z = 5*2 = 10`<br>`A termina: x = 2*10 = 20`                                 | `x = 20`, `z = 10`, `y = 8`   |
+
+</details>
+
+---
+
+
+**Sea la siguiente solución propuesta al problema de alocación SJN (Short Job Next):**
+
+```nginx
+Monitor SJN {
+    Bool libre = true;
+    Cond turno;
+
+    Procedure request {
+        If (not libre) wait (turno, tiempo);
+        Libre = false;
+    }
+
+    Procedure release {
+        Libre = true;
+        Signal (turno);
+    }
+}
+```
+
+**a) ¿Funciona correctamente con disciplina de señalización Signal and continue? Justifique.**
+
+<details><summary>👀 Respuesta</summary>
+
+
+No, la solución no funciona correctamente con la disciplina de señalización **Signal and Continue (S&C)**.
+
+Bajo esta disciplina, cuando un proceso realiza un `signal`, **continúa ejecutando dentro del monitor**, y el proceso que fue despertado es enviado a la **cola de listos (ready queue)** del sistema operativo. Esto implica que su reingreso al monitor depende de la **política de planificación del sistema**, y no se garantiza que sea el próximo en ejecutarse.
+
+En consecuencia, un proceso con menor tiempo (según la política **Shortest Job Next**) podría quedar **retrasado** si otro proceso ingresa antes al monitor. Por lo tanto, el orden de ejecución no refleja necesariamente la prioridad establecida por el parámetro `tiempo`, y **no se cumple el objetivo del SJN**.
+
+**Respuesta de un random**
+
+> Con S&C un proceso que es despertado para poder seguir ejecutando es pasado a la cola
+> de ready en cuyo caso su orden de ejecución depende de la política que se utilice para
+> ordenar los procesos en dicha cola. Puede ser que sea retrasado en esa cola permitiendo
+> que otro proceso ejecute en el monitor antes que el por lo que podría no cumplirse el
+> objetivo del SJN.
+
+![alt text](image-2.png)
+
+</details>
+
+<br>
+
+![alt text](image-3.png)
+
+<details><summary>👀 Respuesta</summary>
+
+
+
+Sí, **la solución funciona correctamente** con la disciplina de señalización **Signal and Wait (S&W)**.
+
+En esta disciplina, cuando un proceso ejecuta un `signal`, **cede inmediatamente el control del monitor** al proceso que fue despertado, el cual **continúa su ejecución justo después del `wait`**. El proceso que hizo el `signal` pasa a la cola de listos y debe esperar su turno para volver a ingresar al monitor.
+
+Esto garantiza que el proceso con menor tiempo (según la política Shortest Job Next) —que estaba esperando con prioridad— **será efectivamente el próximo en acceder al recurso**, evitando que otro proceso pueda adelantarse y violar el orden deseado.
+
+Por lo tanto, **la política SJN se respeta correctamente bajo Signal and Wait**, ya que se mantiene el control sobre el orden de ejecución de los procesos en espera.
+
+
+📘 **Definiciones complementarias:**
+
+- **Signal and Continue:** El proceso que ejecuta el `signal` **continúa usando el monitor**, mientras que el proceso despertado **debe competir** por reingresar al monitor.
+- **Signal and Wait:** El proceso que ejecuta el `signal` **cede el monitor** al proceso despertado, que continúa su ejecución **justo después del `wait`**.
+
+
+</details>
+
+
+
+## 📊 Comparación entre **Signal and Continue** vs **Signal and Wait** en SJN
+
+| **Aspecto**                         | **Signal and Continue (S&C)**                                                                 | **Signal and Wait (S&W)**                                                                   |
+|-------------------------------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| **¿Quién sigue ejecutando en el monitor después del `signal`?** | El proceso que hizo el `signal` continúa.                                                     | El proceso que fue despertado entra inmediatamente al monitor.                              |
+| **Estado del proceso despertado**   | Pasa a la **cola de listos** y debe competir por reingresar al monitor.                       | **Continúa inmediatamente** dentro del monitor (no compite por el acceso).                  |
+| **Riesgo de pérdida de prioridad (SJN)** | **Alto**: otro proceso puede ingresar antes que el de menor tiempo.                          | **Nulo**: se garantiza que el proceso con menor tiempo accede primero.                      |
+| **¿Se respeta la política SJN?**    | ❌ **No**: puede no ejecutarse el proceso con menor tiempo debido a la competencia externa.   | ✅ **Sí**: el proceso con menor tiempo es el próximo en continuar.                          |
+| **Uso recomendado en SJN**          | No recomendado, ya que puede romper la prioridad por tiempo.                                  | Recomendado, ya que respeta el orden de espera basado en el tiempo.                         |
+| **Control de acceso**               | Depende del planificador del sistema operativo.                                               | Controlado directamente por el monitor y su lógica de sincronización.                      |
+
+
+---
