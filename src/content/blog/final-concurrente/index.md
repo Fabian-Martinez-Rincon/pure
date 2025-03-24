@@ -806,16 +806,307 @@ Desde el punto de vista de la cantidad de mensajes transmitidos:
 
 <details><summary>Respuesta</summary>
 
-En **P1**, el envío de los mensajes se realiza después de largos períodos de ejecución ya que entre cada send se ejecuta una iteración de **10000** unidades de tiempo, esto nos asegura que la comunicación entre los dos procesos es poco frecuente.
+En **P1**, el envío de los mensajes se realiza después de largos períodos de ejecución ya que entre cada **send** se ejecuta una iteración de **10000** unidades de tiempo, esto nos asegura que la comunicación entre los dos procesos es poco frecuente.
 
-Dadas dichas características podemos decir, que desde el punto de vista de la granularidad, **P1** es de granularidad gruesa ya que la comunicación ente los procesos no es de manera reiterada.
+Dadas dichas características podemos decir, que desde el punto de vista de la **granularidad**, **P1** es de **granularidad gruesa** ya que la comunicación ente los procesos **no es de manera reiterada**.
 
 Al tener mayor granularidad disminuye la concurrencia y la sobrecarga de bloqueos.
 
 En **P2**, el envío de mensajes se realiza en intervalos cortos de tiempo (entre la ejecución de cada send sólo se ejecuta un **for de 1 a 10**), aumentando considerablemente la comunicación respecto de **P1**.
 
-Por lo tanto, podemos decir que **P2** es de granularidad fina, ya que en cada iteración el volumen de comunicación aumenta, por lo tanto la relación cómputo / comunicación disminuye. Al disminuir la granularidad aumenta la concurrencia pero también aumenta la sobrecarga de bloqueos.
+Por lo tanto, podemos decir que **P2** es de **granularidad fina**, ya que en cada iteración el volumen de comunicación aumenta, por lo tanto la relación cómputo / comunicación disminuye. Al disminuir la **granularidad** aumenta la **concurrencia** pero también aumenta la **sobrecarga de bloqueos**.
 </details>
+
+<details><summary>Prioridad y Granularidad</summary>
+
+![alt text](image-7.png)
+</details>
+
+> Tengo la duda de cual es la diferencia entre el **grano fino** y el **grano grueso**
+
+**c) Cuál de los programas le parece más adecuado para ejecutar sobre una arquitectura de tipo cluster de PCs? Justifique.**
+
+<details><summary>Respuesta</summary>
+
+La implementación más adecuada para este tipo de arquitecturas es **P1**, por ser de **granularidad gruesa**. Al tratarse de una arquitectura con memoria distribuida la comunicación entre los procesos es más costosa ya que cada proceso puede ejecutarse
+en computadores diferentes, por lo tanto sería más eficiente que la sobrecarga de
+comunicación sea lo más baja posible, y dicha característica la brinda la **granularidad gruesa**.
+
+</details>
+
+---
+
+
+Suponga los siguientes programas concurrentes. Asuma que **EOS** es un valor especial que indica el **fin de la secuencia de mensajes**, y que los procesos son iniciados desde el programa principal.
+
+<table>
+<tr><td>P1</td><td>P2</td></tr>
+<tr><td>
+
+```cpp
+chan canal (double);
+
+process Genera {
+    int fila, col;
+    double sum;
+
+    for (fila = 1 to 10000) {
+        for (col = 1 to 10000)
+            send canal(a(fila, col));
+    }
+
+    send canal(EOS);  // End of Stream
+}
+
+process Acumula {
+    double valor, sumT;
+    sumT = 0;
+
+    receive canal(valor);
+    while (valor <> EOS) {
+        sumT = sumT + valor;
+        receive canal(valor);
+    }
+
+    printf(sumT);
+}
+```
+</td><td>
+
+```cpp
+chan canal (double);
+
+process Genera {
+    int fila, col;
+    double sum;
+
+    for (fila = 1 to 10000) {
+        sum = 0;
+        for (col = 1 to 10000)
+            sum = sum + a(fila, col);
+        send canal(sum);
+    }
+    send canal(EOS);  // End of Stream
+}
+
+process Acumula {
+    double valor, sumT;
+    sumT = 0;
+    receive canal(valor);
+    while (valor <> EOS) {
+        sumT = sumT + valor;
+        receive canal(valor);
+    }
+
+    printf(sumT);
+}
+
+```
+</td></tr>
+</table>
+
+**a) ¿Qué hacen los programas?**
+
+<details><summary>Respuesta</summary>
+
+Ambos programas tienen como objetivo calcular la **suma total de todos los elementos de una matriz** de tamaño 10000×10000. La diferencia principal radica en **dónde se realiza la mayor parte del trabajo de acumulación**.
+
+- En **P1**, el proceso `Genera` envía **cada elemento individual** de la matriz (es decir, 10000 × 10000 = 100 millones de mensajes) al proceso `Acumula`, el cual es el encargado de realizar la suma total.  
+  👉 En este caso, la carga de cómputo recae completamente en `Acumula`.
+
+- En **P2**, el proceso `Genera` **suma localmente cada fila** de la matriz y luego envía **solo un valor por fila** (la suma de esa fila) al proceso `Acumula`. Como hay 10000 filas, `Genera` envía **solo 10000 mensajes**.  
+  👉 Aquí, `Genera` hace parte del trabajo de acumulación, y `Acumula` solo se encarga de sumar 10000 valores (uno por fila).
+
+🔍 **Conclusión**: Ambos programas calculan la suma total de la matriz, pero **P2 es más eficiente** en cuanto a **comunicación y carga de trabajo**, ya que reduce drásticamente el número de mensajes enviados por el canal.
+
+</details>
+
+**b) Analice desde el punto de vista del número de mensajes.**
+
+<details><summary>Respuesta</summary>
+
+Desde el punto de vista del número de mensajes enviados por el proceso `Genera` al proceso `Acumula`:
+
+- En **P1**, se envía **un mensaje por cada elemento** de la matriz de 10000 × 10000, lo que da un total de **100 millones de mensajes**.  
+  👉 Esto representa una alta carga de comunicación.
+
+- En **P2**, se realiza **un solo mensaje por fila**, ya que `Genera` acumula localmente la suma de cada fila y luego envía ese resultado. Por lo tanto, se envían únicamente **10000 mensajes**.  
+  👉 Esto reduce considerablemente la cantidad de mensajes en comparación con P1.
+
+🔍 **Conclusión**: **P2 es mucho más eficiente en términos de comunicación**, ya que reduce el número de mensajes de 100 millones a solo 10000.
+
+</details>
+
+**c) Analice desde el punto de vista de la granularidad de los procesos.**
+
+<details><summary>Respuesta</summary>
+
+Desde el punto de vista de la granularidad, el programa **P2** presenta una **granularidad más gruesa** que **P1**. Esto se debe a que en P2 el proceso `Genera` realiza una mayor cantidad de cómputo local (acumula la suma de cada fila) antes de comunicarse con el proceso `Acumula`.
+
+En cambio, en **P1**, `Genera` realiza un procesamiento mínimo y se limita a enviar cada valor individual al acumulador, generando así una gran cantidad de comunicaciones.
+
+🔍 **Conclusión**:  
+Al realizar más procesamiento local y reducir la frecuencia de comunicación, **P2 tiene un grano más grueso**, lo cual generalmente implica **mejor eficiencia y menor sobrecarga de comunicación** en sistemas concurrentes.
+
+</details>
+
+<details><summary>🧩 ¿Qué es la granularidad?</summary>
+
+La **granularidad** de una aplicación concurrente o paralela se refiere a la **relación entre el tiempo dedicado al cómputo y el tiempo dedicado a la comunicación** entre procesos o hilos.
+
+- Si una aplicación realiza **mucho cómputo local** antes de necesitar comunicarse, se dice que tiene **grano grueso**.
+- Si, por el contrario, realiza **frecuentes comunicaciones** con poco cómputo entre medio, se dice que tiene **grano fino**.
+
+Esta característica es clave para el **diseño y rendimiento** de programas paralelos, ya que:
+- **Grano grueso** suele ser más eficiente en arquitecturas donde la comunicación es costosa.
+- **Grano fino** puede aprovechar mejor arquitecturas con alta velocidad de comunicación o memoria compartida eficiente.
+
+🔧 **Resumen**:  
+> La granularidad es la proporción entre el cómputo y la comunicación en una aplicación. Afecta cómo se adapta el programa a una arquitectura paralela, diferenciándose entre **grano fino** (más comunicación) y **grano grueso** (más procesamiento local).
+
+</details>
+
+**d) ¿Cuál de los programas le parece más adecuado para ejecutar sobre una arquitectura de tipo cluster de PCs? Justifique.**
+
+<details><summary>Respuesta</summary>
+
+Las arquitecturas tipo **cluster de PCs** se caracterizan por estar compuestas por múltiples nodos con alta capacidad de cómputo, pero con **canales de comunicación relativamente lentos** y costosos en comparación con arquitecturas compartidas.
+
+Por esta razón, se consideran arquitecturas de **grano grueso**, ya que se adaptan mejor a programas que realizan **mucho procesamiento local** y **reducen al mínimo la comunicación entre procesos**.
+
+En este contexto, el programa **P2** resulta más adecuado para ejecutarse en un cluster, ya que `Genera` acumula localmente la suma de cada fila y envía solo **un valor por fila**, reduciendo significativamente la cantidad de mensajes enviados (de 100 millones a 10.000).
+
+🔍 **Conclusión**:  
+> **P2 es más apropiado para ejecutarse sobre arquitecturas tipo cluster**, ya que aprovecha mejor el cómputo local y minimiza la necesidad de comunicación, alineándose con las características de este tipo de sistema.
+
+</details>
+
+---
+
+
+**Dada la siguiente solución con monitores al problema de alocación de un recurso con múltiples unidades, transforme la misma en una solución utilizando mensajes asincrónicos.**
+
+```cpp
+Monitor Alocador_Recurso {
+    INT disponible = MAXUNIDADES;
+    SET unidades = valores iniciales;
+    COND libre;   // TRUE cuando hay recursos
+
+    procedure adquirir(INT id) {
+        if (disponible == 0)
+            wait(libre);
+        else {
+            disponible = disponible - 1;
+            remove(unidades, id);
+        }
+    }
+
+    procedure liberar(INT id) {
+        insert(unidades, id);
+        if (empty(libre))
+            disponible := disponible + 1;
+        else
+            signal(libre);
+    }
+}
+```
+
+<details><summary>Respuesta</summary>
+
+```cpp
+type clase_op = enum(adquirir, liberar);
+chan request(int idCliente, claseOp oper, int idUnidad);
+chan respuesta[n](int id_unidad);
+
+Process Administrador_Recurso {
+    int disponible = MAXUNIDADES;
+    set unidades = valor inicial disponible;
+    queue pendientes;
+
+    while (true) {
+        receive request(idCliente, oper, id_unidad);
+
+        if (oper == adquirir) {
+            if (disponible > 0) {
+                disponible = disponible - 1;
+                remove(unidades, id_unidad);
+                send respuesta[idCliente](id_unidad);
+            } else {
+                insert(pendientes, idCliente);
+            }
+        } else {
+            if (empty(pendientes)) {
+                disponible = disponible + 1;
+                insert(unidades, id_unidad);
+            } else {
+                remove(pendientes, idCliente);
+                send respuesta[idCliente](id_unidad);
+            }
+        }
+    }
+}
+// Fin del proceso Administrador_Recurso
+
+Process Cliente[i = 1 to n] {
+    int id_unidad;
+
+    send request(i, adquirir, 0);
+    receive respuesta[i](id_unidad);
+
+    // Usa la unidad
+
+    send request(i, liberar, id_unidad);
+}
+```
+
+***🧠 1. **Modelo de comunicación*****
+
+- **Monitores** utilizan una **comunicación directa** entre procesos a través de **procedimientos compartidos**. El proceso cliente **entra al monitor**, ejecuta `adquirir()` o `liberar()`, y **bloquea su ejecución** si no puede continuar (por ejemplo, si no hay recursos).
+  
+- **Mensajes asincrónicos**, en cambio, se basan en **comunicación por paso de mensajes**. El cliente **envía un mensaje** al administrador (`request`) y luego **espera la respuesta** por otro canal (`respuesta[i]`). No hay acceso directo a las variables compartidas; todo se coordina mediante mensajes.
+
+**🔁 2. **Sincronización y control de acceso****
+
+- En el **monitor**, la sincronización es **implícita**: si `disponible == 0`, el proceso ejecuta `wait(libre)` y queda **suspendido automáticamente** hasta que otro proceso haga `signal(libre)` al liberar un recurso.
+
+- En la versión **con mensajes**, no hay suspensión automática. El administrador debe **mantener una cola de espera (`pendientes`)** y decidir manualmente a quién responder y cuándo. Si alguien libera una unidad y hay clientes esperando, el administrador **desencola** y **responde explícitamente**.
+
+**🔐 3. **Visibilidad y consistencia del estado****
+
+- En el monitor, los procesos tienen **acceso directo a las variables** `disponible`, `unidades`, etc., pero solo **uno a la vez**, garantizando exclusión mutua.
+
+- Con mensajes asincrónicos, **solo el administrador** conoce y modifica el estado global. Los clientes **no ven directamente cuántos recursos quedan**; solo saben si obtuvieron uno o no, cuando reciben la respuesta.
+
+**🧩 4. **Modelo de espera****
+
+- En monitores, la espera se maneja con `wait` y `signal`, que pueden funcionar según dos disciplinas:  
+  - **Signal and Wait** (el proceso que señala cede el monitor al despertado)  
+  - **Signal and Continue** (el proceso que señala continúa)
+
+- En mensajes, **la espera es activa y manual**: el cliente **se bloquea esperando una respuesta**, y el administrador debe tener lógica para enviarle esa respuesta **cuando le toque**.
+
+**⚙️ 5. **Aplicabilidad según arquitectura****
+
+- Los **monitores** son más adecuados para sistemas **centralizados o con memoria compartida**, ya que dependen de sincronización interna y acceso directo a variables.
+
+- Los **mensajes asincrónicos** son ideales en **sistemas distribuidos o clusters**, donde no existe memoria compartida y cada proceso corre en su propio nodo. Permiten **separar cómputo y comunicación** y escalar fácilmente.
+
+**💬 Ejemplo concreto**
+
+Supongamos que hay 3 unidades disponibles, y 5 procesos piden recursos.
+
+- En el **monitor**, los 3 primeros entran y adquieren recursos; los otros 2 quedan bloqueados con `wait(libre)` hasta que alguien libere. Luego, `liberar()` hace `signal()` y despierta a uno.
+
+- En la **versión con mensajes**, los 3 primeros reciben respuesta del administrador inmediatamente. Los otros 2 son **enviados a la cola `pendientes`**, y recién serán atendidos cuando un recurso sea liberado y el administrador procese esa cola.
+
+**✅ Conclusión**
+
+- El uso de **monitores** es más directo y automatizado, pero menos flexible fuera de sistemas con memoria compartida.
+- El enfoque de **mensajes asincrónicos** permite mayor **control y distribución**, pero requiere manejar manualmente colas, lógica de respuesta y sincronización, lo cual lo hace más complejo pero también más escalable.
+
+
+</details>
+
 
 ---
 
@@ -872,3 +1163,4 @@ process nodo[p = 1..n] {
 }
 ```
 </details>
+
