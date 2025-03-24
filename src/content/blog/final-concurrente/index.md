@@ -1909,7 +1909,8 @@ Cada par requiere **2 mensajes** (ida y vuelta).
 
 </details>
 
-3. Utilice la idea de 1), extienda la solución a K procesos, con n/k valores c/u (“odd-even-exchange sort”).
+
+**3. Utilice la idea de 1), extienda la solución a K procesos, con n/k valores c/u (“odd-even-exchange sort”).**
 
 Asumimos que existen **n** procesos **P[1:n]** y que **n** es par. Cada proceso ejecuta una serie de rondas. En las rondas impares, los procesos impares **P[odd]** intercambian valores con el siguiente proceso impar **P[odd+1]** si el valor esta fuera de orden. En rondas pares, los procesos pares **P[even]** intercambia valores con el siguiente proceso par **P[even+1]** si los valores estan fuera de orden. **P[1]** y **P[n]** no hacen nada en las rondas pares.
 
@@ -1998,25 +1999,340 @@ El arreglo quedó completamente ordenado tras **7 rondas**, que coincide con el 
 
 </details>
 
-b. ¿Cuántos mensajes intercambian en 3) en el mejor caso? ¿Y en el peor de los
-casos?
+**b. ¿Cuántos mensajes intercambian en 3) en el mejor caso? ¿Y en el peor de los casos?**
 
 <details><summary>Respuesta</summary>
 
-Si cada proceso ejecuta suficientes rondas para garantizar que la lista estará
-ordenada (en general, al menos k rondas), en el k-proceso, cada uno intercambia hasta
-(n/k)+1 mensajes por ronda. El algoritmo requiere hasta k2 * (n/k+1).
-Se puede usar un proceso coordinador al cual todos los procesos le envían en cada ronda
-si realizaron algún cambio o no. Si al recibir todos los mensajes el coordinador detecta
-que ninguno cambio nada les comunica que terminaron. Esto agrega overhead de
-mensajes ya que se envían mensajes al coordinador y desde el coordinador. Con n
-procesos tenemos un overhead de 2*k mensajes en cada ronda.
-Nota: Utilice un mecanismo de pasaje de mensajes, justifique la elección del
-mismo.
-PMS es más adecuado en este caso porque los procesos deben sincronizar de a pares en
-cada ronda por lo que PMA no sería tan útil para la resolución de este problema ya que se
-necesitaría implementar una barrera simétrica para sincronizar los procesos de cada
-etapa.
+Si cada proceso ejecuta suficientes rondas para garantizar que la lista estará ordenada (en general, al menos **k** rondas), en el **k-proceso**, cada uno intercambia hasta **(n/k)+1** mensajes por ronda. El algoritmo requiere hasta **k^2** * **(n/k+1)**.
+
+Se puede usar un proceso coordinador al cual todos los procesos le envían en cada ronda si realizaron algún cambio o no.
+
+Si al recibir todos los mensajes el coordinador detecta que ninguno cambio nada les comunica que terminaron.
+
+Esto agrega **overhead** de mensajes ya que se envían mensajes al coordinador y desde el coordinador. Con **n** procesos tenemos un overhead de **2*k** mensajes en cada ronda.
+
+> Nota: Utilice un mecanismo de pasaje de mensajes, justifique la elección del mismo.
+
+PMS es más adecuado en este caso porque los procesos deben sincronizar de a pares en cada ronda por lo que **PMA** no sería tan útil para la resolución de este problema ya que se necesitaría implementar una barrera simétrica para sincronizar los procesos de cada etapa.
+</details>
+
+---
+
+## Ejercicio 18 Suponga los siguientes metodos de ordenación
+
+Suponga los siguientes métodos de ordenación de menor a mayor para **n** valores (**n** par y potencia de 2), utilizando pasaje de mensajes:
+- **1)** Un pipeline de filtros. El primero hace input de los valores de a uno por vez, mantiene el mínimo y le pasa los otros al siguiente. Cada filtro hace lo mismo: recibe un stream de valores desde el predecesor, mantiene el más chico y pasa los otros al sucesor.
+- **2)** Una red de procesos filtro (como la de la figura).
+    ![alt text](image-8.png)
+- **3)** Odd/even exchange sort. Hay **n** procesos **P[1:n]**, Cada uno ejecuta una serie de rondas. En las rondas **“impares”**, los procesos con número impar **P[impar]** intercambian valores con **P[impar+1]**. En las rondas **“pares”**, los procesos con número par **P[par]** intercambian valores con **P[par+1]** (**P[1]** y **P[n]** no hacen nada en las rondas **“pares”**). En cada caso, si los números están desordenados actualizan su valor con el recibido.
+
+
+Asuma que cada proceso tiene almacenamiento local sólo para dos valores (el próximo y el mantenido hasta ese momento).
+
+**a) ¿Cuántos procesos son necesarios en 1 y 2? Justifique.**
+
+<details><summary>Respuesta</summary>
+
+
+Para la alternativa del **pipeline de filtros**, se requieren **n procesos**, ya que cada uno actúa como un filtro que **retiene el valor mínimo** recibido hasta el momento y **envía los valores mayores** al siguiente. Como se desea ordenar `n` elementos y cada proceso retiene uno, se necesitan `n` procesos para que todos los valores queden almacenados, uno en cada proceso, en orden ascendente.
+
+En cambio, para la alternativa de la **red de procesos filtro** (basada en una estructura de árbol binario), se necesitan **n - 1 procesos**. Esto se debe a que los valores iniciales están en las hojas del árbol (hay `n` hojas), y los nodos internos se encargan de ir fusionando pares de valores o secuencias. En un árbol binario completo con `n` hojas, hay exactamente `n - 1` nodos internos. Por lo tanto, se requieren `n - 1` procesos de merge para combinar todos los valores en una única secuencia ordenada.
+
+Perfecto, Fabián. A continuación te doy **un ejemplo para cada alternativa** (pipeline de filtros y red de merges) con **n = 4 valores** (potencia de 2) y su **tabla de ejecución** correspondiente para que visualices cómo se comportan ambos métodos.
+
+📌 Ejemplo 1: **Pipeline de filtros**
+
+**Idea:** Cada proceso filtra el mínimo de los valores que recibe y pasa el resto al siguiente.
+
+**Valores iniciales:** 6, 2, 8, 4 (se envían en ese orden)
+
+**Estructura:**
+
+```
+Entrada → P1 → P2 → P3 → P4
+```
+
+**Tabla de ejecución**
+
+| Paso | Valor recibido | P1       | P2       | P3       | P4       |
+|------|----------------|----------|----------|----------|----------|
+| 1    | 6              | 6        | —        | —        | —        |
+| 2    | 2              | 2 (↓6)   | 6        | —        | —        |
+| 3    | 8              | 2 (↓8)   | 6 (↓8)   | 8        | —        |
+| 4    | 4              | 2 (↓4)   | 4 (↓6)   | 6 (↓8)   | 8        |
+
+**Resultado final:**  
+P1: 2  
+P2: 4  
+P3: 6  
+P4: 8  
+→ **[2, 4, 6, 8]** (ordenado)
+
+**Procesos necesarios:** 4 (uno por cada valor)
+
+📌 Ejemplo 2: **Red de merges (filtros)**
+
+**Idea:** Se usan procesos que combinan pares de valores en orden. Cada proceso mergea dos entradas ordenadas y produce una salida ordenada.
+
+**Valores iniciales (en hojas):**  
+Entrada a M1: 6 y 2  
+Entrada a M2: 8 y 4
+
+**Estructura:**
+
+```
+Nivel 0:      6     2       8     4
+               \   /         \   /
+Nivel 1:         M1           M2
+                  \         /
+Nivel 2:             M3
+```
+
+**Tabla de ejecución**
+
+| Merge | Entrada izq | Entrada der | Salida ordenada |
+|-------|-------------|-------------|------------------|
+| M1    | 6           | 2           | [2, 6]           |
+| M2    | 8           | 4           | [4, 8]           |
+| M3    | [2, 6]      | [4, 8]      | [2, 4, 6, 8]     |
+
+**Procesos necesarios:**  
+- 3 merges → **n − 1 = 3 procesos**
+
+**📋 Comparación en tabla**
+
+| Método               | Valores iniciales | Nº de procesos | Resultado final    | Observaciones                               |
+|----------------------|-------------------|----------------|---------------------|---------------------------------------------|
+| Pipeline de filtros  | 6, 2, 8, 4         | 4              | [2, 4, 6, 8]         | Cada proceso retiene uno; paso a paso       |
+| Red de merges        | 6, 2, 8, 4         | 3              | [2, 4, 6, 8]         | Requiere mergear en árbol binario completo  |
+
+</details>
+
+**b) ¿Cuántos mensajes envía cada algoritmo para ordenar los valores? Justifique.**
+
+<details><summary>Respuesta</summary>
+
+
+📌 Pipeline
+
+A cada proceso se le asigna un número del 1 al n, y los valores se envían uno por uno al primer proceso.
+
+- **El proceso 1** recibe `n` valores, se queda con el menor y envía `n−1` al proceso 2.
+- **El proceso 2** recibe `n−1` valores, se queda con el menor y envía `n−2` al proceso 3.
+- ...
+- **El proceso n** recibe 1 valor y no envía ninguno.
+
+La cantidad total de mensajes enviados entre procesos es:
+
+![alt text](image-9.png)
+
+A esto se le suman **n mensajes EOS** (End Of Stream), ya que cada proceso necesita saber cuándo detenerse. Por lo tanto:
+
+![alt text](image-10.png)
+
+---
+
+📌 Red de procesos filtro (merge tree)
+
+En este caso, con `n` valores a ordenar y una red de `log₂(n)` niveles, la cantidad de mensajes de combinación es:
+
+![alt text](image-11.png)
+
+Esto incluye las comparaciones y fusiones realizadas en cada nivel del árbol.
+
+Además, se deben sumar:
+
+- `n` mensajes para enviar los valores desde los nodos hoja (datos iniciales).
+- `n − 1` mensajes EOS desde los nodos internos al superior para finalizar.
+
+![alt text](image-12.png)
+
+---
+
+📌 Odd/Even Exchange Sort
+
+Si cada proceso ejecuta suficientes rondas para garantizar el orden (en general, hasta `k` rondas con `k` procesos), entonces en cada ronda cada proceso intercambia hasta:
+
+![alt text](image-13.png)
+
+Cada intercambio requiere dos mensajes (ida y vuelta), y se repite durante `k` rondas, así que el total de mensajes es:
+
+![alt text](image-14.png)
+
+Resumen de todos los resultados
+
+![alt text](image-15.png)
+
+- En el **Pipeline**, cada proceso filtra y pasa el resto, por lo que la cantidad de mensajes crece cuadráticamente.
+- En la **Red de filtros (árbol de merges)**, el ordenamiento sigue una estructura logarítmica. Muy eficiente para merges en paralelo.
+- En el **Odd/Even**, el ordenamiento depende de la cantidad de rondas (`k`), y aunque es simple de implementar, puede requerir muchos mensajes si los datos están muy desordenados.
+
+</details>
+
+**c) ¿En cada caso, cuáles mensajes pueden ser enviados en paralelo (asumiendo que existe el hardware apropiado) y cuáles son enviados secuencialmente? Justifique.**
+
+<details><summary>Respuesta</summary>
+
+- **Pipeline de filtros:**  
+  Una vez que el pipeline está lleno, es posible enviar mensajes en paralelo entre todos los procesos del pipeline. Cada proceso está recibiendo, procesando y enviando valores simultáneamente. Por lo tanto, en un instante dado, pueden enviarse en paralelo hasta `n` mensajes (uno por cada proceso). Al inicio y al final, el envío es más secuencial, pero en régimen estable, el flujo es completamente paralelo.
+
+- **Red de procesos filtro (merge tree):**  
+  En esta estructura, los mensajes pueden enviarse en paralelo **a nivel de cada capa del árbol**. Cada proceso del mismo nivel actúa de forma independiente, por lo que se pueden enviar hasta `n / 2`, `n / 4`, ..., `1` mensajes en paralelo según el nivel. El envío entre niveles debe ser secuencial (los procesos de un nivel deben esperar los resultados del anterior).
+
+- **Odd/Even Exchange Sort:**  
+  En cada ronda (par o impar), todos los procesos que participan pueden enviar mensajes en paralelo. Por ejemplo, en una ronda impar, todos los procesos con índice impar se comunican simultáneamente con sus vecinos. Por lo tanto, en cada ronda puede haber hasta `n/2` mensajes en paralelo.
+
+**📋 Comparación: Paralelismo en el envío de mensajes**
+
+| Método                   | Paralelismo posible                       | Secuencialidad obligatoria                        | Observaciones clave                                                  |
+|--------------------------|--------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------|
+| **Pipeline de filtros**  | Hasta **n mensajes** por instante (una vez lleno) | Inicio (pipeline vacío) y último paso             | Cada proceso recibe, filtra y reenvía simultáneamente               |
+| **Red de merges (filtros)** | Hasta **n / 2, n / 4, ..., 1** por nivel del árbol | Entre niveles del árbol                           | Dentro de un mismo nivel: procesos trabajan en paralelo             |
+| **Odd/Even Exchange Sort** | Hasta **n / 2 mensajes** por ronda        | Rondas ejecutadas secuencialmente                 | En cada ronda, procesos con mismo tipo (par/impar) se comunican     |
+
+
+</details>
+
+
+**d) ¿Cuál es el tiempo total de ejecución de cada algoritmo? Asuma que cada operación de comparación o de envío de mensaje toma 1 una unidad de tiempo. Justifique.**
+
+<details><summary>Respuesta</summary>
+
+**📌 Algoritmo 1: **Pipeline de filtros****
+
+Cada mensaje enviado implica una comparación y luego el envío (2 unidades de tiempo).
+
+En el punto (a) se determinó que se envían
+
+![alt text](image-17.png)
+
+Por lo tanto, el tiempo total es:
+
+![alt text](image-18.png)
+
+Entonces:  
+
+![alt text](image-19.png)
+
+**📌 Algoritmo 2: **Red de procesos filtro (árbol de merges)****
+
+Cada mensaje también implica 1 comparación y 1 envío → 2 unidades por mensaje.
+
+Ya vimos que se envían
+
+![alt text](image-20.png)
+
+Entonces:
+
+![alt text](image-21.png)
+
+**📌 Algoritmo 3: **Odd/Even Exchange Sort****
+
+- En cada ronda, cada proceso:
+  - Hace una comparación (1)
+  - Envía un mensaje (1)
+  - Recibe un mensaje (1)
+  - Asigna/intercambia valores (1)  
+  → Total = **4 unidades por proceso por ronda**
+- En el peor caso, se necesitan hasta `n` rondas.
+- Entonces:
+
+![alt text](image-22.png)
+
+Acomodando la tabla final
+
+![alt text](image-23.png)
+
+</details>
+
+<details><summary>Tabla final</summary>
+
+![alt text](image-24.png)
+</details>
+
+---
+
+## Ejercicio 19 Problema de Paralelización
+
+Suponga que la solución a un problema es paralelizada sobre **p** procesadores de dos maneras diferentes.
+- En un caso, el **speedup (S)** está regido por la función **S=p-1** y
+- en el otro por la **función S=p/2**.
+
+**¿Cuál de las dos soluciones se comportará más eficientemente al crecer la cantidad de procesadores? Justifique claramente.**
+
+<details><summary>Respuesta</summary>
+
+
+De las dos soluciones, la que tiene **speedup S = p - 1** se comporta de forma más eficiente a medida que crece el número de procesadores.
+
+Esto se debe a que el speedup ideal es **S = p**, y:
+
+**S = p - 1** crece casi linealmente y se acerca al ideal.  
+**S = p / 2** crece más lentamente y siempre es la mitad del número de procesadores.
+
+Si analizamos la **eficiencia**, que se define como:
+
+**E = S / p**
+
+Para el primer caso:
+
+**E = (p - 1) / p**
+
+Esta eficiencia tiende a 1 cuando p crece.
+
+Para el segundo caso:
+
+**E = (p / 2) / p = 1 / 2**
+
+La eficiencia es constante e igual al 50%, sin importar cuántos procesadores haya.
+
+Por lo tanto, la solución con **S = p - 1** es más eficiente, ya que utiliza mejor los procesadores disponibles.
+
+
+| Procesadores `p` | Speedup (S = p − 1) | Eficiencia (E = (p−1)/p) | Speedup (S = p / 2) | Eficiencia (E = 1/2) |
+|------------------|----------------------|---------------------------|----------------------|----------------------|
+| 2                | 1                    | 0.50                      | 1                    | 0.50                 |
+| 4                | 3                    | 0.75                      | 2                    | 0.50                 |
+| 8                | 7                    | 0.875                     | 4                    | 0.50                 |
+| 16               | 15                   | 0.9375                    | 8                    | 0.50                 |
+| 32               | 31                   | 0.96875                   | 16                   | 0.50                 |
+| 64               | 63                   | 0.984375                  | 32                   | 0.50                 |
+| 128              | 127                  | 0.9921875                 | 64                   | 0.50                 |
+
+Conclusión
+
+- La solución con **S = p - 1** **se vuelve cada vez más eficiente**, acercándose a un uso ideal de los recursos.
+- La solución con **S = p / 2** **se estanca en el 50% de eficiencia**, sin importar cuánto aumente `p`.
+
+</details>
+
+Ahora suponga **S = 1/p** y **S = 1/p^2**
+
+
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-25.png)
+
+
+**📋 Comparación entre S = 1/p y S = 1/(p^2)**
+
+| Procesadores `p` | Speedup (S = 1/p) | Eficiencia (E = 1/p^2) | Speedup (S = 1/p^2) | Eficiencia (E = 1/p^3) |
+|------------------|-------------------|-------------------------|----------------------|-------------------------|
+| 1                | 1.00              | 1.00                    | 1.00                 | 1.00                    |
+| 2                | 0.50              | 0.25                    | 0.25                 | 0.125                   |
+| 4                | 0.25              | 0.0625                  | 0.0625               | 0.0156                  |
+| 8                | 0.125             | 0.0156                  | 0.0156               | 0.0020                  |
+| 16               | 0.0625            | 0.0039                  | 0.0039               | 0.00024                 |
+
+✅ Conclusión:
+
+- Ambos speedups disminuyen con más procesadores (son inversamente proporcionales).
+- Pero **S = 1/p** siempre es mayor que **S = 1/(p^2)**.
+- Lo mismo ocurre con la eficiencia: **1/(p^2)** decrece más lento que **1/(p^3)**.
+- Por eso, **la solución con S = 1/p es más eficiente y escala mejor**.
+
+
 </details>
 
 ---
