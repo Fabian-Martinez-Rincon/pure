@@ -439,7 +439,7 @@ Por lo tanto, **la política SJN se respeta correctamente bajo Signal and Wait**
 
 ---
 
-**Utilice la técnica de “passing the condition” para implementar un semáforo fair usando monitores.**
+![alt text](image-6.png)
 
 <details><summary>Codigo</summary>
 
@@ -562,9 +562,313 @@ process Deleters[k = 1..D] {
 - Al liberar, se despiertan procesos bloqueados según condiciones.
 
 ✅ ¿Funciona correctamente?
-Sí, **el monitor implementa correctamente las restricciones** de sincronización para los tres tipos de procesos.  
-Asegura exclusión mutua, convivencia segura y respeta la lógica de prioridades.
+Sí, **el monitor implementa correctamente las restricciones** de sincronización para los tres tipos de procesos.   Asegura exclusión mutua, convivencia segura y respeta la lógica de prioridades.
+
+</details>
+
+---
+
+![alt text](image-5.png)
+
+<details><summary>Respuesta</summary>
+
+```cpp
+int aviso[1:N] = ([N] 0), permiso[1:N] = ([N] 0);
+```
+
+<table><td>
+
+```cpp
+process SC[i = 1 to N] {
+    SNC;
+
+    // Protocolo de entrada
+    permiso[i] = 1;
+    while (aviso[i] == 0) skip;
+
+    // Sección crítica
+    SC;
+
+    // Protocolo de salida
+    aviso[i] = 0;
+    SNC;
+}
+```
+</td><td>
+
+```cpp
+process Coordinador {
+    int i = 1;
+    while (true) {
+        // Espera que algún proceso solicite permiso
+        while (permiso[i] == 0)
+            i = i mod N + 1;
+
+        // Otorga permiso al proceso i
+        permiso[i] = 0;
+        aviso[i] = 1;
+
+        // Espera a que el proceso libere la SC
+        while (aviso[i] == 1) skip;
+    }
+}
+```
+</td></table>
+
+</details>
+
+---
+
+> 💀 Dudo mucho que tomen este ejercicio, lo pongo por las dudas
+
+Describa la solución utilizando la criba de Eratóstenes al problema de hallar los primos entre 2 y n. **¿Cómo termina el algoritmo? ¿Qué modificaría para que no termine de esa manera?**
+
+<details><summary>Codigo</summary>
+
+La criba de Eratóstenes es un algoritmo clásico para determinar cuáles números en un rango son primos. Supongamos que queremos generar todos los primos entre **2** y **n**. Primero, escribimos una lista con todos los números:
+
+```
+2 3 4 5 6 7 ... n
+```
+
+Comenzando con el primer número no tachado en la lista, 2, recorremos la lista y borramos los múltiplos de ese número. Si n es impar, obtenemos la lista:
+
+```
+2 3 5 7 ... n
+```
+
+En este momento, los números borrados no son primos; los números que quedan todavía son candidatos a ser primos. Pasamos al próximo número, **3**, y repetimos el anterior proceso borrando los **múltiplos de 3**. Si seguimos este proceso hasta que todo número fue considerado, los números que quedan en la lista final serán todos los primos entre **2** y **n**.
+
+Para solucionar este problema de forma paralela podemos emplear un pipeline de procesos filtro.
+
+- Cada filtro recibe una serie de números de su predecesor y envía una serie de números a su sucesor.
+- El primer número que recibe un filtro es el próximo primo más grande;
+- Le pasa a su sucesor todos los números que no son múltiplos del primero.
+
+El siguiente es el algoritmo pipeline para la generación de números primos.
+
+Por cada canal, el primer número es primo y todos los otros números no son múltiplo de ningún primo menor que el primer número:
+
+```cpp
+Process Criba[1]
+{
+    int p = 2;
+
+    for [i = 3 to n by 2] 
+        Criba[2] ! (i);
+}
+
+Process Criba[i = 2 to L]
+{
+    int p, proximo;
+
+    Criba[i-1] ? p;
+    do Criba[i-1] ? (proximo) →
+        if ((proximo MOD p) <> 0) →
+            Criba[i+1] ! (proximo);
+        fi
+    od
+}
+```
+
+- El primer proceso, **Criba[1]**, envía todos los números impares desde `3 a n` a **Criba[2]**.
+- Cada uno de los otros procesos recibe una serie de números de su predecesor.
+- El primer número **`p`** que recibe el proceso **`Criba[i]`** es el **i-ésimo** primo.
+- Cada Criba[i] subsecuentemente pasa todos los otros números que recibe que no son múltiplos de su primo **`p`**.
+- El número total **`L`** de procesos Cribe debe ser lo suficientemente grande para garantizar que todos los primos hasta **`n`** son generados. Por ejemplo, hay 25 primos menores que 100;
+- el porcentaje decrece para valores crecientes de **`n`**.
+
+El programa anterior termina en deadlock, ya que no hay forma de saber cuál es el último número de la secuencia y cada proceso queda esperando un próximo número que no llega.
+
+Podemos fácilmente modificarlo para que termine normalmente usando centinelas, es decir que al final de los streams de entrada son marcados por un centinela
+
+```cpp
+# EOS: End Of Stream (-1 indica fin del flujo)
+
+Process Criba[1] {
+    int p = 2;
+
+    # Enviar todos los números impares desde 3 hasta n a Criba[2]
+    for [i = 3 to n by 2]
+        Criba[2] ! i;
+
+    # Enviar fin de flujo
+    Criba[2] ! -1;
+}
+
+Process Criba[i = 2 to L] {
+    int p, proximo;
+    boolean seguir = true;
+
+    # Recibe el primer número (primo)
+    Criba[i-1] ? p;
+
+    do (seguir);
+        # Recibe siguiente candidato
+        Criba[i-1] ? proximo ->
+
+        if (proximo = -1) {
+            seguir = false;
+            Criba[i+1] ! -1;   # Propaga EOS al siguiente proceso
+        }
+        else if ((proximo MOD p) <> 0) {
+            Criba[i+1] ! proximo;  # Si no es múltiplo, lo pasa
+        }
+    od
+}
+```
+
+</details>
+
+---
 
 
+**Suponga los siguientes programas concurrentes. Asuma que “función” existe, y que los procesos son iniciados desde el programa principal.**
 
+<table>
+<tr><td>P1</td><td>P2</td></tr>
+<tr><td>
+
+```cpp
+chan canal (double);
+
+process grano1 {
+    int veces, i;
+    double sum;
+
+    for (veces = 1 to 10) {
+        for (i = 1 to 10000)
+            sum = sum + funcion(i);
+        send canal(sum);
+    }
+}
+
+process grano2 {
+    int veces;
+    double sum;
+
+    for (veces = 1 to 10) {
+        receive canal(sum);
+        printf(sum);
+    }
+}
+```
+</td><td>
+
+```cpp
+chan canal (double);
+
+process grano1 {
+    int veces, i;
+    double sum;
+
+    for (veces = 1 to 10000) {
+        for (i = 1 to 10)
+            sum = sum + i;
+        send canal(sum);
+    }
+}
+
+process grano2 {
+    int veces;
+    double sum;
+
+    for (veces = 1 to 10000) {
+        receive canal(sum);
+        printf(sum);
+    }
+}
+```
+</td></tr>
+</table>
+
+**a) Analice desde el punto de vista del número de mensajes.**
+
+<details><summary>Respuesta</summary>
+
+En ambos programas, el canal `canal` se utiliza para **comunicar el resultado parcial `sum`** desde `grano1` hacia `grano2`, mediante un mensaje por cada iteración externa del bucle principal en `grano1`.
+
+- **En P1**, el proceso `grano1` ejecuta un bucle externo de **10 iteraciones**, y en cada una de ellas calcula la suma de `funcion(i)` para `i = 1 a 10000`, y luego envía un solo mensaje con ese resultado a `grano2`.  
+  🔸 Por lo tanto, **se envían 10 mensajes** en total.
+
+- **En P2**, el proceso `grano1` ejecuta un bucle externo de **10000 iteraciones**, y en cada una de ellas suma los números del 1 al 10 y luego **envía un mensaje por iteración** a `grano2`.  
+  🔸 En este caso, **se envían 10000 mensajes** en total.
+
+🔍 **Conclusión:**  
+Desde el punto de vista de la cantidad de mensajes transmitidos:
+- **P1 es más eficiente**, ya que comunica sólo 10 veces.
+- **P2 genera una sobrecarga mucho mayor**, con 10000 envíos de mensajes.
+
+
+</details>
+
+**b) Analice desde el punto de vista de la granularidad de los procesos.**
+
+<details><summary>Respuesta</summary>
+
+En **P1**, el envío de los mensajes se realiza después de largos períodos de ejecución ya que entre cada send se ejecuta una iteración de **10000** unidades de tiempo, esto nos asegura que la comunicación entre los dos procesos es poco frecuente.
+
+Dadas dichas características podemos decir, que desde el punto de vista de la granularidad, **P1** es de granularidad gruesa ya que la comunicación ente los procesos no es de manera reiterada.
+
+Al tener mayor granularidad disminuye la concurrencia y la sobrecarga de bloqueos.
+
+En **P2**, el envío de mensajes se realiza en intervalos cortos de tiempo (entre la ejecución de cada send sólo se ejecuta un **for de 1 a 10**), aumentando considerablemente la comunicación respecto de **P1**.
+
+Por lo tanto, podemos decir que **P2** es de granularidad fina, ya que en cada iteración el volumen de comunicación aumenta, por lo tanto la relación cómputo / comunicación disminuye. Al disminuir la granularidad aumenta la concurrencia pero también aumenta la sobrecarga de bloqueos.
+</details>
+
+---
+
+Suponga que una imagen se encuentra representada por una matriz a **(n×n)**, y que el valor de cada pixel es un número **entero** que es mantenido por un proceso distinto (es decir, el valor del píxel **I**,**J** está en el proceso **P(I,J)**). Cada proceso puede comunicarse solo con sus vecinos izquierdo, derecho, arriba y abajo. (Los procesos de las esquinas tienen solo 2 vecinos, y los otros bordes de la grilla tienen 3 vecinos).
+
+**a)** Escriba un algoritmo **Herbeat** que calcule el **máximo** y el **mínimo** valor de los píxeles de la imagen. Al terminar el programa, cada proceso debe conocer ambos valores.
+
+<details><summary>Respuesta</summary>
+
+```nginx
+chan topologia[1:n](emisor : int; listo : bool; top : [1:n,1:n] bool; max : int; min : int);
+
+process nodo[p = 1..n] {
+    bool vecinos[1:n];              # inicialmente vecinos[q] true si q es vecino de p
+    bool activo[1:n] = vecinos;     # vecinos aún activos
+    bool top[1:n,1:n] = ([n*n]false);  # vecinos conocidos (matriz de adyacencia)
+    bool nuevatop[1:n,1:n];
+    int r = 0;
+    bool listo = false;
+    int emisor;
+    bool qlisto;
+    int miValor, max, min;
+    
+    top[p,1..n] = vecinos;          # llena la fila para los vecinos
+    max := miValor; 
+    min := miValor;                # miValor inicializado con el valor del píxel
+
+    while (not listo) {            # envía conocimiento local de la topología a sus vecinos
+        for (q = 1 to n st activo[q]) {
+            send topologia[q](p, false, top, max, min);
+        }
+
+        for (q = 1 to n st activo[q]) {
+            receive topologia[p](emisor, qlisto, nuevatop, nuevoMax, nuevoMin);
+            top = top or nuevatop;                  # hace OR con su top juntando la información
+            if (nuevoMax > max) max := nuevoMax;    # actualiza los máximos y mínimos
+            if (nuevoMin < min) min := nuevoMin;
+            if (qlisto) activo[emisor] = false;
+        }
+
+        if (todas las filas de top tienen 1 entry true) listo = true;
+        r := r + 1;
+    }
+
+    # envía topología completa a todos sus vecinos aún activos
+    for (q = 1 to n st activo[q]) {
+        send topologia[q](p, listo, top, max, min);
+    }
+
+    # recibe un mensaje de cada uno para limpiar el canal
+    for (q = 1 to n st activo[q]) {
+        receive topologia[p](emisor, d, nuevatop, nuevoMax, nuevoMin);
+    }
+}
+```
 </details>
