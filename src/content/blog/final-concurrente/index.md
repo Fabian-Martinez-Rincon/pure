@@ -10,13 +10,17 @@ language: 'Spanish'
 ---
 
 <div align="center">
-<img src="https://media1.tenor.com/m/NZMQ6eTbFhMAAAAC/rambo-first-blood.gif" width="500px">
+<img src="https://media1.tenor.com/m/iN395jeb1dEAAAAd/rock-lee-training.gif" width="500px">
 
 </div>
 
+> Hay que soportar los golpes sin dejar de avanzar. Así es como se gana
+
 ---
 
-# Posibles Preguntas
+# Ejercicios Practicos
+
+## Ejercicio 1 Calculos
 
 ![image](https://github.com/user-attachments/assets/6650d0ae-c1b2-4adc-9dba-5d68724bdf49)
 
@@ -176,6 +180,8 @@ Creeeeo que esta bien, aca esta otra respuesta
 
 ---
 
+## Ejercicio 2 Dado un Programa Concurrente
+
 ![image](https://github.com/user-attachments/assets/86e7c19f-e61d-4b44-9fb1-75a1a161a54d)
 
 <details><summary>👀 Respuesta</summary>
@@ -317,6 +323,8 @@ El valor de Z es siempre el mismo ya que no posee ninguna referencia crítica. L
 
 ---
 
+## Ejercicio 3 Dado El Programa Concurrente
+
 ![alt text](image.png)
 
 <details><summary>👀 Respuesta</summary>
@@ -352,6 +360,7 @@ C: y = y + 2x Tiene 1 referencia crítica (a x) y además es leída por otro pro
 
 ---
 
+## Ejercicio 4 Alocación SJN
 
 **Sea la siguiente solución propuesta al problema de alocación SJN (Short Job Next):**
 
@@ -424,7 +433,6 @@ Por lo tanto, **la política SJN se respeta correctamente bajo Signal and Wait**
 
 <details><summary>📊 Comparación entre <strong>Signal and Continue</strong> vs <strong>Signal and Wait en SJN</strong></summary>
 
-## 
 
 | **Aspecto**                         | **Signal and Continue (S&C)**                                                                 | **Signal and Wait (S&W)**                                                                   |
 |-------------------------------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
@@ -438,6 +446,8 @@ Por lo tanto, **la política SJN se respeta correctamente bajo Signal and Wait**
 </details>
 
 ---
+
+## Ejercicio 5 Passing the Condition
 
 ![alt text](image-6.png)
 
@@ -470,6 +480,8 @@ monitor Semaforo {
 </details>
 
 ---
+
+## Ejercicio 6 Resuelva con monitores
 
 ![alt text](image-4.png)
 
@@ -568,6 +580,8 @@ Sí, **el monitor implementa correctamente las restricciones** de sincronizació
 
 ---
 
+## Ejercicio 7 Protocolos de Acceso a la SC
+
 ![alt text](image-5.png)
 
 <details><summary>Respuesta</summary>
@@ -618,6 +632,8 @@ process Coordinador {
 </details>
 
 ---
+
+## Ejercicio 8 Solución a la Criba
 
 > 💀 Dudo mucho que tomen este ejercicio, lo pongo por las dudas
 
@@ -722,6 +738,7 @@ Process Criba[i = 2 to L] {
 
 ---
 
+## Ejercicio 9 Suponga los siguientes programas concurrentes
 
 **Suponga los siguientes programas concurrentes. Asuma que “función” existe, y que los procesos son iniciados desde el programa principal.**
 
@@ -836,6 +853,7 @@ comunicación sea lo más baja posible, y dicha característica la brinda la **g
 
 ---
 
+## Ejercicio 10 Suponga los siguientes programas concurrentes
 
 Suponga los siguientes programas concurrentes. Asuma que **EOS** es un valor especial que indica el **fin de la secuencia de mensajes**, y que los procesos son iniciados desde el programa principal.
 
@@ -983,6 +1001,8 @@ En este contexto, el programa **P2** resulta más adecuado para ejecutarse en un
 
 ---
 
+## Ejercicio 11 Dada la siguiente solución con monitores
+
 
 **Dada la siguiente solución con monitores al problema de alocación de un recurso con múltiples unidades, transforme la misma en una solución utilizando mensajes asincrónicos.**
 
@@ -1109,7 +1129,9 @@ Supongamos que hay 3 unidades disponibles, y 5 procesos piden recursos.
 
 ---
 
-Dados los siguientes dos segmentos de código, indicar para cada uno de los ítems si son equivalentes o no. Justificar cada caso (de ser necesario dar ejemplos).
+## Ejercicio 12 Dado los siguientes segmentos de codigo
+
+Dados los siguientes dos segmentos de codigo, indicar para cada uno de los ítems si son equivalentes o no. Justificar cada caso (de ser necesario dar ejemplos).
 
 <table><td>
 
@@ -1193,6 +1215,627 @@ En este caso:
 > Una **guarda** es una condición que **habilita o bloquea** la ejecución de una acción. Se utiliza para expresar **comportamientos condicionales** en sistemas concurrentes o reactivos, y es clave para controlar la sincronización y el flujo de ejecución.
 
 </details>
+
+**b) INCOGNITA equivale a: (cant > -100)**
+
+<details><summary>Respuesta</summary>
+
+Con esta condición, ambos segmentos se vuelven **equivalentes** en términos de comportamiento.
+
+Esto se debe a que la guarda `(cant > -100)` **cubre todos los casos restantes** no contemplados por las otras guardas `(cant < -10)` y `(cant > 10)`. Por lo tanto, **siempre habrá al menos una guarda habilitada**, sin importar el valor de `cant`.
+
+Como consecuencia:
+- En el **Segmento 1**, el bucle `DO` **nunca finaliza**, ya que nunca se da una situación donde todas las guardas sean falsas.
+- En el **Segmento 2**, el bucle `while (true)` tampoco se detiene, y siempre ejecutará una de las ramas del `IF`.
+
+🔍 **Conclusión:**  
+Ambos segmentos ejecutan indefinidamente y responden de forma equivalente a los distintos valores de `cant`, ya que las guardas **cubren todos los casos posibles**.
+
+</details>
+
+**c) INCOGNITA equivale a: ((cant > 0) or (cant < 0))**
+
+<details><summary>Respuesta</summary>
+
+Con esta condición, los segmentos **no son equivalentes**.
+
+La razón es que cuando `cant = 0`, **ninguna de las tres guardas** se cumple:
+- `(cant < -10)` → **falsa**
+- `(cant > 10)` → **falsa**
+- `((cant > 0) OR (cant < 0))` → **falsa**, ya que `cant = 0`
+
+Entonces:
+- En el **Segmento 1**, si todas las guardas son falsas (como ocurre con `cant = 0`), el bucle `DO` finaliza, y la ejecución continúa con el resto del programa.
+- En el **Segmento 2**, el bucle `while (true)` permanece activo, pero al no cumplirse ninguna guarda, el programa queda bloqueado esperando que `cant` cambie, lo que puede requerir la intervención de otro proceso.
+
+🔍 **Conclusión:**  
+> Dado que el comportamiento ante `cant = 0` **no es el mismo en ambos segmentos**, se concluye que **no son equivalentes**.
+
+</details>
+
+**d) INCOGNITA equivale a: ((cant > -10) or (cant < 10))**
+
+<details><summary>Respuesta</summary>
+
+Con esta condición, los segmentos **no son equivalentes**.
+
+Esto se debe a que, cuando `cant = 10` o `cant = -10`, **ninguna de las guardas se cumple**:
+
+- `(cant < -10)` → **falsa**
+- `(cant > 10)` → **falsa**
+- `((cant > -10) OR (cant < 10))` → **falsa**  
+  > Porque `cant = 10` y `cant = -10` no satisfacen **ni** `cant > -10` (en el caso de -10) **ni** `cant < 10` (en el caso de 10) al mismo tiempo, y la expresión en realidad se evalúa como ambigua o mal definida según cómo se interprete.  
+  Aunque matemáticamente parece abarcar todo, **en este contexto**, deja afuera justo los valores límite.
+
+Como consecuencia:
+- En el **Segmento 1**, si ninguna guarda es verdadera (por ejemplo, para `cant = 10` o `cant = -10`), el bucle `DO` termina.
+- En el **Segmento 2**, el bucle `while (true)` continúa ejecutándose, pero al no cumplirse ninguna condición, queda bloqueado hasta que `cant` cambie.
+
+🔍 **Conclusión:**  
+> Dado que para ciertos valores (`cant = 10` o `cant = -10`) el `DO` termina en el Segmento 1 pero el `while` no en el Segmento 2, los segmentos **no son equivalentes**.
+
+</details>
+
+**e) INCOGNITA equivale a: ((cant >= -10) or (cant <= 10))**
+
+<details><summary>Respuesta</summary>
+
+Con esta condición, los segmentos se vuelven **equivalentes**.
+
+Esto se debe a que la nueva guarda cubre **todos los valores posibles de `cant`** que no están contemplados por las otras dos guardas:
+
+- `(cant < -10)`
+- `(cant > 10)`
+
+Con `INCOGNITA = ((cant >= -10) OR (cant <= 10))`, se incluyen justamente los valores **`cant = -10` y `cant = 10`**, que en el caso anterior (ítem d) quedaban fuera, provocando que todas las guardas fueran falsas y el `DO` terminara.
+
+Ahora, al asegurarse que **siempre al menos una guarda es verdadera**, el `DO` del **Segmento 1** nunca finaliza, lo que hace que el comportamiento sea **equivalente al `while(true)` del Segmento 2**, donde la ejecución es continua mientras alguna condición sea válida.
+
+🔍 **Conclusión:**  
+> Con esta guarda, los segmentos **son equivalentes**, ya que **se garantiza que siempre al menos una rama es ejecutable**, y por lo tanto, el ciclo no se interrumpe inesperadamente.
+
+</details>
+
+---
+
+## Ejercicio 13 Problema de Concurrencia
+
+Sea **“ocupados”** una variable entera inicializada en **N** que representa la cantidad de **slots** ocupados de un **buffer**, y sean **P1** y **P2** dos programas que se ejecutan de manera concurrente, donde cada una de las instrucciones que los componen son
+atómicas.
+
+<table><tr><td>P1</td><td>P2</td></tr><tr><td>
+
+```cpp
+if (ocupados < N) then
+begin
+    buffer := elemento_a_agregar;
+    ocupados := ocupados + 1;
+end;
+```
+</td><td>
+
+```cpp
+if (ocupados > 0) then
+begin
+    ocupados := ocupados - 1;
+    elemento_a_sacar := buffer;
+end;
+```
+</td></tr></table>
+
+¿El programa funciona correctamente para asegurar el manejo del buffer? Si su respuesta
+es afirmativa justifique. Sino, encuentre una secuencia de ejecución que lo verifique y
+escríbala, y además modifique la solución para que funcione correctamente (Suponga
+buffer, elemento_a_agregar y elemento_a_sacar variables declaradas).
+
+<details><summary>Respuesta</summary>
+
+**No, el programa no funciona correctamente en un entorno concurrente.**
+
+🔍 Justificación con secuencia de ejecución:
+
+Supongamos que el buffer está **lleno** (`ocupados = N`). En ese momento:
+
+1. El proceso **P2** evalúa `if (ocupados > 0)`, lo cual es **verdadero**.
+2. Luego, **P2 ejecuta `ocupados := ocupados - 1`**, pero **aún no ha leído el dato del buffer**.
+3. Justo después, el proceso **P1** evalúa su condición `if (ocupados < N)`, que **ahora también es verdadera**, ya que P2 lo acaba de decrementar.
+4. Entonces, **P1 escribe en el buffer un nuevo valor**, sobrescribiendo el dato que **P2 todavía no alcanzó a leer**.
+
+⚠️ Como resultado, **P2 pierde el dato original** y lee un valor nuevo que **no era el que debía consumir**. Esto genera una **condición de carrera** (race condition) y un **error de sincronización**.
+
+
+✅ Solución propuesta:
+
+Para evitar este problema, es necesario **postergar el decremento de `ocupados` en P2 hasta después de leer el valor del buffer**, asegurando que el dato se consuma correctamente antes de liberar el espacio.
+
+✔️ Código corregido de P2
+
+```pascal
+if (ocupados > 0) then
+begin
+    elemento_a_sacar := buffer;
+    ocupados := ocupados - 1;
+end;
+```
+
+Con esta corrección, **P1 no podrá ingresar** hasta que **P2 haya terminado de leer** el valor, manteniendo la coherencia del estado del buffer.
+
+
+🧠 Nota adicional:
+
+Este tipo de errores son comunes cuando no se usa un mecanismo de sincronización explícito, como **semáforos, monitores o exclusión mutua**. En un sistema real, lo ideal sería proteger el acceso al buffer con algún tipo de **región crítica** o control de concurrencia.
+
+</details>
+
+---
+
+## Ejercicio 14 Problema de Concurrencia
+
+Sea **“cantidad”** una variable entera inicializada en 0 que representa la cantidad de
+elementos de un **buffer**, y sean **P1** y **P2** dos programas que se ejecutan de manera concurrente, donde cada una de las instrucciones que los componen son atómicas.
+
+<table><tr><td>P1</td><td>P2</td></tr><tr><td>
+
+```cpp
+if (cantidad = 0) then
+begin
+    cantidad := cantidad + 1;
+    buffer := elemento_a_agregar;
+end;
+```
+</td><td>
+
+```cpp
+if (cantidad > 0) then
+begin
+    elemento_a_sacar := buffer;
+    cantidad := cantidad - 1;
+end;
+```
+</td></tr></table>
+
+
+Además existen dos alumnos de concurrente que analizan el programa y opinan lo siguiente:
+
+- **“Pepe**: este programa funciona correctamente ya que las instrucciones son atómicas”.
+- “**José**: no Pepe estás equivocado, hay por lo menos una secuencia de ejecución en
+la cual funciona erróneamente”
+
+¿Con cuál de los dos alumnos está de acuerdo? Si está de acuerdo con Pepe justifique su respuesta.
+Si está de acuerdo con José encuentre una secuencia de ejecución que verifique lo que José opina y escríbala, y modifique la solución para que funcione correctamente (Suponga buffer y elemento variables declaradas). (22-04-2009)
+
+<details><summary>Resultado</summary>
+
+
+✅ **Estoy de acuerdo con José.**
+
+Aunque las instrucciones sean atómicas, el programa **no es seguro concurrentemente**, ya que existen **interleavings (intercalaciones de ejecución)** posibles que generan un comportamiento incorrecto.
+
+🔍 **Ejemplo de secuencia de ejecución errónea:**
+
+1. El proceso **P1** evalúa la condición `if (cantidad = 0)` → **verdadera**, y entra al `begin`.
+2. **P1 ejecuta la instrucción `cantidad := cantidad + 1`**, pero **aún no ha escrito en el buffer**.
+3. En ese momento, el proceso **P1 se interrumpe**, y **P2 toma el control**.
+4. **P2 evalúa `if (cantidad > 0)`** → **verdadera** (porque `cantidad` ahora vale 1).
+5. **P2 ejecuta `elemento_a_sacar := buffer`**, pero **el buffer aún no fue actualizado por P1**.
+6. Como resultado, **P2 lee un valor inválido o desactualizado** del buffer.
+
+
+⚠️ **Problema identificado:**
+
+> El hecho de que las instrucciones sean atómicas **no garantiza la atomicidad de toda la sección crítica** compuesta por múltiples instrucciones relacionadas entre sí.
+
+
+✅ **Modificación para que funcione correctamente:**
+
+Una forma de corregirlo es **reordenar las instrucciones de P1**, asegurando que el valor se escriba en el buffer **antes de habilitar su lectura** (es decir, antes de incrementar `cantidad`):
+
+```pascal
+// P1 corregido:
+if (cantidad = 0) then
+begin
+    buffer := elemento_a_agregar;
+    cantidad := cantidad + 1;
+end;
+```
+
+De este modo, si **P2 observa que `cantidad > 0`**, entonces es seguro asumir que el buffer **ya contiene un valor válido** para ser consumido.
+
+**🧠 Conclusión:**
+
+Estoy de acuerdo con **José**, porque:
+- El código original permite que **P2 lea un valor inválido** si se interrumpe a P1 en el momento inadecuado.
+- La solución requiere **ajustar el orden de operaciones** para garantizar consistencia en el acceso al buffer, incluso si cada instrucción individual es atómica.
+
+</details>
+
+---
+
+## Ejercicio 15 Dado el siguiente bloque de codigo
+
+
+**4.** Dado el siguiente bloque de código, indique para cada inciso qué valor queda en `aux`, o si el código queda bloqueado. Justifique sus respuestas.
+
+```pascal
+aux := -1;
+...
+if (A == 0); P2?(aux) → aux = aux + 2;
+▭ (A == 1); P3?(aux) → aux = aux + 5;
+▭ (B == 0); P3?(aux) → aux = aux + 7;
+end if;
+```
+
+
+
+
+
+<details><summary><strong>i. Si el valor de A = 1 y B = 2 antes del if, y solo P2 envia el valor 6.</strong></summary>
+
+🔍 **Análisis:**
+
+- Las guardas evaluadas son:
+  - `(A == 0)` → **falsa**
+  - `(A == 1)` → **verdadera**
+  - `(B == 0)` → **falsa**
+
+- Solo **una guarda es verdadera**: `(A == 1)`, que corresponde a la rama `P3?(aux) → aux = aux + 5`.
+
+- Sin embargo, **P3 no ha enviado ningún valor**, por lo tanto, el proceso **queda bloqueado esperando** que `P3` envíe un valor.
+
+✅ **Conclusión:**
+> El código queda **bloqueado** en la única rama habilitada, porque **P3 no se ejecutó**.
+
+</details>
+
+
+<details><summary><strong>ii. Si el valor de A = 0 y B = 2 antes del if, y solo P2 envia el valor 8.</strong></summary>
+
+🔍 **Análisis:**
+
+- Guardas evaluadas:
+  - `(A == 0)` → **verdadera**
+  - `(A == 1)` → falsa
+  - `(B == 0)` → falsa
+
+- Solo la **primera guarda** es válida: `(A == 0); P2?(aux) → aux = aux + 2`.
+- Como **P2 envía el valor 8**, el proceso puede recibirlo y ejecuta `aux = 8 + 2`.
+
+✅ **Resultado:**
+> El valor final de `aux` será **10**, y el código **no queda bloqueado**.
+
+</details>
+
+<details><summary><strong>iii. Si el valor de A = 2 y B = 0 antes del if, y solo P3 envia el valor 6.</strong></summary>
+
+🔍 **Análisis:**
+
+- Guardas evaluadas:
+  - `(A == 0)` → falsa
+  - `(A == 1)` → falsa
+  - `(B == 0)` → **verdadera**
+
+- Solo la **tercera guarda** es válida: `(B == 0); P3?(aux) → aux = aux + 7`.
+
+- Como **P3 envía el valor 6**, el proceso lo recibe y ejecuta `aux = 6 + 7`.
+
+✅ **Resultado:**
+> El valor final de `aux` será **13**, y el código **no queda bloqueado**.
+
+</details>
+
+<details><summary><strong>iv. Si el valor de A = 2 y B = 1 antes del if, y solo P3 envia el valor 9.</strong></summary>
+
+🔍 **Análisis:**
+
+- Guardas evaluadas:
+  - `(A == 0)` → falsa
+  - `(A == 1)` → falsa
+  - `(B == 0)` → falsa
+
+- Ninguna de las guardas es verdadera, por lo tanto, **el bloque `if` no se ejecuta**.
+
+✅ **Resultado:**
+> El código **no se bloquea**, pero **no ejecuta ninguna acción**. El valor de `aux` **se mantiene en -1**.
+
+</details>
+
+<details><summary><strong>v. Si el valor de A = 1 y B = 0 antes del if, y solo P3 envia el valor 14.</strong></summary>
+
+🔍 **Análisis:**
+
+- Guardas evaluadas:
+  - `(A == 0)` → falsa  
+  - `(A == 1)` → **verdadera** → `P3?(aux) → aux = aux + 5`
+  - `(B == 0)` → **verdadera** → `P3?(aux) → aux = aux + 7`
+
+- Hay **dos guardas verdaderas**, y ambas comparten el **mismo canal `P3?(aux)`**, por lo tanto, se produce una **elección no determinista** entre ambas ramas.
+
+- Como **P3 envía el valor 14**, cualquiera de las dos ramas puede ejecutarse:
+
+  - Si se elige la rama `(A == 1)`, entonces `aux = 14 + 5 = 19`.
+  - Si se elige la rama `(B == 0)`, entonces `aux = 14 + 7 = 21`.
+
+✅ **Resultado:**
+> El código **no se bloquea**, y el valor de `aux` puede ser **19 o 21**, dependiendo de **cuál rama se elija** de forma no determinista.
+
+</details>
+
+
+<details><summary><strong>vi. Si el valor de A = 0 y B = 0 antes del if, P3 envia el valor 9 y P2 el valor 5.</strong></summary>
+
+🔍 **Análisis:**
+
+- Guardas evaluadas:
+  - `(A == 0)` → **verdadera** → `P2?(aux) → aux = aux + 2`
+  - `(A == 1)` → falsa
+  - `(B == 0)` → **verdadera** → `P3?(aux) → aux = aux + 7`
+
+- Hay **dos guardas verdaderas**, cada una con un canal distinto (`P2` y `P3`), y **ambos procesos han enviado un valor**, por lo tanto **no hay bloqueo**.
+
+- Como hay dos ramas habilitadas, se produce una **elección no determinista** entre:
+  - Recibir `5` de **P2** y hacer `aux = 5 + 2 = 7`
+  - Recibir `9` de **P3** y hacer `aux = 9 + 7 = 16`
+
+✅ **Resultado:**
+> El código **no queda bloqueado**, y el valor de `aux` puede ser **7 o 16**, dependiendo de cuál rama se elija de forma no determinista.
+
+</details>
+
+<details><summary><strong>Resumen de todo</strong></summary>
+
+| Inciso | Valores Iniciales (`A`, `B`) | Canales Activos         | Guardas Verdaderas                 | ¿Bloqueo? | Valor final de `aux`      | Observación                                 |
+|--------|-------------------------------|--------------------------|-------------------------------------|-----------|----------------------------|----------------------------------------------|
+| a      | A = 1, B = 2                  | Solo `P2` envía valor 6 | `(A == 1)`                          | ✅ Sí     | —                          | Única guarda verdadera requiere `P3`, que no envió |
+| b      | A = 0, B = 2                  | Solo `P2` envía valor 8 | `(A == 0)`                          | ❌ No     | 10 (8 + 2)                 | Ejecuta rama de `P2`, suma 2 a valor recibido     |
+| c      | A = 2, B = 0                  | Solo `P3` envía valor 6 | `(B == 0)`                          | ❌ No     | 13 (6 + 7)                 | Ejecuta rama de `P3`, suma 7 al valor recibido    |
+| d      | A = 2, B = 1                  | Solo `P3` envía valor 9 | —                                   | ❌ No     | -1                         | Ninguna guarda se cumple, `aux` no se modifica   |
+| e      | A = 1, B = 0                  | Solo `P3` envía valor 14| `(A == 1)` y `(B == 0)`             | ❌ No     | 19 o 21                   | No determinismo entre 2 ramas (`+5` o `+7`)       |
+| f      | A = 0, B = 0                  | `P2` envía 5, `P3` 9    | `(A == 0)` y `(B == 0)`             | ❌ No     | 7 o 16                    | No determinismo entre `P2` (`+2`) y `P3` (`+7`)   |
+
+
+</details>
+
+---
+
+## Ejercicio 16 Dado el siguiente programa concurrente
+
+Dado el siguiente programa concurrente con memoria compartida, y suponiendo que todas las variables están inicializadas en 0 al empezar el programa y las instrucciones NO son atómicas. Para cada una de las opciones indique verdadero o falso. En caso de ser verdadero indique el camino de ejecución para llegar a ese valor, y en caso de ser falso justifique claramente su respuesta.
+
+<table><tr><td>P1</td><td>P2</td><td>P3</td></tr>
+<tr><td>
+
+```cpp
+if (x = 0) then
+    y := 4 * x + 2;
+    x := y + 2 + x;
+```
+</td><td>
+
+```cpp
+if (x ≥ 0) then
+    x := x + 1;
+```
+</td><td>
+
+```cpp
+x := x * 8 + x * 2 + 1;
+```
+</td></tr></table>
+
+
+<details><summary>Detalles</summary>
+
+```pascal
+// Variables iniciales
+x := 0;        // Valor inicial compartido por todos los procesos
+y := 0;        // Solo P1 modifica y
+```
+
+Proceso P1 (con comentarios)
+
+```pascal
+if (x = 0) then        // P1 solo entra si x sigue valiendo 0
+    y := 4 * x + 2;    // y se actualiza según el valor actual de x
+    x := y + 2 + x;    // x se actualiza según el valor de y y el x que haya en ese momento
+```
+
+🔍 **P1 puede producir estos valores de `x`:**
+- Si `x = 0`:  
+  → `y = 4 * 0 + 2 = 2`  
+  → `x = 2 + 2 + 0 = 4`
+
+📌 **P1 solo puede dejar `x = 4`** como máximo si ejecuta completo y nadie interfiere.
+
+🔷 Proceso P2
+
+```pascal
+if (x ≥ 0) then        // Siempre entra, porque x ≥ 0 al inicio
+    x := x + 1;        // Suma 1 al valor actual de x
+```
+
+🔍 Si P2 se ejecuta después de P1:
+- `x = 4 + 1 = 5`
+
+🔶 Proceso P3
+
+```pascal
+x := x * 8 + x * 2 + 1;    // Esto equivale a x := 10 * x + 1
+```
+
+🔍 El valor de `x` que deja P3 depende directamente del valor que tenía x antes:
+- Si `x = 1` → `x = 10 * 1 + 1 = 11`
+- Si `x = 2` → `x = 10 * 2 + 1 = 21`
+- Si `x = 5` → `x = 10 * 5 + 1 = 51`
+- Si `x = 0` → `x = 1`
+
+</details>
+
+
+<details><summary><strong>a) El valor de x al terminar el programa es 9.</strong></summary>
+
+
+
+🔎 Probamos combinaciones buscando `x = 9`
+
+❌ Caso 1: P1 completo → P2 → P3
+
+```pascal
+// P1 ejecuta completo:
+x = 0 → entra al if
+y = 4*0 + 2 = 2
+x = y + 2 + x = 2 + 2 + 0 = 4
+
+// P2 ejecuta:
+x = 4 + 1 = 5
+
+// P3 ejecuta:
+x = 10 * 5 + 1 = 51 → ❌ no es 9
+```
+
+
+❌ Caso 2: P2 → P3
+
+```pascal
+// P2 ejecuta:
+x = 0 + 1 = 1
+
+// P3 ejecuta:
+x = 10 * 1 + 1 = 11 → ❌
+```
+
+❌ Caso 3: P3 → P2
+
+```pascal
+// P3 ejecuta:
+x = 10 * 0 + 1 = 1
+
+// P2 ejecuta:
+x = 1 + 1 = 2 → ❌
+```
+
+❌ Caso 4: P3 con x = 2
+
+```pascal
+// Supongamos que x llega a 2 por P2 → P2
+x = 0 + 1 = 1
+x = 1 + 1 = 2
+
+// P3 ejecuta:
+x = 10 * 2 + 1 = 21 → ❌
+```
+
+❌ Conclusión del inciso **a)**
+
+> ✅ **x = 9 no se puede alcanzar**, porque:
+- P1 produce como mucho x = 4
+- P2 suma 1 cada vez
+- P3 hace `x = 10 * x + 1`, lo cual **siempre da un número impar mayor** (nunca 9)
+
+---
+
+✅ **Respuesta final del inciso a)**:  
+**FALSO** – No existe ninguna secuencia de ejecución posible que lleve a `x = 9`.
+
+</details>
+
+<details><summary><strong>b) El valor de x al terminar el programa es 6.</strong></summary>
+
+✔️ **Verdadero**
+
+Una posible traza:
+
+1. P1 ejecuta parcialmente: `y := 4 * 0 + 2 = 2`
+2. P3 ejecuta: `x := 0 * 8 + 0 * 2 + 1 = 1`
+3. P2 ejecuta: `x := 1 + 1 = 2`
+4. P1 finaliza: `x := y + 2 + x = 2 + 2 + 2 = 6`
+
+> Por lo tanto, **es posible** llegar a `x = 6`.
+
+</details>
+
+<details><summary><strong>c) El valor de x al terminar el programa es 11.</strong></summary>
+
+✔️ **Verdadero**
+
+Una traza simple:
+
+1. P2 ejecuta: `x := 1`
+2. P3 ejecuta: `x := 10 * 1 + 1 = 11`
+
+> P1 no entra porque `x ≠ 0`.  
+> Resultado final: `x = 11` → **válido**.
+</details>
+
+<details><summary><strong>d) Y siempre termina con alguno de los siguientes valores: 10, 6, 2, 0.</strong></summary>
+
+✔️ **Verdadero**
+
+Análisis por casos:
+
+- `y = 0`: si **P1 no ejecuta el cuerpo del `if`** (porque `x ≠ 0` al momento de evaluarlo)
+- `y = 2`: si P1 ejecuta el `if` con `x = 0`, y aún no ha sido modificado
+- `y = 6`: si `x = 1` al momento de ejecutar `y := 4 * x + 2`
+- `y = 10`: si `x = 2` cuando se evalúa la asignación
+
+> Como la asignación de `y` depende directamente del valor de `x`, que puede ser modificado por otros procesos antes de ejecutarla, **solo esos cuatro valores** son posibles.
+</details>
+
+---
+
+## Ejercicio 17 Ordenar Arreglo
+
+Sea el problema de ordenar de menor a mayor un arreglo de A[1..n]
+
+**Escriba un programa donde dos procesos (cada uno con n/2 valores) realicen la operación en paralelo mediante una serie de intercambios.**
+
+<details><summary>Respuesta</summary>
+
+<table><td>
+
+```cpp
+Process P1
+{
+    int nuevo, a1[1:n/2];
+    const mayor = n/2;
+
+    // ordenar a1 en orden no decreciente
+    P2 ! (a1[mayor]);
+    P2 ? (nuevo);
+
+    do a1[mayor] > nuevo →
+        // poner nuevo en el lugar correcto
+        // en a1, descartando 
+        // el viejo a1[mayor]
+        P2 ! (a1[mayor]);
+        P2 ? (nuevo);
+    od
+}
+```
+</td><td>
+
+```cpp
+Process P2
+{
+    int nuevo, a2[1:n/2];
+    const menor = 1;
+
+    // ordenar a2 en orden no decreciente
+    P1 ? (nuevo);
+    P1 ! (a2[menor]);
+
+    do a2[menor] < nuevo →
+        // poner nuevo en el lugar correcto
+        // en a2, descartando
+        // el viejo a2[menor]
+        P1 ? (nuevo);
+        P1 ! (a2[menor]);
+    od
+}
+```
+
+</td></table></details>
+
+**2. ¿Cuántos mensajes intercambian en el mejor de los casos? ¿Y en el peor de los casos?**
 
 ---
 
