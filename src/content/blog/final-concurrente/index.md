@@ -1786,9 +1786,7 @@ Análisis por casos:
 
 Sea el problema de ordenar de menor a mayor un arreglo de A[1..n]
 
-**Escriba un programa donde dos procesos (cada uno con n/2 valores) realicen la operación en paralelo mediante una serie de intercambios.**
-
-<details><summary>Respuesta</summary>
+<details><summary><strong>1. Escriba un programa donde dos procesos (cada uno con n/2 valores) realicen la operación en paralelo mediante una serie de intercambios.</strong></summary>
 
 <table><td>
 
@@ -1835,7 +1833,191 @@ Process P2
 
 </td></table></details>
 
-**2. ¿Cuántos mensajes intercambian en el mejor de los casos? ¿Y en el peor de los casos?**
+<details><summary><strong>2. ¿Cuántos mensajes intercambian en el mejor de los casos? ¿Y en el peor de los casos?</strong></summary>
+
+**Mejor caso:**  
+En el escenario más favorable, los arreglos ya están correctamente distribuidos:  
+- Los `n/2` valores más pequeños están en el proceso **P1**.  
+- Los `n/2` valores más grandes están en **P2**.
+
+Como los extremos (mayor de `a1` y menor de `a2`) ya están en orden, los procesos solo necesitan hacer **una comparación inicial** y confirmar que no hay que intercambiar nada.  
+
+**Resultado:** Solo se envían **2 mensajes**:  
+- P1 envía su mayor a P2.  
+- P2 responde con su menor a P1.
+
+🧪 **Ejemplo con n = 6 (a1 y a2 de tamaño 3)**
+
+Supongamos:
+```text
+P1: a1 = [1, 2, 3]     (valores más chicos)
+P2: a2 = [4, 5, 6]     (valores más grandes)
+```
+
+- Proceso:
+    - `1)` P1 envía el mayor de `a1`: `3`
+    - `2)` P2 envía el menor de `a2`: `4`
+    - `3)` P1 verifica: `3 < 4` ✅, así que **todo está ordenado**
+- ✅ Resultado:
+    - Se intercambian **2 mensajes**: `3 →`, `4 →`
+    - **No se modifica nada**
+
+---
+
+**Peor caso:**
+
+En el peor de los casos, todos los elementos están en el proceso equivocado:  
+- Es decir, **los mayores están en P1** y **los menores en P2**.
+
+Esto obligará a intercambiar completamente los `n/2` elementos entre ambos procesos.  
+Cada valor necesita **un mensaje de ida y uno de vuelta**, ya que el intercambio es coordinado y requiere validación mutua.
+
+**Resultado:** Se intercambian **`n` mensajes**:  
+- `n/2` valores de P1 a P2  
+- `n/2` valores de P2 a P1 → total: `(n/2) * 2 = n` mensajes
+
+
+Supongamos:
+```text
+P1: a1 = [6, 5, 4]     (valores grandes, mal ubicados)
+P2: a2 = [3, 2, 1]     (valores chicos, mal ubicados)
+```
+
+- Proceso:
+    - P1 envía su mayor `6`, P2 su menor `1`
+    - Ambos comparan y detectan que los elementos están desordenados, por lo tanto **empiezan a intercambiar valores** de uno en uno.
+- Intercambios:
+    - 1. `6` ↔ `1`
+    - 2. `5` ↔ `2`
+    - 3. `4` ↔ `3`
+
+Cada par requiere **2 mensajes** (ida y vuelta).
+
+✅ Resultado:
+- Se hacen **3 intercambios**
+- Se envían **6 mensajes (3 * 2)**
+
+
+📊 Resumen final:
+
+| Caso        | Cantidad de mensajes | Explicación breve                                       |
+|-------------|----------------------|---------------------------------------------------------|
+| Mejor caso  | 2                    | Solo se comparan los extremos, no se intercambia nada  |
+| Peor caso   | n                    | Se intercambian todos los valores (n/2 * 2 = n)         |
+
+
+
+</details>
+
+3. Utilice la idea de 1), extienda la solución a K procesos, con n/k valores c/u (“odd-even-exchange sort”).
+
+Asumimos que existen **n** procesos **P[1:n]** y que **n** es par. Cada proceso ejecuta una serie de rondas. En las rondas impares, los procesos impares **P[odd]** intercambian valores con el siguiente proceso impar **P[odd+1]** si el valor esta fuera de orden. En rondas pares, los procesos pares **P[even]** intercambia valores con el siguiente proceso par **P[even+1]** si los valores estan fuera de orden. **P[1]** y **P[n]** no hacen nada en las rondas pares.
+
+<details><summary>Respuesta</summary>
+
+```cpp
+process Proc[i = 1..k] {
+    int a[1..n/k];        // subarreglo local ordenado
+    int dato;
+    const min = 1;
+    const max = n/k;
+
+    ordenar_localmente(a);  // ordenar el arreglo local al iniciar
+
+    for ronda = 1 to k {
+
+        // Si la ronda y el índice tienen la misma paridad: proceso actúa como EMISOR
+        if (i mod 2 == ronda mod 2 and i < k) {
+            // Enviar el mayor valor local al vecino derecho
+            send(proc[i+1], a[max]);
+            receive(proc[i+1], dato);
+
+            while (a[max] > dato) {
+                // Insertar el dato recibido ordenadamente en 'a', descartando el mayor
+                insertar_en_orden(a, dato);
+                send(proc[i+1], a[max]);
+                receive(proc[i+1], dato);
+            }
+        }
+
+        // Si la ronda y el índice tienen distinta paridad: proceso actúa como RECEPTOR
+        if (i mod 2 != ronda mod 2 and i > 1) {
+            receive(proc[i-1], dato);
+            send(proc[i-1], a[min]);
+
+            while (a[min] < dato) {
+                // Insertar el dato recibido ordenadamente en 'a', descartando el menor
+                insertar_en_orden(a, dato);
+                receive(proc[i-1], dato);
+                send(proc[i-1], a[min]);
+            }
+        }
+    }
+}
+```
+
+> Lo de abajo no hace falta pero es para probar
+
+**Con k = 4 procesos y n = 8 valores**, llevando las rondas hasta que los valores queden **totalmente ordenados globalmente**.
+
+Configuración inicial
+
+Cada proceso tiene 2 elementos (n/k = 2), ordenados localmente:
+
+| Proceso | Valores iniciales |
+|---------|-------------------|
+| P1      | [8, 9]            |
+| P2      | [5, 7]            |
+| P3      | [3, 6]            |
+| P4      | [1, 4]            |
+
+Rondas del algoritmo (hasta que esté ordenado)
+
+| Ronda | Procesos activos | Cambios realizados                                                                                         | Estado final por proceso                          |
+|-------|------------------|------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| 0     | —                | —                                                                                                          | P1: [8, 9], P2: [5, 7], P3: [3, 6], P4: [1, 4]     |
+| 1     | P1↔P2, P3↔P4     | P1⇄P2: 9⇄5 → P1: [5, 8], P2: [7, 9]<br>P3⇄P4: 6⇄1 → P3: [1, 3], P4: [4, 6]                                 | P1: [5, 8], P2: [7, 9], P3: [1, 3], P4: [4, 6]     |
+| 2     | P2↔P3            | 9⇄1 → P2: [1, 7], P3: [3, 9]                                                                               | P1: [5, 8], P2: [1, 7], P3: [3, 9], P4: [4, 6]     |
+| 3     | P1↔P2, P3↔P4     | 8⇄1 → P1: [1, 5], P2: [7, 8]; 9⇄4 → P3: [3, 4], P4: [6, 9]                                                  | P1: [1, 5], P2: [7, 8], P3: [3, 4], P4: [6, 9]     |
+| 4     | P2↔P3            | 8⇄3 → P2: [3, 7], P3: [4, 8]                                                                               | P1: [1, 5], P2: [3, 7], P3: [4, 8], P4: [6, 9]     |
+| 5     | P1↔P2, P3↔P4     | 5⇄3 → P1: [1, 3], P2: [5, 7]; 8⇄6 → P3: [4, 6], P4: [8, 9]                                                  | P1: [1, 3], P2: [5, 7], P3: [4, 6], P4: [8, 9]     |
+| 6     | P2↔P3            | 7⇄4 → P2: [4, 5], P3: [6, 7]                                                                               | P1: [1, 3], P2: [4, 5], P3: [6, 7], P4: [8, 9]     |
+| 7     | P1↔P2, P3↔P4     | No intercambios necesarios (valores ya ordenados)                                                          | P1: [1, 3], P2: [4, 5], P3: [6, 7], P4: [8, 9]     |
+
+
+```
+P1: [1, 3]
+P2: [4, 5]
+P3: [6, 7]
+P4: [8, 9]
+→ Resultado final: [1, 3, 4, 5, 6, 7, 8, 9]
+```
+
+El arreglo quedó completamente ordenado tras **7 rondas**, que coincide con el peor caso esperado (hasta k rondas).
+
+
+</details>
+
+b. ¿Cuántos mensajes intercambian en 3) en el mejor caso? ¿Y en el peor de los
+casos?
+
+<details><summary>Respuesta</summary>
+
+Si cada proceso ejecuta suficientes rondas para garantizar que la lista estará
+ordenada (en general, al menos k rondas), en el k-proceso, cada uno intercambia hasta
+(n/k)+1 mensajes por ronda. El algoritmo requiere hasta k2 * (n/k+1).
+Se puede usar un proceso coordinador al cual todos los procesos le envían en cada ronda
+si realizaron algún cambio o no. Si al recibir todos los mensajes el coordinador detecta
+que ninguno cambio nada les comunica que terminaron. Esto agrega overhead de
+mensajes ya que se envían mensajes al coordinador y desde el coordinador. Con n
+procesos tenemos un overhead de 2*k mensajes en cada ronda.
+Nota: Utilice un mecanismo de pasaje de mensajes, justifique la elección del
+mismo.
+PMS es más adecuado en este caso porque los procesos deben sincronizar de a pares en
+cada ronda por lo que PMA no sería tan útil para la resolución de este problema ya que se
+necesitaría implementar una barrera simétrica para sincronizar los procesos de cada
+etapa.
+</details>
 
 ---
 
