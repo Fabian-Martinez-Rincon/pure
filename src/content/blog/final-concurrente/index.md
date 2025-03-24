@@ -1107,6 +1107,92 @@ Supongamos que hay 3 unidades disponibles, y 5 procesos piden recursos.
 
 </details>
 
+---
+
+Dados los siguientes dos segmentos de código, indicar para cada uno de los ítems si son equivalentes o no. Justificar cada caso (de ser necesario dar ejemplos).
+
+<table><td>
+
+```cpp
+...
+int cant = 1000;
+
+DO 
+  (cant < -10); datos?(cant) → Sentencias1
+▭ (cant > 10);  datos?(cant) → Sentencias2
+▭ (INCOGNITA);  datos?(cant) → Sentencias3
+END DO
+...
+```
+</td><td>
+
+```cpp
+...
+int cant = 1000;
+
+While (true) {
+  IF (cant < -10); datos?(cant) → Sentencias1
+  ▭  (cant > 10);  datos?(cant) → Sentencias2
+  ▭  (INCOGNITA); datos?(cant) → Sentencias3
+END IF}
+...
+```
+</td></table>
+
+<details><summary>Respuesta</summary>
+
+En ambos segmentos, inicialmente la variable `cant` tiene el valor 1000. Por lo tanto, la ejecución comienza evaluando la guarda `(cant > 10)`, que es verdadera, y se ejecutan las acciones asociadas a esa rama (por ejemplo, `Sentencias2`).
+
+Sin embargo, si durante la ejecución de esa rama el valor de `cant` cambia (ya sea por una asignación directa o por un valor recibido por el canal), entonces **las guardas deben estar definidas de manera que contemplen todos los posibles valores que `cant` pueda tomar**, para asegurar que el comportamiento de ambos segmentos sea equivalente.
+
+De lo contrario, puede suceder que en **el Segmento 1** todas las guardas resulten falsas y, en ese caso, el `DO` se termina y la ejecución del programa continúa normalmente. En cambio, en **el Segmento 2**, como se trata de un bucle infinito (`while (true)`), si ninguna guarda es verdadera, el programa queda bloqueado esperando indefinidamente, a menos que `cant` sea modificada por otro proceso o evento externo.
+
+🔍 **Conclusión**:  
+Para que ambos segmentos sean equivalentes, es fundamental que las guardas consideren **todos los posibles valores** que puede tomar `cant`, incluyendo un caso **por defecto (catch-all)** como la **INCOGNITA**, que permita garantizar siempre una rama ejecutable.
+
+</details>
+
+**a) INCOGNITA equivale a: (cant = 0)**
+
+<details><summary>Respuesta</summary>
+
+Los segmentos **no son equivalentes**. En el **Segmento 1**, el uso de la estructura `DO` implica que si **ninguna de las guardas** se cumple (por ejemplo, si `cant` toma valores entre -10 y 10 excluyendo el 0), entonces el bloque termina y la ejecución del programa continúa.
+
+En cambio, en el **Segmento 2**, el bucle es un `while (true)`, por lo que **aunque ninguna guarda sea verdadera**, el ciclo continuará intentando evaluarlas en cada iteración. Esto provoca una diferencia clave en el comportamiento:  
+- El **Segmento 1** puede **finalizar naturalmente** si no hay guardas habilitadas.  
+- El **Segmento 2** puede **quedar bloqueado indefinidamente**, esperando que alguna condición se cumpla, a menos que `cant` se modifique desde otro proceso.
+
+🔍 **Conclusión:**  
+Para que ambos segmentos sean equivalentes, es necesario que las guardas cubran **todos los posibles valores de `cant`**, y en ese sentido, usar `(cant = 0)` como **INCOGNITA** ayuda a completar el conjunto de condiciones evaluables.
+
+</details>
+
+<details><summary>🛡️ ¿Qué es una guarda?</summary>
+
+Una **guarda** es una **condición lógica** que se asocia a una acción (como el envío o recepción de un mensaje, o la ejecución de una sentencia) y que **debe cumplirse para que esa acción se realice**.
+
+En programación concurrente y modelos como **Comunicación por Paso de Mensajes (CSP), Guarded Commands (Dijkstra), ADA**, etc., las guardas permiten controlar **cuándo** se puede ejecutar una determinada rama del código.
+
+🔍 **Ejemplo clásico:**
+
+```cpp
+DO
+  (x > 0) → acción1;
+▭ (y == 3) → acción2;
+OD
+```
+
+En este caso:
+- `(x > 0)` y `(y == 3)` son **guardas**.
+- Solo se ejecutan las acciones **cuyas guardas sean verdaderas**.
+- Si más de una guarda se cumple, el sistema puede elegir **nondeterminísticamente** cuál ejecutar.
+- Si **ninguna guarda se cumple**, el proceso queda bloqueado o (dependiendo del lenguaje) termina.
+
+✅ **En resumen:**
+
+> Una **guarda** es una condición que **habilita o bloquea** la ejecución de una acción. Se utiliza para expresar **comportamientos condicionales** en sistemas concurrentes o reactivos, y es clave para controlar la sincronización y el flujo de ejecución.
+
+</details>
 
 ---
 
