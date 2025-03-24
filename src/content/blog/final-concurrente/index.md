@@ -2337,6 +2337,636 @@ Ahora suponga **S = 1/p** y **S = 1/p^2**
 
 ---
 
+## Ejercicio 20 Problema de Paralelización
+
+Suponga que la solución a un problema es paralelizada sobre p procesadores de dos maneras diferentes. 
+- En un caso, el **speedup (S)** está regido por la **función S=p/3**
+- y en el otro por la función **S=p-3**.
+
+**¿Cuál de las dos soluciones se comportará más eficientemente al crecer la cantidad de procesadores? Justifique claramente.**
+
+**Suponiendo el uso de 5 procesadores:**
+
+<details><summary>Respuesta</summary>
+
+**Ejemplo con p = 5:**
+
+- Opción 1: S = 5 / 3 ≈ 1.66  
+- Opción 2: S = 5 − 3 = 2
+
+En este caso, la segunda opción es más eficiente porque alcanza un mayor speedup.
+
+**Comparación general:**
+
+Ambas funciones son lineales, pero:
+
+- S = p − 3 tiene una pendiente de 1  
+- S = p / 3 tiene una pendiente de 1/3
+
+Por lo tanto, **S = p − 3 crece más rápidamente** y se acerca más al ideal S = p a medida que p crece. También su eficiencia (E = S / p) tiende a 1 con el crecimiento de p, mientras que la eficiencia de S = p / 3 se mantiene constante en 1/3.
+
+**Conclusión:**
+
+La solución con **S = p − 3** se comporta mejor para valores grandes de `p`, ya que:
+
+- Su speedup es mayor  
+- Su eficiencia se aproxima a 1  
+- Aprovecha mejor el uso de los procesadores
+
+</details>
+
+**Ahora, incrementamos la cantidad de procesadores suponemos 100 procesadores:**
+
+<details><summary>Respuesta</summary>
+
+- Solución 1 => S=100/3=33,33
+- Solución 2 => S=100-3=97
+
+Podemos decir, que a medida que **p** tiende a infinito, para la **solución 1** siempre el Speedup será la tercera parte en cambio para la **solución 2** el valor **"-3"** se vuelve despreciable.
+
+Por lo tanto la **solución 2** es la que se comporta más eficientemente al crecer la cantidad de procesadores.
+
+</details>
+
+---
+
+## Ejercicio 21 Problema de Paralelización
+
+Suponga que la solución a un problema es paralelizada sobre **p** procesadores de dos maneras diferentes. 
+
+- En un caso, el **speedup(s)** esta regido por la **función S = p-4**
+- y el otro por la función **S = p/3** para **p > 4**.
+
+**¿Cuál de las dos soluciones se comportara más eficientemente al crecer la cantidad de procesadores?**
+
+<details><summary>Respuesta</summary>
+
+A medida que crece la cantidad de procesadores, la solución cuyo speedup es **S = p − 4** se comportará de forma más eficiente que la de **S = p / 3**.
+
+Esto se debe a que **S = p − 4** crece linealmente con pendiente 1, mientras que **S = p / 3** también crece linealmente pero con pendiente 1/3. Por lo tanto, la primera función se acerca más al speedup ideal **S = p**, aprovechando mejor los recursos disponibles.
+
+Además, si analizamos la eficiencia **E = S / p**:
+
+- En el primer caso:  
+  **E = (p − 4) / p** → tiende a 1 cuando p crece  
+- En el segundo caso:  
+  **E = (p / 3) / p = 1/3** → eficiencia constante
+
+**Conclusión:** La primera solución tiene mejor eficiencia y escalabilidad, especialmente cuando el número de procesadores es grande.
+
+
+| Procesadores `p` | Speedup (p − 4) | Eficiencia (p−4)/p | Speedup (p / 3) | Eficiencia (1/3) |
+|------------------|------------------|----------------------|------------------|------------------|
+| 5                | 1                | 0.20                 | 1.67             | 0.33             |
+| 8                | 4                | 0.50                 | 2.67             | 0.33             |
+| 12               | 8                | 0.67                 | 4.00             | 0.33             |
+| 20               | 16               | 0.80                 | 6.67             | 0.33             |
+| 40               | 36               | 0.90                 | 13.33            | 0.33             |
+| 100              | 96               | 0.96                 | 33.33            | 0.33             |
+
+
+- A medida que `p` crece, la eficiencia de **S = p − 4** se acerca a 1 (ideal).
+- La eficiencia de **S = p / 3** es constante y baja (0.33), sin importar el valor de `p`.
+- Por eso, la función **S = p − 4** se comporta mucho mejor para valores grandes de `p`.
+
+![alt text](output.png)
+
+</details>
+
+---
+
+## Ejercicio 22 Problema de Paralelización
+
+Suponga que la solución a un problema es paralelizada sobre **p** procesadores de dos maneras diferentes.
+
+- En un caso, la eficiencia está regido por la función **E = 1/p**
+- y en el otro por la función **E =  1/p^2**.
+
+**¿Cuál de las dos soluciones se comportará más eficientemente al crecer la cantidad de procesadores? Justifique.**
+
+<details><summary>Respuesta</summary>
+
+Claramente, a partir de p = 2, se observa que la eficiencia **E₁ = 1/p** es mayor que la eficiencia **E₂ = 1/p²**. Analicemos algunos valores:
+
+- Para p = 1:  
+  E₁ = 1/1 = 1  E₂ = 1/1 = 1  
+- Para p = 2:  
+  E₁ = 1/2 = 0.5  E₂ = 1/4 = 0.25  
+- Para p = 3:  
+  E₁ = 1/3 ≈ 0.33  E₂ = 1/9 ≈ 0.11  
+
+Como se puede apreciar, **E₁ siempre es mayor que E₂** a partir de p = 2, y ambas eficiencias decrecen al aumentar el número de procesadores.
+
+
+**Conclusión:**  
+La solución con **E = 1/p** se comporta más eficientemente que la de **E = 1/p²**, ya que decrece más lentamente. Sin embargo, **ninguna de las dos escala bien** cuando `p` crece mucho, ya que ambas tienden a eficiencia cero.
+
+![alt text](output_1.png)
+
+| Procesadores (p) | E1 = 1/p | E2 = 1/p² |
+|------------------|----------|-----------|
+| 1                | 1.0000   | 1.0000    |
+| 2                | 0.5000   | 0.2500    |
+| 3                | 0.3333   | 0.1111    |
+| 4                | 0.2500   | 0.0625    |
+| 5                | 0.2000   | 0.0400    |
+| 10               | 0.1000   | 0.0100    |
+| 20               | 0.0500   | 0.0025    |
+| 50               | 0.0200   | 0.0004    |
+| 100              | 0.0100   | 0.0001    |
+
+
+</details>
+
+---
+
+## Ejercicio 23 Suponga el tiempo de ejecución
+
+
+Suponga que el tiempo de ejecución de un algoritmo secuencial es de **1000 unidades** de tiempo, de las cuales el **80%** corresponden a código paralelizable.
+
+**¿Cuál es el límite en la mejora que puede obtenerse paralelizando el algoritmo?**
+
+<details><summary>Respuesta</summary>
+
+**🧠 ¿Qué estamos analizando?**
+
+Tenemos un programa que tarda **1000 unidades de tiempo** si lo ejecutás de forma secuencial (en un solo procesador). Pero sabemos que **una parte se puede paralelizar** (hacer en varios procesadores a la vez) y otra parte no.
+
+Nos dicen que:
+
+- **80% del programa es paralelizable** → eso son 800 unidades de tiempo.  
+- **20% es secuencial** → eso son 200 unidades de tiempo.  
+
+**📌 ¿Qué pasa si usamos muchos procesadores?**
+
+La **Ley de Amdahl** nos dice que **el tiempo total con paralelismo** va a ser:
+
+```
+T_paralelo = tiempo_secuencial + tiempo_paralelizable / cantidad_de_procesadores
+```
+
+Entonces, por ejemplo, si usamos **800 procesadores**, el cálculo sería:
+
+```
+T_paralelo = 200 + 800 / 800 = 200 + 1 = 201
+```
+
+Y el **speedup** (la mejora respecto del tiempo original) es:
+
+```
+Speedup = T_secuencial / T_paralelo = 1000 / 201 ≈ 4.97
+```
+
+Es decir, aunque pongas 1000, 2000 o más procesadores… **no podés bajar más de ese tiempo**, porque **las 200 unidades de código secuencial no se pueden paralelizar**. Esa es la **barrera natural** que impone la Ley de Amdahl.
+
+**📉 ¿Por qué no conviene usar demasiados procesadores?**
+
+Supongamos que usás 800 procesadores. Como el código secuencial tarda 200 unidades y **solo uno lo puede ejecutar**, **los otros 799 van a estar esperando**.
+
+Por eso, conviene usar una **cantidad más chica** de procesadores que puedan estar trabajando todo el tiempo. Por ejemplo, con 5 procesadores:
+
+```
+T_paralelo = 200 + (800 / 5) = 200 + 160 = 360
+Speedup = 1000 / 360 ≈ 2.78
+```
+
+No es el máximo speedup, pero **se aprovechan todos los procesadores** (menos desperdicio).
+
+**✅ Conclusión**
+
+- El **límite de mejora** está en ≈ 5 veces más rápido. No se puede mejorar más, por más procesadores que agregues.
+- Si usás **muchos procesadores**, muchos van a estar **ociosos**.
+- Lo mejor es **balancear**: usar la menor cantidad de procesadores que te dé una mejora sin que los demás queden esperando.
+
+</details>
+
+---
+
+## Ejercicio 24 Suponga el tiempo de ejecución
+
+Suponga que el tiempo de ejecución de un algoritmo secuencial es de **8000 unidades** de tiempo, de las cuales solo el **90% corresponde a código paralelizable**.
+
+**¿Cuál es el límite en la mejora que puede obtenerse paralelizando el algoritmo? Justifique.**
+
+<details><summary>Respuesta</summary>
+
+
+Sabemos que:
+- **T_total = 8000**
+- **90% es paralelizable → T_par = 7200**
+- **10% es secuencial → T_sec = 800**
+
+**📌 ¿Cuál es el mejor caso posible?**
+
+El mejor caso se da si usamos **tantos procesadores como para que la parte paralela tarde solo 1 unidad de tiempo** (es decir, **7200 procesadores** para 7200 unidades paralelas).
+
+Entonces, el **tiempo total mínimo** que podríamos lograr es:
+
+```
+T_mejor = T_sec + T_par / procesadores
+T_mejor = 800 + 7200 / 7200
+T_mejor = 800 + 1 = 801
+```
+
+⚡ Cálculo del speedup máximo (límite de mejora)
+
+```
+Speedup = T_secuencial / T_mejor
+Speedup = 8000 / 801 ≈ 9.99
+```
+
+El **límite teórico de mejora** es aproximadamente **10 veces más rápido**.  
+Esto se alinea con la **Ley de Amdahl**, que dice que el código secuencial limita la mejora total.
+
+</details>
+
+---
+
+## Ejercicio 25 Suponga el tiempo de ejecución
+
+Suponga que el tiempo de ejecución de un algoritmo secuencial es de **10000 unidades** de tiempo, de las cuales **95% corresponden a código paralelizable**.
+
+**¿Cuál es el límite en la mejora que puede obtenerse paralelinzado el algoritmo?**
+
+<details><summary>Respuesta</summary>
+
+El límite de mejora se alcanza cuando se utilizan **9500 procesadores** (uno por cada unidad de tiempo paralelizable), lo que reduce el tiempo de ejecución de la parte paralela a **1 unidad de tiempo**.  
+La parte secuencial, que **no puede paralelizarse**, tarda **500 unidades de tiempo**.
+
+Por lo tanto, el **tiempo total mínimo (T<sub>paralelo</sub>)** será:
+
+```
+Tparalelo = Tsecuencial + Tparalelizable / procesadores
+Tparalelo = 500 + 1 = 501
+```
+
+El **speedup máximo** (mejora) se calcula como:
+
+```
+Speedup = Tsecuencial_total / Tparalelo = 10000 / 501 ≈ 19.96
+```
+
+> Esto significa que, incluso si seguimos agregando procesadores, **el máximo speedup que se puede lograr es aproximadamente 20**.
+
+Este resultado **confirma la Ley de Amdahl**, la cual establece que el límite de paralelización de un algoritmo **no depende de cuántos procesadores se usen**, sino de **cuánta parte del código es secuencial**.
+
+</details>
+
+---
+
+## Ejercicio 26 Indique los posibles valores
+
+**Indique los posibles valores finales de x en el siguiente programa (justifique claramente su respuesta):**
+
+```c
+int x = 3;
+sem s1 = 1, s2 = 0;
+
+co
+  // P1
+  P(s1);              // Espera mutex
+  x = x * x;          
+  V(s1);              // Libera mutex
+
+  // P2
+  P(s2);              // Espera señal de P3
+  P(s1);              // Espera mutex
+  x = x * 3;
+  V(s1);
+
+  // P3
+  P(s1);              // Espera mutex
+  x = x - 2;
+  V(s2);              // Señaliza a P2
+  V(s1);
+oc
+```
+
+**s1 →** *mutex:* puede pasar un solo proceso por vez.  
+**s2 →** *semáforo de señalización:* esperan señalización de un evento y pasa sólo uno.
+
+> Aunque se libere un semaforo, no tiene que volver a ejecutarse ya que no estamos en un while (Si un semaforo paso PASO)
+
+<details><summary>Respuesta</summary>
+
+| Orden de ejecución       | Valor final de `x` |
+|--------------------------|--------------------|
+| P1 → P3 → P2             | 21                 |
+| P3 → P2 → P1             | 9                  |
+| P3 → P1 → P2             | 3                  |
+
+**P1** y **P3** comienzan esperando a **s1**. Por ser un mutex, sólo puede continuar uno de ellos y no será interrumpido por el otro hasta liberar a **s1**.
+
+**Primer resultado**
+
+Si comienza P1: 
+- Asigna x=9
+- luego incrementa **s1** permitiendo que continúe **P3**.
+- **P3** asigna **x=7** y señala **s2**.
+- Esto habilita a **P2** que estaba esperando.
+- Si **P2** continúa, intentará obtener s1 con lo cual se vuelve a bloquear volviendo el control a **P3**.
+- En cualquier caso, **P3** libera a **s1** y termina.
+- **P2** es despertado, asigna x = 21 y termina.
+- Valor **final x=21.**
+
+**Segundo y Tercer resultado**
+
+Si comienza **P3**:
+
+- Asigna **x = 1** y señala a **s2**.
+- Esto habilita a **P2** que estaba esperando.
+- Si P2 continúa, intentará obtener **s1** con lo cual se vuelve a bloquear volviendo el control a **P3**.
+- Cuando **P3** libera a **s1**, **P1** y **P2** pueden competir por él:
+    - **Si gana P1**: 
+        - asigna **x=1**,
+        - libera a **s1** y termina; 
+        - finaliza **P2** y asigna **x = 3**.
+        - **Valor final x=3.**
+    - **Si gana P2**:
+        - asigna **x=3**,
+        - libera a **s1** y termina;
+        - finaliza **P1** y asigna **x = 9**.
+        - Valor final **x = 9**.
+
+**P2** nunca puede comenzar la historia ya que espera un semáforo de señalización que sólo **P3** señala. Cualquier historia en la que **P2** esté antes de **P3** es inválida. En todas las historias los semáforos terminan con los mismos valores con los que están inicializados.
+
+</details>
+
+---
+
+## Ejercicio 27 Cuales valores son posibles
+
+**c)** Dado el siguiente programa concurrente indique cuáles valores de `K` son posibles al finalizar, y describa una secuencia de instrucciones para obtener dicho resultado:
+
+```cpp
+Process P1 {
+    for (i = 1 to K) {
+        N = N + 1;
+    }
+}
+
+Process P2 {
+    for (i = 1 to K) {
+        N = N + 1;
+    }
+}
+```
+
+i) 2K
+ii) 2K + 2  
+iii) K  
+iv) 2 
+
+<details><summary>Respuesta</summary>
+
+```c
+// Ambos procesos ejecutan el mismo bucle:
+for (i = 1 to K)
+    N = N + 1;
+```
+
+✅ **i) Valor final = 2K**  
+**Caso posible:** ejecución secuencial sin interferencia.
+
+**Ejemplo (K = 3):**
+
+```
+P1: N=0 -> 1 -> 2 -> 3
+P2: N=3 -> 4 -> 5 -> 6
+Resultado final: N = 6 = 2*K
+```
+
+
+❌ **ii) Valor final = 2K + 2**  
+**Caso imposible.**
+
+**Justificación:**  
+Cada proceso ejecuta exactamente `K` incrementos. Como mucho se pueden hacer `2K` sumas. No hay forma de hacer más sin ejecutar más iteraciones, lo cual no ocurre.
+
+✅ **iii) Valor final = K**  
+**Caso posible:** interferencia total entre procesos. Se pisan las operaciones.
+
+**Ejemplo (K = 3):**
+
+```
+N inicialmente = 0
+
+Intercalado:
+P1 lee N=0       // aún no actualiza
+P2 lee N=0       // aún no actualiza
+P1 escribe N=1
+P2 escribe N=1   // pisa el valor anterior → se pierde un incremento
+
+Repite este patrón durante las 3 iteraciones.
+
+Resultado final: solo 3 incrementos efectivos → N = 3 = K
+```
+
+✅ **iv) Valor final = 2**  
+**Caso posible:** interferencia total y mal intercalado extremo.
+
+**Ejemplo (K = 3):**
+
+```
+N = 0
+
+P1 iteración 1: lee N=0
+P2 iteración 1: lee N=0
+P1 escribe N=1
+P2 escribe N=1   → pisa a P1
+
+P1 iteración 2: lee N=1
+P2 iteración 2: lee N=1
+P1 escribe N=2
+P2 escribe N=2   → pisa a P1
+
+Resultado final: N = 2
+```
+
+</details>
+
+---
+
+## Ejercicio 28 Suponga N procesos
+
+Suponga que **N** procesos poseen inicialmente cada uno un valor. Se debe calcular la suma de todos los valores y al finalizar la computación todos deben conocer dicha suma.
+
+Analice (desde el punto de vista del número de mensajes y la performance global) las soluciones posibles con memoria distribuida para **arquitecturas en Estrella** (centralizada), **Anillo Circular**, **Totalmente Conectada** y **Árbol**.
+
+<details><summary>Arquitectura Estrella (Centralizada)</summary>
+
+Se tiene un anillo donde `P[i]` recibe mensajes de `P[i-1]` y envía mensajes a `P[i+1]`. `P[n-1]` tiene como sucesor a `P[0]`. El primer proceso envía su valor local ya que es el único que conoce.
+
+Este esquema consta de dos etapas:
+
+1. Cada proceso recibe un valor y lo suma con su valor local, transmitiendo la suma local a su sucesor.  
+2. Todos reciben la suma global.
+
+`P[0]` debe ser algo diferente para poder “arrancar” el procesamiento: debe enviar su valor local ya que es el único que conoce. Se requerirán **2(n-1)** mensajes.
+
+A diferencia de la solución centralizada, esta reduce los requerimientos de memoria por proceso pero tardara más en ejecutarse, por más que el número de mensajes requeridos sea el mismo. Esto se debe a que cada proceso debe esperar un valor para computar una suma parcial y luego enviársela al siguiente proceso; es decir, un proceso trabaja por vez, se pierde el paralelismo.
+
+
+```c
+chan valor[n](suma);
+
+process p[0] {
+    INT v;
+    INT suma = v;
+    send valor[1](suma);
+    receive valor[0](suma);
+    send valor[1](suma);
+}
+
+process p[i = 1 to n-1] {
+    INT v;
+    INT suma;
+    receive valor[i](suma);
+    suma = suma + v;
+    send valor[(i + 1) mod n](suma);
+    receive valor[i](suma);
+    if (i < n - 1)
+        send valor[i + 1](suma);
+}
+```
+
+| Proceso | `v[i]` |
+|---------|--------|
+| P[0]    | 2      |
+| P[1]    | 3      |
+| P[2]    | 5      |
+| P[3]    | 7      |
+
+El objetivo es que **todos los procesos conozcan la suma total**, que es `2 + 3 + 5 + 7 = 17`.
+
+🧠 Etapa 1: **Suma parcial hacia adelante**
+
+| Paso | Acción |
+|------|--------|
+| 1 | `P[0]` envía `2` a `P[1]` |
+| 2 | `P[1]` recibe `2`, suma su `v=3`, total = `5`, envía `5` a `P[2]` |
+| 3 | `P[2]` recibe `5`, suma su `v=5`, total = `10`, envía `10` a `P[3]` |
+| 4 | `P[3]` recibe `10`, suma su `v=7`, total = `17`, envía `17` a `P[0]` |
+
+
+🧠 Etapa 2: **Difusión de la suma global**
+
+| Paso | Acción |
+|------|--------|
+| 5 | `P[0]` recibe `17` de `P[3]`, reenvía `17` a `P[1]` |
+| 6 | `P[1]` recibe `17`, reenvía `17` a `P[2]` |
+| 7 | `P[2]` recibe `17`, reenvía `17` a `P[3]` |
+| 8 | `P[3]` recibe `17` |
+
+✅ Resultado final
+
+Todos los procesos conocen el valor total `17`.
+
+| Proceso | Valor recibido |
+|---------|----------------|
+| P[0]    | 17             |
+| P[1]    | 17             |
+| P[2]    | 17             |
+| P[3]    | 17             |
+
+💬 Observaciones
+
+- **Cantidad de mensajes**: 2(n - 1) = 2(4 - 1) = 6 mensajes, como indica tu descripción.
+- **Secuencialidad**: cada proceso espera su turno para sumar → **no hay paralelismo**.
+- **P[0]** es especial, porque inicia la suma **y también** es el primero que difunde la suma global.
+
+</details>
+
+<details><summary>Totalmente conectada (simetrica)</summary>
+
+Todos los procesos ejecutan el mismo algoritmo. Existe un canal entre cada par de procesos.  
+Cada uno transmite su dato local `v` a los `n-1` restantes. Luego recibe y procesa los `n-1` datos que le faltan, de modo que en paralelo toda la arquitectura está calculando la suma total y tiene acceso a los `n` datos.
+
+Se ejecutan `n(n-1)` mensajes. Si se dispone de una primitiva de broadcast, serán `n` mensajes.  
+Es la solución más corta y sencilla de programar, pero utiliza el mayor número de mensajes si no hay broadcast.
+
+```cpp
+chan valor[n](INT);
+
+process p[i=0 to n-1] {
+    INT v;
+    INT nuevo, suma = v;
+    
+    for (k=0 to n-1 st k <> i)
+        send valor[k](v);
+        
+    for (k=0 to n-1 st k <> i) {
+        receive valor[i](nuevo);
+        suma = suma + nuevo;
+    }
+}
+```
+
+🧩 Supuestos
+
+Usamos de nuevo `n = 4` procesos y valores locales:
+
+| Proceso | `v[i]` |
+|---------|--------|
+| P[0]    | 2      |
+| P[1]    | 3      |
+| P[2]    | 5      |
+| P[3]    | 7      |
+
+🚀 ¿Qué hace cada proceso?
+
+- Cada proceso envía su valor a los otros 3 (`n-1`).
+- Luego, **recibe** los 3 valores que le faltan, y los **suma**.
+- Esto se hace en paralelo, es decir, todos los procesos trabajan al mismo tiempo.
+
+📊 Ejecución paso a paso
+
+**Fase 1: Envío**
+
+| Proceso | Envía a...             | Mensajes |
+|---------|------------------------|----------|
+| P[0]    | P[1], P[2], P[3]       | 3        |
+| P[1]    | P[0], P[2], P[3]       | 3        |
+| P[2]    | P[0], P[1], P[3]       | 3        |
+| P[3]    | P[0], P[1], P[2]       | 3        |
+| **Total** |                        | **12 mensajes** |
+
+**Fase 2: Recepción y suma**
+
+Cada proceso recibe 3 valores y los suma con el propio:
+
+| Proceso | Valores recibidos | Suma final |
+|---------|-------------------|------------|
+| P[0]    | 3, 5, 7           | 2 + 3 + 5 + 7 = 17 |
+| P[1]    | 2, 5, 7           | 3 + 2 + 5 + 7 = 17 |
+| P[2]    | 2, 3, 7           | 5 + 2 + 3 + 7 = 17 |
+| P[3]    | 2, 3, 5           | 7 + 2 + 3 + 5 = 17 |
+
+✅ Resultado final
+
+Todos conocen la suma global **17**.
+
+| Proceso | Suma calculada |
+|---------|----------------|
+| P[0]    | 17             |
+| P[1]    | 17             |
+| P[2]    | 17             |
+| P[3]    | 17             |
+
+💬 Observaciones
+
+- Total de mensajes: `n(n-1)` = `4 × 3` = **12 mensajes**
+- Todos trabajan en **paralelo** → **alta velocidad**
+- Pero: requiere **muchos canales y mensajes**
+- Si tuvieras broadcast, solo necesitarías **n mensajes** (1 por proceso).
+
+
+
+</details>
+
+---
+
 Suponga que una imagen se encuentra representada por una matriz a **(n×n)**, y que el valor de cada pixel es un número **entero** que es mantenido por un proceso distinto (es decir, el valor del píxel **I**,**J** está en el proceso **P(I,J)**). Cada proceso puede comunicarse solo con sus vecinos izquierdo, derecho, arriba y abajo. (Los procesos de las esquinas tienen solo 2 vecinos, y los otros bordes de la grilla tienen 3 vecinos).
 
 **a)** Escriba un algoritmo **Herbeat** que calcule el **máximo** y el **mínimo** valor de los píxeles de la imagen. Al terminar el programa, cada proceso debe conocer ambos valores.
