@@ -2794,7 +2794,92 @@ Suponga que **N** procesos poseen inicialmente cada uno un valor. Se debe calcul
 
 Analice (desde el punto de vista del número de mensajes y la performance global) las soluciones posibles con memoria distribuida para **arquitecturas en Estrella** (centralizada), **Anillo Circular**, **Totalmente Conectada** y **Árbol**.
 
-<details><summary>Arquitectura Estrella (Centralizada)</summary>
+<details><summary>arquitecturas en Estrella(centralizada)</summary>
+
+En este tipo de arquitectura todos los procesos (workers) envían su valor local al procesador central (coordinador), este suma los `N` datos y reenvía la información de la suma al resto de los procesos.  
+Por lo tanto se ejecutan `2(N-1)` mensajes. Si el procesador central dispone de una primitiva broadcast, se reduce a `N` mensajes.
+
+En cuanto a la performance global, los mensajes al coordinador se envían casi al mismo tiempo.  
+Estos se quedarán esperando hasta que el coordinador termine de computar la suma y envíe el resultado a todos.
+
+```c
+chan valor(INT);
+resultados[n](INT suma);
+
+Process P[0]{              // coordinador, v está inicializado
+    INT v; INT sum = 0;
+    sum = sum + v;
+    for (i = 1 to n-1){
+        receive valor(v);
+        sum = sum + v;
+    }
+    for (i = 1 to n-1)
+        send resultado[i](sum);
+}
+
+process P[i = 1 to n-1]{   // worker, v está inicializado
+    INT v; INT sum;
+    send valor(v);
+    receive resultado[i](sum);
+}
+```
+
+🧩 Supuestos
+
+De nuevo usamos `n = 4` procesos:
+
+| Proceso | Rol        | Valor local `v[i]` |
+|---------|------------|--------------------|
+| P[0]    | Coordinador| 2                  |
+| P[1]    | Worker     | 3                  |
+| P[2]    | Worker     | 5                  |
+| P[3]    | Worker     | 7                  |
+
+🎯 Objetivo
+
+- `P[0]` recibe los valores de todos los procesos.
+- Suma: `2 + 3 + 5 + 7 = 17`.
+- Luego envía la **suma global** de vuelta a todos los workers.
+
+🚀 Ejecución paso a paso
+
+📨 Fase 1: Envío de los valores al coordinador
+
+| Paso | Acción |
+|------|--------|
+| 1 | `P[1]` envía `3` a `P[0]` |
+| 2 | `P[2]` envía `5` a `P[0]` |
+| 3 | `P[3]` envía `7` a `P[0]` |
+| 4 | `P[0]` ya tiene su `v = 2`, recibe `3`, `5`, y `7`, suma total = **17** |
+
+📤 Fase 2: Coordinador difunde la suma
+
+| Paso | Acción |
+|------|--------|
+| 5 | `P[0]` envía `17` a `P[1]` |
+| 6 | `P[0]` envía `17` a `P[2]` |
+| 7 | `P[0]` envía `17` a `P[3]` |
+
+✅ Resultado final
+
+| Proceso | Valor final conocido |
+|---------|----------------------|
+| P[0]    | 17 (lo calculó)      |
+| P[1]    | 17 (lo recibió)      |
+| P[2]    | 17 (lo recibió)      |
+| P[3]    | 17 (lo recibió)      |
+
+💬 Observaciones
+
+- Total de mensajes: `2(n - 1)` = `2(4 - 1)` = **6 mensajes**
+- Con **broadcast**: solo `n = 4` mensajes (1 de cada worker al coordinador, 1 broadcast de vuelta).
+- Buena performance en tiempo, porque los workers **envían todos al mismo tiempo**.
+- Pérdida de paralelismo en el cómputo: solo el **coordinador trabaja**, los demás esperan.
+- **Punto único de falla**: si `P[0]` se cae, el sistema no funciona.
+
+</details>
+
+<details><summary>Anillo circular</summary>
 
 Se tiene un anillo donde `P[i]` recibe mensajes de `P[i-1]` y envía mensajes a `P[i+1]`. `P[n-1]` tiene como sucesor a `P[0]`. El primer proceso envía su valor local ya que es el único que conoce.
 
@@ -2961,11 +3046,575 @@ Todos conocen la suma global **17**.
 - Pero: requiere **muchos canales y mensajes**
 - Si tuvieras broadcast, solo necesitarías **n mensajes** (1 por proceso).
 
+</details>
+
+<details><summary>Arbol</summary>
+
+Se tiene una red de procesadores (nodos) conectados por canales de comunicación bidireccionales. Cada nodo se comunica directamente con sus vecinos. Si un nodo quiere enviar un mensaje a toda la red, debería construir un árbol de expansión de la misma, poniéndose a él mismo como raíz.
+
+El nodo raíz envía un mensaje por broadcast a todos los hijos, junto con el árbol construido. Cada nodo examina el árbol recibido para determinar los hijos a los cuales deben reenviar el mensaje, y así sucesivamente.
+
+Se envían `n - 1` mensajes, uno por cada padre/hijo del árbol.
+
+
+🧩 Supuestos
+
+- Tenemos `n = 7` nodos numerados del `0` al `6`.
+- Se construye un **árbol de expansión** para propagar un mensaje, con el **nodo `0` como raíz**.
+- El árbol tiene esta estructura (por simplicidad):
+
+```
+        0
+      / | \
+     1  2  3
+        |   \
+        4    5
+              \
+               6
+```
+
+---
+
+🎯 Objetivo
+
+Difundir un **mensaje** desde el nodo raíz (`0`) hacia todos los demás nodos usando el árbol.
+
+ 🚀 Ejecución paso a paso
+
+| Paso | Nodo emisor | Nodo receptor | Descripción |
+|------|-------------|----------------|-------------|
+| 1    | 0           | 1              | Nodo 0 envía a su hijo 1 |
+| 2    | 0           | 2              | Nodo 0 envía a su hijo 2 |
+| 3    | 0           | 3              | Nodo 0 envía a su hijo 3 |
+| 4    | 2           | 4              | Nodo 2 reenvía a su hijo 4 |
+| 5    | 3           | 5              | Nodo 3 reenvía a su hijo 5 |
+| 6    | 5           | 6              | Nodo 5 reenvía a su hijo 6 |
+
+✅ Resultado final
+
+Todos los nodos reciben el mensaje, usando solo `n - 1 = 6` mensajes.
+
+| Nodo | ¿Recibió el mensaje? |
+|------|------------------------|
+| 0    | Sí (es la raíz)       |
+| 1    | Sí                    |
+| 2    | Sí                    |
+| 3    | Sí                    |
+| 4    | Sí                    |
+| 5    | Sí                    |
+| 6    | Sí                    |
+
+💬 Observaciones
+
+- **Mensajes totales**: `n - 1 = 6`
+- Es la forma más eficiente si ya tenemos el árbol.
+- Permite **paralelismo**: varios nodos pueden reenviar a la vez.
+- Ideal para redes distribuidas con **vecindades limitadas** (no totalmente conectadas).
+- Si se necesita hacer una suma global, se puede hacer un **recorrido postorden** (bottom-up), y luego **difundir el resultado** (top-down).
+
+</details>
+
+---
+
+## Ejercicio 29 Problema de Exclusión Mutua
+
+Implemente una solución al problema de exclusión mutua distribuida entre **N** procesos utilizado un algoritmo de tipo token passing con mensajes asincrónicos.
+
+<details><summary>Resolver</summary>
+
+El algoritmo de **token passing**, se basa en un tipo especial de mensaje o **“token”** que
+puede utilizarse para otorgar un **permiso** (control) o para **recoger información global** de la arquitectura distribuida.
+
+Si **User[1:n]** son un conjunto de procesos de aplicación que contienen secciones críticas y
+no críticas. Hay que desarrollar los protocolos de interacción (E/S a las secciones críticas),
+asegurando **exclusión mútua**, **no deadlock**, **evitar demoras innecesarias** y **eventualmente fairness**.
+
+Para no ocupar los procesos **User** en el manejo de los **tokens**, ideamos un proceso **auxiliar (helper)** por cada **User**, de modo de manejar la circulación de los **tokens**. Cuando **helper[i]** tiene el **token** adecuado, significa que **User[i]** tendrá prioridad para acceder a la sección crítica.
+
+
+```cpp
+chan token[n]() ;                   # para envío de tokens
+chan enter[n](), go[n](), exit[n](); # para comunicación proceso-helper
+
+process helper[i = 1..N] {
+    while(true){
+        receive token[i]();               # recibe el token
+        if(!(empty(enter[i]))){          # si su proceso quiere usar la SC
+            receive enter[i]();
+            send go[i]();                # le da permiso y lo espera a que termine
+            receive exit[i]();
+        }
+        send token[i MOD N + 1]();       # y lo envía al siguiente cíclicamente
+    }
+}
+
+process user[i = 1..N] {
+    while(true){
+        send enter[i]();
+        receive go[i]();
+        ... sección crítica ...
+        send exit[i]();
+        ... sección no crítica ...
+    }
+}
+```
+
+> Se asume que el primero ya tenga el token
+
+</details>
+
+---
+
+## Ejercicio 30 Suponga que un proceso productor
+
+(Broadcast atómico). Suponga que un proceso productor y **n** procesos consumidores comparten un **buffer** unitario. El productor deposita mensajes en el buffer y los consumidores los retiran. Cada mensaje depositado por el productor tiene que ser retirado por los **n** consumidores antes de que el productor pueda depositar otro mensaje en el buffer.
+
+<details><summary><strong>a) Desarrolle una solución utilizando semáforos.</strong></summary>
+
+```cpp
+sem depositar := 1;
+sem retirar := 1;
+sem consumi[n] := ([n] 0);
+int cant_consumido := ([n] 0);
+T buffer;
+
+process productor {
+    while (true) {
+        P(depositar);
+        buffer := generarDato();     // Devuelve un entero para el buffer
+        cant_consumido := 0;
+        for i to n do
+            V(consumi[i]);
+    }
+}
+
+process consumidor[i = 1..n] {
+    T dato;
+    while (true) {
+        P(consumi[i]);              // Espero que el dato esté en el buffer
+        P(retirar);                 // Espero para tener acceso al buffer
+        dato := buffer;
+        cant_consumido++;
+        if (cant_consumido == n)
+            V(depositar);
+        V(retirar);
+    }
+}
+```
+
+🎯 Objetivo
+
+> El **productor** debe generar un dato y colocarlo en un buffer compartido.  
+> **Cada consumidor** debe leer ese dato **una única vez**.  
+> **Solo cuando todos lo hayan leído**, el productor podrá colocar un nuevo dato.
+
+🧩 Supuestos para el ejemplo
+
+- Hay `n = 2` consumidores: `C1` y `C2`
+- El buffer inicialmente está vacío
+- El productor genera números enteros: `1`, `2`, `3`, etc.
+
+🔄 Ejecución paso a paso
+
+🔹 Estado inicial
+
+| Variable         | Valor inicial |
+|------------------|---------------|
+| `depositar`      | 1             |
+| `retirar`        | 1             |
+| `consumi[1]`     | 0             |
+| `consumi[2]`     | 0             |
+| `cant_consumido` | 0             |
+| `buffer`         | vacío         |
+
+⏱ Paso 1: El productor genera un dato
+
+1. `P(depositar)` → pasa (vale 1)
+2. `buffer := generarDato() → 1`
+3. `cant_consumido := 0`
+4. `V(consumi[1])` → `consumi[1] = 1`
+5. `V(consumi[2])` → `consumi[2] = 1`
+
+🔁 El productor queda esperando a que los 2 consumidores consuman antes de generar otro dato.
+
+⏱ Paso 2: El consumidor 1 consume
+
+1. `P(consumi[1])` → pasa
+2. `P(retirar)` → pasa (vale 1)
+3. `dato := buffer = 1`
+4. `cant_consumido := 1`
+5. `cant_consumido != n → no hace nada`
+6. `V(retirar)` → `retirar = 1`
+
+⏱ Paso 3: El consumidor 2 consume
+
+1. `P(consumi[2])` → pasa
+2. `P(retirar)` → pasa
+3. `dato := buffer = 1`
+4. `cant_consumido := 2`
+5. `cant_consumido == n` → entonces `V(depositar)` → ahora el productor puede seguir
+6. `V(retirar)`
+
+⏱ Paso 4: El productor continúa
+
+1. `P(depositar)` → pasa (porque fue liberado)
+2. `buffer := 2`
+3. `cant_consumido := 0`
+4. `V(consumi[1])`, `V(consumi[2])` → y sigue el ciclo
+
+✅ Garantías del algoritmo
+
+| Propiedad                    | Cumple |
+|-----------------------------|--------|
+| Exclusión mutua en acceso   | ✅     |
+| Cada consumidor lee una vez | ✅     |
+| Productor espera a todos     | ✅     |
+| No hay pérdida de datos     | ✅     |
+
+</details>
+
+b) Suponga que el buffer tiene **b** slots. El productor puede depositar mensaje sólo en slots vacíos y cada mensaje tiene que ser recibido por los **n** consumidores antes de que el slot pueda ser reusado. Además, cada consumidor debe recibir los mensajes en el orden en que fueron depositados (note que los distintos consumidores pueden recibir los mensajes en distintos momentos siempre que los reciban en orden).
+
+Extienda la respuesta dada en a) para resolver este problema más general.
+
+<details><summary>Respuesta</summary>
+
+```cpp
+sem retirar[tamBuffer] := 1;              // semáforo para cada slot del buffer
+sem consumir[n] := ([n] 0);
+int cant_consumido[tamBuffer] := ([n] 0);
+T buffer[tamBuffer];
+
+process productor {
+    int posLibre := 0;                   // Siguiente posición libre del buffer (productor)
+    while(true){
+        P(depositar);
+        buffer[posLibre] := generarDato();     // Devuelve dato tipo T para el buffer
+        cant_consumido[posLibre] := 0;
+        for i to n do
+            V(consumir[i]);
+        posLibre := (posLibre + 1) mod n;
+    }
+}
+
+process consumidor[i: 1..n] {
+    int post_actual := 0;               // Slot del que debe consumir
+    T dato;
+    while(true){
+        P(consumir[i]);
+        P(retirar[post_actual]);        // Espera por un slot en particular
+        dato := buffer[post_actual]; // El acceso de esta manera no se encuentra en la imagen pero supongo que esta bien
+        cant_consumido[post_actual]++;
+        if (cant_consumido[post_actual] == n)
+            V(depositar);
+        V(retirar[post_actual]);
+        post_actual := (post_actual + 1) mod n;
+    }
+}
+```
+
+🧩 Supuestos del ejemplo
+
+- `tamBuffer = 2` → hay dos slots: `buffer[0]` y `buffer[1]`
+- `n = 2` → hay dos consumidores: `C1` y `C2`
+- `buffer[i]` contiene datos generados por el productor
+- Cada dato debe ser consumido por ambos consumidores **antes de poder sobrescribir el slot**
+- Los consumidores deben leer los datos en orden
+
+🔁 Estado inicial
+
+| Variable / Recurso          | Valor inicial        |
+|----------------------------|----------------------|
+| `buffer`                   | [_, _]               |
+| `cant_consumido[0]`        | 0                    |
+| `cant_consumido[1]`        | 0                    |
+| `retirar[0]`, `retirar[1]` | 1                    |
+| `consumir[1]`, `consumir[2]` | 0 (esperando dato) |
+| `posLibre` (productor)     | 0                    |
+| `post_actual` (consumidores)| 0                    |
+
+⏱ Paso 1: El productor genera el primer dato
+
+1. `P(depositar)` → OK
+2. `buffer[0] := generarDato() → 10`
+3. `cant_consumido[0] := 0`
+4. `V(consumir[1])`, `V(consumir[2])`
+5. `posLibre := 1` (próximo slot)
+
+⏱ Paso 2: Ambos consumidores empiezan a consumir `buffer[0]` (dato 10)
+
+Consumer 1:
+1. `P(consumir[1])`
+2. `P(retirar[0])` → OK
+3. `dato := buffer[0] → 10`
+4. `cant_consumido[0] := 1`
+5. `V(retirar[0])` (libera acceso al slot)
+6. `post_actual := 1`
+
+Consumer 2:
+1. `P(consumir[2])`
+2. `P(retirar[0])` → OK
+3. `dato := buffer[0] → 10`
+4. `cant_consumido[0] := 2`
+5. `cant_consumido[0] == n` → `V(depositar)` → libera al productor
+6. `V(retirar[0])`
+7. `post_actual := 1`
+
+⏱ Paso 3: El productor genera el segundo dato
+
+1. `P(depositar)` → OK (fue liberado)
+2. `buffer[1] := generarDato() → 20`
+3. `cant_consumido[1] := 0`
+4. `V(consumir[1])`, `V(consumir[2])`
+5. `posLibre := 0`
+
+⏱ Paso 4: Ambos consumidores consumen `buffer[1]` (dato 20)
+
+Consumer 1:
+1. `P(consumir[1])`
+2. `P(retirar[1])`
+3. `dato := buffer[1] → 20`
+4. `cant_consumido[1] := 1`
+5. `V(retirar[1])`
+6. `post_actual := 0`
+
+Consumer 2:
+1. `P(consumir[2])`
+2. `P(retirar[1])`
+3. `dato := buffer[1] → 20`
+4. `cant_consumido[1] := 2`
+5. `V(depositar)` (productor puede continuar)
+6. `V(retirar[1])`
+7. `post_actual := 0`
+
+🔁 Y así continúa el ciclo...
+
+✅ Propiedades garantizadas
+
+| Propiedad                               | ¿Cumple? |
+|----------------------------------------|----------|
+| Exclusión mutua en el buffer por slot  | ✅       |
+| Orden de consumo por slot              | ✅       |
+| Reutilización del slot solo tras n lecturas | ✅ |
+| Independencia de tiempo entre consumidores | ✅ |
+| Fairness (todos acceden eventualmente) | ✅       |
 
 
 </details>
 
 ---
+
+## Ejercicio 31 Butterfly Barrier
+
+**Implemente una butterfly barrier para 8 procesos usando variables compartidas.**
+
+<details><summary>Respuesta</summary>
+
+Una **butterfly barrier** tiene **log2(n)** etapas.  
+Cada Worker sincroniza con un Worker distinto en cada etapa.  
+En particular, en la etapa `s` un Worker sincroniza con un Worker a distancia `2^(s-1)`.
+
+Se usan distintas **variables flag** para cada barrera de dos procesos.
+
+Cuando cada Worker pasó a través de `log2(n)` etapas, **todos los Workers deben haber arribado a la barrera** y por lo tanto **todos pueden seguir**.  
+Esto es porque cada Worker ha sincronizado directa o indirectamente con cada uno de los otros.
+
+**Diagrama (sincronizaciones por etapa)**
+
+```text
+Workers     1   2   3   4   5   6   7   8
+
+Etapa 1     └───┘   └───┘   └───┘   └───┘
+
+Etapa 2     └─────────┘   └─────────┘
+
+Etapa 3     └───────────────────────┘
+```
+
+Codigo
+
+```cpp
+int N = 8;
+int E = log(N);
+int arribo[1:N] = ([N] 0);
+
+process Worker[i = 1 to N] {
+    int j;
+    int resto;
+    int distancia;
+
+    while (true) {
+        // Sección de código anterior a la barrera.
+
+        // --- Inicio de la barrera butterfly ---
+        for (etapa = 1; etapa <= E; etapa++) {
+            distancia = 2 ^ (etapa - 1);           // distancia = 2^(etapa-1)
+            resto = i mod 2 ^ etapa;
+
+            if (resto == 0 || resto > distancia)   // define si sincroniza con i+dist o i-dist
+                distancia = -distancia;
+
+            j = i + distancia;
+
+            while (arribo[i] == 1) skip;           // espera a que su flag esté en 0
+            arribo[i] = 1;                         // indica que llegó
+
+            while (arribo[j] == 0) skip;           // espera a su par
+            arribo[j] = 0;                         // limpia la flag del otro
+        }
+        // --- Fin de la barrera butterfly ---
+
+        // Sección de código posterior a la barrera.
+    }
+}
+```
+
+> Este no me quedo del todo claro pero bueno
+
+
+</details>
+
+---
+
+## Ejercicio 32 Suponga que N Procesos organizados
+
+Suponga **n^2** procesos organizados en forma de grilla cuadrada. Cada proceso puede comunicarse solo con los vecinos **izquierdo**, **derecho**, de arriba y de abajo (los procesos de las esquinas tienen solo **2** vecinos, y los otros en los bordes de la grilla tienen **3 vecinos**). Cada proceso tiene inicialmente un valor local **v**.
+
+a) Escriba un algoritmo **heartbeat** que calcule el **máximo** y el **mínimo** de los **n2** valores. Al terminar el programa, cada proceso debe conocer ambos valores. (Nota: no es necesario que el algoritmo esté optimizado).
+
+<details><summary>Respuesta</summary>
+
+```cpp
+Chan valores[1:n; 1:n](int);
+
+Process P[i = 1 to n, j = 1 to n] {
+    Int v;
+    Int Nuevo, minimo = v, maximo = v;
+    Int cantVecinos;
+    Vecinos[1..cantVecinos];
+
+    For (k = 1 to cantGeneraciones) {
+        For (p = 1 to cantVecinos) {
+            Send valores[vecinos[p].fila, vecinos[p].columna](v);
+        }
+
+        For (p = 1 to cantVecinos) {
+            Receive valores[i, j](nuevo);
+            if (nuevo < minimo)
+                minimo = nuevo;
+            if (nuevo > maximo)
+                maximo = nuevo;
+        }
+    }
+}
+```
+
+🎯 Supongamos 3 procesos: A, B, C
+
+```text
+A --- B --- C
+```
+
+- A tiene valor 5  
+- B tiene valor 2  
+- C tiene valor 8  
+
+Cada uno está conectado con sus vecinos inmediatos.
+
+🧪 Generación 1: Intercambio de valores
+
+- 1. A envía 5 a B  
+- 2. B envía 2 a A y C  
+- 3. C envía 8 a B  
+
+```text
+     [5]        [2]        [8]
+      A  <-->   B   <-->   C
+```
+
+🔍 ¿Qué recibe cada uno?
+
+| Proceso | Recibe de | Valores recibidos | Nuevo mínimo | Nuevo máximo |
+|---------|-----------|-------------------|---------------|---------------|
+| A       | B         | [2]               | 2             | 5             |
+| B       | A, C      | [5, 8]            | 2             | 8             |
+| C       | B         | [2]               | 2             | 8             |
+
+✅ Resultado final (después de 1 ronda)
+
+```text
+A: mínimo = 2, máximo = 5  
+B: mínimo = 2, máximo = 8  
+C: mínimo = 2, máximo = 8
+```
+
+Si hacemos otra ronda, **A también recibirá el 8 (a través de B)**, y entonces todos tendrán:
+
+```text
+mínimo = 2, máximo = 8
+```
+
+📌 Esto mismo pasa en grillas grandes: con varias generaciones, **los valores extremos se difunden**.
+
+</details>
+
+**b) Analice la solución desde el punto de vista del número de mensajes.**
+
+<details><summary>Respuesta</summary>
+
+En cada ronda, los procesos envían mensajes a sus vecinos. Dependiendo de su posición en la grilla, cada proceso tiene distinta cantidad de vecinos:
+
+🔹 Esquinas (4 procesos)
+
+- Cada uno tiene 2 vecinos → envía 2 mensajes por ronda
+- Total por todas las rondas:
+  
+  ```
+  4 procesos * 2 mensajes * (n-1) rondas * 2 (envío y recepción)  
+  = 4 * 2 * (n - 1) * 2  
+  = (n - 1) * 16 mensajes
+  ```
+
+🔹 Bordes (sin esquinas) → hay 4 lados con (n - 2) procesos cada uno
+
+- Cada uno tiene 3 vecinos → envía 3 mensajes por ronda
+- Total:
+  
+  ```
+  (n - 2) * 4 procesos * 3 mensajes * (n - 1) rondas * 2  
+  = (n - 2) * 4 * 3 * (n - 1) * 2  
+  = (n - 1)(n - 2) * 12 mensajes
+  ```
+
+
+🔹 Internos → (n - 2) × (n - 2) procesos
+
+- Cada uno tiene 4 vecinos → envía 4 mensajes por ronda
+- Total:
+
+  ```
+  (n - 2)^2 * 4 mensajes * (n - 1) rondas * 2  
+  = (n - 2)^2 * (n - 1) * 8 mensajes
+  ```
+
+</details>
+
+> Este punto se podria mejorar
+
+**c) ¿Puede realizar alguna mejora para reducir el número de mensajes?**
+
+<details><summary>Respuesta</summary>
+
+No, no es posible reducir el número de mensajes, ya que **no existe una forma de saber con certeza cuándo un proceso ha recibido el valor mínimo o máximo global**.  
+Por lo tanto, para garantizar que **todos los procesos lleguen a conocer los valores extremos**, es necesario ejecutar las `(n - 1) × 2` generaciones completas.
+
+</details>
+
+---
+
+> Voy a rezar por que no tomen esta wea
+
+## Ejercicio 33 Supongo que se encuentra representada por una matriz
 
 Suponga que una imagen se encuentra representada por una matriz a **(n×n)**, y que el valor de cada pixel es un número **entero** que es mantenido por un proceso distinto (es decir, el valor del píxel **I**,**J** está en el proceso **P(I,J)**). Cada proceso puede comunicarse solo con sus vecinos izquierdo, derecho, arriba y abajo. (Los procesos de las esquinas tienen solo 2 vecinos, y los otros bordes de la grilla tienen 3 vecinos).
 
@@ -3021,3 +3670,76 @@ process nodo[p = 1..n] {
 ```
 </details>
 
+**b) Analice la solución de desde el punto de vista del número de mensajes.**
+
+<details><summary>Respuesta</summary>
+Si M es el numero maximo de vecinos que puede tener un nodo, y D es el diametro de la
+red, el número de mensajes maximo que pueden intercambiar es de 2n * m * (D+1). Esto
+es porque cada nodo ejecuta a lo sumo D-1 rondas, y en cada una de ellas manda 2
+mensajes a sus m vecinos
+</details>
+
+
+---
+
+# Teoricas
+
+## Pregunta 1 Ventajas y Desventajas
+
+
+**3- Defina los paradigmas de interacción entre procesos distribuidos token passing, servidores replicados y prueba-eco. Marque ventajas y desventajas en cada uno de ellos cuando se utiliza comunicación por mensajes sincrónicos o asincrónicos.**
+
+¡Perfecto, Fabián! Acá tenés una **tabla comparativa** clara y lista para usar con los **tres paradigmas** que pide la consigna:  
+- **Token Passing**  
+- **Servidores Replicados**  
+- **Prueba-Eco**  
+
+| Paradigma             | Descripción                                                                 | Ejemplo                                       | Ventajas                                                                 | Desventajas                                                           | Comunicación recomendada             |
+|------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------------------------------|------------------------------------------------------------------------|--------------------------------------|
+| **Token Passing**      | Control distribuido basado en el paso de un token entre procesos.           | Exclusión mutua distribuida, detección de fin. | Simple, sin necesidad de reloj o IDs globales.                         | Pérdida del token → bloqueo, no hay paralelismo real.                 | **Asincrónica** (más eficiente en AMP) |
+| **Servidores Replicados** | Varios servidores mantienen copias sincronizadas de un recurso compartido. | Acceso distribuido a archivos, mozos en filósofos. | Mayor disponibilidad y tolerancia a fallos.                           | Necesita sincronizar réplicas; riesgo de inconsistencia.              | **Asincrónica** (AMP); difícil en SMP   |
+| **Prueba-Eco**         | Un nodo inicia un "probe" que se propaga, y recibe "eco" al regresar.       | Descubrimiento de nodos, redes móviles.         | Recorre toda la red sin conocimiento previo de la topología.           | Muchos mensajes, cuidado con duplicados/ciclos.                       | **Asincrónica** (ideal para AMP)       |
+
+
+
+---
+
+# Finales
+
+![alt text](<febrero 2024 final.jpeg>)
+
+![alt text](<final 11 10 2023.jpeg>)
+
+![alt text](image-26.png)
+
+![alt text](<final concurrente abril 2024.jpeg>)
+
+![alt text](<final concurrente febrero 2025.jpeg>)
+
+![alt text](<final concurrente.jpeg>)
+
+![Z](image-27.png)
+
+![alt text](image-28.png)
+
+![alt text](image-29.png)
+
+![alt text](image-30.png)
+
+![alt text](image-31.png)
+
+![alt text](image-32.png)
+
+![alt text](image-33.png)
+
+![Z](image-34.png)
+
+![alt text](image-35.png)
+
+![alt text](image-36.png)
+
+![alt text](image-37.png)
+
+![alt text](image-38.png)
+
+![alt text](image-39.png)
