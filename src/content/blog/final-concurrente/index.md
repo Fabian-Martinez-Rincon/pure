@@ -3689,7 +3689,6 @@ mensajes a sus m vecinos
 
 **3- Defina los paradigmas de interacción entre procesos distribuidos token passing, servidores replicados y prueba-eco. Marque ventajas y desventajas en cada uno de ellos cuando se utiliza comunicación por mensajes sincrónicos o asincrónicos.**
 
-¡Perfecto, Fabián! Acá tenés una **tabla comparativa** clara y lista para usar con los **tres paradigmas** que pide la consigna:  
 - **Token Passing**  
 - **Servidores Replicados**  
 - **Prueba-Eco**  
