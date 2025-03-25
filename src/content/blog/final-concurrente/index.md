@@ -12,7 +12,40 @@ language: 'Spanish'
 
 Bueno como estoy re juguete para el parcial, hay ciertas preguntas que no toman ni en pepe, vamos a ir descartando cuales
 
-# Preguntas Practicas FIJAS
+---
+
+**📌 Preguntas Practicas FIJAS**
+
+- [1) Calculos con Matrices](#1-calculos-con-matrices)
+- [2) Cuales Cumplen con ASV](#2-cuales-cumplen-con-asv)
+- [3) Cuales Cumplen con ASV 2](#3-cuales-cumplen-con-asv-2)
+- [4) Numero de Mensajes y Granularidad](#4-numero-de-mensajes-y-granularidad)
+- [5) Numero de Mensajes y Granularidad 2](#5-numero-de-mensajes-y-granularidad-2)
+- [6) Indicar para cada item si son equivalentes](#6-indicar-para-cada-item-si-son-equivalentes)
+- [7) ¿Que valores quedan?](#7-que-valores-quedan)
+- [8) ¿Que valores quedan? 2](#8-que-valores-quedan-2)
+- [9) La Solución a un problema es paralelizada](#9-la-solución-a-un-problema-es-paralelizada)
+- [10) La Solución a un problema es paralelizada 2](#10-la-solución-a-un-problema-es-paralelizada-2)
+- [11) La Solución a un problema es paralelizada 3](#11-la-solución-a-un-problema-es-paralelizada-3)
+- [12) La Solución a un problema es paralelizada 4](#12-la-solución-a-un-problema-es-paralelizada-4)
+- [13) Suponga que el tiempo de ejecución de un algoritmo Secuencial](#13-suponga-que-el-tiempo-de-ejecución-de-un-algoritmo-secuencial)
+- [14) Suponga que el tiempo de ejecución de un algoritmo Secuencial 2](#14-suponga-que-el-tiempo-de-ejecución-de-un-algoritmo-secuencial-2)
+- [15) Suponga que el tiempo de ejecución de un algoritmo Secuencial 3](#15-suponga-que-el-tiempo-de-ejecución-de-un-algoritmo-secuencial-3)
+- [16) Calcular la suma de todos los valores](#16-calcular-la-suma-de-todos-los-valores)
+- [17) Token passing con mensajes asincrónicos](#17-token-passing-con-mensajes-asincrónicos)
+
+**📢 Miralas de Reojo**
+- [1) Propuesta al problema de alocación SJN](#1-propuesta-al-problema-de-alocación-sjn)
+- [2) “passing the condition” En Semaforos](#2-passing-the-condition-en-semaforos)
+- [3) Problema de Concurrencia](#3-problema-de-concurrencia)
+
+
+
+
+
+---
+
+# 📌 Preguntas Practicas FIJAS
 
 <div>
 <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjZ6M3Jubm13YjRyeHpxdmN5enp5cXhmdTZiMGhhaHRwbTAwMHo3NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yYT7ytuZpJjG0/giphy.gif" width="500px">
@@ -20,7 +53,7 @@ Bueno como estoy re juguete para el parcial, hay ciertas preguntas que no toman 
 
 ---
 
-## Calculos con Matrices
+## 1) Calculos con Matrices
 
 **Sea la siguiente solución al problema del producto de matrices de nxn con P procesos trabajando en paralelo.**
 
@@ -198,7 +231,7 @@ Creeeeo que esta bien, aca esta otra respuesta
 
 ---
 
-## Cuales Cumplen con ASV
+## 2) Cuales Cumplen con ASV
 
 Dado el siguiente programa concurrente con memoria compartida:  
 `x := 4; y := 2; z := 3;`
@@ -350,7 +383,7 @@ El valor de Z es siempre el mismo ya que no posee ninguna referencia crítica. L
 
 ---
 
-## Cuales Cumplen con ASV 2
+## 3) Cuales Cumplen con ASV 2
 
 Dado el siguiente programa concurrente con memoria compartida:  
 
@@ -398,7 +431,7 @@ C: y = y + 2x Tiene 1 referencia crítica (a x) y además es leída por otro pro
 
 ---
 
-## Numero de Mensajes y Granularidad
+## 4) Numero de Mensajes y Granularidad
 
 **Suponga los siguientes programas concurrentes. Asuma que “función” existe, y que los procesos son iniciados desde el programa principal.**
 
@@ -513,7 +546,7 @@ comunicación sea lo más baja posible, y dicha característica la brinda la **g
 
 ---
 
-## Numero de Mensajes y Granularidad 2
+## 5) Numero de Mensajes y Granularidad 2
 
 Suponga los siguientes programas concurrentes. Asuma que **EOS** es un valor especial que indica el **fin de la secuencia de mensajes**, y que los procesos son iniciados desde el programa principal.
 
@@ -661,7 +694,7 @@ En este contexto, el programa **P2** resulta más adecuado para ejecutarse en un
 
 ---
 
-## Indicar para cada Items si son Equivalentes
+## 6) Indicar para cada Item si son Equivalentes
 
 Dados los siguientes dos segmentos de codigo, indicar para cada uno de los ítems si son equivalentes o no. Justificar cada caso (de ser necesario dar ejemplos).
 
@@ -830,7 +863,7 @@ Ahora, al asegurarse que **siempre al menos una guarda es verdadera**, el `DO` d
 
 ---
 
-## ¿Que valores quedan?
+## 7) ¿Que valores quedan?
 
 
 **4.** Dado el siguiente bloque de código, indique para cada inciso qué valor queda en `aux`, o si el código queda bloqueado. Justifique sus respuestas.
@@ -843,10 +876,6 @@ if (A == 0); P2?(aux) → aux = aux + 2;
 ▭ (B == 0); P3?(aux) → aux = aux + 7;
 end if;
 ```
-
-
-
-
 
 <details><summary><strong>i. Si el valor de A = 1 y B = 2 antes del if, y solo P2 envia el valor 6.</strong></summary>
 
@@ -976,7 +1005,7 @@ end if;
 
 ---
 
-## ¿Que valores quedan? 2
+## 8) ¿Que valores quedan? 2
 
 Dado el siguiente programa concurrente con memoria compartida, y suponiendo que todas las variables están inicializadas en 0 al empezar el programa y las instrucciones NO son atómicas. Para cada una de las opciones indique verdadero o falso.
 
@@ -1161,7 +1190,7 @@ Análisis por casos:
 
 ---
 
-## La solución a un problema es paralelizada
+## 9) La solución a un problema es paralelizada
 
 Suponga que la solución a un problema es paralelizada sobre **p** procesadores de dos maneras diferentes.
 - En un caso, el **speedup (S)** está regido por la función **S=p-1** y
@@ -1246,7 +1275,7 @@ Ahora suponga **S = 1/p** y **S = 1/p^2**
 
 ---
 
-## La solución a un problema es paralelizada 2
+## 10) La solución a un problema es paralelizada 2
 
 Suponga que la solución a un problema es paralelizada sobre p procesadores de dos maneras diferentes. 
 - En un caso, el **speedup (S)** está regido por la **función S=p/3**
@@ -1299,7 +1328,7 @@ Por lo tanto la **solución 2** es la que se comporta más eficientemente al cre
 
 ---
 
-## La solución a un problema es paralelizada 3
+## 11) La solución a un problema es paralelizada 3
 
 Suponga que la solución a un problema es paralelizada sobre **p** procesadores de dos maneras diferentes. 
 
@@ -1344,7 +1373,7 @@ Además, si analizamos la eficiencia **E = S / p**:
 
 ---
 
-## La solución a un problema es paralelizada 4
+## 12) La solución a un problema es paralelizada 4
 
 Suponga que la solución a un problema es paralelizada sobre **p** procesadores de dos maneras diferentes.
 
@@ -1389,7 +1418,7 @@ La solución con **E = 1/p** se comporta más eficientemente que la de **E = 1/p
 
 ---
 
-## Suponga que el tiempo de ejecución de un algoritmo Secuencial
+## 13) Suponga que el tiempo de ejecución de un algoritmo Secuencial
 
 
 Suponga que el tiempo de ejecución de un algoritmo secuencial es de **1000 unidades** de tiempo, de las cuales el **80%** corresponden a código paralelizable.
@@ -1452,7 +1481,7 @@ No es el máximo speedup, pero **se aprovechan todos los procesadores** (menos d
 
 ---
 
-## Suponga que el tiempo de ejecución de un algoritmo Secuencial 2
+## 14) Suponga que el tiempo de ejecución de un algoritmo Secuencial 2
 
 Suponga que el tiempo de ejecución de un algoritmo secuencial es de **8000 unidades** de tiempo, de las cuales solo el **90% corresponde a código paralelizable**.
 
@@ -1492,7 +1521,7 @@ Esto se alinea con la **Ley de Amdahl**, que dice que el código secuencial limi
 
 ---
 
-## Suponga que el tiempo de ejecución de un algoritmo Secuencial 3
+## 15) Suponga que el tiempo de ejecución de un algoritmo Secuencial 3
 
 Suponga que el tiempo de ejecución de un algoritmo secuencial es de **10000 unidades** de tiempo, de las cuales **95% corresponden a código paralelizable**.
 
@@ -1524,7 +1553,7 @@ Este resultado **confirma la Ley de Amdahl**, la cual establece que el límite d
 
 ---
 
-## Calcular la suma de todos los valores
+## 16) Calcular la suma de todos los valores
 
 Suponga que **N** procesos poseen inicialmente cada uno un valor. Se debe calcular la suma de todos los valores y al finalizar la computación todos deben conocer dicha suma.
 
@@ -1852,7 +1881,7 @@ Todos los nodos reciben el mensaje, usando solo `n - 1 = 6` mensajes.
 
 ---
 
-## Token passing con mensajes asincrónicos
+## 17) Token passing con mensajes asincrónicos
 
 Implemente una solución al problema de exclusión mutua distribuida entre **N** procesos utilizado un algoritmo de tipo token passing con mensajes asincrónicos.
 
@@ -1901,7 +1930,7 @@ process user[i = 1..N] {
 
 ---
 
-# Miralas de Reojo
+# 📢 Miralas de Reojo
 
 <div>
 <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXU3c3h4NHh2anBkb3I2NWt4dDZxN2lsNjU0YnBtNWh6Y2UyaXI5dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pb2NDIcPTwNpu/giphy.gif" width="500px">
@@ -1909,7 +1938,7 @@ process user[i = 1..N] {
 
 ---
 
-## Propuesta al problema de alocación SJN
+## 1) Propuesta al problema de alocación SJN
 
 **Sea la siguiente solución propuesta al problema de alocación SJN (Short Job Next):**
 
@@ -1991,7 +2020,7 @@ Por lo tanto, **la política SJN se respeta correctamente bajo Signal and Wait**
 
 ---
 
-## “passing the condition” En Semaforos
+## 2) “passing the condition” En Semaforos
 
 **Utilice la técnica de “passing the condition” para implementar un semáforo *fair* usando monitores.**
 
@@ -2025,7 +2054,7 @@ monitor Semaforo {
 
 ---
 
-## Problema de Concurrencia
+## 3) Problema de Concurrencia
 
 Sea **“ocupados”** una variable entera inicializada en **N** que representa la cantidad de **slots** ocupados de un **buffer**, y sean **P1** y **P2** dos programas que se ejecutan de manera concurrente, donde cada una de las instrucciones que los componen son atómicas.
 
@@ -2094,7 +2123,7 @@ Este tipo de errores son comunes cuando no se usa un mecanismo de sincronizació
 
 ---
 
-## Problema de Concurrencia 2
+## 4) Problema de Concurrencia 2
 
 Sea **“cantidad”** una variable entera inicializada en 0 que representa la cantidad de
 elementos de un **buffer**, y sean **P1** y **P2** dos programas que se ejecutan de manera concurrente, donde cada una de las instrucciones que los componen son atómicas.
@@ -2176,7 +2205,7 @@ Estoy de acuerdo con **José**, porque:
 
 ---
 
-## Indique los posibles valores finales de x
+## 5) Indique los posibles valores finales de x
 
 **Indique los posibles valores finales de x en el siguiente programa (justifique claramente su respuesta):**
 
@@ -2256,7 +2285,7 @@ Si comienza **P3**:
 
 ---
 
-## Cuales valores de k son posibles
+## 6) Cuales valores de k son posibles
 
 **c)** Dado el siguiente programa concurrente indique cuáles valores de `K` son posibles al finalizar, y describa una secuencia de instrucciones para obtener dicho resultado:
 
@@ -2349,7 +2378,7 @@ Resultado final: N = 2
 
 ---
 
-# Rezar para que no Tomen
+# 🚨 Rezar para que no Tomen
 
 <div>
 <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExODNrODc5OWpvdTgwNzhtMDZ2b2dnNXZnMHhtZmVlOHRrbmo5ang3ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlNcdK4NM0vt4yI/giphy.gif" width="500px">
@@ -2357,7 +2386,7 @@ Resultado final: N = 2
 
 ---
 
-## Resuelva con monitores
+## 1) Resuelva con monitores
 
 Resuelva con monitores el siguiente problema:  
 Tres clases de procesos comparten el acceso a una lista enlazada: **searchers**, **inserters** y **deleters**.
@@ -2461,7 +2490,7 @@ Sí, **el monitor implementa correctamente las restricciones** de sincronizació
 
 ---
 
-## Protocolos de Acceso a la SC
+## 2) Protocolos de Acceso a la SC
 
 En los protocolos de acceso a sección crítica vistos en clase, cada proceso ejecuta el mismo algoritmo. Una manera alternativa de resolver el problema es usando un proceso **coordinador**. En este caso, cuando cada proceso **SC[i]** quiere entrar a su **sección crítica** le avisa al **coordinador**, y espera a que éste le dé permiso. Al terminar de ejecutar su sección crítica, el proceso **SC[i]** le avisa al **coordinador**.  
 
@@ -2516,7 +2545,7 @@ process Coordinador {
 
 ---
 
-## Solución a la Criba
+## 3) Solución a la Criba
 
 > 💀 Dudo mucho que tomen este ejercicio, lo pongo por las dudas
 
@@ -2622,7 +2651,7 @@ Process Criba[i = 2 to L] {
 
 ---
 
-## Transformar Solucion usando mensajes asincronicos
+## 4) Transformar Solucion usando mensajes asincronicos
 
 
 **Dada la siguiente solución con monitores al problema de alocación de un recurso con múltiples unidades, transforme la misma en una solución utilizando mensajes asincrónicos.**
@@ -2751,7 +2780,7 @@ Supongamos que hay 3 unidades disponibles, y 5 procesos piden recursos.
 ---
 
 
-## Problema de ordenar de menor a mayor un arreglo
+## 5) Problema de ordenar de menor a mayor un arreglo
 
 Sea el problema de ordenar de menor a mayor un arreglo de A[1..n]
 
@@ -2987,7 +3016,7 @@ PMS es más adecuado en este caso porque los procesos deben sincronizar de a par
 
 ---
 
-## Problema de ordenar de menor a mayor 2
+## 6) Problema de ordenar de menor a mayor 2
 
 Suponga los siguientes métodos de ordenación de menor a mayor para **n** valores (**n** par y potencia de 2), utilizando pasaje de mensajes:
 - **1)** Un pipeline de filtros. El primero hace input de los valores de a uno por vez, mantiene el mínimo y le pasa los otros al siguiente. Cada filtro hace lo mismo: recibe un stream de valores desde el predecesor, mantiene el más chico y pasa los otros al sucesor.
@@ -3222,7 +3251,7 @@ Acomodando la tabla final
 
 ---
 
-##  Suponga que un proceso productor y `n` procesos consumidores
+## 7) Suponga que un proceso productor y `n` procesos consumidores
 
 (Broadcast atómico). Suponga que un proceso productor y **n** procesos consumidores comparten un **buffer** unitario. El productor deposita mensajes en el buffer y los consumidores los retiran. Cada mensaje depositado por el productor tiene que ser retirado por los **n** consumidores antes de que el productor pueda depositar otro mensaje en el buffer.
 
@@ -3461,7 +3490,7 @@ Consumer 2:
 
 ---
 
-## Implemente una butterfly barrier para 8 procesos
+## 8) Implemente una butterfly barrier para 8 procesos
 
 **Implemente una butterfly barrier para 8 procesos usando variables compartidas.**
 
@@ -3533,7 +3562,7 @@ process Worker[i = 1 to N] {
 
 ---
 
-## Suponga `n^2` procesos organizados en forma de grilla cuadrada
+## 9) Suponga `n^2` procesos organizados en forma de grilla cuadrada
 
 Suponga **n^2** procesos organizados en forma de grilla cuadrada. Cada proceso puede comunicarse solo con los vecinos **izquierdo**, **derecho**, de arriba y de abajo (los procesos de las esquinas tienen solo **2** vecinos, y los otros en los bordes de la grilla tienen **3 vecinos**). Cada proceso tiene inicialmente un valor local **v**.
 
@@ -3671,7 +3700,7 @@ Por lo tanto, para garantizar que **todos los procesos lleguen a conocer los val
 
 > Voy a rezar por que no tomen esta wea
 
-## Una imagen se encuentra representada por una matriz
+## 10) Una imagen se encuentra representada por una matriz
 
 Suponga que una imagen se encuentra representada por una matriz a **(n×n)**, y que el valor de cada pixel es un número **entero** que es mantenido por un proceso distinto (es decir, el valor del píxel **I**,**J** está en el proceso **P(I,J)**). Cada proceso puede comunicarse solo con sus vecinos izquierdo, derecho, arriba y abajo. (Los procesos de las esquinas tienen solo 2 vecinos, y los otros bordes de la grilla tienen 3 vecinos).
 
@@ -3739,7 +3768,7 @@ mensajes a sus m vecinos
 
 ---
 
-# Teoricas
+# Preguntas Teoricas Comunes
 
 ## Pregunta 1 Ventajas y Desventajas
 
