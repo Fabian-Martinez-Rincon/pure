@@ -3781,6 +3781,12 @@ mensajes a sus m vecinos
 
 # Preguntas Teoricas Comunes
 
+<div>
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmJtajN1emt3cGNnM205MWwyaGhqNXFvZHl0YnlmdTVtMzkzbGl0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fYAX0DwcSYi0IggZMG/giphy.gif" width="500px">
+</div>
+
+---
+
 ## Pregunta 1 Ventajas y Desventajas
 
 
