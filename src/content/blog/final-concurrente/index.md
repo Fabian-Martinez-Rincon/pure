@@ -3689,16 +3689,44 @@ mensajes a sus m vecinos
 
 **3- Defina los paradigmas de interacción entre procesos distribuidos token passing, servidores replicados y prueba-eco. Marque ventajas y desventajas en cada uno de ellos cuando se utiliza comunicación por mensajes sincrónicos o asincrónicos.**
 
-- **Token Passing**  
-- **Servidores Replicados**  
-- **Prueba-Eco**  
+<details><summary><strong>Token Passing</strong></summary>
 
-| Paradigma             | Descripción                                                                 | Ejemplo                                       | Ventajas                                                                 | Desventajas                                                           | Comunicación recomendada             |
-|------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|-------------------------------------------------------------------------|------------------------------------------------------------------------|--------------------------------------|
-| **Token Passing**      | Control distribuido basado en el paso de un token entre procesos.           | Exclusión mutua distribuida, detección de fin. | Simple, sin necesidad de reloj o IDs globales.                         | Pérdida del token → bloqueo, no hay paralelismo real.                 | **Asincrónica** (más eficiente en AMP) |
-| **Servidores Replicados** | Varios servidores mantienen copias sincronizadas de un recurso compartido. | Acceso distribuido a archivos, mozos en filósofos. | Mayor disponibilidad y tolerancia a fallos.                           | Necesita sincronizar réplicas; riesgo de inconsistencia.              | **Asincrónica** (AMP); difícil en SMP   |
-| **Prueba-Eco**         | Un nodo inicia un "probe" que se propaga, y recibe "eco" al regresar.       | Descubrimiento de nodos, redes móviles.         | Recorre toda la red sin conocimiento previo de la topología.           | Muchos mensajes, cuidado con duplicados/ciclos.                       | **Asincrónica** (ideal para AMP)       |
+Es un esquema donde un mensaje especial (token) circula entre los procesos. Solo el que tiene el token puede ejecutar una acción crítica, como entrar a la sección crítica o tomar decisiones.
 
+**Ejemplo:** exclusión mutua distribuida, detección de terminación.
+
+**Ventajas:** simple de implementar, no necesita reloj ni identificadores globales, funciona bien en topologías como anillo.
+
+**Desventajas:** si se pierde el token el sistema se bloquea; no hay paralelismo (solo trabaja quien tiene el token); puede haber demoras innecesarias.
+
+**Mejor comunicación:** asincrónica, porque permite circulación sin bloqueo. Se adapta bien a arquitecturas de memoria distribuida (AMP).
+</details>
+
+<details><summary><strong>Servidores Replicados</strong></summary>
+
+Varios procesos replican un recurso compartido (archivo, base de datos) para brindar alta disponibilidad y tolerancia a fallos. A los clientes les parece que hay un único servidor.
+
+**Ejemplo:** mozos en el problema de los filósofos, sistemas de archivos distribuidos.
+
+**Ventajas:** mayor disponibilidad, tolerancia a fallos, mejora el rendimiento si se balancean bien los pedidos.
+
+**Desventajas:** mantener la consistencia entre réplicas es complejo; puede haber conflictos si dos servidores procesan escrituras en paralelo.
+
+**Mejor comunicación:** asincrónica (evita bloquear al cliente), ideal en AMP. En SMP es más difícil porque hay que mantener varios canales y controlarlos.
+</details>
+
+<details><summary><strong>Prueba-Eco</strong></summary>
+
+Un nodo envía mensajes “probe” a sus vecinos; cuando todos responden con “eco”, el emisor sabe que se llegó a todos. Sirve para explorar redes desconocidas o detectar nodos activos.
+
+**Ejemplo:** descubrimiento de topología en redes móviles o dinámicas.
+
+**Ventajas:** útil sin conocer la red; robusto frente a cambios; permite diseminar o recolectar información.
+
+**Desventajas:** puede generar muchos mensajes; necesita control para evitar ciclos o duplicación.
+
+**Mejor comunicación:** asincrónica, ideal en AMP por su descentralización y tolerancia a variaciones en la red.
+</details>
 
 
 ---
