@@ -38,10 +38,21 @@ Bueno como estoy re juguete para el parcial, hay ciertas preguntas que no toman 
 - [1) Propuesta al problema de alocación SJN](#1-propuesta-al-problema-de-alocación-sjn)
 - [2) “passing the condition” En Semaforos](#2-passing-the-condition-en-semaforos)
 - [3) Problema de Concurrencia](#3-problema-de-concurrencia)
+- [4) Problema de Concurrencia 2](#4-problema-de-concurrencia-2)
+- [5) Indique los posibles valores finales de x](#5-indique-los-posibles-valores-finales-de-x)
+- [6) Cuales valores de k son posibles](#6-cuales-valores-de-k-son-posibles)
 
-
-
-
+**🚨 Rezar para que no Tomen**
+- [1) Resuelva con monitores](#1-resuelva-con-monitores)
+- [2) Protocolos de Acceso a la SC](#2-protocolos-de-acceso-a-la-sc)
+- [3) Solución a la Criba](#3-solución-a-la-criba)
+- [4) Transformar Solucion usando mensajes asincronicos](#4-transformar-solucion-usando-mensajes-asincronicos)
+- [5) Problema de ordenar de menor a mayor un arreglo](#5-problema-de-ordenar-de-menor-a-mayor-un-arreglo)
+- [6) Problema de ordenar de menor a mayor 2](#6-problema-de-ordenar-de-menor-a-mayor-2)
+- [7) Suponga que un proceso productor y `n` procesos consumidores](#7-suponga-que-un-proceso-productor-y-n-procesos-consumidores)
+- [8) Implemente una butterfly barrier para 8 procesos](#8-implemente-una-butterfly-barrier-para-8-procesos)
+- [9) Suponga n^2 procesos organizados en forma de grilla cuadrada](#9-suponga-n2-procesos-organizados-en-forma-de-grilla-cuadrada)
+- [10) Una imagen se encuentra representada por una matriz](#10-una-imagen-se-encuentra-representada-por-una-matriz)
 
 ---
 
