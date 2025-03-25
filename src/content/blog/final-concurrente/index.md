@@ -661,6 +661,175 @@ En este contexto, el programa **P2** resulta más adecuado para ejecutarse en un
 
 ---
 
+## Indicar para cada Items si son Equivalentes
+
+Dados los siguientes dos segmentos de codigo, indicar para cada uno de los ítems si son equivalentes o no. Justificar cada caso (de ser necesario dar ejemplos).
+
+<table><td>
+
+```cpp
+...
+int cant = 1000;
+
+DO 
+  (cant < -10); datos?(cant) → Sentencias1
+▭ (cant > 10);  datos?(cant) → Sentencias2
+▭ (INCOGNITA);  datos?(cant) → Sentencias3
+END DO
+...
+```
+</td><td>
+
+```cpp
+...
+int cant = 1000;
+
+While (true) {
+  IF (cant < -10); datos?(cant) → Sentencias1
+  ▭  (cant > 10);  datos?(cant) → Sentencias2
+  ▭  (INCOGNITA); datos?(cant) → Sentencias3
+END IF}
+...
+```
+</td></table>
+
+<details><summary>Respuesta</summary>
+
+En ambos segmentos, inicialmente la variable `cant` tiene el valor 1000. Por lo tanto, la ejecución comienza evaluando la guarda `(cant > 10)`, que es verdadera, y se ejecutan las acciones asociadas a esa rama (por ejemplo, `Sentencias2`).
+
+Sin embargo, si durante la ejecución de esa rama el valor de `cant` cambia (ya sea por una asignación directa o por un valor recibido por el canal), entonces **las guardas deben estar definidas de manera que contemplen todos los posibles valores que `cant` pueda tomar**, para asegurar que el comportamiento de ambos segmentos sea equivalente.
+
+De lo contrario, puede suceder que en **el Segmento 1** todas las guardas resulten falsas y, en ese caso, el `DO` se termina y la ejecución del programa continúa normalmente. En cambio, en **el Segmento 2**, como se trata de un bucle infinito (`while (true)`), si ninguna guarda es verdadera, el programa queda bloqueado esperando indefinidamente, a menos que `cant` sea modificada por otro proceso o evento externo.
+
+🔍 **Conclusión**:  
+Para que ambos segmentos sean equivalentes, es fundamental que las guardas consideren **todos los posibles valores** que puede tomar `cant`, incluyendo un caso **por defecto (catch-all)** como la **INCOGNITA**, que permita garantizar siempre una rama ejecutable.
+
+</details>
+
+**a) INCOGNITA equivale a: (cant = 0)**
+
+<details><summary>Respuesta</summary>
+
+Los segmentos **no son equivalentes**. En el **Segmento 1**, el uso de la estructura `DO` implica que si **ninguna de las guardas** se cumple (por ejemplo, si `cant` toma valores entre -10 y 10 excluyendo el 0), entonces el bloque termina y la ejecución del programa continúa.
+
+En cambio, en el **Segmento 2**, el bucle es un `while (true)`, por lo que **aunque ninguna guarda sea verdadera**, el ciclo continuará intentando evaluarlas en cada iteración. Esto provoca una diferencia clave en el comportamiento:  
+- El **Segmento 1** puede **finalizar naturalmente** si no hay guardas habilitadas.  
+- El **Segmento 2** puede **quedar bloqueado indefinidamente**, esperando que alguna condición se cumpla, a menos que `cant` se modifique desde otro proceso.
+
+🔍 **Conclusión:**  
+Para que ambos segmentos sean equivalentes, es necesario que las guardas cubran **todos los posibles valores de `cant`**, y en ese sentido, usar `(cant = 0)` como **INCOGNITA** ayuda a completar el conjunto de condiciones evaluables.
+
+</details>
+
+<details><summary>🛡️ ¿Qué es una guarda?</summary>
+
+Una **guarda** es una **condición lógica** que se asocia a una acción (como el envío o recepción de un mensaje, o la ejecución de una sentencia) y que **debe cumplirse para que esa acción se realice**.
+
+En programación concurrente y modelos como **Comunicación por Paso de Mensajes (CSP), Guarded Commands (Dijkstra), ADA**, etc., las guardas permiten controlar **cuándo** se puede ejecutar una determinada rama del código.
+
+🔍 **Ejemplo clásico:**
+
+```cpp
+DO
+  (x > 0) → acción1;
+▭ (y == 3) → acción2;
+OD
+```
+
+En este caso:
+- `(x > 0)` y `(y == 3)` son **guardas**.
+- Solo se ejecutan las acciones **cuyas guardas sean verdaderas**.
+- Si más de una guarda se cumple, el sistema puede elegir **nondeterminísticamente** cuál ejecutar.
+- Si **ninguna guarda se cumple**, el proceso queda bloqueado o (dependiendo del lenguaje) termina.
+
+✅ **En resumen:**
+
+> Una **guarda** es una condición que **habilita o bloquea** la ejecución de una acción. Se utiliza para expresar **comportamientos condicionales** en sistemas concurrentes o reactivos, y es clave para controlar la sincronización y el flujo de ejecución.
+
+</details>
+
+**b) INCOGNITA equivale a: (cant > -100)**
+
+<details><summary>Respuesta</summary>
+
+Con esta condición, ambos segmentos se vuelven **equivalentes** en términos de comportamiento.
+
+Esto se debe a que la guarda `(cant > -100)` **cubre todos los casos restantes** no contemplados por las otras guardas `(cant < -10)` y `(cant > 10)`. Por lo tanto, **siempre habrá al menos una guarda habilitada**, sin importar el valor de `cant`.
+
+Como consecuencia:
+- En el **Segmento 1**, el bucle `DO` **nunca finaliza**, ya que nunca se da una situación donde todas las guardas sean falsas.
+- En el **Segmento 2**, el bucle `while (true)` tampoco se detiene, y siempre ejecutará una de las ramas del `IF`.
+
+🔍 **Conclusión:**  
+Ambos segmentos ejecutan indefinidamente y responden de forma equivalente a los distintos valores de `cant`, ya que las guardas **cubren todos los casos posibles**.
+
+</details>
+
+**c) INCOGNITA equivale a: ((cant > 0) or (cant < 0))**
+
+<details><summary>Respuesta</summary>
+
+Con esta condición, los segmentos **no son equivalentes**.
+
+La razón es que cuando `cant = 0`, **ninguna de las tres guardas** se cumple:
+- `(cant < -10)` → **falsa**
+- `(cant > 10)` → **falsa**
+- `((cant > 0) OR (cant < 0))` → **falsa**, ya que `cant = 0`
+
+Entonces:
+- En el **Segmento 1**, si todas las guardas son falsas (como ocurre con `cant = 0`), el bucle `DO` finaliza, y la ejecución continúa con el resto del programa.
+- En el **Segmento 2**, el bucle `while (true)` permanece activo, pero al no cumplirse ninguna guarda, el programa queda bloqueado esperando que `cant` cambie, lo que puede requerir la intervención de otro proceso.
+
+🔍 **Conclusión:**  
+> Dado que el comportamiento ante `cant = 0` **no es el mismo en ambos segmentos**, se concluye que **no son equivalentes**.
+
+</details>
+
+**d) INCOGNITA equivale a: ((cant > -10) or (cant < 10))**
+
+<details><summary>Respuesta</summary>
+
+Con esta condición, los segmentos **no son equivalentes**.
+
+Esto se debe a que, cuando `cant = 10` o `cant = -10`, **ninguna de las guardas se cumple**:
+
+- `(cant < -10)` → **falsa**
+- `(cant > 10)` → **falsa**
+- `((cant > -10) OR (cant < 10))` → **falsa**  
+  > Porque `cant = 10` y `cant = -10` no satisfacen **ni** `cant > -10` (en el caso de -10) **ni** `cant < 10` (en el caso de 10) al mismo tiempo, y la expresión en realidad se evalúa como ambigua o mal definida según cómo se interprete.  
+  Aunque matemáticamente parece abarcar todo, **en este contexto**, deja afuera justo los valores límite.
+
+Como consecuencia:
+- En el **Segmento 1**, si ninguna guarda es verdadera (por ejemplo, para `cant = 10` o `cant = -10`), el bucle `DO` termina.
+- En el **Segmento 2**, el bucle `while (true)` continúa ejecutándose, pero al no cumplirse ninguna condición, queda bloqueado hasta que `cant` cambie.
+
+🔍 **Conclusión:**  
+> Dado que para ciertos valores (`cant = 10` o `cant = -10`) el `DO` termina en el Segmento 1 pero el `while` no en el Segmento 2, los segmentos **no son equivalentes**.
+
+</details>
+
+**e) INCOGNITA equivale a: ((cant >= -10) or (cant <= 10))**
+
+<details><summary>Respuesta</summary>
+
+Con esta condición, los segmentos se vuelven **equivalentes**.
+
+Esto se debe a que la nueva guarda cubre **todos los valores posibles de `cant`** que no están contemplados por las otras dos guardas:
+
+- `(cant < -10)`
+- `(cant > 10)`
+
+Con `INCOGNITA = ((cant >= -10) OR (cant <= 10))`, se incluyen justamente los valores **`cant = -10` y `cant = 10`**, que en el caso anterior (ítem d) quedaban fuera, provocando que todas las guardas fueran falsas y el `DO` terminara.
+
+Ahora, al asegurarse que **siempre al menos una guarda es verdadera**, el `DO` del **Segmento 1** nunca finaliza, lo que hace que el comportamiento sea **equivalente al `while(true)` del Segmento 2**, donde la ejecución es continua mientras alguna condición sea válida.
+
+🔍 **Conclusión:**  
+> Con esta guarda, los segmentos **son equivalentes**, ya que **se garantiza que siempre al menos una rama es ejecutable**, y por lo tanto, el ciclo no se interrumpe inesperadamente.
+
+</details>
+
+---
+
 # Miralas de Reojo
 
 <div>
@@ -1056,17 +1225,10 @@ Process Criba[i = 2 to L] {
 
 </details>
 
----
-
-
 
 ---
 
-
-
----
-
-## Ejercicio 11 Dada la siguiente solución con monitores
+## Transformar Solucion usando mensajes asincronicos
 
 
 **Dada la siguiente solución con monitores al problema de alocación de un recurso con múltiples unidades, transforme la misma en una solución utilizando mensajes asincrónicos.**
@@ -1194,179 +1356,13 @@ Supongamos que hay 3 unidades disponibles, y 5 procesos piden recursos.
 
 ---
 
-## Ejercicio 12 Dado los siguientes segmentos de codigo
 
-Dados los siguientes dos segmentos de codigo, indicar para cada uno de los ítems si son equivalentes o no. Justificar cada caso (de ser necesario dar ejemplos).
-
-<table><td>
-
-```cpp
-...
-int cant = 1000;
-
-DO 
-  (cant < -10); datos?(cant) → Sentencias1
-▭ (cant > 10);  datos?(cant) → Sentencias2
-▭ (INCOGNITA);  datos?(cant) → Sentencias3
-END DO
-...
-```
-</td><td>
-
-```cpp
-...
-int cant = 1000;
-
-While (true) {
-  IF (cant < -10); datos?(cant) → Sentencias1
-  ▭  (cant > 10);  datos?(cant) → Sentencias2
-  ▭  (INCOGNITA); datos?(cant) → Sentencias3
-END IF}
-...
-```
-</td></table>
-
-<details><summary>Respuesta</summary>
-
-En ambos segmentos, inicialmente la variable `cant` tiene el valor 1000. Por lo tanto, la ejecución comienza evaluando la guarda `(cant > 10)`, que es verdadera, y se ejecutan las acciones asociadas a esa rama (por ejemplo, `Sentencias2`).
-
-Sin embargo, si durante la ejecución de esa rama el valor de `cant` cambia (ya sea por una asignación directa o por un valor recibido por el canal), entonces **las guardas deben estar definidas de manera que contemplen todos los posibles valores que `cant` pueda tomar**, para asegurar que el comportamiento de ambos segmentos sea equivalente.
-
-De lo contrario, puede suceder que en **el Segmento 1** todas las guardas resulten falsas y, en ese caso, el `DO` se termina y la ejecución del programa continúa normalmente. En cambio, en **el Segmento 2**, como se trata de un bucle infinito (`while (true)`), si ninguna guarda es verdadera, el programa queda bloqueado esperando indefinidamente, a menos que `cant` sea modificada por otro proceso o evento externo.
-
-🔍 **Conclusión**:  
-Para que ambos segmentos sean equivalentes, es fundamental que las guardas consideren **todos los posibles valores** que puede tomar `cant`, incluyendo un caso **por defecto (catch-all)** como la **INCOGNITA**, que permita garantizar siempre una rama ejecutable.
-
-</details>
-
-**a) INCOGNITA equivale a: (cant = 0)**
-
-<details><summary>Respuesta</summary>
-
-Los segmentos **no son equivalentes**. En el **Segmento 1**, el uso de la estructura `DO` implica que si **ninguna de las guardas** se cumple (por ejemplo, si `cant` toma valores entre -10 y 10 excluyendo el 0), entonces el bloque termina y la ejecución del programa continúa.
-
-En cambio, en el **Segmento 2**, el bucle es un `while (true)`, por lo que **aunque ninguna guarda sea verdadera**, el ciclo continuará intentando evaluarlas en cada iteración. Esto provoca una diferencia clave en el comportamiento:  
-- El **Segmento 1** puede **finalizar naturalmente** si no hay guardas habilitadas.  
-- El **Segmento 2** puede **quedar bloqueado indefinidamente**, esperando que alguna condición se cumpla, a menos que `cant` se modifique desde otro proceso.
-
-🔍 **Conclusión:**  
-Para que ambos segmentos sean equivalentes, es necesario que las guardas cubran **todos los posibles valores de `cant`**, y en ese sentido, usar `(cant = 0)` como **INCOGNITA** ayuda a completar el conjunto de condiciones evaluables.
-
-</details>
-
-<details><summary>🛡️ ¿Qué es una guarda?</summary>
-
-Una **guarda** es una **condición lógica** que se asocia a una acción (como el envío o recepción de un mensaje, o la ejecución de una sentencia) y que **debe cumplirse para que esa acción se realice**.
-
-En programación concurrente y modelos como **Comunicación por Paso de Mensajes (CSP), Guarded Commands (Dijkstra), ADA**, etc., las guardas permiten controlar **cuándo** se puede ejecutar una determinada rama del código.
-
-🔍 **Ejemplo clásico:**
-
-```cpp
-DO
-  (x > 0) → acción1;
-▭ (y == 3) → acción2;
-OD
-```
-
-En este caso:
-- `(x > 0)` y `(y == 3)` son **guardas**.
-- Solo se ejecutan las acciones **cuyas guardas sean verdaderas**.
-- Si más de una guarda se cumple, el sistema puede elegir **nondeterminísticamente** cuál ejecutar.
-- Si **ninguna guarda se cumple**, el proceso queda bloqueado o (dependiendo del lenguaje) termina.
-
-✅ **En resumen:**
-
-> Una **guarda** es una condición que **habilita o bloquea** la ejecución de una acción. Se utiliza para expresar **comportamientos condicionales** en sistemas concurrentes o reactivos, y es clave para controlar la sincronización y el flujo de ejecución.
-
-</details>
-
-**b) INCOGNITA equivale a: (cant > -100)**
-
-<details><summary>Respuesta</summary>
-
-Con esta condición, ambos segmentos se vuelven **equivalentes** en términos de comportamiento.
-
-Esto se debe a que la guarda `(cant > -100)` **cubre todos los casos restantes** no contemplados por las otras guardas `(cant < -10)` y `(cant > 10)`. Por lo tanto, **siempre habrá al menos una guarda habilitada**, sin importar el valor de `cant`.
-
-Como consecuencia:
-- En el **Segmento 1**, el bucle `DO` **nunca finaliza**, ya que nunca se da una situación donde todas las guardas sean falsas.
-- En el **Segmento 2**, el bucle `while (true)` tampoco se detiene, y siempre ejecutará una de las ramas del `IF`.
-
-🔍 **Conclusión:**  
-Ambos segmentos ejecutan indefinidamente y responden de forma equivalente a los distintos valores de `cant`, ya que las guardas **cubren todos los casos posibles**.
-
-</details>
-
-**c) INCOGNITA equivale a: ((cant > 0) or (cant < 0))**
-
-<details><summary>Respuesta</summary>
-
-Con esta condición, los segmentos **no son equivalentes**.
-
-La razón es que cuando `cant = 0`, **ninguna de las tres guardas** se cumple:
-- `(cant < -10)` → **falsa**
-- `(cant > 10)` → **falsa**
-- `((cant > 0) OR (cant < 0))` → **falsa**, ya que `cant = 0`
-
-Entonces:
-- En el **Segmento 1**, si todas las guardas son falsas (como ocurre con `cant = 0`), el bucle `DO` finaliza, y la ejecución continúa con el resto del programa.
-- En el **Segmento 2**, el bucle `while (true)` permanece activo, pero al no cumplirse ninguna guarda, el programa queda bloqueado esperando que `cant` cambie, lo que puede requerir la intervención de otro proceso.
-
-🔍 **Conclusión:**  
-> Dado que el comportamiento ante `cant = 0` **no es el mismo en ambos segmentos**, se concluye que **no son equivalentes**.
-
-</details>
-
-**d) INCOGNITA equivale a: ((cant > -10) or (cant < 10))**
-
-<details><summary>Respuesta</summary>
-
-Con esta condición, los segmentos **no son equivalentes**.
-
-Esto se debe a que, cuando `cant = 10` o `cant = -10`, **ninguna de las guardas se cumple**:
-
-- `(cant < -10)` → **falsa**
-- `(cant > 10)` → **falsa**
-- `((cant > -10) OR (cant < 10))` → **falsa**  
-  > Porque `cant = 10` y `cant = -10` no satisfacen **ni** `cant > -10` (en el caso de -10) **ni** `cant < 10` (en el caso de 10) al mismo tiempo, y la expresión en realidad se evalúa como ambigua o mal definida según cómo se interprete.  
-  Aunque matemáticamente parece abarcar todo, **en este contexto**, deja afuera justo los valores límite.
-
-Como consecuencia:
-- En el **Segmento 1**, si ninguna guarda es verdadera (por ejemplo, para `cant = 10` o `cant = -10`), el bucle `DO` termina.
-- En el **Segmento 2**, el bucle `while (true)` continúa ejecutándose, pero al no cumplirse ninguna condición, queda bloqueado hasta que `cant` cambie.
-
-🔍 **Conclusión:**  
-> Dado que para ciertos valores (`cant = 10` o `cant = -10`) el `DO` termina en el Segmento 1 pero el `while` no en el Segmento 2, los segmentos **no son equivalentes**.
-
-</details>
-
-**e) INCOGNITA equivale a: ((cant >= -10) or (cant <= 10))**
-
-<details><summary>Respuesta</summary>
-
-Con esta condición, los segmentos se vuelven **equivalentes**.
-
-Esto se debe a que la nueva guarda cubre **todos los valores posibles de `cant`** que no están contemplados por las otras dos guardas:
-
-- `(cant < -10)`
-- `(cant > 10)`
-
-Con `INCOGNITA = ((cant >= -10) OR (cant <= 10))`, se incluyen justamente los valores **`cant = -10` y `cant = 10`**, que en el caso anterior (ítem d) quedaban fuera, provocando que todas las guardas fueran falsas y el `DO` terminara.
-
-Ahora, al asegurarse que **siempre al menos una guarda es verdadera**, el `DO` del **Segmento 1** nunca finaliza, lo que hace que el comportamiento sea **equivalente al `while(true)` del Segmento 2**, donde la ejecución es continua mientras alguna condición sea válida.
-
-🔍 **Conclusión:**  
-> Con esta guarda, los segmentos **son equivalentes**, ya que **se garantiza que siempre al menos una rama es ejecutable**, y por lo tanto, el ciclo no se interrumpe inesperadamente.
-
-</details>
 
 ---
 
 ## Ejercicio 13 Problema de Concurrencia
 
-Sea **“ocupados”** una variable entera inicializada en **N** que representa la cantidad de **slots** ocupados de un **buffer**, y sean **P1** y **P2** dos programas que se ejecutan de manera concurrente, donde cada una de las instrucciones que los componen son
-atómicas.
+Sea **“ocupados”** una variable entera inicializada en **N** que representa la cantidad de **slots** ocupados de un **buffer**, y sean **P1** y **P2** dos programas que se ejecutan de manera concurrente, donde cada una de las instrucciones que los componen son atómicas.
 
 <table><tr><td>P1</td><td>P2</td></tr><tr><td>
 
