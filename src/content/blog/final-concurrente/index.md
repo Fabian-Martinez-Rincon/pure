@@ -9,20 +9,37 @@ tags:
 language: 'Spanish'
 ---
 
-<div align="center">
-<img src="https://media1.tenor.com/m/iN395jeb1dEAAAAd/rock-lee-training.gif" width="500px">
 
+Bueno como estoy re juguete para el parcial, hay ciertas preguntas que no toman ni en pepe, vamos a ir descartando cuales
+
+# Preguntas Practicas FIJAS
+
+<div>
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjZ6M3Jubm13YjRyeHpxdmN5enp5cXhmdTZiMGhhaHRwbTAwMHo3NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yYT7ytuZpJjG0/giphy.gif" width="500px">
 </div>
-
-> Hay que soportar los golpes sin dejar de avanzar. Así es como se gana
 
 ---
 
-# Ejercicios Practicos
+## Calculos con Matrices
 
-## Ejercicio 1 Calculos
+**Sea la siguiente solución al problema del producto de matrices de nxn con P procesos trabajando en paralelo.**
 
-![image](https://github.com/user-attachments/assets/6650d0ae-c1b2-4adc-9dba-5d68724bdf49)
+```cpp
+process worker[w = 1 to P] {        // strips en paralelo (P strips de n/P filas)
+    int first = (w - 1) * n / P;    // Primera fila del strip
+    int last  = first + n / P - 1;  // Última fila del strip
+
+    for (i = first to last) {
+        for (j = 0 to n - 1) {
+            c[i,j] = 0.0;
+            for (k = 0 to n - 1)
+                c[i,j] = c[i,j] + a[i,k] * b[k,j];
+        }
+    }
+}
+```
+
+**a) Suponga que n = 128 y cada procesador es capaz de ejecutar un proceso. ¿Cuántas asignaciones, sumas y productos se hacen secuencialmente (caso en que P = 1)?**
 
 <details><summary>👀 Respuesta</summary>
 
@@ -55,9 +72,7 @@ Si el algoritmo se ejecuta secuencialmente se tienen:
 
 </details>
 
-<br>
-
-![image](https://github.com/user-attachments/assets/c37c9c7e-c1a1-4ffd-ae67-7d6825e6a457)
+****b)** ¿Cuántas se realizan en cada procesador en la solución paralela con **P = 8**?**
 
 <details><summary>👀 Respuesta</summary>
 
@@ -93,9 +108,12 @@ Podes usar la cuenta que quieras, son equivalentes, el resultado final te tendri
 
 </details>
 
-<br>
 
-![image](https://github.com/user-attachments/assets/8d2b8ec4-75e2-4888-bb95-823827ce131f)
+**c)** Si los procesadores P1 a P7 son iguales, y sus tiempos de asignación son 1, de suma 2 y de producto 3, y si P8 es 4 veces más lento,  
+- ¿Cuánto tarda el proceso total concurrente?  
+- ¿Cuál es el valor del *speedup* (Tiempo secuencial / Tiempo paralelo)?  
+
+Modifique el código para lograr un mejor *speedup*.
 
 <details><summary>👀 Respuesta</summary>
 
@@ -180,13 +198,24 @@ Creeeeo que esta bien, aca esta otra respuesta
 
 ---
 
-## Ejercicio 2 Dado un Programa Concurrente
+## Cuales Cumplen con ASV
 
-![image](https://github.com/user-attachments/assets/86e7c19f-e61d-4b44-9fb1-75a1a161a54d)
+Dado el siguiente programa concurrente con memoria compartida:  
+`x := 4; y := 2; z := 3;`
+
+```cpp
+co
+   x := x - z;
+   z := z * 2;
+   y := z + 4
+oc
+```
+
+**a) ¿Cuáles de las asignaciones dentro de la sentencia `co` cumplen la propiedad de ASV? Justifique claramente.**
 
 <details><summary>👀 Respuesta</summary>
 
-```
+```cpp
 Co
     X := X - Z
     Z := Z * 2
@@ -282,9 +311,7 @@ Oc
 
 </details>
 
-<br>
-
-![image](https://github.com/user-attachments/assets/052eabe9-b404-42c7-8227-1ef028305441)
+****b)** Indique los resultados posibles de la ejecución. Justifique.**
 
 <details><summary>👀 Respuesta</summary>
 
@@ -323,9 +350,21 @@ El valor de Z es siempre el mismo ya que no posee ninguna referencia crítica. L
 
 ---
 
-## Ejercicio 3 Dado El Programa Concurrente
+## Cuales Cumplen con ASV 2
 
-![alt text](image.png)
+Dado el siguiente programa concurrente con memoria compartida:  
+
+`x = 3; y = 2; z = 5;`
+
+```cpp
+co
+    x = y * z
+    z = z * 2
+    y = y + 2x
+oc
+```
+
+**a) ¿Cuáles de las asignaciones dentro de la sentencia `co` cumplen la propiedad de “A lo sumo una vez”? Justifique claramente.**
 
 <details><summary>👀 Respuesta</summary>
 
@@ -339,9 +378,8 @@ C: y = y + 2x Tiene 1 referencia crítica (a x) y además es leída por otro pro
 > A chequear
 </details>
 
-<br>
 
-![alt text](image-1.png)
+****b)** Indique los resultados posibles de la ejecución. Justifique.**
 
 <details><summary>👀 Respuesta</summary>
 
@@ -360,385 +398,7 @@ C: y = y + 2x Tiene 1 referencia crítica (a x) y además es leída por otro pro
 
 ---
 
-## Ejercicio 4 Alocación SJN
-
-**Sea la siguiente solución propuesta al problema de alocación SJN (Short Job Next):**
-
-```nginx
-Monitor SJN {
-    Bool libre = true;
-    Cond turno;
-
-    Procedure request {
-        If (not libre) wait (turno, tiempo);
-        Libre = false;
-    }
-
-    Procedure release {
-        Libre = true;
-        Signal (turno);
-    }
-}
-```
-
-**a) ¿Funciona correctamente con disciplina de señalización Signal and continue? Justifique.**
-
-<details><summary>👀 Respuesta</summary>
-
-
-No, la solución no funciona correctamente con la disciplina de señalización **Signal and Continue (S&C)**.
-
-Bajo esta disciplina, cuando un proceso realiza un `signal`, **continúa ejecutando dentro del monitor**, y el proceso que fue despertado es enviado a la **cola de listos (ready queue)** del sistema operativo. Esto implica que su reingreso al monitor depende de la **política de planificación del sistema**, y no se garantiza que sea el próximo en ejecutarse.
-
-En consecuencia, un proceso con menor tiempo (según la política **Shortest Job Next**) podría quedar **retrasado** si otro proceso ingresa antes al monitor. Por lo tanto, el orden de ejecución no refleja necesariamente la prioridad establecida por el parámetro `tiempo`, y **no se cumple el objetivo del SJN**.
-
-**Respuesta de un random**
-
-> Con S&C un proceso que es despertado para poder seguir ejecutando es pasado a la cola
-> de ready en cuyo caso su orden de ejecución depende de la política que se utilice para
-> ordenar los procesos en dicha cola. Puede ser que sea retrasado en esa cola permitiendo
-> que otro proceso ejecute en el monitor antes que el por lo que podría no cumplirse el
-> objetivo del SJN.
-
-![alt text](image-2.png)
-
-</details>
-
-<br>
-
-![alt text](image-3.png)
-
-<details><summary>👀 Respuesta</summary>
-
-
-
-Sí, **la solución funciona correctamente** con la disciplina de señalización **Signal and Wait (S&W)**.
-
-En esta disciplina, cuando un proceso ejecuta un `signal`, **cede inmediatamente el control del monitor** al proceso que fue despertado, el cual **continúa su ejecución justo después del `wait`**. El proceso que hizo el `signal` pasa a la cola de listos y debe esperar su turno para volver a ingresar al monitor.
-
-Esto garantiza que el proceso con menor tiempo (según la política Shortest Job Next) —que estaba esperando con prioridad— **será efectivamente el próximo en acceder al recurso**, evitando que otro proceso pueda adelantarse y violar el orden deseado.
-
-Por lo tanto, **la política SJN se respeta correctamente bajo Signal and Wait**, ya que se mantiene el control sobre el orden de ejecución de los procesos en espera.
-
-
-📘 **Definiciones complementarias:**
-
-- **Signal and Continue:** El proceso que ejecuta el `signal` **continúa usando el monitor**, mientras que el proceso despertado **debe competir** por reingresar al monitor.
-- **Signal and Wait:** El proceso que ejecuta el `signal` **cede el monitor** al proceso despertado, que continúa su ejecución **justo después del `wait`**.
-
-
-</details>
-
-<br>
-
-<details><summary>📊 Comparación entre <strong>Signal and Continue</strong> vs <strong>Signal and Wait en SJN</strong></summary>
-
-
-| **Aspecto**                         | **Signal and Continue (S&C)**                                                                 | **Signal and Wait (S&W)**                                                                   |
-|-------------------------------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| **¿Quién sigue ejecutando en el monitor después del `signal`?** | El proceso que hizo el `signal` continúa.                                                     | El proceso que fue despertado entra inmediatamente al monitor.                              |
-| **Estado del proceso despertado**   | Pasa a la **cola de listos** y debe competir por reingresar al monitor.                       | **Continúa inmediatamente** dentro del monitor (no compite por el acceso).                  |
-| **Riesgo de pérdida de prioridad (SJN)** | **Alto**: otro proceso puede ingresar antes que el de menor tiempo.                          | **Nulo**: se garantiza que el proceso con menor tiempo accede primero.                      |
-| **¿Se respeta la política SJN?**    | ❌ **No**: puede no ejecutarse el proceso con menor tiempo debido a la competencia externa.   | ✅ **Sí**: el proceso con menor tiempo es el próximo en continuar.                          |
-| **Uso recomendado en SJN**          | No recomendado, ya que puede romper la prioridad por tiempo.                                  | Recomendado, ya que respeta el orden de espera basado en el tiempo.                         |
-| **Control de acceso**               | Depende del planificador del sistema operativo.                                               | Controlado directamente por el monitor y su lógica de sincronización.                      |
-
-</details>
-
----
-
-## Ejercicio 5 Passing the Condition
-
-![alt text](image-6.png)
-
-<details><summary>Codigo</summary>
-
-```cpp
-monitor Semaforo {
-    int s = 1, espera = 0;
-    cond pos;
-
-    procedure P() {
-        if (s == 0) {
-            espera++;
-            wait(pos);
-        } else {
-            s = s - 1;
-        }
-    };
-
-    procedure V() {
-        if (espera == 0) {
-            s = s + 1;
-        } else {
-            espera--;
-            signal(pos);
-        }
-    };
-};
-```
-</details>
-
----
-
-## Ejercicio 6 Resuelva con monitores
-
-![alt text](image-4.png)
-
-<details><summary>Codigo</summary>
-
-```cpp
-monitor Controlador_ListaEnlazada {
-    int numSearchers = 0, numInserters = 0, numDeleters = 0;
-    cond searchers, inserters, deleters;
-
-    procedure pedir_Deleter() {
-        while (numSearchers > 0 OR numInserters > 0 OR numDeleters > 0) {
-            wait(deleters);
-        }
-        numDeleters = numDeleters + 1;
-    }
-
-    procedure liberar_Deleter() {
-        numDeleters = numDeleters - 1;
-        signal(inserters);
-        signal(deleters);
-        signal_all(searchers);
-    }
-
-    procedure pedir_Searcher() {
-        while (numDeleters > 0) {
-            wait(searchers);
-        }
-        numSearchers = numSearchers + 1;
-    }
-
-    procedure liberar_Searcher() {
-        numSearchers = numSearchers - 1;
-        if (numSearchers == 0 AND numInserters == 0) {
-            signal(deleters);
-        }
-    }
-
-    procedure pedir_Inserter() {
-        while (numDeleters > 0 OR numInserters > 0) {
-            wait(inserters);
-        }
-        numInserters = numInserters + 1;
-    }
-
-    procedure liberar_Inserter() {
-        numInserters = numInserters - 1;
-        signal(inserters);
-        if (numSearchers == 0) {
-            signal(deleters);
-        }
-    }
-}
-```
-
-🧵 Procesos:
-
-```cpp
-process Searchers[i = 1..S] {
-    Controlador_ListaEnlazada.pedir_Searcher();
-    <Realiza búsqueda en la lista>
-    Controlador_ListaEnlazada.liberar_Searcher();
-}
-
-process Inserters[j = 1..I] {
-    Controlador_ListaEnlazada.pedir_Inserter();
-    <Inserta en la lista>
-    Controlador_ListaEnlazada.liberar_Inserter();
-}
-
-process Deleters[k = 1..D] {
-    Controlador_ListaEnlazada.pedir_Deleter();
-    <Borra en la lista>
-    Controlador_ListaEnlazada.liberar_Deleter();
-}
-```
-
-🧠 **Resumen: Monitor `Controlador_ListaEnlazada`**
-
-👥 Tipos de procesos:
-- **Searchers**: pueden acceder **concurrentemente**, salvo que haya un **Deleter**.
-- **Inserters**: acceden **de a uno**, pero **pueden convivir con Searchers**.
-- **Deleters**: requieren **exclusión total** (no pueden ejecutarse junto a ningún otro proceso).
-
-
-🔒 Comportamiento de sincronización:
-- `Searchers` esperan si hay un `Deleter`.
-- `Inserters` esperan si hay otro `Inserter` o un `Deleter`.
-- `Deleters` esperan si hay cualquier otro proceso activo (Searcher o Inserter).
-- Al liberar, se despiertan procesos bloqueados según condiciones.
-
-✅ ¿Funciona correctamente?
-Sí, **el monitor implementa correctamente las restricciones** de sincronización para los tres tipos de procesos.   Asegura exclusión mutua, convivencia segura y respeta la lógica de prioridades.
-
-</details>
-
----
-
-## Ejercicio 7 Protocolos de Acceso a la SC
-
-![alt text](image-5.png)
-
-<details><summary>Respuesta</summary>
-
-```cpp
-int aviso[1:N] = ([N] 0), permiso[1:N] = ([N] 0);
-```
-
-<table><td>
-
-```cpp
-process SC[i = 1 to N] {
-    SNC;
-
-    // Protocolo de entrada
-    permiso[i] = 1;
-    while (aviso[i] == 0) skip;
-
-    // Sección crítica
-    SC;
-
-    // Protocolo de salida
-    aviso[i] = 0;
-    SNC;
-}
-```
-</td><td>
-
-```cpp
-process Coordinador {
-    int i = 1;
-    while (true) {
-        // Espera que algún proceso solicite permiso
-        while (permiso[i] == 0)
-            i = i mod N + 1;
-
-        // Otorga permiso al proceso i
-        permiso[i] = 0;
-        aviso[i] = 1;
-
-        // Espera a que el proceso libere la SC
-        while (aviso[i] == 1) skip;
-    }
-}
-```
-</td></table>
-
-</details>
-
----
-
-## Ejercicio 8 Solución a la Criba
-
-> 💀 Dudo mucho que tomen este ejercicio, lo pongo por las dudas
-
-Describa la solución utilizando la criba de Eratóstenes al problema de hallar los primos entre 2 y n. **¿Cómo termina el algoritmo? ¿Qué modificaría para que no termine de esa manera?**
-
-<details><summary>Codigo</summary>
-
-La criba de Eratóstenes es un algoritmo clásico para determinar cuáles números en un rango son primos. Supongamos que queremos generar todos los primos entre **2** y **n**. Primero, escribimos una lista con todos los números:
-
-```
-2 3 4 5 6 7 ... n
-```
-
-Comenzando con el primer número no tachado en la lista, 2, recorremos la lista y borramos los múltiplos de ese número. Si n es impar, obtenemos la lista:
-
-```
-2 3 5 7 ... n
-```
-
-En este momento, los números borrados no son primos; los números que quedan todavía son candidatos a ser primos. Pasamos al próximo número, **3**, y repetimos el anterior proceso borrando los **múltiplos de 3**. Si seguimos este proceso hasta que todo número fue considerado, los números que quedan en la lista final serán todos los primos entre **2** y **n**.
-
-Para solucionar este problema de forma paralela podemos emplear un pipeline de procesos filtro.
-
-- Cada filtro recibe una serie de números de su predecesor y envía una serie de números a su sucesor.
-- El primer número que recibe un filtro es el próximo primo más grande;
-- Le pasa a su sucesor todos los números que no son múltiplos del primero.
-
-El siguiente es el algoritmo pipeline para la generación de números primos.
-
-Por cada canal, el primer número es primo y todos los otros números no son múltiplo de ningún primo menor que el primer número:
-
-```cpp
-Process Criba[1]
-{
-    int p = 2;
-
-    for [i = 3 to n by 2] 
-        Criba[2] ! (i);
-}
-
-Process Criba[i = 2 to L]
-{
-    int p, proximo;
-
-    Criba[i-1] ? p;
-    do Criba[i-1] ? (proximo) →
-        if ((proximo MOD p) <> 0) →
-            Criba[i+1] ! (proximo);
-        fi
-    od
-}
-```
-
-- El primer proceso, **Criba[1]**, envía todos los números impares desde `3 a n` a **Criba[2]**.
-- Cada uno de los otros procesos recibe una serie de números de su predecesor.
-- El primer número **`p`** que recibe el proceso **`Criba[i]`** es el **i-ésimo** primo.
-- Cada Criba[i] subsecuentemente pasa todos los otros números que recibe que no son múltiplos de su primo **`p`**.
-- El número total **`L`** de procesos Cribe debe ser lo suficientemente grande para garantizar que todos los primos hasta **`n`** son generados. Por ejemplo, hay 25 primos menores que 100;
-- el porcentaje decrece para valores crecientes de **`n`**.
-
-El programa anterior termina en deadlock, ya que no hay forma de saber cuál es el último número de la secuencia y cada proceso queda esperando un próximo número que no llega.
-
-Podemos fácilmente modificarlo para que termine normalmente usando centinelas, es decir que al final de los streams de entrada son marcados por un centinela
-
-```cpp
-# EOS: End Of Stream (-1 indica fin del flujo)
-
-Process Criba[1] {
-    int p = 2;
-
-    # Enviar todos los números impares desde 3 hasta n a Criba[2]
-    for [i = 3 to n by 2]
-        Criba[2] ! i;
-
-    # Enviar fin de flujo
-    Criba[2] ! -1;
-}
-
-Process Criba[i = 2 to L] {
-    int p, proximo;
-    boolean seguir = true;
-
-    # Recibe el primer número (primo)
-    Criba[i-1] ? p;
-
-    do (seguir);
-        # Recibe siguiente candidato
-        Criba[i-1] ? proximo ->
-
-        if (proximo = -1) {
-            seguir = false;
-            Criba[i+1] ! -1;   # Propaga EOS al siguiente proceso
-        }
-        else if ((proximo MOD p) <> 0) {
-            Criba[i+1] ! proximo;  # Si no es múltiplo, lo pasa
-        }
-    od
-}
-```
-
-</details>
-
----
-
-## Ejercicio 9 Suponga los siguientes programas concurrentes
+## Numero de Mensajes y Granularidad
 
 **Suponga los siguientes programas concurrentes. Asuma que “función” existe, y que los procesos son iniciados desde el programa principal.**
 
@@ -853,7 +513,7 @@ comunicación sea lo más baja posible, y dicha característica la brinda la **g
 
 ---
 
-## Ejercicio 10 Suponga los siguientes programas concurrentes
+## Numero de Mensajes y Granularidad 2
 
 Suponga los siguientes programas concurrentes. Asuma que **EOS** es un valor especial que indica el **fin de la secuencia de mensajes**, y que los procesos son iniciados desde el programa principal.
 
@@ -998,6 +658,411 @@ En este contexto, el programa **P2** resulta más adecuado para ejecutarse en un
 > **P2 es más apropiado para ejecutarse sobre arquitecturas tipo cluster**, ya que aprovecha mejor el cómputo local y minimiza la necesidad de comunicación, alineándose con las características de este tipo de sistema.
 
 </details>
+
+---
+
+# Miralas de Reojo
+
+<div>
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXU3c3h4NHh2anBkb3I2NWt4dDZxN2lsNjU0YnBtNWh6Y2UyaXI5dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pb2NDIcPTwNpu/giphy.gif" width="500px">
+</div>
+
+---
+
+## Propuesta al problema de alocación SJN
+
+**Sea la siguiente solución propuesta al problema de alocación SJN (Short Job Next):**
+
+```nginx
+Monitor SJN {
+    Bool libre = true;
+    Cond turno;
+
+    Procedure request {
+        If (not libre) wait (turno, tiempo);
+        Libre = false;
+    }
+
+    Procedure release {
+        Libre = true;
+        Signal (turno);
+    }
+}
+```
+
+**a) ¿Funciona correctamente con disciplina de señalización Signal and continue? Justifique.**
+
+<details><summary>👀 Respuesta</summary>
+
+
+No, la solución no funciona correctamente con la disciplina de señalización **Signal and Continue (S&C)**.
+
+Bajo esta disciplina, cuando un proceso realiza un `signal`, **continúa ejecutando dentro del monitor**, y el proceso que fue despertado es enviado a la **cola de listos (ready queue)** del sistema operativo. Esto implica que su reingreso al monitor depende de la **política de planificación del sistema**, y no se garantiza que sea el próximo en ejecutarse.
+
+En consecuencia, un proceso con menor tiempo (según la política **Shortest Job Next**) podría quedar **retrasado** si otro proceso ingresa antes al monitor. Por lo tanto, el orden de ejecución no refleja necesariamente la prioridad establecida por el parámetro `tiempo`, y **no se cumple el objetivo del SJN**.
+
+**Respuesta de un random**
+
+> Con S&C un proceso que es despertado para poder seguir ejecutando es pasado a la cola
+> de ready en cuyo caso su orden de ejecución depende de la política que se utilice para
+> ordenar los procesos en dicha cola. Puede ser que sea retrasado en esa cola permitiendo
+> que otro proceso ejecute en el monitor antes que el por lo que podría no cumplirse el
+> objetivo del SJN.
+
+![alt text](image-2.png)
+
+</details>
+
+****b)** ¿Funciona correctamente con disciplina de señalización *signal and wait*? Justifique.**
+
+<details><summary>👀 Respuesta</summary>
+
+Sí, **la solución funciona correctamente** con la disciplina de señalización **Signal and Wait (S&W)**.
+
+En esta disciplina, cuando un proceso ejecuta un `signal`, **cede inmediatamente el control del monitor** al proceso que fue despertado, el cual **continúa su ejecución justo después del `wait`**. El proceso que hizo el `signal` pasa a la cola de listos y debe esperar su turno para volver a ingresar al monitor.
+
+Esto garantiza que el proceso con menor tiempo (según la política Shortest Job Next) —que estaba esperando con prioridad— **será efectivamente el próximo en acceder al recurso**, evitando que otro proceso pueda adelantarse y violar el orden deseado.
+
+Por lo tanto, **la política SJN se respeta correctamente bajo Signal and Wait**, ya que se mantiene el control sobre el orden de ejecución de los procesos en espera.
+
+
+📘 **Definiciones complementarias:**
+
+- **Signal and Continue:** El proceso que ejecuta el `signal` **continúa usando el monitor**, mientras que el proceso despertado **debe competir** por reingresar al monitor.
+- **Signal and Wait:** El proceso que ejecuta el `signal` **cede el monitor** al proceso despertado, que continúa su ejecución **justo después del `wait`**.
+
+
+</details>
+
+
+<details><summary>📊 Comparación entre <strong>Signal and Continue</strong> vs <strong>Signal and Wait en SJN</strong></summary>
+
+
+| **Aspecto**                         | **Signal and Continue (S&C)**                                                                 | **Signal and Wait (S&W)**                                                                   |
+|-------------------------------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| **¿Quién sigue ejecutando en el monitor después del `signal`?** | El proceso que hizo el `signal` continúa.                                                     | El proceso que fue despertado entra inmediatamente al monitor.                              |
+| **Estado del proceso despertado**   | Pasa a la **cola de listos** y debe competir por reingresar al monitor.                       | **Continúa inmediatamente** dentro del monitor (no compite por el acceso).                  |
+| **Riesgo de pérdida de prioridad (SJN)** | **Alto**: otro proceso puede ingresar antes que el de menor tiempo.                          | **Nulo**: se garantiza que el proceso con menor tiempo accede primero.                      |
+| **¿Se respeta la política SJN?**    | ❌ **No**: puede no ejecutarse el proceso con menor tiempo debido a la competencia externa.   | ✅ **Sí**: el proceso con menor tiempo es el próximo en continuar.                          |
+| **Uso recomendado en SJN**          | No recomendado, ya que puede romper la prioridad por tiempo.                                  | Recomendado, ya que respeta el orden de espera basado en el tiempo.                         |
+| **Control de acceso**               | Depende del planificador del sistema operativo.                                               | Controlado directamente por el monitor y su lógica de sincronización.                      |
+
+</details>
+
+---
+
+## “passing the condition” En Semaforos
+
+**Utilice la técnica de “passing the condition” para implementar un semáforo *fair* usando monitores.**
+
+<details><summary>Codigo</summary>
+
+```cpp
+monitor Semaforo {
+    int s = 1, espera = 0;
+    cond pos;
+
+    procedure P() {
+        if (s == 0) {
+            espera++;
+            wait(pos);
+        } else {
+            s = s - 1;
+        }
+    };
+
+    procedure V() {
+        if (espera == 0) {
+            s = s + 1;
+        } else {
+            espera--;
+            signal(pos);
+        }
+    };
+};
+```
+</details>
+
+
+---
+
+# Rezar para que no Tomen
+
+<div>
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExODNrODc5OWpvdTgwNzhtMDZ2b2dnNXZnMHhtZmVlOHRrbmo5ang3ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlNcdK4NM0vt4yI/giphy.gif" width="500px">
+</div>
+
+---
+
+## Resuelva con monitores
+
+Resuelva con monitores el siguiente problema:  
+Tres clases de procesos comparten el acceso a una lista enlazada: **searchers**, **inserters** y **deleters**.
+
+- Los **searchers** sólo examinan la lista, y por lo tanto pueden ejecutar concurrentemente unos con otros.  
+- Los **inserters** agregan nuevos ítems al final de la lista; las inserciones deben ser mutuamente exclusivas para evitar insertar dos ítems casi al mismo tiempo. Sin embargo, un insert puede hacerse en paralelo con uno o más searchers.  
+- Por último, los **deleters** remueven ítems de cualquier lugar de la lista. A lo sumo un deleter puede acceder la lista a la vez, y el borrado también debe ser mutuamente exclusivo con **searchers** e **inserters**.
+
+<details><summary>Codigo</summary>
+
+```cpp
+monitor Controlador_ListaEnlazada {
+    int numSearchers = 0, numInserters = 0, numDeleters = 0;
+    cond searchers, inserters, deleters;
+
+    procedure pedir_Deleter() {
+        while (numSearchers > 0 OR numInserters > 0 OR numDeleters > 0) {
+            wait(deleters);
+        }
+        numDeleters = numDeleters + 1;
+    }
+
+    procedure liberar_Deleter() {
+        numDeleters = numDeleters - 1;
+        signal(inserters);
+        signal(deleters);
+        signal_all(searchers);
+    }
+
+    procedure pedir_Searcher() {
+        while (numDeleters > 0) {
+            wait(searchers);
+        }
+        numSearchers = numSearchers + 1;
+    }
+
+    procedure liberar_Searcher() {
+        numSearchers = numSearchers - 1;
+        if (numSearchers == 0 AND numInserters == 0) {
+            signal(deleters);
+        }
+    }
+
+    procedure pedir_Inserter() {
+        while (numDeleters > 0 OR numInserters > 0) {
+            wait(inserters);
+        }
+        numInserters = numInserters + 1;
+    }
+
+    procedure liberar_Inserter() {
+        numInserters = numInserters - 1;
+        signal(inserters);
+        if (numSearchers == 0) {
+            signal(deleters);
+        }
+    }
+}
+```
+
+🧵 Procesos:
+
+```cpp
+process Searchers[i = 1..S] {
+    Controlador_ListaEnlazada.pedir_Searcher();
+    <Realiza búsqueda en la lista>
+    Controlador_ListaEnlazada.liberar_Searcher();
+}
+
+process Inserters[j = 1..I] {
+    Controlador_ListaEnlazada.pedir_Inserter();
+    <Inserta en la lista>
+    Controlador_ListaEnlazada.liberar_Inserter();
+}
+
+process Deleters[k = 1..D] {
+    Controlador_ListaEnlazada.pedir_Deleter();
+    <Borra en la lista>
+    Controlador_ListaEnlazada.liberar_Deleter();
+}
+```
+
+🧠 **Resumen: Monitor `Controlador_ListaEnlazada`**
+
+👥 Tipos de procesos:
+- **Searchers**: pueden acceder **concurrentemente**, salvo que haya un **Deleter**.
+- **Inserters**: acceden **de a uno**, pero **pueden convivir con Searchers**.
+- **Deleters**: requieren **exclusión total** (no pueden ejecutarse junto a ningún otro proceso).
+
+
+🔒 Comportamiento de sincronización:
+- `Searchers` esperan si hay un `Deleter`.
+- `Inserters` esperan si hay otro `Inserter` o un `Deleter`.
+- `Deleters` esperan si hay cualquier otro proceso activo (Searcher o Inserter).
+- Al liberar, se despiertan procesos bloqueados según condiciones.
+
+✅ ¿Funciona correctamente?
+Sí, **el monitor implementa correctamente las restricciones** de sincronización para los tres tipos de procesos.   Asegura exclusión mutua, convivencia segura y respeta la lógica de prioridades.
+
+</details>
+
+---
+
+## Protocolos de Acceso a la SC
+
+En los protocolos de acceso a sección crítica vistos en clase, cada proceso ejecuta el mismo algoritmo. Una manera alternativa de resolver el problema es usando un proceso **coordinador**. En este caso, cuando cada proceso **SC[i]** quiere entrar a su **sección crítica** le avisa al **coordinador**, y espera a que éste le dé permiso. Al terminar de ejecutar su sección crítica, el proceso **SC[i]** le avisa al **coordinador**.  
+
+Desarrolle protocolos para los procesos **SC[i]** y el **coordinador** usando sólo variables compartidas (no tenga en cuenta la propiedad de eventual entrada).
+
+<details><summary>Respuesta</summary>
+
+```cpp
+int aviso[1:N] = ([N] 0), permiso[1:N] = ([N] 0);
+```
+
+<table><td>
+
+```cpp
+process SC[i = 1 to N] {
+    SNC;
+
+    // Protocolo de entrada
+    permiso[i] = 1;
+    while (aviso[i] == 0) skip;
+
+    // Sección crítica
+    SC;
+
+    // Protocolo de salida
+    aviso[i] = 0;
+    SNC;
+}
+```
+</td><td>
+
+```cpp
+process Coordinador {
+    int i = 1;
+    while (true) {
+        // Espera que algún proceso solicite permiso
+        while (permiso[i] == 0)
+            i = i mod N + 1;
+
+        // Otorga permiso al proceso i
+        permiso[i] = 0;
+        aviso[i] = 1;
+
+        // Espera a que el proceso libere la SC
+        while (aviso[i] == 1) skip;
+    }
+}
+```
+</td></table>
+
+</details>
+
+---
+
+## Solución a la Criba
+
+> 💀 Dudo mucho que tomen este ejercicio, lo pongo por las dudas
+
+Describa la solución utilizando la criba de Eratóstenes al problema de hallar los primos entre 2 y n. **¿Cómo termina el algoritmo? ¿Qué modificaría para que no termine de esa manera?**
+
+<details><summary>Codigo</summary>
+
+La criba de Eratóstenes es un algoritmo clásico para determinar cuáles números en un rango son primos. Supongamos que queremos generar todos los primos entre **2** y **n**. Primero, escribimos una lista con todos los números:
+
+```
+2 3 4 5 6 7 ... n
+```
+
+Comenzando con el primer número no tachado en la lista, 2, recorremos la lista y borramos los múltiplos de ese número. Si n es impar, obtenemos la lista:
+
+```
+2 3 5 7 ... n
+```
+
+En este momento, los números borrados no son primos; los números que quedan todavía son candidatos a ser primos. Pasamos al próximo número, **3**, y repetimos el anterior proceso borrando los **múltiplos de 3**. Si seguimos este proceso hasta que todo número fue considerado, los números que quedan en la lista final serán todos los primos entre **2** y **n**.
+
+Para solucionar este problema de forma paralela podemos emplear un pipeline de procesos filtro.
+
+- Cada filtro recibe una serie de números de su predecesor y envía una serie de números a su sucesor.
+- El primer número que recibe un filtro es el próximo primo más grande;
+- Le pasa a su sucesor todos los números que no son múltiplos del primero.
+
+El siguiente es el algoritmo pipeline para la generación de números primos.
+
+Por cada canal, el primer número es primo y todos los otros números no son múltiplo de ningún primo menor que el primer número:
+
+```cpp
+Process Criba[1]
+{
+    int p = 2;
+
+    for [i = 3 to n by 2] 
+        Criba[2] ! (i);
+}
+
+Process Criba[i = 2 to L]
+{
+    int p, proximo;
+
+    Criba[i-1] ? p;
+    do Criba[i-1] ? (proximo) →
+        if ((proximo MOD p) <> 0) →
+            Criba[i+1] ! (proximo);
+        fi
+    od
+}
+```
+
+- El primer proceso, **Criba[1]**, envía todos los números impares desde `3 a n` a **Criba[2]**.
+- Cada uno de los otros procesos recibe una serie de números de su predecesor.
+- El primer número **`p`** que recibe el proceso **`Criba[i]`** es el **i-ésimo** primo.
+- Cada Criba[i] subsecuentemente pasa todos los otros números que recibe que no son múltiplos de su primo **`p`**.
+- El número total **`L`** de procesos Cribe debe ser lo suficientemente grande para garantizar que todos los primos hasta **`n`** son generados. Por ejemplo, hay 25 primos menores que 100;
+- el porcentaje decrece para valores crecientes de **`n`**.
+
+El programa anterior termina en deadlock, ya que no hay forma de saber cuál es el último número de la secuencia y cada proceso queda esperando un próximo número que no llega.
+
+Podemos fácilmente modificarlo para que termine normalmente usando centinelas, es decir que al final de los streams de entrada son marcados por un centinela
+
+```cpp
+# EOS: End Of Stream (-1 indica fin del flujo)
+
+Process Criba[1] {
+    int p = 2;
+
+    # Enviar todos los números impares desde 3 hasta n a Criba[2]
+    for [i = 3 to n by 2]
+        Criba[2] ! i;
+
+    # Enviar fin de flujo
+    Criba[2] ! -1;
+}
+
+Process Criba[i = 2 to L] {
+    int p, proximo;
+    boolean seguir = true;
+
+    # Recibe el primer número (primo)
+    Criba[i-1] ? p;
+
+    do (seguir);
+        # Recibe siguiente candidato
+        Criba[i-1] ? proximo ->
+
+        if (proximo = -1) {
+            seguir = false;
+            Criba[i+1] ! -1;   # Propaga EOS al siguiente proceso
+        }
+        else if ((proximo MOD p) <> 0) {
+            Criba[i+1] ! proximo;  # Si no es múltiplo, lo pasa
+        }
+    od
+}
+```
+
+</details>
+
+---
+
+
+
+---
+
+
 
 ---
 
