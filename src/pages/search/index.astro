@@ -14,18 +14,18 @@ const meta = {
   <Button title='Volver' href='/blog' style='back' />
   <main class='mt-6 lg:mt-10'>
     <div id='content-header' class='animate'>
-      <h1 class='mb-6 text-3xl font-medium'>Search</h1>
+      <h1 class='mb-6 text-3xl font-medium'>Busqueda general</h1>
     </div>
 
     <div id='content' class='animate'>
       {
         integ.pagefind ? (
           <>
-            <p>Enter a search term or phrase to search the blog.</p>
+            <p>Busca tu info de Chill.</p>
             <PFSearch />
           </>
         ) : (
-          <p>Pagefind is disabled.</p>
+          <p>La búsqueda de páginas está deshabilitada.</p>
         )
       }
     </div>
