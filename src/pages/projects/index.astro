@@ -13,7 +13,7 @@ const headings = [
 ]
 ---
 
-<PageLayout title='Proyectos' {headings} info={{ slug: '/projects', hideComment: true }}>
+<PageLayout title='Proyectos' {headings} info={{ slug: '/projects', hideComment: false }}>
   <p>Github Activities:</p>
   <p>
     <Image
@@ -27,9 +27,6 @@ const headings = [
     En este apartado se encuentran todos los proyectos relevantes que fui programando a lo largo de mi vida como desarrollador 😀. 
     Todos los dias trato de mejorar y seguir aprendiendo, si necesitas una mano o me queres consultar para algun trabajo no dudes en contactarme.
   </p>
-  <Button title='fabianmartinezrincon@gmail.com' class='w-fit' href='#sponsorship'>
-    <Icon class='size-5' name='receive-money' slot='before' />
-  </Button>
 
   <h2 id='proyectos_python'>Proyectos Python</h2>
   <ProjectSection

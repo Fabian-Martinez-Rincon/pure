@@ -19,14 +19,11 @@ const {
 const image = typeof heroImage?.src === 'string' ? heroImage?.src : (heroImage?.src?.src ?? '')
 
 const shares = {
-  weibo: {
-    link: `http://service.weibo.com/share/share.php?url=${Astro.url}&title=${title}&pic=${image}`
-  },
-  x: {
-    link: `https://x.com/intent/tweet?text='${title}'&url='${Astro.url}'&via='${config.author}'`
-  },
-  bluesky: {
-    link: `https://bsky.app/intent/compose?text=${title}%0A${Astro.url}`
+  linkedin: {
+    link: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+      window.location.href
+    )}&title=${encodeURIComponent(title)}`,
+    icon: 'linkedin'
   }
 } as const
 ---
@@ -110,8 +107,8 @@ const shares = {
 
 <div class='mx-6 rounded-b-xl border border-t-0 px-3 pb-1.5 pt-1 sm:mx-8 sm:px-4'>
   <a
-    href='/projects#sponsorship'
-    class='flex items-center justify-between text-muted-foreground no-underline'
+    href='https://github.com/Fabian-Martinez-Rincon'
+    class='flex items-center justify-between no-underline'
     target='_blank'
   >
     <span>Si el contenido les resulto util, me pueden seguir en github. <a href="https://github.com/Fabian-Martinez-Rincon">@fabian-martinez-rincon</a></span>

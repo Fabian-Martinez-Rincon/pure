@@ -58,22 +58,22 @@ export const theme: ThemeUserConfig = {
   footer: {
     // Registration information for ICP (optional)
     registration: {
-      url: 'https://icp.gov.moe/?keyword=APTX4869',
-      text: 'Moe ICP APTX4869'
+      url: 'Blog-Fabo',
+      text: 'Blog-Fabo',
     },
     /** Enable displaying a “Astro & Pure theme powered” link in your site’s footer. */
     credits: true,
     /** Optional details about the social media accounts for this site. */
-    social: { github: 'https://astro.build/chat' }
+    social: { github: 'https://github.com/Fabian-Martinez-Rincon' }
   },
 
   content: {
     externalLinksContent: ' ↗',
     /** Blog page size for pagination (optional) */
-    blogPageSize: 8,
+    blogPageSize: 16,
     externalLinkArrow: true, // show external link arrow
     // Currently support weibo, x, bluesky
-    share: ['weibo', 'x', 'bluesky']
+    share: [],
   }
 }
 

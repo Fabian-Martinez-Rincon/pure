@@ -29,20 +29,20 @@ interface Props {
 const { page, uniqueTags, collectionsCount } = Astro.props
 
 const meta = {
-  description: 'Some posts or archieves of my blog',
+  description: 'Blogs de materias y temas de interés',
   title: 'Blog'
 }
 
 const paginationProps = {
   ...(page.url.prev && {
     prevUrl: {
-      text: `← Previous Posts`,
+      text: `← Pagina Previa`,
       url: page.url.prev
     }
   }),
   ...(page.url.next && {
     nextUrl: {
-      text: `Next Posts →`,
+      text: `Pagina Siguiente →`,
       url: page.url.next
     }
   })
@@ -50,7 +50,7 @@ const paginationProps = {
 ---
 
 <PageLayout {meta}>
-  <Button title='Back' href='/' style='back' />
+  <Button title='Volver' href='/' style='back' />
   <main class='mt-6 lg:mt-10'>
     <div id='content-header' class='animate'>
       <h1 class='mb-6 mt-6 text-3xl font-medium sm:mt-10'>Blog</h1>
@@ -95,7 +95,7 @@ const paginationProps = {
               </ul>
               <span class='mt-4 block sm:text-end'>
                 <a aria-label='View all blog categories' href='/tags' data-astro-prefetch>
-                  View all →
+                  Ver todos →
                 </a>
               </span>
             </aside>

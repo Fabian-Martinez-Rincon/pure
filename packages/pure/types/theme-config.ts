@@ -155,7 +155,7 @@ export const ThemeConfigSchema = () =>
       externalLinksContent: z.string().optional().default(' ↗'),
 
       /** Blog page size for pagination */
-      blogPageSize: z.number().optional().default(8),
+      blogPageSize: z.number().optional().default(16),
 
       /** Show external link arrow */
       externalLinkArrow: z.boolean().optional().default(true),

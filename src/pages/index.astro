@@ -16,7 +16,7 @@ const languages = ['Python', 'Html', 'JavaScript', 'CSS', 'Shell', 'C++', 'Bash'
 const frontend = ['Html', 'Flask', 'Tailwind', 'Astro']
 const backend = ['PostgreSQL', 'MongoDB']
 
-const MAX_POSTS = 10
+const MAX_POSTS = 5
 const allPosts = await getBlogCollection()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 ---
@@ -116,7 +116,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
     </section>
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
-      <Section title='About'>
+      <Section title='Sobre mi'>
         <p class='text-muted-foreground'>💻 💵 Data Engineer / 📚 👨‍🎓Analista Programador Universitario / 📔👨‍🔧 Tecnico En Electronica</p>
         <p class='text-muted-foreground'>
           Trabajo como Data Engineer en BB-Media, especializado en Web Scaping usando Python, MongoDB, Insomia y demas Tecnologias. Tambien soy Tecnico y Estoy cursando 4to año de Licenciatura en Sistemas en UNLP Informatica
@@ -128,7 +128,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       </Section>
       {
         allPostsByDate.length > 0 && (
-          <Section title='Posts'>
+          <Section title='📚 Blogs'>
             <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
               {allPostsByDate.map((p) => (
                 <li class='flex flex-col gap-x-2 sm:flex-row'>
@@ -142,7 +142,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       }
 
       {
-       <Section title='Experience'>
+       <Section title='🖥️Experiencia'>
+        
       <Card
         heading='Data Engineer'
         subheading='BB-Media'
@@ -175,7 +176,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       
     </Section>
       }
-      <Section title='Education'>
+      <Section title='🎒 Educación'>
         <Card
           as='a'
           heading='Analista Programador Universitario'
