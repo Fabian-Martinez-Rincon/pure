@@ -19,7 +19,12 @@ const {
 const image = typeof heroImage?.src === 'string' ? heroImage?.src : (heroImage?.src?.src ?? '')
 
 const shares = {
-
+  youtube: {
+    link: `http://service.weibo.com/share/share.php?url=${Astro.url}&title=${title}&pic=${image}`
+  },
+  github: {
+    link: `https://x.com/intent/tweet?text='${title}'&url='${Astro.url}'&via='${config.author}'`
+  }
 } as const
 ---
 
