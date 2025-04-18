@@ -119,7 +119,7 @@ Calculamos los tiempos para P8 con la nueva distribución de filas:
 - **Asignaciones** `2 * 128^2` + `2 * 128` -> `32.768` + `256` -> **`33.024`**
 - **Sumas**  `2 * 128^2` -> **`32.768`**
 - **Productos** `2 * 128^2` -> **`32.768`**
-- **`T(P8)`** -> `T(P1-P7) * 4` **->** `33.024 * 4` **->** **`132.096`** (El tiempo paralelo)
+- **`T(P8)`** -> 
 
 Calculamos el tiempo para P1-P7:
 
