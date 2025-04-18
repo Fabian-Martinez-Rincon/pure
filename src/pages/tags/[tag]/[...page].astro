@@ -39,13 +39,13 @@ const meta = {
 const paginationProps = {
   ...(page.url.prev && {
     prevUrl: {
-      text: `← Previous Tags`,
+      text: `← Volver`,
       url: page.url.prev
     }
   }),
   ...(page.url.next && {
     nextUrl: {
-      text: `Next Tags →`,
+      text: `Siguiente →`,
       url: page.url.next
     }
   })
@@ -63,10 +63,11 @@ const paginationProps = {
     </div>
 
     <section id='content' class='animate' aria-label='Blog post list'>
+      <Paginator {...paginationProps} />
       <ul class='flex flex-col gap-y-3 text-start'>
         {page.data.map((post) => <PostPreview as='h2' {post} detailed />)}
       </ul>
-      <Paginator {...paginationProps} />
+      
     </section>
   </main>
 </PageLayout>

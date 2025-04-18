@@ -70,13 +70,14 @@ const paginationProps = {
                 Ver todos los post por año →
               </a>
             </div>
+            <Paginator {...paginationProps} />
             {/* posts */}
             <ul class='flex flex-col gap-y-4 text-start'>
               {page.data.map((post) => (
                 <PostPreview {post} detailed />
               ))}
             </ul>
-            <Paginator {...paginationProps} />
+            
           </section>
 
           {/* sidebar */}
