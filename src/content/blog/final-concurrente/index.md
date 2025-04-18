@@ -89,16 +89,12 @@ process worker[w = 1 to P] {        // strips en paralelo (P strips de n/P filas
 - **Sumas**  `128^3` -> **`2.097.152`**
 - **Productos** `128^3` **->** **`2.097.152`**
 
-
 ****b)** ¿Cuántas se realizan en cada procesador en la solución paralela con **P = 8**?**
 
-
-- **Asignaciones** `(128^3)/8` + `(128^2)/8` -> `262144` + `2048` -> **`264.192`**
-- **Sumas**  `(128^3)/8` -> **`262.144`**
-- **Productos** `(128^3)/8` -> **`2.621.44`**
-
-
-
+- **Strip** 128/8 = 16 Filas por procesador (MIRA EL CODIGO O PEGO 👊)
+- **Asignaciones** `16 * 128^2` + `16 * 128` -> `262.144` + `2048` -> **`264.192`**
+- **Sumas**  `16 * 128^2` -> **`262.144`**
+- **Productos** `16 * 128^2` -> **`262.144`**
 
 ****c)** Si los procesadores P1 a P7 son iguales, y sus tiempos de asignación son 1, de suma 2 y de producto 3, y si P8 es 4 veces más lento,**
 
@@ -107,20 +103,25 @@ process worker[w = 1 to P] {        // strips en paralelo (P strips de n/P filas
 - **`T(P1-P7)`** -> (264.192 * 1) + (262.144 * 2) + (262.144 * 3) **->** 264.192 + 524.288 + 786.432 **->** **`1.574.912`**
 - **`T(P8)`** -> `T(P1-P7) * 4` **->** `1.574.912 * 4` **->** **`6.299.648`** (El tiempo paralelo)
 
-
-
 **¿Cuál es el valor del *speedup* (Tiempo secuencial / Tiempo paralelo)?**
 
 - **`Tiempo Total Secuencial`** = (2.113.536 * 1) + 2.097.152 * 2) + 2.097.152 * 3) **->** `12.599.296`
 - **`Speedup`** = `T(secuencial) / T(paralelo)` **->** `(12.599.296) / (6.299.648)` **->** **`2.02`**
 
-**Modifique el código para lograr un mejor *speedup*. (Este punto no se como hacerlo)**
+**Modifique el código para lograr un mejor *speedup*. (Este punto no se como hacerlo)** (Le tenemos que dejar la menor cantidad de filas posibles a P8 ya que tarda un 🥚)
 
+- **Multiplo(7)** mas cercano a 128 -> 126
+- **Strip P8** -> 2 filas (128 - 126)
+- **Strip P1-P7** -> 18 filas (126/7)
 
+Calculamos los tiempos para P8 con la nueva distribución de filas:
 
-![image](https://github.com/user-attachments/assets/5efe7df8-630b-4df3-81f1-96fb8f792f80)
+- **Asignaciones** `2 * 128^2` + `2 * 128` -> `32.768` + `256` -> **`33.024`**
+- **Sumas**  `2 * 128^2` -> **`32.768`**
+- **Productos** `2 * 128^2` -> **`32.768`**
+- **`T(P8)`** -> `T(P1-P7) * 4` **->** `33.024 * 4` **->** **`132.096`** (El tiempo paralelo)
 
-
+Calculamos el tiempo para P1-P7:
 
 ---
 
