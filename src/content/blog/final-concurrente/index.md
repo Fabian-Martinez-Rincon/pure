@@ -114,20 +114,33 @@ process worker[w = 1 to P] {        // strips en paralelo (P strips de n/P filas
 - **Strip P8** -> 2 filas (128 - 126)
 - **Strip P1-P7** -> 18 filas (126/7)
 
-Calculamos los tiempos para P8 con la nueva distribución de filas:
+Calculamos los tiempos para **P8** con la nueva distribución de filas:
 
 - **Asignaciones** `2 * 128^2` + `2 * 128` -> `32.768` + `256` -> **`33.024`**
 - **Sumas**  `2 * 128^2` -> **`32.768`**
 - **Productos** `2 * 128^2` -> **`32.768`**
-- **`T(P8)`** -> 
+- **`T(P8)`** -> **(33.024 * 1)** + **(32.768 * 2)** + **(32.768 * 3)** **->** 33.024 + 65.536 + 98.304 **->** **`196.864`**
+- **T(P8)** -> TP8 * 4 **->** `196.864 * 4` **->** **`787.456`**
 
-Calculamos el tiempo para P1-P7:
+Calculamos el tiempo para **P1-P7**:
+
+- **Asignaciones** `18 * 128^2` + `18 * 128` -> `294.912` + `2.304` -> **`297.216`**
+- **Sumas**  `18 * 128^2` -> **`294.912`**
+- **Productos** `18 * 128^2` -> **`294.912`**
+- **`T(P1-P7)`** -> **(297.216 * 1)** + **(294.912 * 2)** + **(294.912 * 3)** **->** 297.216 + 589.824 + 884.736 **->** **`1.771.776`**
+
+Como el tiempo mas grande es el de T(P1-P7) el tiempo paralelo  es: **`1.771.776`** y volvemos a calcular el speedup:
+
+- **`Speedup`** = `T(secuencial) / T(paralelo)` **->** `(12.599.296) / (1.771.776)` **->** **`7.11`**
 
 ---
 
 ## 2) Cuales Cumplen con ASV
 
-Dado el siguiente programa concurrente con memoria compartida:  
+Dado el siguiente programa concurrente con memoria compartida:
+
+<table><td>
+
 `x := 4; y := 2; z := 3;`
 
 ```cpp
@@ -138,142 +151,43 @@ co
 oc
 ```
 
-**a) ¿Cuáles de las asignaciones dentro de la sentencia `co` cumplen la propiedad de ASV? Justifique claramente.**
-
-<details><summary>👀 Respuesta</summary>
-
-```cpp
-Co
-    X := X - Z
-    Z := Z * 2
-    Y := Z + 4
-Oc
-```
-
-**📌 Recordatorio: ¿Qué es ASV?**
+</td><td>
 
 Una asignación `x := e` **cumple la propiedad de ASV** si:
 
-- ✅ (1) `e` contiene **a lo sumo una referencia crítica**, **y** la variable `x` (la que se asigna) **no es usada en otros procesos**,  
-**o**
-- ✅ (2) `e` **no contiene ninguna referencia crítica**.
+- (1) `e` contiene **a lo sumo una referencia crítica**, y la variable `x` **no es referenciada por otros procesos**,  o
+- (2) `e` no contiene ninguna referencia crítica, en cullo caso **X** puede ser leida por otros procesos
+
+</td></table>
+
+> Referencia critica se da cuanto estas leyendo una variable que es modificada por otro proceso concurrente
+
+**a) ¿Cuáles de las asignaciones dentro de la sentencia `co` cumplen la propiedad de ASV? Justifique claramente.**
 
 
-**🧠 ¿Qué es una *referencia crítica*?**
-
-Es cualquier acceso (lectura o escritura) a una variable **compartida entre procesos concurrentes**.  
-Si una variable aparece en más de una instrucción dentro del bloque `Co ... Oc`, entonces es **crítica**.
-
-
-**`1)`** `X := X - Z`
-
-```
-Co
-    X := X - Z
-    Z := Z * 2
-    Y := Z + 4
-Oc
-```
-
-- `Variables involucradas:`
-    - Lee `X` y `Z`
-    - Asigna a `X`
-- **`¿Referencias críticas?`**
-    - `Z` también aparece en otras asignaciones (`Z := Z * 2`, `Y := Z + 4`) → **Sí**, es crítica  
-    - `X` **no aparece en ninguna otra instrucción** → **No es crítica**
-- **`Evaluación ASV`**:
-    - Tiene **una sola referencia crítica** (`Z`)
-    - La variable asignada (`X`) **no se usa en otro proceso**
-
-✅ **Cumple ASV**
-
-
-**`2)`** `Z := Z * 2`
-
-```
-Co
-    X := X - Z
-    Z := Z * 2
-    Y := Z + 4
-Oc
-```
-
-- **`Variables involucradas:`**
-    - Lee y escribe `Z`
-- **`¿Referencias críticas?`**
-    - `Z` aparece también en:
-      - `X := X - Z`
-      - `Y := Z + 4`
-    - **Z es usada en múltiples procesos** → **es crítica**
-    - Además, se está modificando en esta instrucción → escritura
-- **`Evaluación ASV`**
-    - Tiene **una referencia crítica** (`Z`)
-    - La variable asignada (`Z`) **sí se usa en otros procesos**
-
-❌ **No cumple ASV**
-
-**`3)`** `Y := Z + 4`
-
- Variables involucradas:
-- Lee `Z`
-- Asigna a `Y`
-
- ¿Referencias críticas?
-- `Z` es crítica (como ya dijimos)
-- `Y` **no aparece en ningún otro proceso**
-
- Evaluación ASV:
-- Tiene **una sola referencia crítica** (`Z`)
-- La variable asignada (`Y`) **no se usa en otros procesos**
-
-✅ **Cumple ASV**
-
-| Instrucción      | ¿Cumple ASV? | Justificación                                                                 |
+| Instrucción      | ¿Cumple_ASV? | Justificación                                                                 |
 |------------------|--------------|--------------------------------------------------------------------------------|
-| `X := X - Z`     | ✅ Sí         | Tiene una única referencia crítica (`Z`), y `X` no es usada en otros procesos |
-| `Z := Z * 2`     | ❌ No         | Tiene referencia crítica (`Z`), y `Z` es usada en otros procesos              |
-| `Y := Z + 4`     | ✅ Sí         | Tiene una única referencia crítica (`Z`), y `Y` no es usada en otros procesos |
-
-> A chequear
-
-</details>
+| **X := X - Z**     | ✅ Sí         | **"e"** tiene a lo sumo una referencia critica **(X - Z)**, y la variable **x** no es referenciada en otros procesos (**X**) |
+| **Z := Z * 2**     | ✅ Sí         | **"e"** no contiene niguna referencia critica **(Z * 4)**, en cullo caso **x** puede ser leida por otros procesos (**Z**) |
+| **Y := Z + 4**     | ✅ Sí         | **"e"** tiene a lo sumo 1 referencia critica **(Z + 4)**, y la variable **x** no es referenciada por otros procesos (**`Y`**) |
 
 ****b)** Indique los resultados posibles de la ejecución. Justifique.**
 
-<details><summary>👀 Respuesta</summary>
+Cada tarea se ejecuta sin ninguna interrupción hasta que termina (Si una sentencia no es atómica se puede cortar su ejecución pero al cumplir ASV la ejecución no se ve afectada) y las llamamos T1, T2 y T3 respectivamente obtenemos el siguiente subconjunto de historias:
 
-```
-x = 3; y = 2; z = 5;
-Co
-    X := X - Z
-    Z := Z * 2
-    Y := Z + 4
-Oc
-```
+- T1, T2, T3 => X=1, Z=6, y=10
+- T1, T3, T2 => X=1, Z=6, y=7
+- T2, T1, T3 => X=-2, Z=6, y=10
+- T2, T3, T1 => X=-2, Z=6, y=10
+- T3, T1, T2 => X=1, Z=6, y=7
+- T3, T2, T1 => X=-2, Z=6, y=7
 
-| Orden de ejecución | Operaciones realizadas (con valores) | Resultado final `(X, Z, Y)` |
-|--------------------|---------------------------------------|------------------------------|
-| **T1 → T2 → T3**   | `X = 4 - 3 = 1`<br>`Z = 3 * 2 = 6`<br>`Y = 6 + 4 = 10` | **(1, 6, 10)** |
-| **T1 → T3 → T2**   | `X = 4 - 3 = 1`<br>`Y = 3 + 4 = 7`<br>`Z = 3 * 2 = 6` | **(1, 6, 7)** |
-| **T2 → T1 → T3**   | `Z = 3 * 2 = 6`<br>`X = 4 - 6 = -2`<br>`Y = 6 + 4 = 10` | **(-2, 6, 10)** |
-| **T2 → T3 → T1**   | `Z = 3 * 2 = 6`<br>`Y = 6 + 4 = 10`<br>`X = 4 - 6 = -2` | **(-2, 6, 10)** |
-| **T3 → T1 → T2**   | `Y = 3 + 4 = 7`<br>`X = 4 - 3 = 1`<br>`Z = 3 * 2 = 6` | **(1, 6, 7)** |
-| **T3 → T2 → T1**   | `Y = 3 + 4 = 7`<br>`Z = 3 * 2 = 6`<br>`X = 4 - 6 = -2` | **(-2, 6, 7)** |
+Explicación:
+- El valor de Z es siempre el mismo ya que no posee ninguna referencia crítica.
+- Los valores de X e Y se ven afectados por la ejecución de T2 ya que sus resultados dependen de la referencia que hacen a la variable Z que es modificada.
+- Entonces, si T1 y T3 se ejecutan antes que T2 ambas usarán el valor inicial de Z que es 3 obteniendo los resultados X=1 e Y=7; 
+- Ahora si T2 se ejecuta antes que las demás los resultados serán X=-2 e Y=10 y por último, tenemos los casos en que T2 se ejecuta en medio con T1 antes y T3 después o con T3 antes y T1 después.
 
-
-
-- `X := 4 - Z` → depende del valor de `Z` al momento de ejecutar T1
-- `Y := Z + 4` → depende del valor de `Z` al momento de ejecutar T3
-- `Z := Z * 2` → siempre lleva `Z` de 3 a 6
-
-El valor de Z es siempre el mismo ya que no posee ninguna referencia crítica. Los valores de X e Y se ven afectados por la ejecución de T2 ya que sus resultados dependen de la referencia que hacen a la variable Z que es modificada. Entonces, si T1 y T3 se ejecutan antes que T2 ambas usarán el valor inicial de Z que es 3 obteniendo los resultados X=1 e Y=7; ahora si T2 se ejecuta antes que las demás los resultados serán X=-2 e Y=10 y por último, tenemos los casos en que T2 se ejecuta en medio con T1 antes y T3 después o con T3 antes y T1 después.
-
-- Nota 1: las instrucciones NO SON atómicas.
-- Nota 2: no es necesario que liste TODOS los resultados.
-
-> Se podria consultar esto
-
-</details>
 
 ---
 
@@ -293,35 +207,26 @@ oc
 
 **a) ¿Cuáles de las asignaciones dentro de la sentencia `co` cumplen la propiedad de “A lo sumo una vez”? Justifique claramente.**
 
-<details><summary>👀 Respuesta</summary>
-
-Siendo:
-```
-A: x = y * z  Tiene 2 referencias críticas (a y, a z), por lo tanto no cumple ASV. (además x es leída en en C.)
-B: z = z * 2 No tiene referencia crítica y es leída por otro (en A se lee z), por lo tanto cumple ASV.
-C: y = y + 2x Tiene 1 referencia crítica (a x) y además es leída por otro proceso (en A se lee y), por lo tanto no cumple ASV.
-```
-
-> A chequear
-</details>
-
+| Instrucción      | ¿Cumple_ASV? | Justificación                                                                 |
+|------------------|--------------|--------------------------------------------------------------------------------|
+| **X = Y * Z**     | ❌ No         | **"e"** tiene dos referencias criticas **(X - Z)** |
+| **Z = Z * 2**     | ✅ Sí         | **"e"** no contiene niguna referencia critica **(Z * 2)**, en cullo caso **x** puede ser leida por otros procesos **(Z)** |
+| **Y = Y + 2X**     | ❌ No         | **"e"** tiene a lo sumo 1 referencia critica **(Y + 2X)**, y la variable **x** es referenciada por otros procesos (**`Y`**) |
 
 ****b)** Indique los resultados posibles de la ejecución. Justifique.**
 
-<details><summary>👀 Respuesta</summary>
+- A, B y C o A, C y B -> x = 10; z = 10; y = 22
+- C, B y A o B, C y A -> x = 80; z = 10; y = 8
+- C, A y B -> x = 40; z = 10; y = 8
+- B, A y C-> x = 20; z = 10; y = 42
 
-| **#** | **Orden de ejecución**             | **Operaciones realizadas**                                                                                                                                         | **Resultado final**            |
-|------:|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
-| 1     | A → B → C                          | `x = 2*5 = 10`<br>`z = 5*2 = 10`<br>`y = 2 + 2*10 = 22`                                                                                                             | `x = 10`, `z = 10`, `y = 22`  |
-| 2     | A → C → B                          | `x = 2*5 = 10`<br>`y = 2 + 2*10 = 22`<br>`z = 5*2 = 10`                                                                                                             | `x = 10`, `z = 10`, `y = 22`  |
-| 3     | C → B → A                          | `y = 2 + 2*3 = 8`<br>`z = 5*2 = 10`<br>`x = 2*10 = 20`                                                                                                              | `x = 20`, `z = 10`, `y = 8`   |
-| 4     | B → C → A                          | `z = 5*2 = 10`<br>`y = 2 + 2*3 = 8`<br>`x = 2*10 = 20`                                                                                                              | `x = 20`, `z = 10`, `y = 8`   |
-| 5     | C → A → B                          | `y = 2 + 2*3 = 8`<br>`x = 2*5 = 10`<br>`z = 5*2 = 10`                                                                                                               | `x = 10`, `z = 10`, `y = 8`   |
-| 6     | B → A → C                          | `z = 5*2 = 10`<br>`x = 2*10 = 20`<br>`y = 2 + 2*20 = 42`                                                                                                            | `x = 20`, `z = 10`, `y = 42`  |
-| 7     | A lee `y=2`, C lee `x=3`, luego A termina, luego B | `A empieza: y=2`<br>`C: y = 2 + 2*3 = 8`<br>`A termina: x = 2*5 = 10`<br>`B: z = 5*2 = 10`                                 | `x = 10`, `z = 10`, `y = 8`   |
-| 8     | A lee `y=2`, C lee `x=3`, luego B, luego A termina | `A empieza: y=2`<br>`C: y = 2 + 2*3 = 8`<br>`B: z = 5*2 = 10`<br>`A termina: x = 2*10 = 20`                                 | `x = 20`, `z = 10`, `y = 8`   |
 
-</details>
+Si se empieza a ejecutar **A** leyendo a **y = 2**, y en ese momento se ejecuta **C** leyendo a **x = 3** (porque no terminó la asignación de **A**), y luego termina lo que falta de **A** y se ejecuta **B**:
+
+- x = 10; z = 10; y = 8
+
+Si se empieza a ejecutar **A** leyendo a **y = 2**, y en ese momento se ejecuta **C** leyendo a **x = 3** (porque no terminó la asignación de **A**), y luego se ejecuta **B** y lo que falta de **A**: 
+- x = 20; z = 10; y = 8
 
 ---
 
