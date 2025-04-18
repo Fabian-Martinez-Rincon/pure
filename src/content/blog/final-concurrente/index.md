@@ -293,55 +293,25 @@ process grano2 {
 
 **a) Analice desde el punto de vista del número de mensajes.**
 
-<details><summary>Respuesta</summary>
-
-En ambos programas, el canal `canal` se utiliza para **comunicar el resultado parcial `sum`** desde `grano1` hacia `grano2`, mediante un mensaje por cada iteración externa del bucle principal en `grano1`.
-
-- **En P1**, el proceso `grano1` ejecuta un bucle externo de **10 iteraciones**, y en cada una de ellas calcula la suma de `funcion(i)` para `i = 1 a 10000`, y luego envía un solo mensaje con ese resultado a `grano2`.  
-  🔸 Por lo tanto, **se envían 10 mensajes** en total.
-
-- **En P2**, el proceso `grano1` ejecuta un bucle externo de **10000 iteraciones**, y en cada una de ellas suma los números del 1 al 10 y luego **envía un mensaje por iteración** a `grano2`.  
-  🔸 En este caso, **se envían 10000 mensajes** en total.
-
-🔍 **Conclusión:**  
-Desde el punto de vista de la cantidad de mensajes transmitidos:
-- **P1 es más eficiente**, ya que comunica sólo 10 veces.
-- **P2 genera una sobrecarga mucho mayor**, con 10000 envíos de mensajes.
-
-
-</details>
+En **P1** se envían solo **10 mensajes** (uno por cada bloque de 10000), mientras que en **P2** se envían **10000 mensajes** (uno por cada bloque de 10), por lo que **P1 es mucho más eficiente** en términos de comunicación.
 
 **b) Analice desde el punto de vista de la granularidad de los procesos.**
 
-<details><summary>Respuesta</summary>
+En **P1**, la comunicación es poco frecuente y el cómputo por mensaje es alto, por lo que tiene **granularidad gruesa**.  
+En **P2**, hay mucha más comunicación en menos tiempo, lo que implica **granularidad fina**, mayor concurrencia pero también más sobrecarga.
 
-En **P1**, el envío de los mensajes se realiza después de largos períodos de ejecución ya que entre cada **send** se ejecuta una iteración de **10000** unidades de tiempo, esto nos asegura que la comunicación entre los dos procesos es poco frecuente.
-
-Dadas dichas características podemos decir, que desde el punto de vista de la **granularidad**, **P1** es de **granularidad gruesa** ya que la comunicación ente los procesos **no es de manera reiterada**.
-
-Al tener mayor granularidad disminuye la concurrencia y la sobrecarga de bloqueos.
-
-En **P2**, el envío de mensajes se realiza en intervalos cortos de tiempo (entre la ejecución de cada send sólo se ejecuta un **for de 1 a 10**), aumentando considerablemente la comunicación respecto de **P1**.
-
-Por lo tanto, podemos decir que **P2** es de **granularidad fina**, ya que en cada iteración el volumen de comunicación aumenta, por lo tanto la relación cómputo / comunicación disminuye. Al disminuir la **granularidad** aumenta la **concurrencia** pero también aumenta la **sobrecarga de bloqueos**.
-</details>
 
 <details><summary>Prioridad y Granularidad</summary>
 
 ![alt text](image-7.png)
 </details>
 
-> Tengo la duda de cual es la diferencia entre el **grano fino** y el **grano grueso**
 
 **c) Cuál de los programas le parece más adecuado para ejecutar sobre una arquitectura de tipo cluster de PCs? Justifique.**
-
-<details><summary>Respuesta</summary>
 
 La implementación más adecuada para este tipo de arquitecturas es **P1**, por ser de **granularidad gruesa**. Al tratarse de una arquitectura con memoria distribuida la comunicación entre los procesos es más costosa ya que cada proceso puede ejecutarse
 en computadores diferentes, por lo tanto sería más eficiente que la sobrecarga de
 comunicación sea lo más baja posible, y dicha característica la brinda la **granularidad gruesa**.
-
-</details>
 
 ---
 
@@ -415,50 +385,22 @@ process Acumula {
 </td></tr>
 </table>
 
-**a) ¿Qué hacen los programas?**
+**a) ¿Qué hacen los programas?**  
+Ambos suman todos los elementos de una matriz 10000×10000, pero:
 
-<details><summary>Respuesta</summary>
+- **P1**: `Genera` envía cada elemento (100M mensajes) y `Acumula` suma todo.  
+- **P2**: `Genera` suma por fila y envía 1 valor por fila (10K mensajes); `Acumula` suma esos totales.
 
-Ambos programas tienen como objetivo calcular la **suma total de todos los elementos de una matriz** de tamaño 10000×10000. La diferencia principal radica en **dónde se realiza la mayor parte del trabajo de acumulación**.
-
-- En **P1**, el proceso `Genera` envía **cada elemento individual** de la matriz (es decir, 10000 × 10000 = 100 millones de mensajes) al proceso `Acumula`, el cual es el encargado de realizar la suma total.  
-  👉 En este caso, la carga de cómputo recae completamente en `Acumula`.
-
-- En **P2**, el proceso `Genera` **suma localmente cada fila** de la matriz y luego envía **solo un valor por fila** (la suma de esa fila) al proceso `Acumula`. Como hay 10000 filas, `Genera` envía **solo 10000 mensajes**.  
-  👉 Aquí, `Genera` hace parte del trabajo de acumulación, y `Acumula` solo se encarga de sumar 10000 valores (uno por fila).
-
-🔍 **Conclusión**: Ambos programas calculan la suma total de la matriz, pero **P2 es más eficiente** en cuanto a **comunicación y carga de trabajo**, ya que reduce drásticamente el número de mensajes enviados por el canal.
-
-</details>
+**Conclusión**: Hacen lo mismo, pero **P2 es mucho más eficiente** en comunicación y procesamiento.
 
 **b) Analice desde el punto de vista del número de mensajes.**
 
-<details><summary>Respuesta</summary>
-
-Desde el punto de vista del número de mensajes enviados por el proceso `Genera` al proceso `Acumula`:
-
-- En **P1**, se envía **un mensaje por cada elemento** de la matriz de 10000 × 10000, lo que da un total de **100 millones de mensajes**.  
-  👉 Esto representa una alta carga de comunicación.
-
-- En **P2**, se realiza **un solo mensaje por fila**, ya que `Genera` acumula localmente la suma de cada fila y luego envía ese resultado. Por lo tanto, se envían únicamente **10000 mensajes**.  
-  👉 Esto reduce considerablemente la cantidad de mensajes en comparación con P1.
-
-🔍 **Conclusión**: **P2 es mucho más eficiente en términos de comunicación**, ya que reduce el número de mensajes de 100 millones a solo 10000.
-
-</details>
+Desde el punto de vista de los mensajes, **P1 envía 100 millones** y **P2 solo 10000**, por lo que **P2** es mucho más eficiente en comunicación.
 
 **c) Analice desde el punto de vista de la granularidad de los procesos.**
 
-<details><summary>Respuesta</summary>
+Desde el punto de vista de granularidad, **P2 tiene un grano más grueso** que **P1** porque realiza más cómputo local y menos comunicación, lo que mejora la eficiencia.
 
-Desde el punto de vista de la granularidad, el programa **P2** presenta una **granularidad más gruesa** que **P1**. Esto se debe a que en P2 el proceso `Genera` realiza una mayor cantidad de cómputo local (acumula la suma de cada fila) antes de comunicarse con el proceso `Acumula`.
-
-En cambio, en **P1**, `Genera` realiza un procesamiento mínimo y se limita a enviar cada valor individual al acumulador, generando así una gran cantidad de comunicaciones.
-
-🔍 **Conclusión**:  
-Al realizar más procesamiento local y reducir la frecuencia de comunicación, **P2 tiene un grano más grueso**, lo cual generalmente implica **mejor eficiencia y menor sobrecarga de comunicación** en sistemas concurrentes.
-
-</details>
 
 <details><summary>🧩 ¿Qué es la granularidad?</summary>
 
@@ -478,18 +420,8 @@ Esta característica es clave para el **diseño y rendimiento** de programas par
 
 **d) ¿Cuál de los programas le parece más adecuado para ejecutar sobre una arquitectura de tipo cluster de PCs? Justifique.**
 
-<details><summary>Respuesta</summary>
-
-Las arquitecturas tipo **cluster de PCs** se caracterizan por estar compuestas por múltiples nodos con alta capacidad de cómputo, pero con **canales de comunicación relativamente lentos** y costosos en comparación con arquitecturas compartidas.
-
-Por esta razón, se consideran arquitecturas de **grano grueso**, ya que se adaptan mejor a programas que realizan **mucho procesamiento local** y **reducen al mínimo la comunicación entre procesos**.
-
-En este contexto, el programa **P2** resulta más adecuado para ejecutarse en un cluster, ya que `Genera` acumula localmente la suma de cada fila y envía solo **un valor por fila**, reduciendo significativamente la cantidad de mensajes enviados (de 100 millones a 10.000).
-
-🔍 **Conclusión**:  
-> **P2 es más apropiado para ejecutarse sobre arquitecturas tipo cluster**, ya que aprovecha mejor el cómputo local y minimiza la necesidad de comunicación, alineándose con las características de este tipo de sistema.
-
-</details>
+**P2**, porque en clusters la comunicación es costosa y se prioriza el cómputo local.  
+P2 reduce drásticamente los mensajes (de 100M a 10K), adaptándose mejor al **grano grueso** que requieren estas arquitecturas.
 
 ---
 
@@ -525,140 +457,19 @@ END IF}
 ```
 </td></table>
 
-<details><summary>Respuesta</summary>
+Dado que ambos comienzan con cant = 1000, se ejecuta la rama (cant > 10). La diferencia clave está en el comportamiento ante guardas no habilitadas
+- En el Segmento 1 (DO), si ninguna guarda es verdadera, el ciclo termina.
+- En el Segmento 2 (while true), si ninguna guarda es verdadera, el programa se bloquea.
 
-En ambos segmentos, inicialmente la variable `cant` tiene el valor 1000. Por lo tanto, la ejecución comienza evaluando la guarda `(cant > 10)`, que es verdadera, y se ejecutan las acciones asociadas a esa rama (por ejemplo, `Sentencias2`).
+Para que sean equivalentes, debe haber una guarda siempre habilitada, como INCOGNITA.
 
-Sin embargo, si durante la ejecución de esa rama el valor de `cant` cambia (ya sea por una asignación directa o por un valor recibido por el canal), entonces **las guardas deben estar definidas de manera que contemplen todos los posibles valores que `cant` pueda tomar**, para asegurar que el comportamiento de ambos segmentos sea equivalente.
 
-De lo contrario, puede suceder que en **el Segmento 1** todas las guardas resulten falsas y, en ese caso, el `DO` se termina y la ejecución del programa continúa normalmente. En cambio, en **el Segmento 2**, como se trata de un bucle infinito (`while (true)`), si ninguna guarda es verdadera, el programa queda bloqueado esperando indefinidamente, a menos que `cant` sea modificada por otro proceso o evento externo.
 
-🔍 **Conclusión**:  
-Para que ambos segmentos sean equivalentes, es fundamental que las guardas consideren **todos los posibles valores** que puede tomar `cant`, incluyendo un caso **por defecto (catch-all)** como la **INCOGNITA**, que permita garantizar siempre una rama ejecutable.
-
-</details>
-
-**a) INCOGNITA equivale a: (cant = 0)**
-
-<details><summary>Respuesta</summary>
-
-Los segmentos **no son equivalentes**. En el **Segmento 1**, el uso de la estructura `DO` implica que si **ninguna de las guardas** se cumple (por ejemplo, si `cant` toma valores entre -10 y 10 excluyendo el 0), entonces el bloque termina y la ejecución del programa continúa.
-
-En cambio, en el **Segmento 2**, el bucle es un `while (true)`, por lo que **aunque ninguna guarda sea verdadera**, el ciclo continuará intentando evaluarlas en cada iteración. Esto provoca una diferencia clave en el comportamiento:  
-- El **Segmento 1** puede **finalizar naturalmente** si no hay guardas habilitadas.  
-- El **Segmento 2** puede **quedar bloqueado indefinidamente**, esperando que alguna condición se cumpla, a menos que `cant` se modifique desde otro proceso.
-
-🔍 **Conclusión:**  
-Para que ambos segmentos sean equivalentes, es necesario que las guardas cubran **todos los posibles valores de `cant`**, y en ese sentido, usar `(cant = 0)` como **INCOGNITA** ayuda a completar el conjunto de condiciones evaluables.
-
-</details>
-
-<details><summary>🛡️ ¿Qué es una guarda?</summary>
-
-Una **guarda** es una **condición lógica** que se asocia a una acción (como el envío o recepción de un mensaje, o la ejecución de una sentencia) y que **debe cumplirse para que esa acción se realice**.
-
-En programación concurrente y modelos como **Comunicación por Paso de Mensajes (CSP), Guarded Commands (Dijkstra), ADA**, etc., las guardas permiten controlar **cuándo** se puede ejecutar una determinada rama del código.
-
-🔍 **Ejemplo clásico:**
-
-```cpp
-DO
-  (x > 0) → acción1;
-▭ (y == 3) → acción2;
-OD
-```
-
-En este caso:
-- `(x > 0)` y `(y == 3)` son **guardas**.
-- Solo se ejecutan las acciones **cuyas guardas sean verdaderas**.
-- Si más de una guarda se cumple, el sistema puede elegir **nondeterminísticamente** cuál ejecutar.
-- Si **ninguna guarda se cumple**, el proceso queda bloqueado o (dependiendo del lenguaje) termina.
-
-✅ **En resumen:**
-
-> Una **guarda** es una condición que **habilita o bloquea** la ejecución de una acción. Se utiliza para expresar **comportamientos condicionales** en sistemas concurrentes o reactivos, y es clave para controlar la sincronización y el flujo de ejecución.
-
-</details>
-
-**b) INCOGNITA equivale a: (cant > -100)**
-
-<details><summary>Respuesta</summary>
-
-Con esta condición, ambos segmentos se vuelven **equivalentes** en términos de comportamiento.
-
-Esto se debe a que la guarda `(cant > -100)` **cubre todos los casos restantes** no contemplados por las otras guardas `(cant < -10)` y `(cant > 10)`. Por lo tanto, **siempre habrá al menos una guarda habilitada**, sin importar el valor de `cant`.
-
-Como consecuencia:
-- En el **Segmento 1**, el bucle `DO` **nunca finaliza**, ya que nunca se da una situación donde todas las guardas sean falsas.
-- En el **Segmento 2**, el bucle `while (true)` tampoco se detiene, y siempre ejecutará una de las ramas del `IF`.
-
-🔍 **Conclusión:**  
-Ambos segmentos ejecutan indefinidamente y responden de forma equivalente a los distintos valores de `cant`, ya que las guardas **cubren todos los casos posibles**.
-
-</details>
-
-**c) INCOGNITA equivale a: ((cant > 0) or (cant < 0))**
-
-<details><summary>Respuesta</summary>
-
-Con esta condición, los segmentos **no son equivalentes**.
-
-La razón es que cuando `cant = 0`, **ninguna de las tres guardas** se cumple:
-- `(cant < -10)` → **falsa**
-- `(cant > 10)` → **falsa**
-- `((cant > 0) OR (cant < 0))` → **falsa**, ya que `cant = 0`
-
-Entonces:
-- En el **Segmento 1**, si todas las guardas son falsas (como ocurre con `cant = 0`), el bucle `DO` finaliza, y la ejecución continúa con el resto del programa.
-- En el **Segmento 2**, el bucle `while (true)` permanece activo, pero al no cumplirse ninguna guarda, el programa queda bloqueado esperando que `cant` cambie, lo que puede requerir la intervención de otro proceso.
-
-🔍 **Conclusión:**  
-> Dado que el comportamiento ante `cant = 0` **no es el mismo en ambos segmentos**, se concluye que **no son equivalentes**.
-
-</details>
-
-**d) INCOGNITA equivale a: ((cant > -10) or (cant < 10))**
-
-<details><summary>Respuesta</summary>
-
-Con esta condición, los segmentos **no son equivalentes**.
-
-Esto se debe a que, cuando `cant = 10` o `cant = -10`, **ninguna de las guardas se cumple**:
-
-- `(cant < -10)` → **falsa**
-- `(cant > 10)` → **falsa**
-- `((cant > -10) OR (cant < 10))` → **falsa**  
-  > Porque `cant = 10` y `cant = -10` no satisfacen **ni** `cant > -10` (en el caso de -10) **ni** `cant < 10` (en el caso de 10) al mismo tiempo, y la expresión en realidad se evalúa como ambigua o mal definida según cómo se interprete.  
-  Aunque matemáticamente parece abarcar todo, **en este contexto**, deja afuera justo los valores límite.
-
-Como consecuencia:
-- En el **Segmento 1**, si ninguna guarda es verdadera (por ejemplo, para `cant = 10` o `cant = -10`), el bucle `DO` termina.
-- En el **Segmento 2**, el bucle `while (true)` continúa ejecutándose, pero al no cumplirse ninguna condición, queda bloqueado hasta que `cant` cambie.
-
-🔍 **Conclusión:**  
-> Dado que para ciertos valores (`cant = 10` o `cant = -10`) el `DO` termina en el Segmento 1 pero el `while` no en el Segmento 2, los segmentos **no son equivalentes**.
-
-</details>
-
-**e) INCOGNITA equivale a: ((cant >= -10) or (cant <= 10))**
-
-<details><summary>Respuesta</summary>
-
-Con esta condición, los segmentos se vuelven **equivalentes**.
-
-Esto se debe a que la nueva guarda cubre **todos los valores posibles de `cant`** que no están contemplados por las otras dos guardas:
-
-- `(cant < -10)`
-- `(cant > 10)`
-
-Con `INCOGNITA = ((cant >= -10) OR (cant <= 10))`, se incluyen justamente los valores **`cant = -10` y `cant = 10`**, que en el caso anterior (ítem d) quedaban fuera, provocando que todas las guardas fueran falsas y el `DO` terminara.
-
-Ahora, al asegurarse que **siempre al menos una guarda es verdadera**, el `DO` del **Segmento 1** nunca finaliza, lo que hace que el comportamiento sea **equivalente al `while(true)` del Segmento 2**, donde la ejecución es continua mientras alguna condición sea válida.
-
-🔍 **Conclusión:**  
-> Con esta guarda, los segmentos **son equivalentes**, ya que **se garantiza que siempre al menos una rama es ejecutable**, y por lo tanto, el ciclo no se interrumpe inesperadamente.
-
-</details>
+- **a) INCOGNITA equivale a: (cant = 0)** No son equivalentes si INCOGNITA solo cubre cant == 0, ya que valores como cant = 5 no están contemplados.
+- **b) INCOGNITA equivale a: (cant > -100)** Ambos segmentos son equivalentes si INCOGNITA ≡ (cant > -100), ya que siempre hay una guarda habilitada y el ciclo no se detiene.
+- **c) INCOGNITA equivale a: ((cant > 0) or (cant < 0))** Ambos segmentos **no son equivalentes** porque con `cant = 0` ninguna guarda se cumple: el `DO` finaliza, pero el `while (true)` queda bloqueado.
+- **d) INCOGNITA equivale a: ((cant > -10) or (cant < 10))** Los segmentos **no son equivalentes** porque con `cant = 10` o `-10` ninguna guarda se cumple: el `DO` finaliza, pero el `while (true)` queda bloqueado.
+- **e) INCOGNITA equivale a: ((cant >= -10) or (cant <= 10))** Con esta condición, los segmentos **son equivalentes** porque la guarda cubre todos los casos y garantiza que siempre haya al menos una rama habilitada.
 
 ---
 
@@ -676,131 +487,19 @@ if (A == 0); P2?(aux) → aux = aux + 2;
 end if;
 ```
 
-<details><summary><strong>i. Si el valor de A = 1 y B = 2 antes del if, y solo P2 envia el valor 6.</strong></summary>
+**i. Si el valor de A = 1 y B = 2 antes del if, y solo P2 envia el valor 6.** >> Solo se habilita la rama `(A == 1); P3?(aux)`, pero como **P3 no envía ningún valor**, el código **queda bloqueado esperando recibir de P3**.
 
-🔍 **Análisis:**
+**ii. Si el valor de A = 0 y B = 2 antes del if, y solo P2 envia el valor 8.** >> Se habilita la guarda `(A == 0); P2?(aux)` y como **P2 envía 8**, se recibe y se ejecuta `aux = 8 + 2`, resultando en **aux = 10**.
 
-- Las guardas evaluadas son:
-  - `(A == 0)` → **falsa**
-  - `(A == 1)` → **verdadera**
-  - `(B == 0)` → **falsa**
+**iii. Si el valor de A = 2 y B = 0 antes del if, y solo P3 envia el valor 6.** >> iii. Se habilita la guarda `(B == 0); P3?(aux)` y como **P3 envía 6**, se recibe y se ejecuta `aux = 6 + 7`, dando como resultado **aux = 13**.
 
-- Solo **una guarda es verdadera**: `(A == 1)`, que corresponde a la rama `P3?(aux) → aux = aux + 5`.
+**iv. Si el valor de A = 2 y B = 1 antes del if, y solo P3 envia el valor 9** >> Todas las guardas son falsas, por lo que el `if` **no se ejecuta**, el código **no se bloquea** y `aux` permanece en **-1**.
 
-- Sin embargo, **P3 no ha enviado ningún valor**, por lo tanto, el proceso **queda bloqueado esperando** que `P3` envíe un valor.
-
-✅ **Conclusión:**
-> El código queda **bloqueado** en la única rama habilitada, porque **P3 no se ejecutó**.
-
-</details>
+**v. Si el valor de A = 1 y B = 0 antes del if, y solo P3 envia el valor 14** >> Las guardas `(A == 1)` y `(B == 0)` son verdaderas, ambas con `P3?(aux)`, por lo que al recibir 14 se elige una de forma no determinista y `aux` será **19 (14+5)** o **21 (14+7)**.
 
 
-<details><summary><strong>ii. Si el valor de A = 0 y B = 2 antes del if, y solo P2 envia el valor 8.</strong></summary>
+**vi. Si el valor de A = 0 y B = 0 antes del if, P3 envia el valor 9 y P2 el valor 5.** >> Las guardas `(A == 0)` y `(B == 0)` son verdaderas; como **P2** envía 5 y **P3** envía 9, se elige una rama al azar y `aux` será **7 (5+2)** o **16 (9+7)**.
 
-🔍 **Análisis:**
-
-- Guardas evaluadas:
-  - `(A == 0)` → **verdadera**
-  - `(A == 1)` → falsa
-  - `(B == 0)` → falsa
-
-- Solo la **primera guarda** es válida: `(A == 0); P2?(aux) → aux = aux + 2`.
-- Como **P2 envía el valor 8**, el proceso puede recibirlo y ejecuta `aux = 8 + 2`.
-
-✅ **Resultado:**
-> El valor final de `aux` será **10**, y el código **no queda bloqueado**.
-
-</details>
-
-<details><summary><strong>iii. Si el valor de A = 2 y B = 0 antes del if, y solo P3 envia el valor 6.</strong></summary>
-
-🔍 **Análisis:**
-
-- Guardas evaluadas:
-  - `(A == 0)` → falsa
-  - `(A == 1)` → falsa
-  - `(B == 0)` → **verdadera**
-
-- Solo la **tercera guarda** es válida: `(B == 0); P3?(aux) → aux = aux + 7`.
-
-- Como **P3 envía el valor 6**, el proceso lo recibe y ejecuta `aux = 6 + 7`.
-
-✅ **Resultado:**
-> El valor final de `aux` será **13**, y el código **no queda bloqueado**.
-
-</details>
-
-<details><summary><strong>iv. Si el valor de A = 2 y B = 1 antes del if, y solo P3 envia el valor 9.</strong></summary>
-
-🔍 **Análisis:**
-
-- Guardas evaluadas:
-  - `(A == 0)` → falsa
-  - `(A == 1)` → falsa
-  - `(B == 0)` → falsa
-
-- Ninguna de las guardas es verdadera, por lo tanto, **el bloque `if` no se ejecuta**.
-
-✅ **Resultado:**
-> El código **no se bloquea**, pero **no ejecuta ninguna acción**. El valor de `aux` **se mantiene en -1**.
-
-</details>
-
-<details><summary><strong>v. Si el valor de A = 1 y B = 0 antes del if, y solo P3 envia el valor 14.</strong></summary>
-
-🔍 **Análisis:**
-
-- Guardas evaluadas:
-  - `(A == 0)` → falsa  
-  - `(A == 1)` → **verdadera** → `P3?(aux) → aux = aux + 5`
-  - `(B == 0)` → **verdadera** → `P3?(aux) → aux = aux + 7`
-
-- Hay **dos guardas verdaderas**, y ambas comparten el **mismo canal `P3?(aux)`**, por lo tanto, se produce una **elección no determinista** entre ambas ramas.
-
-- Como **P3 envía el valor 14**, cualquiera de las dos ramas puede ejecutarse:
-
-  - Si se elige la rama `(A == 1)`, entonces `aux = 14 + 5 = 19`.
-  - Si se elige la rama `(B == 0)`, entonces `aux = 14 + 7 = 21`.
-
-✅ **Resultado:**
-> El código **no se bloquea**, y el valor de `aux` puede ser **19 o 21**, dependiendo de **cuál rama se elija** de forma no determinista.
-
-</details>
-
-
-<details><summary><strong>vi. Si el valor de A = 0 y B = 0 antes del if, P3 envia el valor 9 y P2 el valor 5.</strong></summary>
-
-🔍 **Análisis:**
-
-- Guardas evaluadas:
-  - `(A == 0)` → **verdadera** → `P2?(aux) → aux = aux + 2`
-  - `(A == 1)` → falsa
-  - `(B == 0)` → **verdadera** → `P3?(aux) → aux = aux + 7`
-
-- Hay **dos guardas verdaderas**, cada una con un canal distinto (`P2` y `P3`), y **ambos procesos han enviado un valor**, por lo tanto **no hay bloqueo**.
-
-- Como hay dos ramas habilitadas, se produce una **elección no determinista** entre:
-  - Recibir `5` de **P2** y hacer `aux = 5 + 2 = 7`
-  - Recibir `9` de **P3** y hacer `aux = 9 + 7 = 16`
-
-✅ **Resultado:**
-> El código **no queda bloqueado**, y el valor de `aux` puede ser **7 o 16**, dependiendo de cuál rama se elija de forma no determinista.
-
-</details>
-
-<details><summary><strong>Resumen de todo</strong></summary>
-
-| Inciso | Valores Iniciales (`A`, `B`) | Canales Activos         | Guardas Verdaderas                 | ¿Bloqueo? | Valor final de `aux`      | Observación                                 |
-|--------|-------------------------------|--------------------------|-------------------------------------|-----------|----------------------------|----------------------------------------------|
-| a      | A = 1, B = 2                  | Solo `P2` envía valor 6 | `(A == 1)`                          | ✅ Sí     | —                          | Única guarda verdadera requiere `P3`, que no envió |
-| b      | A = 0, B = 2                  | Solo `P2` envía valor 8 | `(A == 0)`                          | ❌ No     | 10 (8 + 2)                 | Ejecuta rama de `P2`, suma 2 a valor recibido     |
-| c      | A = 2, B = 0                  | Solo `P3` envía valor 6 | `(B == 0)`                          | ❌ No     | 13 (6 + 7)                 | Ejecuta rama de `P3`, suma 7 al valor recibido    |
-| d      | A = 2, B = 1                  | Solo `P3` envía valor 9 | —                                   | ❌ No     | -1                         | Ninguna guarda se cumple, `aux` no se modifica   |
-| e      | A = 1, B = 0                  | Solo `P3` envía valor 14| `(A == 1)` y `(B == 0)`             | ❌ No     | 19 o 21                   | No determinismo entre 2 ramas (`+5` o `+7`)       |
-| f      | A = 0, B = 0                  | `P2` envía 5, `P3` 9    | `(A == 0)` y `(B == 0)`             | ❌ No     | 7 o 16                    | No determinismo entre `P2` (`+2`) y `P3` (`+7`)   |
-
-
-</details>
 
 ---
 
@@ -830,54 +529,6 @@ if (x ≥ 0) then
 x := x * 8 + x * 2 + 1;
 ```
 </td></tr></table>
-
-
-<details><summary>Detalles</summary>
-
-```pascal
-// Variables iniciales
-x := 0;        // Valor inicial compartido por todos los procesos
-y := 0;        // Solo P1 modifica y
-```
-
-Proceso P1 (con comentarios)
-
-```pascal
-if (x = 0) then        // P1 solo entra si x sigue valiendo 0
-    y := 4 * x + 2;    // y se actualiza según el valor actual de x
-    x := y + 2 + x;    // x se actualiza según el valor de y y el x que haya en ese momento
-```
-
-🔍 **P1 puede producir estos valores de `x`:**
-- Si `x = 0`:  
-  → `y = 4 * 0 + 2 = 2`  
-  → `x = 2 + 2 + 0 = 4`
-
-📌 **P1 solo puede dejar `x = 4`** como máximo si ejecuta completo y nadie interfiere.
-
-🔷 Proceso P2
-
-```pascal
-if (x ≥ 0) then        // Siempre entra, porque x ≥ 0 al inicio
-    x := x + 1;        // Suma 1 al valor actual de x
-```
-
-🔍 Si P2 se ejecuta después de P1:
-- `x = 4 + 1 = 5`
-
-🔶 Proceso P3
-
-```pascal
-x := x * 8 + x * 2 + 1;    // Esto equivale a x := 10 * x + 1
-```
-
-🔍 El valor de `x` que deja P3 depende directamente del valor que tenía x antes:
-- Si `x = 1` → `x = 10 * 1 + 1 = 11`
-- Si `x = 2` → `x = 10 * 2 + 1 = 21`
-- Si `x = 5` → `x = 10 * 5 + 1 = 51`
-- Si `x = 0` → `x = 1`
-
-</details>
 
 
 <details><summary><strong>a) El valor de x al terminar el programa es 9.</strong></summary>
@@ -997,9 +648,6 @@ Suponga que la solución a un problema es paralelizada sobre **p** procesadores 
 
 **¿Cuál de las dos soluciones se comportará más eficientemente al crecer la cantidad de procesadores? Justifique claramente.**
 
-<details><summary>Respuesta</summary>
-
-
 De las dos soluciones, la que tiene **speedup S = p - 1** se comporta de forma más eficiente a medida que crece el número de procesadores.
 
 Esto se debe a que el speedup ideal es **S = p**, y:
@@ -1010,67 +658,17 @@ Esto se debe a que el speedup ideal es **S = p**, y:
 Si analizamos la **eficiencia**, que se define como:
 
 **E = S / p**
-
-Para el primer caso:
-
-**E = (p - 1) / p**
-
-Esta eficiencia tiende a 1 cuando p crece.
-
-Para el segundo caso:
-
-**E = (p / 2) / p = 1 / 2**
-
-La eficiencia es constante e igual al 50%, sin importar cuántos procesadores haya.
+- **E = (p - 1) / p** -> Esta eficiencia tiende a 1 cuando p crece.
+- E = **(p / 2) / p** -> **(p/2) / (p/1)** -> **(p * 1)/(2 * p)** -> **p/2p** -> **1/2** -> La eficiencia es constante e igual al 50%, sin importar cuántos procesadores haya.
 
 Por lo tanto, la solución con **S = p - 1** es más eficiente, ya que utiliza mejor los procesadores disponibles.
 
-
-| Procesadores `p` | Speedup (S = p − 1) | Eficiencia (E = (p−1)/p) | Speedup (S = p / 2) | Eficiencia (E = 1/2) |
-|------------------|----------------------|---------------------------|----------------------|----------------------|
-| 2                | 1                    | 0.50                      | 1                    | 0.50                 |
-| 4                | 3                    | 0.75                      | 2                    | 0.50                 |
-| 8                | 7                    | 0.875                     | 4                    | 0.50                 |
-| 16               | 15                   | 0.9375                    | 8                    | 0.50                 |
-| 32               | 31                   | 0.96875                   | 16                   | 0.50                 |
-| 64               | 63                   | 0.984375                  | 32                   | 0.50                 |
-| 128              | 127                  | 0.9921875                 | 64                   | 0.50                 |
-
-Conclusión
-
-- La solución con **S = p - 1** **se vuelve cada vez más eficiente**, acercándose a un uso ideal de los recursos.
-- La solución con **S = p / 2** **se estanca en el 50% de eficiencia**, sin importar cuánto aumente `p`.
-
-</details>
-
-Ahora suponga **S = 1/p** y **S = 1/p^2**
-
-
-
-<details><summary>Respuesta</summary>
-
-![alt text](image-25.png)
-
-
-**📋 Comparación entre S = 1/p y S = 1/(p^2)**
-
-| Procesadores `p` | Speedup (S = 1/p) | Eficiencia (E = 1/p^2) | Speedup (S = 1/p^2) | Eficiencia (E = 1/p^3) |
-|------------------|-------------------|-------------------------|----------------------|-------------------------|
-| 1                | 1.00              | 1.00                    | 1.00                 | 1.00                    |
-| 2                | 0.50              | 0.25                    | 0.25                 | 0.125                   |
-| 4                | 0.25              | 0.0625                  | 0.0625               | 0.0156                  |
-| 8                | 0.125             | 0.0156                  | 0.0156               | 0.0020                  |
-| 16               | 0.0625            | 0.0039                  | 0.0039               | 0.00024                 |
-
-✅ Conclusión:
+**Ahora suponga S = 1/p y S = 1/p^2**
 
 - Ambos speedups disminuyen con más procesadores (son inversamente proporcionales).
 - Pero **S = 1/p** siempre es mayor que **S = 1/(p^2)**.
 - Lo mismo ocurre con la eficiencia: **1/(p^2)** decrece más lento que **1/(p^3)**.
 - Por eso, **la solución con S = 1/p es más eficiente y escala mejor**.
-
-
-</details>
 
 ---
 
@@ -1084,37 +682,14 @@ Suponga que la solución a un problema es paralelizada sobre p procesadores de d
 
 **Suponiendo el uso de 5 procesadores:**
 
-<details><summary>Respuesta</summary>
-
-**Ejemplo con p = 5:**
 
 - Opción 1: S = 5 / 3 ≈ 1.66  
 - Opción 2: S = 5 − 3 = 2
 
 En este caso, la segunda opción es más eficiente porque alcanza un mayor speedup.
 
-**Comparación general:**
-
-Ambas funciones son lineales, pero:
-
-- S = p − 3 tiene una pendiente de 1  
-- S = p / 3 tiene una pendiente de 1/3
-
-Por lo tanto, **S = p − 3 crece más rápidamente** y se acerca más al ideal S = p a medida que p crece. También su eficiencia (E = S / p) tiende a 1 con el crecimiento de p, mientras que la eficiencia de S = p / 3 se mantiene constante en 1/3.
-
-**Conclusión:**
-
-La solución con **S = p − 3** se comporta mejor para valores grandes de `p`, ya que:
-
-- Su speedup es mayor  
-- Su eficiencia se aproxima a 1  
-- Aprovecha mejor el uso de los procesadores
-
-</details>
 
 **Ahora, incrementamos la cantidad de procesadores suponemos 100 procesadores:**
-
-<details><summary>Respuesta</summary>
 
 - Solución 1 => S=100/3=33,33
 - Solución 2 => S=100-3=97
@@ -1123,7 +698,6 @@ Podemos decir, que a medida que **p** tiende a infinito, para la **solución 1**
 
 Por lo tanto la **solución 2** es la que se comporta más eficientemente al crecer la cantidad de procesadores.
 
-</details>
 
 ---
 
