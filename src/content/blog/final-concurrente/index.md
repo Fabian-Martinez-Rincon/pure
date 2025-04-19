@@ -516,11 +516,191 @@ process user[i = 1..N] {
 
 Suponga que **N procesos** poseen inicialmente cada uno un valor. Se debe calcular el promedio de todos los valores y al finalizar la computación todos deben conocer dicho promedio.
 
-a) Describa conceptualmente las soluciones posibles con memoria distribuida para arquitecturas en estrella (centralizada), anillo circular, totalmente conectada y árbol.
+**a) Describa conceptualmente las soluciones posibles con memoria distribuida para arquitecturas en estrella (centralizada), anillo circular, totalmente conectada y árbol.**
 
-b) Implemente al menos 2 de las soluciones.
 
-c) Para cada una de las soluciones (todas), calcule la cantidad de mensajes y el tiempo (considerando que eventualmente hay operaciones que pueden realizarse concurrentemente).
+**Estrella (centralizada)**
+
+Cada proceso envía su valor al coordinador. Este los suma, divide por `N` para obtener el promedio y lo reenvía a todos.  
+Cantidad de mensajes: `2(N - 1)`, o `N` si hay broadcast.  
+Paralelismo solo en el envío inicial. El coordinador es cuello de botella y único punto de falla.
+
+**Anillo circular**
+
+Un proceso (ej. `P0`) inicia la suma parcial pasando su valor al siguiente. Cada proceso suma y reenvía. Al completar la vuelta, se divide entre `N` para obtener el promedio, que luego se difunde por el anillo.  
+Cantidad de mensajes: `2(N - 1)`.
+No hay paralelismo: cada proceso espera al anterior.
+
+**Totalmente conectada**
+
+Cada proceso envía su valor a todos los demás. Luego calcula localmente el promedio.  
+Cantidad de mensajes: `N(N - 1)`, o `N` si hay broadcast.  
+Alta velocidad gracias al paralelismo completo, pero alto costo en comunicación.
+
+**Árbol**
+
+Se construye un árbol donde cada nodo envía su valor a su padre (bottom-up) para sumar. La raíz calcula el promedio dividiendo la suma por `N`, y luego lo difunde (top-down).  
+Cantidad de mensajes: `2(N - 1)`.  
+Hay cierto grado de paralelismo en ambas etapas (varios hijos pueden enviar al mismo tiempo).
+
+
+**b) Implemente al menos 2 de las soluciones.**
+
+**Estrella (centralizada)**
+
+
+<table><tr><td>Suma Total</td><td>El Promedio</td></tr>
+<tr><td>
+
+```c
+chan valor(INT);
+resultados[n](INT suma);
+
+Process P[0]{
+    INT v; INT sum = 0;
+    sum = sum + v;
+    for (i = 1 to n-1){
+        receive valor(v);
+        sum = sum + v;
+    }
+    for (i = 1 to n-1)
+        send resultado[i](sum);
+}
+
+process P[i = 1 to n-1]{
+    INT v; INT sum;
+    send valor(v);
+    receive resultado[i](sum);
+}
+```
+</td><td>
+
+```c
+chan valor(INT);
+resultados[n](REAL promedio);
+
+process P[0]{              // Coordinador
+    INT v; REAL promedio;
+    INT suma = v;
+    for (i = 1 to n - 1) {
+        receive valor(v);
+        suma = suma + v;
+    }
+    promedio = suma / n;
+    for (i = 1 to n - 1)
+        send resultados[i](promedio);
+}
+
+process P[i = 1 to n - 1]{ // Workers
+    INT v; REAL promedio;
+    send valor(v);
+    receive resultados[i](promedio);
+}
+```
+</td></tr></table>
+
+Anillo circular
+
+<table><tr><td>Suma Total</td><td>El Promedio</td></tr>
+<tr><td>
+
+```c
+chan valor[n](suma);
+
+process p[0] {
+    INT v;
+    INT suma = v;
+    send valor[1](suma);
+    receive valor[0](suma);
+    send valor[1](suma);
+}
+
+process p[i = 1 to n-1] {
+    INT v;
+    INT suma;
+    receive valor[i](suma);
+    suma = suma + v;
+    send valor[(i + 1) mod n](suma);
+    receive valor[i](suma);
+    if (i < n - 1)
+        send valor[i + 1](suma);
+}
+```
+</td><td>
+
+```c
+chan valor[n](INT);      // para suma
+chan difusion[n](REAL);  // para promedio
+
+process P[0] {
+    INT v, suma = v;
+    REAL promedio;
+    send valor[1](suma);
+    receive valor[0](suma);
+    promedio = suma / n;
+    send difusion[1](promedio);
+}
+
+process P[i = 1 to n - 1] {
+    INT v, suma;
+    REAL promedio;
+
+    receive valor[i](suma);
+    suma = suma + v;
+    send valor[(i + 1) mod n](suma);
+
+    receive difusion[i](promedio);
+    send difusion[(i + 1) mod n](promedio);
+}
+
+```
+</td></tr></table>
+
+Totalmente conectada (simetrica)
+
+<table><tr><td>Suma Total</td><td>El Promedio</td></tr>
+<tr><td>
+
+```c
+chan valor[n](INT);
+
+process p[i=0 to n-1] {
+    INT v;
+    INT nuevo, suma = v;
+    
+    for (k=0 to n-1 st k <> i)
+        send valor[k](v);
+        
+    for (k=0 to n-1 st k <> i) {
+        receive valor[i](nuevo);
+        suma = suma + nuevo;
+    }
+}
+```
+</td><td>
+
+```c
+chan valor[n](INT);
+
+process P[i = 0 to n - 1] {
+    INT v = ..., nuevo;
+    INT suma = v;
+    REAL promedio;
+
+    for (k = 0 to n - 1 st k <> i)
+        send valor[k](v);
+
+    for (k = 0 to n - 1 st k <> i) {
+        receive valor[i](nuevo);
+        suma = suma + nuevo;
+    }
+
+    promedio = suma / n;
+}
+```
+</td></tr></table>
+
+**c) Para cada una de las soluciones (todas), calcule la cantidad de mensajes y el tiempo (considerando que eventualmente hay operaciones que pueden realizarse concurrentemente).**
 
 Instancie c) para **N=4, N=8, N=16, N=32 y N=64**. Analice la performance para cada caso y compare las soluciones.
 
