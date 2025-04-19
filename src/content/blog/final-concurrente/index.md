@@ -70,9 +70,7 @@ Suponga que una imagen se encuentra representada por una matriz a **(n×n)**, y 
 
 **a)** Escriba un algoritmo **Herbeat** que calcule el **máximo** y el **mínimo** valor de los píxeles de la imagen. Al terminar el programa, cada proceso debe conocer ambos valores.
 
-<details><summary>Respuesta</summary>
-
-```nginx
+```cpp
 chan topologia[1:n](emisor : int; listo : bool; top : [1:n,1:n] bool; max : int; min : int);
 
 process nodo[p = 1..n] {
@@ -118,16 +116,13 @@ process nodo[p = 1..n] {
     }
 }
 ```
-</details>
+
 
 **b) Analice la solución de desde el punto de vista del número de mensajes.**
 
-<details><summary>Respuesta</summary>
-Si M es el numero maximo de vecinos que puede tener un nodo, y D es el diametro de la
-red, el número de mensajes maximo que pueden intercambiar es de 2n * m * (D+1). Esto
-es porque cada nodo ejecuta a lo sumo D-1 rondas, y en cada una de ellas manda 2
-mensajes a sus m vecinos
-</details>
+Si M es el numero maximo de vecinos que puede tener un nodo, y D es el diametro de la red, el número de mensajes maximo que pueden intercambiar es de **2n** * **m** * **(D+1)**. Esto es porque cada nodo ejecuta a lo sumo **D-1** rondas, y en cada una de ellas manda **2** mensajes a sus m vecinos
+
+---
 
 ## 1) Calcular la suma de todos los valores
 
@@ -461,7 +456,6 @@ Todos los nodos reciben el mensaje, usando solo `n - 1 = 6` mensajes.
 
 Implemente una solución al problema de exclusión mutua distribuida entre **N** procesos utilizado un algoritmo de tipo token passing con mensajes asincrónicos.
 
-<details><summary>Respuesta</summary>
 
 El algoritmo de **token passing**, se basa en un tipo especial de mensaje o **“token”** que
 puede utilizarse para otorgar un **permiso** (control) o para **recoger información global** de la arquitectura distribuida.
@@ -476,19 +470,27 @@ Para no ocupar los procesos **User** en el manejo de los **tokens**, ideamos un 
 ```cpp
 chan token[n]() ;                   # para envío de tokens
 chan enter[n](), go[n](), exit[n](); # para comunicación proceso-helper
+```
 
+<table><td>
+
+```cpp
 process helper[i = 1..N] {
     while(true){
-        receive token[i]();               # recibe el token
-        if(!(empty(enter[i]))){          # si su proceso quiere usar la SC
+        receive token[i]();               
+        if(!(empty(enter[i]))){
             receive enter[i]();
-            send go[i]();                # le da permiso y lo espera a que termine
+            send go[i]();
             receive exit[i]();
         }
-        send token[i MOD N + 1]();       # y lo envía al siguiente cíclicamente
+        send token[i MOD N + 1]();
     }
 }
+```
+</td>
+<td>
 
+```cpp
 process user[i = 1..N] {
     while(true){
         send enter[i]();
@@ -499,16 +501,20 @@ process user[i = 1..N] {
     }
 }
 ```
+</td></table>
+
+
+
+
 
 > Se asume que el primero ya tenga el token
 
-</details>
 
 ---
 
 ## Suponga que N Procesos
 
-**5.-** Suponga que **N procesos** poseen inicialmente cada uno un valor. Se debe calcular el promedio de todos los valores y al finalizar la computación todos deben conocer dicho promedio.
+Suponga que **N procesos** poseen inicialmente cada uno un valor. Se debe calcular el promedio de todos los valores y al finalizar la computación todos deben conocer dicho promedio.
 
 a) Describa conceptualmente las soluciones posibles con memoria distribuida para arquitecturas en estrella (centralizada), anillo circular, totalmente conectada y árbol.
 
@@ -524,7 +530,7 @@ Instancie c) para **N=4, N=8, N=16, N=32 y N=64**. Analice la performance para c
 
 ## Suponga una ciudad representada por una matriz
 
-**5.** Suponga una ciudad representada por una matriz **A(n×n)**. De cada esquina **x, y** se conocen dos valores enteros que representan la cantidad de **autos** y **motos** que cruzaron en la última hora. Los valores de cada esquina son mantenidos por un proceso distinto **P(x, y)**. Cada proceso puede comunicarse con sus vecinos **izquierdo, derecho, arriba y abajo**, y también con los de las **4 diagonales** (los procesos de las esquinas tienen solo 3 vecinos y los otros en los bordes de la grilla tienen 5 vecinos).
+Suponga una ciudad representada por una matriz **A(n×n)**. De cada esquina **x, y** se conocen dos valores enteros que representan la cantidad de **autos** y **motos** que cruzaron en la última hora. Los valores de cada esquina son mantenidos por un proceso distinto **P(x, y)**. Cada proceso puede comunicarse con sus vecinos **izquierdo, derecho, arriba y abajo**, y también con los de las **4 diagonales** (los procesos de las esquinas tienen solo 3 vecinos y los otros en los bordes de la grilla tienen 5 vecinos).
 
 
 ---
