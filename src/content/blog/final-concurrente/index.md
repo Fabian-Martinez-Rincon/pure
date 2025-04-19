@@ -14,6 +14,12 @@ Bueno como estoy re juguete para el parcial, hay ciertas preguntas que no toman 
 
 ---
 
+**💀Aprendelo o te moris**
+
+
+
+---
+
 **📌 Preguntas Practicas FIJAS**
 
 - [1) Calculos con Matrices](#1-calculos-con-matrices)
@@ -53,6 +59,621 @@ Bueno como estoy re juguete para el parcial, hay ciertas preguntas que no toman 
 - [8) Implemente una butterfly barrier para 8 procesos](#8-implemente-una-butterfly-barrier-para-8-procesos)
 - [9) Suponga n^2 procesos organizados en forma de grilla cuadrada](#9-suponga-n2-procesos-organizados-en-forma-de-grilla-cuadrada)
 - [10) Una imagen se encuentra representada por una matriz](#10-una-imagen-se-encuentra-representada-por-una-matriz)
+
+---
+
+# Aprendes o te moris
+
+## 0) Una imagen se encuentra representada por una matriz
+
+Suponga que una imagen se encuentra representada por una matriz a **(n×n)**, y que el valor de cada pixel es un número **entero** que es mantenido por un proceso distinto (es decir, el valor del píxel **I**,**J** está en el proceso **P(I,J)**). Cada proceso puede comunicarse solo con sus vecinos izquierdo, derecho, arriba y abajo. (Los procesos de las esquinas tienen solo 2 vecinos, y los otros bordes de la grilla tienen 3 vecinos).
+
+**a)** Escriba un algoritmo **Herbeat** que calcule el **máximo** y el **mínimo** valor de los píxeles de la imagen. Al terminar el programa, cada proceso debe conocer ambos valores.
+
+<details><summary>Respuesta</summary>
+
+```nginx
+chan topologia[1:n](emisor : int; listo : bool; top : [1:n,1:n] bool; max : int; min : int);
+
+process nodo[p = 1..n] {
+    bool vecinos[1:n];              # inicialmente vecinos[q] true si q es vecino de p
+    bool activo[1:n] = vecinos;     # vecinos aún activos
+    bool top[1:n,1:n] = ([n*n]false);  # vecinos conocidos (matriz de adyacencia)
+    bool nuevatop[1:n,1:n];
+    int r = 0;
+    bool listo = false;
+    int emisor;
+    bool qlisto;
+    int miValor, max, min;
+    
+    top[p,1..n] = vecinos;          # llena la fila para los vecinos
+    max := miValor; 
+    min := miValor;                # miValor inicializado con el valor del píxel
+
+    while (not listo) {            # envía conocimiento local de la topología a sus vecinos
+        for (q = 1 to n st activo[q]) {
+            send topologia[q](p, false, top, max, min);
+        }
+
+        for (q = 1 to n st activo[q]) {
+            receive topologia[p](emisor, qlisto, nuevatop, nuevoMax, nuevoMin);
+            top = top or nuevatop;                  # hace OR con su top juntando la información
+            if (nuevoMax > max) max := nuevoMax;    # actualiza los máximos y mínimos
+            if (nuevoMin < min) min := nuevoMin;
+            if (qlisto) activo[emisor] = false;
+        }
+
+        if (todas las filas de top tienen 1 entry true) listo = true;
+        r := r + 1;
+    }
+
+    # envía topología completa a todos sus vecinos aún activos
+    for (q = 1 to n st activo[q]) {
+        send topologia[q](p, listo, top, max, min);
+    }
+
+    # recibe un mensaje de cada uno para limpiar el canal
+    for (q = 1 to n st activo[q]) {
+        receive topologia[p](emisor, d, nuevatop, nuevoMax, nuevoMin);
+    }
+}
+```
+</details>
+
+**b) Analice la solución de desde el punto de vista del número de mensajes.**
+
+<details><summary>Respuesta</summary>
+Si M es el numero maximo de vecinos que puede tener un nodo, y D es el diametro de la
+red, el número de mensajes maximo que pueden intercambiar es de 2n * m * (D+1). Esto
+es porque cada nodo ejecuta a lo sumo D-1 rondas, y en cada una de ellas manda 2
+mensajes a sus m vecinos
+</details>
+
+## 1) Calcular la suma de todos los valores
+
+Suponga que **N** procesos poseen inicialmente cada uno un valor. Se debe calcular la suma de todos los valores y al finalizar la computación todos deben conocer dicha suma.
+
+Analice (desde el punto de vista del número de mensajes y la performance global) las soluciones posibles con memoria distribuida para **arquitecturas en Estrella** (centralizada), **Anillo Circular**, **Totalmente Conectada** y **Árbol**.
+
+<details><summary>arquitecturas en Estrella(centralizada)</summary>
+
+En este tipo de arquitectura todos los procesos (workers) envían su valor local al procesador central (coordinador), este suma los `N` datos y reenvía la información de la suma al resto de los procesos.  
+Por lo tanto se ejecutan `2(N-1)` mensajes. Si el procesador central dispone de una primitiva broadcast, se reduce a `N` mensajes.
+
+En cuanto a la performance global, los mensajes al coordinador se envían casi al mismo tiempo.  
+Estos se quedarán esperando hasta que el coordinador termine de computar la suma y envíe el resultado a todos.
+
+```c
+chan valor(INT);
+resultados[n](INT suma);
+
+Process P[0]{              // coordinador, v está inicializado
+    INT v; INT sum = 0;
+    sum = sum + v;
+    for (i = 1 to n-1){
+        receive valor(v);
+        sum = sum + v;
+    }
+    for (i = 1 to n-1)
+        send resultado[i](sum);
+}
+
+process P[i = 1 to n-1]{   // worker, v está inicializado
+    INT v; INT sum;
+    send valor(v);
+    receive resultado[i](sum);
+}
+```
+
+🧩 Supuestos
+
+De nuevo usamos `n = 4` procesos:
+
+| Proceso | Rol        | Valor local `v[i]` |
+|---------|------------|--------------------|
+| P[0]    | Coordinador| 2                  |
+| P[1]    | Worker     | 3                  |
+| P[2]    | Worker     | 5                  |
+| P[3]    | Worker     | 7                  |
+
+🎯 Objetivo
+
+- `P[0]` recibe los valores de todos los procesos.
+- Suma: `2 + 3 + 5 + 7 = 17`.
+- Luego envía la **suma global** de vuelta a todos los workers.
+
+🚀 Ejecución paso a paso
+
+📨 Fase 1: Envío de los valores al coordinador
+
+| Paso | Acción |
+|------|--------|
+| 1 | `P[1]` envía `3` a `P[0]` |
+| 2 | `P[2]` envía `5` a `P[0]` |
+| 3 | `P[3]` envía `7` a `P[0]` |
+| 4 | `P[0]` ya tiene su `v = 2`, recibe `3`, `5`, y `7`, suma total = **17** |
+
+📤 Fase 2: Coordinador difunde la suma
+
+| Paso | Acción |
+|------|--------|
+| 5 | `P[0]` envía `17` a `P[1]` |
+| 6 | `P[0]` envía `17` a `P[2]` |
+| 7 | `P[0]` envía `17` a `P[3]` |
+
+✅ Resultado final
+
+| Proceso | Valor final conocido |
+|---------|----------------------|
+| P[0]    | 17 (lo calculó)      |
+| P[1]    | 17 (lo recibió)      |
+| P[2]    | 17 (lo recibió)      |
+| P[3]    | 17 (lo recibió)      |
+
+💬 Observaciones
+
+- Total de mensajes: `2(n - 1)` = `2(4 - 1)` = **6 mensajes**
+- Con **broadcast**: solo `n = 4` mensajes (1 de cada worker al coordinador, 1 broadcast de vuelta).
+- Buena performance en tiempo, porque los workers **envían todos al mismo tiempo**.
+- Pérdida de paralelismo en el cómputo: solo el **coordinador trabaja**, los demás esperan.
+- **Punto único de falla**: si `P[0]` se cae, el sistema no funciona.
+
+</details>
+
+<details><summary>Anillo circular</summary>
+
+Se tiene un anillo donde `P[i]` recibe mensajes de `P[i-1]` y envía mensajes a `P[i+1]`. `P[n-1]` tiene como sucesor a `P[0]`. El primer proceso envía su valor local ya que es el único que conoce.
+
+Este esquema consta de dos etapas:
+
+1. Cada proceso recibe un valor y lo suma con su valor local, transmitiendo la suma local a su sucesor.  
+2. Todos reciben la suma global.
+
+`P[0]` debe ser algo diferente para poder “arrancar” el procesamiento: debe enviar su valor local ya que es el único que conoce. Se requerirán **2(n-1)** mensajes.
+
+A diferencia de la solución centralizada, esta reduce los requerimientos de memoria por proceso pero tardara más en ejecutarse, por más que el número de mensajes requeridos sea el mismo. Esto se debe a que cada proceso debe esperar un valor para computar una suma parcial y luego enviársela al siguiente proceso; es decir, un proceso trabaja por vez, se pierde el paralelismo.
+
+
+```c
+chan valor[n](suma);
+
+process p[0] {
+    INT v;
+    INT suma = v;
+    send valor[1](suma);
+    receive valor[0](suma);
+    send valor[1](suma);
+}
+
+process p[i = 1 to n-1] {
+    INT v;
+    INT suma;
+    receive valor[i](suma);
+    suma = suma + v;
+    send valor[(i + 1) mod n](suma);
+    receive valor[i](suma);
+    if (i < n - 1)
+        send valor[i + 1](suma);
+}
+```
+
+| Proceso | `v[i]` |
+|---------|--------|
+| P[0]    | 2      |
+| P[1]    | 3      |
+| P[2]    | 5      |
+| P[3]    | 7      |
+
+El objetivo es que **todos los procesos conozcan la suma total**, que es `2 + 3 + 5 + 7 = 17`.
+
+🧠 Etapa 1: **Suma parcial hacia adelante**
+
+| Paso | Acción |
+|------|--------|
+| 1 | `P[0]` envía `2` a `P[1]` |
+| 2 | `P[1]` recibe `2`, suma su `v=3`, total = `5`, envía `5` a `P[2]` |
+| 3 | `P[2]` recibe `5`, suma su `v=5`, total = `10`, envía `10` a `P[3]` |
+| 4 | `P[3]` recibe `10`, suma su `v=7`, total = `17`, envía `17` a `P[0]` |
+
+
+🧠 Etapa 2: **Difusión de la suma global**
+
+| Paso | Acción |
+|------|--------|
+| 5 | `P[0]` recibe `17` de `P[3]`, reenvía `17` a `P[1]` |
+| 6 | `P[1]` recibe `17`, reenvía `17` a `P[2]` |
+| 7 | `P[2]` recibe `17`, reenvía `17` a `P[3]` |
+| 8 | `P[3]` recibe `17` |
+
+✅ Resultado final
+
+Todos los procesos conocen el valor total `17`.
+
+| Proceso | Valor recibido |
+|---------|----------------|
+| P[0]    | 17             |
+| P[1]    | 17             |
+| P[2]    | 17             |
+| P[3]    | 17             |
+
+💬 Observaciones
+
+- **Cantidad de mensajes**: 2(n - 1) = 2(4 - 1) = 6 mensajes, como indica tu descripción.
+- **Secuencialidad**: cada proceso espera su turno para sumar → **no hay paralelismo**.
+- **P[0]** es especial, porque inicia la suma **y también** es el primero que difunde la suma global.
+
+</details>
+
+<details><summary>Totalmente conectada (simetrica)</summary>
+
+Todos los procesos ejecutan el mismo algoritmo. Existe un canal entre cada par de procesos.  
+Cada uno transmite su dato local `v` a los `n-1` restantes. Luego recibe y procesa los `n-1` datos que le faltan, de modo que en paralelo toda la arquitectura está calculando la suma total y tiene acceso a los `n` datos.
+
+Se ejecutan `n(n-1)` mensajes. Si se dispone de una primitiva de broadcast, serán `n` mensajes.  
+Es la solución más corta y sencilla de programar, pero utiliza el mayor número de mensajes si no hay broadcast.
+
+```cpp
+chan valor[n](INT);
+
+process p[i=0 to n-1] {
+    INT v;
+    INT nuevo, suma = v;
+    
+    for (k=0 to n-1 st k <> i)
+        send valor[k](v);
+        
+    for (k=0 to n-1 st k <> i) {
+        receive valor[i](nuevo);
+        suma = suma + nuevo;
+    }
+}
+```
+
+🧩 Supuestos
+
+Usamos de nuevo `n = 4` procesos y valores locales:
+
+| Proceso | `v[i]` |
+|---------|--------|
+| P[0]    | 2      |
+| P[1]    | 3      |
+| P[2]    | 5      |
+| P[3]    | 7      |
+
+🚀 ¿Qué hace cada proceso?
+
+- Cada proceso envía su valor a los otros 3 (`n-1`).
+- Luego, **recibe** los 3 valores que le faltan, y los **suma**.
+- Esto se hace en paralelo, es decir, todos los procesos trabajan al mismo tiempo.
+
+📊 Ejecución paso a paso
+
+**Fase 1: Envío**
+
+| Proceso | Envía a...             | Mensajes |
+|---------|------------------------|----------|
+| P[0]    | P[1], P[2], P[3]       | 3        |
+| P[1]    | P[0], P[2], P[3]       | 3        |
+| P[2]    | P[0], P[1], P[3]       | 3        |
+| P[3]    | P[0], P[1], P[2]       | 3        |
+| **Total** |                        | **12 mensajes** |
+
+**Fase 2: Recepción y suma**
+
+Cada proceso recibe 3 valores y los suma con el propio:
+
+| Proceso | Valores recibidos | Suma final |
+|---------|-------------------|------------|
+| P[0]    | 3, 5, 7           | 2 + 3 + 5 + 7 = 17 |
+| P[1]    | 2, 5, 7           | 3 + 2 + 5 + 7 = 17 |
+| P[2]    | 2, 3, 7           | 5 + 2 + 3 + 7 = 17 |
+| P[3]    | 2, 3, 5           | 7 + 2 + 3 + 5 = 17 |
+
+✅ Resultado final
+
+Todos conocen la suma global **17**.
+
+| Proceso | Suma calculada |
+|---------|----------------|
+| P[0]    | 17             |
+| P[1]    | 17             |
+| P[2]    | 17             |
+| P[3]    | 17             |
+
+💬 Observaciones
+
+- Total de mensajes: `n(n-1)` = `4 × 3` = **12 mensajes**
+- Todos trabajan en **paralelo** → **alta velocidad**
+- Pero: requiere **muchos canales y mensajes**
+- Si tuvieras broadcast, solo necesitarías **n mensajes** (1 por proceso).
+
+</details>
+
+<details><summary>Arbol</summary>
+
+Se tiene una red de procesadores (nodos) conectados por canales de comunicación bidireccionales. Cada nodo se comunica directamente con sus vecinos. Si un nodo quiere enviar un mensaje a toda la red, debería construir un árbol de expansión de la misma, poniéndose a él mismo como raíz.
+
+El nodo raíz envía un mensaje por broadcast a todos los hijos, junto con el árbol construido. Cada nodo examina el árbol recibido para determinar los hijos a los cuales deben reenviar el mensaje, y así sucesivamente.
+
+Se envían `n - 1` mensajes, uno por cada padre/hijo del árbol.
+
+
+🧩 Supuestos
+
+- Tenemos `n = 7` nodos numerados del `0` al `6`.
+- Se construye un **árbol de expansión** para propagar un mensaje, con el **nodo `0` como raíz**.
+- El árbol tiene esta estructura (por simplicidad):
+
+```
+        0
+      / | \
+     1  2  3
+        |   \
+        4    5
+              \
+               6
+```
+
+---
+
+🎯 Objetivo
+
+Difundir un **mensaje** desde el nodo raíz (`0`) hacia todos los demás nodos usando el árbol.
+
+ 🚀 Ejecución paso a paso
+
+| Paso | Nodo emisor | Nodo receptor | Descripción |
+|------|-------------|----------------|-------------|
+| 1    | 0           | 1              | Nodo 0 envía a su hijo 1 |
+| 2    | 0           | 2              | Nodo 0 envía a su hijo 2 |
+| 3    | 0           | 3              | Nodo 0 envía a su hijo 3 |
+| 4    | 2           | 4              | Nodo 2 reenvía a su hijo 4 |
+| 5    | 3           | 5              | Nodo 3 reenvía a su hijo 5 |
+| 6    | 5           | 6              | Nodo 5 reenvía a su hijo 6 |
+
+✅ Resultado final
+
+Todos los nodos reciben el mensaje, usando solo `n - 1 = 6` mensajes.
+
+| Nodo | ¿Recibió el mensaje? |
+|------|------------------------|
+| 0    | Sí (es la raíz)       |
+| 1    | Sí                    |
+| 2    | Sí                    |
+| 3    | Sí                    |
+| 4    | Sí                    |
+| 5    | Sí                    |
+| 6    | Sí                    |
+
+💬 Observaciones
+
+- **Mensajes totales**: `n - 1 = 6`
+- Es la forma más eficiente si ya tenemos el árbol.
+- Permite **paralelismo**: varios nodos pueden reenviar a la vez.
+- Ideal para redes distribuidas con **vecindades limitadas** (no totalmente conectadas).
+- Si se necesita hacer una suma global, se puede hacer un **recorrido postorden** (bottom-up), y luego **difundir el resultado** (top-down).
+
+</details>
+
+---
+
+## 2) Token passing con mensajes asincrónicos
+
+Implemente una solución al problema de exclusión mutua distribuida entre **N** procesos utilizado un algoritmo de tipo token passing con mensajes asincrónicos.
+
+<details><summary>Respuesta</summary>
+
+El algoritmo de **token passing**, se basa en un tipo especial de mensaje o **“token”** que
+puede utilizarse para otorgar un **permiso** (control) o para **recoger información global** de la arquitectura distribuida.
+
+Si **User[1:n]** son un conjunto de procesos de aplicación que contienen secciones críticas y
+no críticas. Hay que desarrollar los protocolos de interacción (E/S a las secciones críticas),
+asegurando **exclusión mútua**, **no deadlock**, **evitar demoras innecesarias** y **eventualmente fairness**.
+
+Para no ocupar los procesos **User** en el manejo de los **tokens**, ideamos un proceso **auxiliar (helper)** por cada **User**, de modo de manejar la circulación de los **tokens**. Cuando **helper[i]** tiene el **token** adecuado, significa que **User[i]** tendrá prioridad para acceder a la sección crítica.
+
+
+```cpp
+chan token[n]() ;                   # para envío de tokens
+chan enter[n](), go[n](), exit[n](); # para comunicación proceso-helper
+
+process helper[i = 1..N] {
+    while(true){
+        receive token[i]();               # recibe el token
+        if(!(empty(enter[i]))){          # si su proceso quiere usar la SC
+            receive enter[i]();
+            send go[i]();                # le da permiso y lo espera a que termine
+            receive exit[i]();
+        }
+        send token[i MOD N + 1]();       # y lo envía al siguiente cíclicamente
+    }
+}
+
+process user[i = 1..N] {
+    while(true){
+        send enter[i]();
+        receive go[i]();
+        ... sección crítica ...
+        send exit[i]();
+        ... sección no crítica ...
+    }
+}
+```
+
+> Se asume que el primero ya tenga el token
+
+</details>
+
+---
+
+## Suponga que N Procesos
+
+**5.-** Suponga que **N procesos** poseen inicialmente cada uno un valor. Se debe calcular el promedio de todos los valores y al finalizar la computación todos deben conocer dicho promedio.
+
+a) Describa conceptualmente las soluciones posibles con memoria distribuida para arquitecturas en estrella (centralizada), anillo circular, totalmente conectada y árbol.
+
+b) Implemente al menos 2 de las soluciones.
+
+c) Para cada una de las soluciones (todas), calcule la cantidad de mensajes y el tiempo (considerando que eventualmente hay operaciones que pueden realizarse concurrentemente).
+
+Instancie c) para **N=4, N=8, N=16, N=32 y N=64**. Analice la performance para cada caso y compare las soluciones.
+
+**Nota:** puede suponer que cada una de las operaciones tarda una unidad de tiempo.
+
+---
+
+## Suponga una ciudad representada por una matriz
+
+**5.** Suponga una ciudad representada por una matriz **A(n×n)**. De cada esquina **x, y** se conocen dos valores enteros que representan la cantidad de **autos** y **motos** que cruzaron en la última hora. Los valores de cada esquina son mantenidos por un proceso distinto **P(x, y)**. Cada proceso puede comunicarse con sus vecinos **izquierdo, derecho, arriba y abajo**, y también con los de las **4 diagonales** (los procesos de las esquinas tienen solo 3 vecinos y los otros en los bordes de la grilla tienen 5 vecinos).
+
+
+---
+
+## Exclusión mutua distribuida
+
+Implemente una solución al problema de exclusión mutua distribuida entre **N procesos** utilizando un algoritmo **Token Passing** con **PMA**.
+
+---
+
+## Una ciudad representada por una matriz
+
+Suponga una ciudad representada por una matriz **A(n×n)**. De cada esquina **x, y** se conocen dos valores enteros que representan la cantidad de **autos** y **motos** que cruzaron en la última hora. Los valores de cada esquina son mantenidos por un proceso distinto **P(x, y)**. Cada proceso puede comunicarse con sus vecinos izquierdo, derecho, arriba y abajo, y también con los de las 4 diagonales (los procesos de las esquinas tienen sólo 3 vecinos y los otros en los bordes de la grilla tienen 5 vecinos).
+
+**a)** Escriba un algoritmo **Heartbeat** que calcule las esquinas donde cruzaron la **mayor cantidad de autos** y la **menor cantidad de motos** respectivamente, de forma que al terminar el programa, cada proceso conozca ambos valores.  
+**Nota:** Indicar qué tipo de pasajes de mensajes se va a utilizar. Justificar la elección.
+
+**b)** Analizar desde el punto de vista de la **cantidad de mensajes**.
+
+**c)** Analizar cómo podría **mejorarse** la cantidad de mensajes.
+
+**d)** Analizar **qué pasaría si no existieran las diagonales**.
+
+---
+
+Claro, acá tenés el texto completamente transcripto:
+
+---
+
+## Exclusión mutua distribuida
+
+Implemente una solución al problema de exclusión mutua distribuida entre **N procesos utilizando un algoritmo token passing con mensajes asincrónicos**.
+
+---
+
+## Solución al problema del pruducto de matrices
+
+Sea la siguiente solución al problema del producto de matrices de **n×n** con **P procesos** en paralelo con variables compartidas.
+
+```c
+process worker [w = 1 to P] {  # strips en paralelo (p strips de n/P filas)
+    int first = (w - 1) * n / P + 1;    # Primera fila del strip
+    int last = first + n/P - 1;        # Última fila del strip
+    for (i = first to last) {
+        for (j = 1 to n) {
+            c[i,j] = 0.0;
+            for (k = 1 to n)
+                c[i,j] = c[i,j] + a[i,k] * b[k,j];
+        }
+    }
+}
+```
+
+Suponga **n = 512** y cada procesador capaz de ejecutar un proceso.
+
+**a)** Calcular cuántas asignaciones, sumas y productos se hacen secuencialmente (caso en que P=1), y cuántas se realizan en cada procesador en la solución paralela con **P=8**.
+
+**b)** Si los procesadores **P1 a P7** son idénticos, con tiempos de **asignación 1**, de **suma 2** y de **producto 3**, y si el procesador **P8 es 3 veces más lento**, calcule cuánto tarda el proceso total concurrente.
+
+**c)** ¿Cuál es el valor del **speedup**?
+
+**d)** ¿Cómo modificaría el código para lograr un mejor speedup?
+
+**NOTA:** para realizar los cálculos **no tenga en cuenta** las operaciones de asignación e incremento correspondientes a las sentencias **for**.
+
+---
+
+## Defina los paradigmas de interacción
+
+Defina los paradigmas de interacción entre procesos distribuidos **heartbeat**, **servidores replicados** y **token passing**.  
+
+Marque **ventajas y desventajas** en cada uno de ellos cuando se utiliza comunicación por **mensajes sincrónicos o asincrónicos**.
+
+---
+
+## Suponga que N Procesos
+
+Suponga que **N procesos** poseen inicialmente cada uno un valor. Se debe calcular el **promedio de todos los valores** y al finalizar la computación todos deben conocer dicho promedio.
+
+**a)** Describa conceptualmente las soluciones posibles con memoria distribuida para arquitecturas en **estrella (centralizada)**, **anillo circular**, **totalmente conectada** y **árbol**.
+
+**b)** Implemente al menos **2 de las soluciones**.
+
+**c)** Para cada una de las soluciones (todas), **calcule la cantidad de mensajes y el tiempo** (considerando que eventualmente hay operaciones que pueden realizarse concurrentemente).  
+Instancie c) para **N = 4, N = 8, N = 16, N = 32** y **N = 64**. Analice la **performance** para cada caso y **compare las soluciones**.
+
+**Nota:** puede suponer que cada una de las operaciones tarda una unidad de tiempo.
+
+---
+
+## Suponga que N Procesos
+
+**Suponga que N procesos poseen inicialmente cada uno un valor.**  
+Se debe calcular el **promedio de todos los valores** y al finalizar la computación todos deben conocer dicho promedio.
+
+**a.** Describa conceptualmente las soluciones posibles con memoria distribuida para arquitectura en  
+**estrella (centralizada)**, **anillo circular**, **totalmente conectada** y **árbol**.
+
+**b.** Implemente al menos 2 de las soluciones.
+
+**c.** Para cada una de las soluciones (todas), **calcule la cantidad de mensajes y el tiempo**.  
+Instancie c) para **N = 4, N = 8, N = 16, N = 32 y N = 64**.  
+Analice la **performance** en cada caso y **compare las soluciones**.
+
+**NOTA:** Puede suponer que cada una de las operaciones tarda una unidad de tiempo.
+
+---
+
+## Suponga que N Procesos
+
+Suponga que **N procesos** poseen inicialmente cada uno un valor. Se debe calcular la **suma de todos los valores** y al finalizar la computación todos deben conocer dicha suma.  
+Analice (desde el punto de vista del número de mensajes y la performance global) las soluciones posibles con memoria distribuida para arquitecturas en **Estrella (centralizada)**, **Anillo Circular**, **Totalmente Conectada** y **Árbol**.  
+**Definir conceptualmente y decir cantidad de mensajes de cada uno. Implementar dos de esos.**
+
+
+> **En la mesa de mayo eran los mismos ejercicios excepto el último**: había que implementar **heartbeat o passing the baton** (se elegía uno de los dos).
+
+---
+
+## Suponga que N Procesos
+
+Implemente una solución al problema de **exclusión mutua distribuida entre n procesos** utilizando un algoritmo **Token Passing con mensajes asincrónicos**.
+
+---
+
+## Suponga una ciudad representada por una matriz
+
+Suponga una ciudad representada por una **matriz A(n×n)**. De cada esquina **x, y** se conocen dos valores enteros que representan la cantidad de **autos y motos** que cruzaron en la última hora. Los valores de cada esquina son mantenidos por un proceso distinto **P(x,y)**.  
+Cada proceso puede comunicarse con sus vecinos **izquierdo, derecho, arriba y abajo**, y también con los de las **4 diagonales** (los procesos de las esquinas tienen solo 3 vecinos y los otros en los bordes de la grilla tienen 5 vecinos).
+
+> **Nota:** Para aprobar el final, es **requerimiento obligatorio tener los ejercicios 4 y 5 resueltos.**
+
+---
+
+## Suponga que N Procesos
+
+Suponga que **N procesos** poseen inicialmente cada uno un valor.  
+Se debe calcular el **promedio de todos los valores** y al finalizar la computación todos deben conocer dicho promedio.
+
+**a.** Describa conceptualmente las soluciones posibles con memoria distribuida para arquitectura en **estrella (centralizada)**, **anillo circular**, **totalmente conectada** y **árbol**.
+
+**b.** Implemente al menos 2 de las soluciones.
+
+**c.** Para cada una de las soluciones (todas), **calcule la cantidad de mensajes y el tiempo**.  
+Instancie c) para **N = 4, N = 8, N = 16, N = 32 y N = 64**.  
+**Analice la performance** en cada caso y **compare las soluciones**.
+
+**NOTA:** Puede suponer que cada una de las operaciones tarda **una unidad de tiempo**.
+
 
 ---
 
@@ -710,39 +1331,9 @@ Suponga que la solución a un problema es paralelizada sobre **p** procesadores 
 
 **¿Cuál de las dos soluciones se comportara más eficientemente al crecer la cantidad de procesadores?**
 
-<details><summary>Respuesta</summary>
-
-A medida que crece la cantidad de procesadores, la solución cuyo speedup es **S = p − 4** se comportará de forma más eficiente que la de **S = p / 3**.
-
-Esto se debe a que **S = p − 4** crece linealmente con pendiente 1, mientras que **S = p / 3** también crece linealmente pero con pendiente 1/3. Por lo tanto, la primera función se acerca más al speedup ideal **S = p**, aprovechando mejor los recursos disponibles.
-
-Además, si analizamos la eficiencia **E = S / p**:
-
-- En el primer caso:  
-  **E = (p − 4) / p** → tiende a 1 cuando p crece  
-- En el segundo caso:  
-  **E = (p / 3) / p = 1/3** → eficiencia constante
-
-**Conclusión:** La primera solución tiene mejor eficiencia y escalabilidad, especialmente cuando el número de procesadores es grande.
-
-
-| Procesadores `p` | Speedup (p − 4) | Eficiencia (p−4)/p | Speedup (p / 3) | Eficiencia (1/3) |
-|------------------|------------------|----------------------|------------------|------------------|
-| 5                | 1                | 0.20                 | 1.67             | 0.33             |
-| 8                | 4                | 0.50                 | 2.67             | 0.33             |
-| 12               | 8                | 0.67                 | 4.00             | 0.33             |
-| 20               | 16               | 0.80                 | 6.67             | 0.33             |
-| 40               | 36               | 0.90                 | 13.33            | 0.33             |
-| 100              | 96               | 0.96                 | 33.33            | 0.33             |
-
-
 - A medida que `p` crece, la eficiencia de **S = p − 4** se acerca a 1 (ideal).
 - La eficiencia de **S = p / 3** es constante y baja (0.33), sin importar el valor de `p`.
 - Por eso, la función **S = p − 4** se comporta mucho mejor para valores grandes de `p`.
-
-![alt text](output.png)
-
-</details>
 
 ---
 
@@ -793,64 +1384,28 @@ La solución con **E = 1/p** se comporta más eficientemente que la de **E = 1/p
 
 ## 13) Suponga que el tiempo de ejecución de un algoritmo Secuencial
 
-
 Suponga que el tiempo de ejecución de un algoritmo secuencial es de **1000 unidades** de tiempo, de las cuales el **80%** corresponden a código paralelizable.
 
 **¿Cuál es el límite en la mejora que puede obtenerse paralelizando el algoritmo?**
 
-<details><summary>Respuesta</summary>
+Tenemos un programa que tarda 1000 unidades de tiempo si lo ejecutamos de forma secuencial (1 solo procesador), pero el 80% de ese tiempo es paralelizable.
 
-**🧠 ¿Qué estamos analizando?**
+- 80% de 1000 = 800 unidades de tiempo paralelizable
+- 20% de 1000 = 200 unidades de tiempo secuencial
 
-Tenemos un programa que tarda **1000 unidades de tiempo** si lo ejecutás de forma secuencial (en un solo procesador). Pero sabemos que **una parte se puede paralelizar** (hacer en varios procesadores a la vez) y otra parte no.
+**Ley de Andahl**
 
-Nos dicen que:
+**T_Paralelo** = **Porcion_T_secuencial** + (**Porcion_T_paralelizable** / **p**)
 
-- **80% del programa es paralelizable** → eso son 800 unidades de tiempo.  
-- **20% es secuencial** → eso son 200 unidades de tiempo.  
+Si usamos 800 procesadores, el tiempo de ejecución de la parte paralelizable se reduce a 1 unidad de tiempo.
 
-**📌 ¿Qué pasa si usamos muchos procesadores?**
+- **T_Paralelo** = **200** + (**800** / **800**) -> **200** + **1** -> **201**
+- **Speedup** = **T_secuencial** / **T_paralelo** -> **1000** / **201** ≈ **4.975**
 
-La **Ley de Amdahl** nos dice que **el tiempo total con paralelismo** va a ser:
+Conviene usar una cantidad mas chica de procesadores que pueden estar trabajando todo el tiempo
 
-```
-T_paralelo = tiempo_secuencial + tiempo_paralelizable / cantidad_de_procesadores
-```
-
-Entonces, por ejemplo, si usamos **800 procesadores**, el cálculo sería:
-
-```
-T_paralelo = 200 + 800 / 800 = 200 + 1 = 201
-```
-
-Y el **speedup** (la mejora respecto del tiempo original) es:
-
-```
-Speedup = T_secuencial / T_paralelo = 1000 / 201 ≈ 4.97
-```
-
-Es decir, aunque pongas 1000, 2000 o más procesadores… **no podés bajar más de ese tiempo**, porque **las 200 unidades de código secuencial no se pueden paralelizar**. Esa es la **barrera natural** que impone la Ley de Amdahl.
-
-**📉 ¿Por qué no conviene usar demasiados procesadores?**
-
-Supongamos que usás 800 procesadores. Como el código secuencial tarda 200 unidades y **solo uno lo puede ejecutar**, **los otros 799 van a estar esperando**.
-
-Por eso, conviene usar una **cantidad más chica** de procesadores que puedan estar trabajando todo el tiempo. Por ejemplo, con 5 procesadores:
-
-```
-T_paralelo = 200 + (800 / 5) = 200 + 160 = 360
-Speedup = 1000 / 360 ≈ 2.78
-```
-
-No es el máximo speedup, pero **se aprovechan todos los procesadores** (menos desperdicio).
-
-**✅ Conclusión**
-
-- El **límite de mejora** está en ≈ 5 veces más rápido. No se puede mejorar más, por más procesadores que agregues.
-- Si usás **muchos procesadores**, muchos van a estar **ociosos**.
-- Lo mejor es **balancear**: usar la menor cantidad de procesadores que te dé una mejora sin que los demás queden esperando.
-
-</details>
+- **T_Paralelo** = **200** + (**800** / **5**) = **200** + **160** = 360
+- **Speedup** = **1000** / **360** ≈ 2.778
 
 ---
 
@@ -860,37 +1415,16 @@ Suponga que el tiempo de ejecución de un algoritmo secuencial es de **8000 unid
 
 **¿Cuál es el límite en la mejora que puede obtenerse paralelizando el algoritmo? Justifique.**
 
-<details><summary>Respuesta</summary>
+**T_Total** = **8000** el **90%** es paralelizable es decir **7200** y el **10%** es secuencial es decir **800**.
 
+El mejor caso se da si usamos tantos procesadores como para la parte paralela tarde solo 1 unidad de tiempo (Es decir, 7200 procesadores para 7200 unidades paralelas).
 
-Sabemos que:
-- **T_total = 8000**
-- **90% es paralelizable → T_par = 7200**
-- **10% es secuencial → T_sec = 800**
+**T_Paralelo** -> **T_secuencial** + **T_paralelizable** / **p**
 
-**📌 ¿Cuál es el mejor caso posible?**
+- **T_Paralelo** -> **800** + **7200** / **7200** -> **800** + **1** -> **801**
+- **Speedup** = **T_secuencial** / **T_Paralelo** -> **8000** / **801** ≈ **9.99**
 
-El mejor caso se da si usamos **tantos procesadores como para que la parte paralela tarde solo 1 unidad de tiempo** (es decir, **7200 procesadores** para 7200 unidades paralelas).
-
-Entonces, el **tiempo total mínimo** que podríamos lograr es:
-
-```
-T_mejor = T_sec + T_par / procesadores
-T_mejor = 800 + 7200 / 7200
-T_mejor = 800 + 1 = 801
-```
-
-⚡ Cálculo del speedup máximo (límite de mejora)
-
-```
-Speedup = T_secuencial / T_mejor
-Speedup = 8000 / 801 ≈ 9.99
-```
-
-El **límite teórico de mejora** es aproximadamente **10 veces más rápido**.  
-Esto se alinea con la **Ley de Amdahl**, que dice que el código secuencial limita la mejora total.
-
-</details>
+El limite teorico de memoria es aproximadamente **10 veces mas rapido**.
 
 ---
 
@@ -900,406 +1434,20 @@ Suponga que el tiempo de ejecución de un algoritmo secuencial es de **10000 uni
 
 **¿Cuál es el límite en la mejora que puede obtenerse paralelinzado el algoritmo?**
 
-<details><summary>Respuesta</summary>
+El limite se alncaza cuando se utilizan **9500** procesadores (uno por cada unidad de tiempo paralelizable), lo que reduce el tiempo de ejecución de la parte paralela a 1 unidad de tiempo.
 
-El límite de mejora se alcanza cuando se utilizan **9500 procesadores** (uno por cada unidad de tiempo paralelizable), lo que reduce el tiempo de ejecución de la parte paralela a **1 unidad de tiempo**.  
-La parte secuencial, que **no puede paralelizarse**, tarda **500 unidades de tiempo**.
+La parte secuencial, que **no puede paralelizarse**, tarda **500** unidades de tiempo.
 
-Por lo tanto, el **tiempo total mínimo (T<sub>paralelo</sub>)** será:
+**T_Paralelo** = **T_secuencial** + **T_paralelizable** / p
 
-```
-Tparalelo = Tsecuencial + Tparalelizable / procesadores
-Tparalelo = 500 + 1 = 501
-```
-
-El **speedup máximo** (mejora) se calcula como:
-
-```
-Speedup = Tsecuencial_total / Tparalelo = 10000 / 501 ≈ 19.96
-```
-
-> Esto significa que, incluso si seguimos agregando procesadores, **el máximo speedup que se puede lograr es aproximadamente 20**.
+- **T_Paralelo** = **500** + **9500** / **9500** -> **500** + **1** = **501**
+- **Speedup** = **T_secuencial_total** / **T_Paralelo** = **10000** / **501** ≈ **19.96**
 
 Este resultado **confirma la Ley de Amdahl**, la cual establece que el límite de paralelización de un algoritmo **no depende de cuántos procesadores se usen**, sino de **cuánta parte del código es secuencial**.
 
-</details>
-
 ---
 
-## 16) Calcular la suma de todos los valores
 
-Suponga que **N** procesos poseen inicialmente cada uno un valor. Se debe calcular la suma de todos los valores y al finalizar la computación todos deben conocer dicha suma.
-
-Analice (desde el punto de vista del número de mensajes y la performance global) las soluciones posibles con memoria distribuida para **arquitecturas en Estrella** (centralizada), **Anillo Circular**, **Totalmente Conectada** y **Árbol**.
-
-<details><summary>arquitecturas en Estrella(centralizada)</summary>
-
-En este tipo de arquitectura todos los procesos (workers) envían su valor local al procesador central (coordinador), este suma los `N` datos y reenvía la información de la suma al resto de los procesos.  
-Por lo tanto se ejecutan `2(N-1)` mensajes. Si el procesador central dispone de una primitiva broadcast, se reduce a `N` mensajes.
-
-En cuanto a la performance global, los mensajes al coordinador se envían casi al mismo tiempo.  
-Estos se quedarán esperando hasta que el coordinador termine de computar la suma y envíe el resultado a todos.
-
-```c
-chan valor(INT);
-resultados[n](INT suma);
-
-Process P[0]{              // coordinador, v está inicializado
-    INT v; INT sum = 0;
-    sum = sum + v;
-    for (i = 1 to n-1){
-        receive valor(v);
-        sum = sum + v;
-    }
-    for (i = 1 to n-1)
-        send resultado[i](sum);
-}
-
-process P[i = 1 to n-1]{   // worker, v está inicializado
-    INT v; INT sum;
-    send valor(v);
-    receive resultado[i](sum);
-}
-```
-
-🧩 Supuestos
-
-De nuevo usamos `n = 4` procesos:
-
-| Proceso | Rol        | Valor local `v[i]` |
-|---------|------------|--------------------|
-| P[0]    | Coordinador| 2                  |
-| P[1]    | Worker     | 3                  |
-| P[2]    | Worker     | 5                  |
-| P[3]    | Worker     | 7                  |
-
-🎯 Objetivo
-
-- `P[0]` recibe los valores de todos los procesos.
-- Suma: `2 + 3 + 5 + 7 = 17`.
-- Luego envía la **suma global** de vuelta a todos los workers.
-
-🚀 Ejecución paso a paso
-
-📨 Fase 1: Envío de los valores al coordinador
-
-| Paso | Acción |
-|------|--------|
-| 1 | `P[1]` envía `3` a `P[0]` |
-| 2 | `P[2]` envía `5` a `P[0]` |
-| 3 | `P[3]` envía `7` a `P[0]` |
-| 4 | `P[0]` ya tiene su `v = 2`, recibe `3`, `5`, y `7`, suma total = **17** |
-
-📤 Fase 2: Coordinador difunde la suma
-
-| Paso | Acción |
-|------|--------|
-| 5 | `P[0]` envía `17` a `P[1]` |
-| 6 | `P[0]` envía `17` a `P[2]` |
-| 7 | `P[0]` envía `17` a `P[3]` |
-
-✅ Resultado final
-
-| Proceso | Valor final conocido |
-|---------|----------------------|
-| P[0]    | 17 (lo calculó)      |
-| P[1]    | 17 (lo recibió)      |
-| P[2]    | 17 (lo recibió)      |
-| P[3]    | 17 (lo recibió)      |
-
-💬 Observaciones
-
-- Total de mensajes: `2(n - 1)` = `2(4 - 1)` = **6 mensajes**
-- Con **broadcast**: solo `n = 4` mensajes (1 de cada worker al coordinador, 1 broadcast de vuelta).
-- Buena performance en tiempo, porque los workers **envían todos al mismo tiempo**.
-- Pérdida de paralelismo en el cómputo: solo el **coordinador trabaja**, los demás esperan.
-- **Punto único de falla**: si `P[0]` se cae, el sistema no funciona.
-
-</details>
-
-<details><summary>Anillo circular</summary>
-
-Se tiene un anillo donde `P[i]` recibe mensajes de `P[i-1]` y envía mensajes a `P[i+1]`. `P[n-1]` tiene como sucesor a `P[0]`. El primer proceso envía su valor local ya que es el único que conoce.
-
-Este esquema consta de dos etapas:
-
-1. Cada proceso recibe un valor y lo suma con su valor local, transmitiendo la suma local a su sucesor.  
-2. Todos reciben la suma global.
-
-`P[0]` debe ser algo diferente para poder “arrancar” el procesamiento: debe enviar su valor local ya que es el único que conoce. Se requerirán **2(n-1)** mensajes.
-
-A diferencia de la solución centralizada, esta reduce los requerimientos de memoria por proceso pero tardara más en ejecutarse, por más que el número de mensajes requeridos sea el mismo. Esto se debe a que cada proceso debe esperar un valor para computar una suma parcial y luego enviársela al siguiente proceso; es decir, un proceso trabaja por vez, se pierde el paralelismo.
-
-
-```c
-chan valor[n](suma);
-
-process p[0] {
-    INT v;
-    INT suma = v;
-    send valor[1](suma);
-    receive valor[0](suma);
-    send valor[1](suma);
-}
-
-process p[i = 1 to n-1] {
-    INT v;
-    INT suma;
-    receive valor[i](suma);
-    suma = suma + v;
-    send valor[(i + 1) mod n](suma);
-    receive valor[i](suma);
-    if (i < n - 1)
-        send valor[i + 1](suma);
-}
-```
-
-| Proceso | `v[i]` |
-|---------|--------|
-| P[0]    | 2      |
-| P[1]    | 3      |
-| P[2]    | 5      |
-| P[3]    | 7      |
-
-El objetivo es que **todos los procesos conozcan la suma total**, que es `2 + 3 + 5 + 7 = 17`.
-
-🧠 Etapa 1: **Suma parcial hacia adelante**
-
-| Paso | Acción |
-|------|--------|
-| 1 | `P[0]` envía `2` a `P[1]` |
-| 2 | `P[1]` recibe `2`, suma su `v=3`, total = `5`, envía `5` a `P[2]` |
-| 3 | `P[2]` recibe `5`, suma su `v=5`, total = `10`, envía `10` a `P[3]` |
-| 4 | `P[3]` recibe `10`, suma su `v=7`, total = `17`, envía `17` a `P[0]` |
-
-
-🧠 Etapa 2: **Difusión de la suma global**
-
-| Paso | Acción |
-|------|--------|
-| 5 | `P[0]` recibe `17` de `P[3]`, reenvía `17` a `P[1]` |
-| 6 | `P[1]` recibe `17`, reenvía `17` a `P[2]` |
-| 7 | `P[2]` recibe `17`, reenvía `17` a `P[3]` |
-| 8 | `P[3]` recibe `17` |
-
-✅ Resultado final
-
-Todos los procesos conocen el valor total `17`.
-
-| Proceso | Valor recibido |
-|---------|----------------|
-| P[0]    | 17             |
-| P[1]    | 17             |
-| P[2]    | 17             |
-| P[3]    | 17             |
-
-💬 Observaciones
-
-- **Cantidad de mensajes**: 2(n - 1) = 2(4 - 1) = 6 mensajes, como indica tu descripción.
-- **Secuencialidad**: cada proceso espera su turno para sumar → **no hay paralelismo**.
-- **P[0]** es especial, porque inicia la suma **y también** es el primero que difunde la suma global.
-
-</details>
-
-<details><summary>Totalmente conectada (simetrica)</summary>
-
-Todos los procesos ejecutan el mismo algoritmo. Existe un canal entre cada par de procesos.  
-Cada uno transmite su dato local `v` a los `n-1` restantes. Luego recibe y procesa los `n-1` datos que le faltan, de modo que en paralelo toda la arquitectura está calculando la suma total y tiene acceso a los `n` datos.
-
-Se ejecutan `n(n-1)` mensajes. Si se dispone de una primitiva de broadcast, serán `n` mensajes.  
-Es la solución más corta y sencilla de programar, pero utiliza el mayor número de mensajes si no hay broadcast.
-
-```cpp
-chan valor[n](INT);
-
-process p[i=0 to n-1] {
-    INT v;
-    INT nuevo, suma = v;
-    
-    for (k=0 to n-1 st k <> i)
-        send valor[k](v);
-        
-    for (k=0 to n-1 st k <> i) {
-        receive valor[i](nuevo);
-        suma = suma + nuevo;
-    }
-}
-```
-
-🧩 Supuestos
-
-Usamos de nuevo `n = 4` procesos y valores locales:
-
-| Proceso | `v[i]` |
-|---------|--------|
-| P[0]    | 2      |
-| P[1]    | 3      |
-| P[2]    | 5      |
-| P[3]    | 7      |
-
-🚀 ¿Qué hace cada proceso?
-
-- Cada proceso envía su valor a los otros 3 (`n-1`).
-- Luego, **recibe** los 3 valores que le faltan, y los **suma**.
-- Esto se hace en paralelo, es decir, todos los procesos trabajan al mismo tiempo.
-
-📊 Ejecución paso a paso
-
-**Fase 1: Envío**
-
-| Proceso | Envía a...             | Mensajes |
-|---------|------------------------|----------|
-| P[0]    | P[1], P[2], P[3]       | 3        |
-| P[1]    | P[0], P[2], P[3]       | 3        |
-| P[2]    | P[0], P[1], P[3]       | 3        |
-| P[3]    | P[0], P[1], P[2]       | 3        |
-| **Total** |                        | **12 mensajes** |
-
-**Fase 2: Recepción y suma**
-
-Cada proceso recibe 3 valores y los suma con el propio:
-
-| Proceso | Valores recibidos | Suma final |
-|---------|-------------------|------------|
-| P[0]    | 3, 5, 7           | 2 + 3 + 5 + 7 = 17 |
-| P[1]    | 2, 5, 7           | 3 + 2 + 5 + 7 = 17 |
-| P[2]    | 2, 3, 7           | 5 + 2 + 3 + 7 = 17 |
-| P[3]    | 2, 3, 5           | 7 + 2 + 3 + 5 = 17 |
-
-✅ Resultado final
-
-Todos conocen la suma global **17**.
-
-| Proceso | Suma calculada |
-|---------|----------------|
-| P[0]    | 17             |
-| P[1]    | 17             |
-| P[2]    | 17             |
-| P[3]    | 17             |
-
-💬 Observaciones
-
-- Total de mensajes: `n(n-1)` = `4 × 3` = **12 mensajes**
-- Todos trabajan en **paralelo** → **alta velocidad**
-- Pero: requiere **muchos canales y mensajes**
-- Si tuvieras broadcast, solo necesitarías **n mensajes** (1 por proceso).
-
-</details>
-
-<details><summary>Arbol</summary>
-
-Se tiene una red de procesadores (nodos) conectados por canales de comunicación bidireccionales. Cada nodo se comunica directamente con sus vecinos. Si un nodo quiere enviar un mensaje a toda la red, debería construir un árbol de expansión de la misma, poniéndose a él mismo como raíz.
-
-El nodo raíz envía un mensaje por broadcast a todos los hijos, junto con el árbol construido. Cada nodo examina el árbol recibido para determinar los hijos a los cuales deben reenviar el mensaje, y así sucesivamente.
-
-Se envían `n - 1` mensajes, uno por cada padre/hijo del árbol.
-
-
-🧩 Supuestos
-
-- Tenemos `n = 7` nodos numerados del `0` al `6`.
-- Se construye un **árbol de expansión** para propagar un mensaje, con el **nodo `0` como raíz**.
-- El árbol tiene esta estructura (por simplicidad):
-
-```
-        0
-      / | \
-     1  2  3
-        |   \
-        4    5
-              \
-               6
-```
-
----
-
-🎯 Objetivo
-
-Difundir un **mensaje** desde el nodo raíz (`0`) hacia todos los demás nodos usando el árbol.
-
- 🚀 Ejecución paso a paso
-
-| Paso | Nodo emisor | Nodo receptor | Descripción |
-|------|-------------|----------------|-------------|
-| 1    | 0           | 1              | Nodo 0 envía a su hijo 1 |
-| 2    | 0           | 2              | Nodo 0 envía a su hijo 2 |
-| 3    | 0           | 3              | Nodo 0 envía a su hijo 3 |
-| 4    | 2           | 4              | Nodo 2 reenvía a su hijo 4 |
-| 5    | 3           | 5              | Nodo 3 reenvía a su hijo 5 |
-| 6    | 5           | 6              | Nodo 5 reenvía a su hijo 6 |
-
-✅ Resultado final
-
-Todos los nodos reciben el mensaje, usando solo `n - 1 = 6` mensajes.
-
-| Nodo | ¿Recibió el mensaje? |
-|------|------------------------|
-| 0    | Sí (es la raíz)       |
-| 1    | Sí                    |
-| 2    | Sí                    |
-| 3    | Sí                    |
-| 4    | Sí                    |
-| 5    | Sí                    |
-| 6    | Sí                    |
-
-💬 Observaciones
-
-- **Mensajes totales**: `n - 1 = 6`
-- Es la forma más eficiente si ya tenemos el árbol.
-- Permite **paralelismo**: varios nodos pueden reenviar a la vez.
-- Ideal para redes distribuidas con **vecindades limitadas** (no totalmente conectadas).
-- Si se necesita hacer una suma global, se puede hacer un **recorrido postorden** (bottom-up), y luego **difundir el resultado** (top-down).
-
-</details>
-
----
-
-## 17) Token passing con mensajes asincrónicos
-
-Implemente una solución al problema de exclusión mutua distribuida entre **N** procesos utilizado un algoritmo de tipo token passing con mensajes asincrónicos.
-
-<details><summary>Respuesta</summary>
-
-El algoritmo de **token passing**, se basa en un tipo especial de mensaje o **“token”** que
-puede utilizarse para otorgar un **permiso** (control) o para **recoger información global** de la arquitectura distribuida.
-
-Si **User[1:n]** son un conjunto de procesos de aplicación que contienen secciones críticas y
-no críticas. Hay que desarrollar los protocolos de interacción (E/S a las secciones críticas),
-asegurando **exclusión mútua**, **no deadlock**, **evitar demoras innecesarias** y **eventualmente fairness**.
-
-Para no ocupar los procesos **User** en el manejo de los **tokens**, ideamos un proceso **auxiliar (helper)** por cada **User**, de modo de manejar la circulación de los **tokens**. Cuando **helper[i]** tiene el **token** adecuado, significa que **User[i]** tendrá prioridad para acceder a la sección crítica.
-
-
-```cpp
-chan token[n]() ;                   # para envío de tokens
-chan enter[n](), go[n](), exit[n](); # para comunicación proceso-helper
-
-process helper[i = 1..N] {
-    while(true){
-        receive token[i]();               # recibe el token
-        if(!(empty(enter[i]))){          # si su proceso quiere usar la SC
-            receive enter[i]();
-            send go[i]();                # le da permiso y lo espera a que termine
-            receive exit[i]();
-        }
-        send token[i MOD N + 1]();       # y lo envía al siguiente cíclicamente
-    }
-}
-
-process user[i = 1..N] {
-    while(true){
-        send enter[i]();
-        receive go[i]();
-        ... sección crítica ...
-        send exit[i]();
-        ... sección no crítica ...
-    }
-}
-```
-
-> Se asume que el primero ya tenga el token
-
-</details>
 
 ---
 
@@ -3073,70 +3221,7 @@ Por lo tanto, para garantizar que **todos los procesos lleguen a conocer los val
 
 > Voy a rezar por que no tomen esta wea
 
-## 10) Una imagen se encuentra representada por una matriz
 
-Suponga que una imagen se encuentra representada por una matriz a **(n×n)**, y que el valor de cada pixel es un número **entero** que es mantenido por un proceso distinto (es decir, el valor del píxel **I**,**J** está en el proceso **P(I,J)**). Cada proceso puede comunicarse solo con sus vecinos izquierdo, derecho, arriba y abajo. (Los procesos de las esquinas tienen solo 2 vecinos, y los otros bordes de la grilla tienen 3 vecinos).
-
-**a)** Escriba un algoritmo **Herbeat** que calcule el **máximo** y el **mínimo** valor de los píxeles de la imagen. Al terminar el programa, cada proceso debe conocer ambos valores.
-
-<details><summary>Respuesta</summary>
-
-```nginx
-chan topologia[1:n](emisor : int; listo : bool; top : [1:n,1:n] bool; max : int; min : int);
-
-process nodo[p = 1..n] {
-    bool vecinos[1:n];              # inicialmente vecinos[q] true si q es vecino de p
-    bool activo[1:n] = vecinos;     # vecinos aún activos
-    bool top[1:n,1:n] = ([n*n]false);  # vecinos conocidos (matriz de adyacencia)
-    bool nuevatop[1:n,1:n];
-    int r = 0;
-    bool listo = false;
-    int emisor;
-    bool qlisto;
-    int miValor, max, min;
-    
-    top[p,1..n] = vecinos;          # llena la fila para los vecinos
-    max := miValor; 
-    min := miValor;                # miValor inicializado con el valor del píxel
-
-    while (not listo) {            # envía conocimiento local de la topología a sus vecinos
-        for (q = 1 to n st activo[q]) {
-            send topologia[q](p, false, top, max, min);
-        }
-
-        for (q = 1 to n st activo[q]) {
-            receive topologia[p](emisor, qlisto, nuevatop, nuevoMax, nuevoMin);
-            top = top or nuevatop;                  # hace OR con su top juntando la información
-            if (nuevoMax > max) max := nuevoMax;    # actualiza los máximos y mínimos
-            if (nuevoMin < min) min := nuevoMin;
-            if (qlisto) activo[emisor] = false;
-        }
-
-        if (todas las filas de top tienen 1 entry true) listo = true;
-        r := r + 1;
-    }
-
-    # envía topología completa a todos sus vecinos aún activos
-    for (q = 1 to n st activo[q]) {
-        send topologia[q](p, listo, top, max, min);
-    }
-
-    # recibe un mensaje de cada uno para limpiar el canal
-    for (q = 1 to n st activo[q]) {
-        receive topologia[p](emisor, d, nuevatop, nuevoMax, nuevoMin);
-    }
-}
-```
-</details>
-
-**b) Analice la solución de desde el punto de vista del número de mensajes.**
-
-<details><summary>Respuesta</summary>
-Si M es el numero maximo de vecinos que puede tener un nodo, y D es el diametro de la
-red, el número de mensajes maximo que pueden intercambiar es de 2n * m * (D+1). Esto
-es porque cada nodo ejecuta a lo sumo D-1 rondas, y en cada una de ellas manda 2
-mensajes a sus m vecinos
-</details>
 
 
 ---
