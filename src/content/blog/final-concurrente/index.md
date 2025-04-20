@@ -156,10 +156,10 @@ Process Coordinador[0]{              // coordinador, v está inicializado
         suma_total = suma_total + valor_recibido;
     }
     for (i = 1 to n-1)
-        send resultado[i](sum);
+        send canal_resultado[i](suma_total);
 }
 
-process P[i = 1 to n-1]{   // worker, v está inicializado
+process Trabajador[i = 1 to n-1]{   // worker, v está inicializado
     INT valor_local;
     INT suma_total;
     send canal_valor(valor_local);
@@ -237,25 +237,26 @@ A diferencia de la solución centralizada, esta reduce los requerimientos de mem
 
 
 ```c
-chan valor[n](suma);
+chan canal_suma[n](suma_parcial);
 
 process p[0] {
-    INT v;
-    INT suma = v;
-    send valor[1](suma);
-    receive valor[0](suma);
-    send valor[1](suma);
+    INT valor_local;
+    INT suma_parcial = valor_local;
+    send canal_suma[1](suma_parcial);
+    receive canal_suma[0](suma_parcial);
+    send canal_suma[1](suma_parcial);
 }
 
-process p[i = 1 to n-1] {
-    INT v;
-    INT suma;
-    receive valor[i](suma);
-    suma = suma + v;
-    send valor[(i + 1) mod n](suma);
-    receive valor[i](suma);
+process ProcesoAnillo[i = 1 to n-1] {
+    INT valor_local;
+    INT suma_parcial;
+    receive canal_suma[i](suma_parcial);
+    suma_parcial = suma_parcial + valor_local;
+    siguiente = (i + 1) mod n
+    send canal_suma[siguiente](suma_parcial);
+    receive canal_suma[i](suma_parcial);
     if (i < n - 1)
-        send valor[i + 1](suma);
+        send canal_suma[i + 1](suma_parcial);
 }
 ```
 
@@ -315,18 +316,19 @@ Se ejecutan `n(n-1)` mensajes. Si se dispone de una primitiva de broadcast, ser�
 Es la solución más corta y sencilla de programar, pero utiliza el mayor número de mensajes si no hay broadcast.
 
 ```cpp
-chan valor[n](INT);
+chan canal_valor[n](INT);
 
-process p[i=0 to n-1] {
-    INT v;
-    INT nuevo, suma = v;
+process Proceso[i=0 to n-1] {
+    INT valor_local;
+    INT valor_recibido
+    INT suma_total = valor_local;
     
-    for (k=0 to n-1 st k <> i)
-        send valor[k](v);
+    for (int destino = 0 to n-1 st destino <> i)
+        send canal_valor[destino](valor_local);
         
-    for (k=0 to n-1 st k <> i) {
-        receive valor[i](nuevo);
-        suma = suma + nuevo;
+    for (int origen = 0 to n-1 st k <> i) {
+        receive canal_valor[i](valor_recibido);
+        suma_total = suma_total + valor_recibido;
     }
 }
 ```
@@ -474,35 +476,28 @@ Para no ocupar los procesos **User** en el manejo de los **tokens**, ideamos un 
 
 
 ```cpp
-chan token[n]() ;                   # para envío de tokens
-chan enter[n](), go[n](), exit[n](); # para comunicación proceso-helper
-```
+chan canal_token[n]() ;                   # para envío de tokens
+chan canal_solicitud_entrada[n](), canal_permiso_entrada[n](), canal_salida_seccion_critica[n](); # para comunicación proceso-helper
 
-<table><td>
-
-```cpp
-process helper[i = 1..N] {
+process ProcesoHelper[i = 1..N] {
     while(true){
-        receive token[i]();               
-        if(!(empty(enter[i]))){
-            receive enter[i]();
-            send go[i]();
-            receive exit[i]();
+        receive canal_token[i](); //Recibe el token desde el proceso anterior
+
+        if(!(empty(canal_solicitud_entrada[i]))){
+            receive canal_solicitud_entrada[i](); // Atiende la solicitud
+            send canal_permiso_entrada[i]();     // Le da permiso para entrar a SC
+            receive canal_salida_seccion_critica[i](); // Espera a que salga
         }
-        send token[i MOD N + 1]();
+        send canal_token[i MOD N + 1]();
     }
 }
-```
-</td>
-<td>
 
-```cpp
-process user[i = 1..N] {
+process ProcesoUsuario[i = 1..N] {
     while(true){
-        send enter[i]();
-        receive go[i]();
+        send canal_solicitud_entrada[i]();
+        receive canal_permiso_entrada[i]();
         ... sección crítica ...
-        send exit[i]();
+        send canal_salida_seccion_critica[i]();
         ... sección no crítica ...
     }
 }
