@@ -461,8 +461,7 @@ El algoritmo de **token passing**, se basa en un tipo especial de mensaje o **�
 puede utilizarse para otorgar un **permiso** (control) o para **recoger información global** de la arquitectura distribuida.
 
 Si **User[1:n]** son un conjunto de procesos de aplicación que contienen secciones críticas y
-no críticas. Hay que desarrollar los protocolos de interacción (E/S a las secciones críticas),
-asegurando **exclusión mútua**, **no deadlock**, **evitar demoras innecesarias** y **eventualmente fairness**.
+no críticas. Hay que desarrollar los protocolos de interacción (E/S a las secciones críticas), asegurando **exclusión mútua**, **no deadlock**, **evitar demoras innecesarias** y **eventualmente fairness**.
 
 Para no ocupar los procesos **User** en el manejo de los **tokens**, ideamos un proceso **auxiliar (helper)** por cada **User**, de modo de manejar la circulación de los **tokens**. Cuando **helper[i]** tiene el **token** adecuado, significa que **User[i]** tendrá prioridad para acceder a la sección crítica.
 
@@ -706,11 +705,63 @@ Instancie c) para **N=4, N=8, N=16, N=32 y N=64**. Analice la performance para c
 
 **Nota:** puede suponer que cada una de las operaciones tarda una unidad de tiempo.
 
+
+Estrella (centralizada)
+
+- **Fórmula de mensajes:**  `2(n - 1)` sin broadcast , `n` con broadcast
+- **Fórmula de tiempo:**  Envío (1) + procesamiento (1) + difusión (1) = **3**
+
+**Resultados:**
+
+- N = 4 → Mensajes: `2(4 - 1) = 6`, Tiempo: 3  
+- N = 8 → Mensajes: `2(8 - 1) = 14`, Tiempo: 3  
+- N = 16 → Mensajes: `2(16 - 1) = 30`, Tiempo: 3  
+- N = 32 → Mensajes: `2(32 - 1) = 62`, Tiempo: 3  
+- N = 64 → Mensajes: `2(64 - 1) = 126`, Tiempo: 3
+
+Anillo circular
+
+- **Fórmula de mensajes:**  `2(n - 1)` (una vuelta para la suma + una vuelta para difusión)
+- **Fórmula de tiempo:**  `2(n - 1)` (no hay paralelismo)
+
+Resultado
+
+- N = 4 → Mensajes: `2(4 - 1) = 6`, Tiempo: 6  
+- N = 8 → Mensajes: `2(8 - 1) = 14`, Tiempo: 14  
+- N = 16 → Mensajes: `2(16 - 1) = 30`, Tiempo: 30  
+- N = 32 → Mensajes: `2(32 - 1) = 62`, Tiempo: 62  
+- N = 64 → Mensajes: `2(64 - 1) = 126`, Tiempo: 126
+
+Totalmente conectada
+
+- **Fórmula de mensajes:** `n(n - 1)` sin broadcast  `n` con broadcast
+- **Fórmula de tiempo:**  Envío + recepción, ambos en paralelo = **2**
+
+**Resultados:**
+
+- N = 4 → Mensajes: `4 × (4 - 1) = 12`, Tiempo: 2  
+- N = 8 → Mensajes: `8 × (8 - 1) = 56`, Tiempo: 2  
+- N = 16 → Mensajes: `16 × (16 - 1) = 240`, Tiempo: 2  
+- N = 32 → Mensajes: `32 × (32 - 1) = 992`, Tiempo: 2  
+- N = 64 → Mensajes: `64 × (64 - 1) = 4032`, Tiempo: 2
+
+Árbol
+
+- **Fórmula de mensajes:**  `2(n - 1)` (una subida bottom-up + una bajada top-down)
+- **Fórmula de tiempo:**  `2 × log₂(n)` (dos recorridos del árbol)
+
+**Resultados:**   (Suavemente redondeado para `log₂(n)`)
+
+- N = 4 → Mensajes: `2(4 - 1) = 6`, Tiempo: `2 × 2 = 4`  
+- N = 8 → Mensajes: `2(8 - 1) = 14`, Tiempo: `2 × 3 = 6`  
+- N = 16 → Mensajes: `2(16 - 1) = 30`, Tiempo: `2 × 4 = 8`  
+- N = 32 → Mensajes: `2(32 - 1) = 62`, Tiempo: `2 × 5 = 10`  
+- N = 64 → Mensajes: `2(64 - 1) = 126`, Tiempo: `2 × 6 = 12`
+
 ---
 
 ## Suponga una ciudad representada por una matriz
 
-Suponga una ciudad representada por una matriz **A(n×n)**. De cada esquina **x, y** se conocen dos valores enteros que representan la cantidad de **autos** y **motos** que cruzaron en la última hora. Los valores de cada esquina son mantenidos por un proceso distinto **P(x, y)**. Cada proceso puede comunicarse con sus vecinos **izquierdo, derecho, arriba y abajo**, y también con los de las **4 diagonales** (los procesos de las esquinas tienen solo 3 vecinos y los otros en los bordes de la grilla tienen 5 vecinos).
 
 
 ---
@@ -734,9 +785,6 @@ Suponga una ciudad representada por una matriz **A(n×n)**. De cada esquina **x,
 
 **d)** Analizar **qué pasaría si no existieran las diagonales**.
 
----
-
-Claro, acá tenés el texto completamente transcripto:
 
 ---
 
@@ -825,8 +873,126 @@ Suponga que **N procesos** poseen inicialmente cada uno un valor. Se debe calcul
 Analice (desde el punto de vista del número de mensajes y la performance global) las soluciones posibles con memoria distribuida para arquitecturas en **Estrella (centralizada)**, **Anillo Circular**, **Totalmente Conectada** y **Árbol**.  
 **Definir conceptualmente y decir cantidad de mensajes de cada uno. Implementar dos de esos.**
 
-
 > **En la mesa de mayo eran los mismos ejercicios excepto el último**: había que implementar **heartbeat o passing the baton** (se elegía uno de los dos).
+
+```c
+# Procedimiento que convierte el ID plano del proceso a coordenadas (i, j)
+procedure coords(p: int; n: int; out i: int; out j: int) {
+    i := (p - 1) div n + 1;
+    j := (p - 1) mod n + 1;
+}
+
+# Procedimiento que calcula los vecinos (incluyendo diagonales)
+procedure calcular_vecinos(p: int; n: int; out vecinos: [1:n*n] bool) {
+    int i, j;
+    coords(p, n, i, j);
+
+    for di = -1 to 1 {
+        for dj = -1 to 1 {
+            if (di == 0 and dj == 0) skip;
+
+            int ni := i + di;
+            int nj := j + dj;
+
+            if (1 <= ni <= n and 1 <= nj <= n) {
+                int q := (ni - 1) * n + (nj - 1) + 1;
+                vecinos[q] := true;
+            }
+        }
+    }
+}
+
+# Canal para enviar topología y máximos/mínimos
+chan topologia[1:n*n](
+    emisor       : int;
+    listo        : bool;
+    top          : [1:n*n, 1:n*n] bool;
+    maxAutos     : int;
+    minAutos     : int;
+    maxMotos     : int;
+    minMotos     : int
+);
+
+process nodo[p = 1..n*n] {
+    bool vecinos[1:n*n];
+    bool activo[1:n*n];
+    bool top[1:n*n, 1:n*n] = ([n*n*n*n] false);
+    bool nuevatop[1:n*n, 1:n*n];
+    bool listo = false;
+    int emisor;
+    bool qlisto;
+    int autos, motos;               # datos de la esquina
+    int maxAutos, minAutos;
+    int maxMotos, minMotos;
+
+    # inicializa los vecinos y activos
+    calcular_vecinos(p, n, vecinos);
+    activo = vecinos;
+
+    # inicializa la fila p en la matriz de topología
+    for q = 1 to n*n {
+        if (vecinos[q]) {
+            top[p, q] = true;
+        }
+    }
+
+    # inicializa máximos y mínimos
+    maxAutos := autos;
+    minAutos := autos;
+    maxMotos := motos;
+    minMotos := motos;
+
+    while (not listo) {
+        # enviar estado actual a todos los vecinos activos
+        for q = 1 to n*n st activo[q] {
+            send topologia[q](p, false, top, maxAutos, minAutos, maxMotos, minMotos);
+        }
+
+        # recibir de vecinos activos
+        for q = 1 to n*n st activo[q] {
+            receive topologia[p](emisor, qlisto, nuevatop, nuevoMaxAutos, nuevoMinAutos, nuevoMaxMotos, nuevoMinMotos);
+
+            top = top or nuevatop;
+
+            if (nuevoMaxAutos > maxAutos) maxAutos := nuevoMaxAutos;
+            if (nuevoMinAutos < minAutos) minAutos := nuevoMinAutos;
+
+            if (nuevoMaxMotos > maxMotos) maxMotos := nuevoMaxMotos;
+            if (nuevoMinMotos < minMotos) minMotos := nuevoMinMotos;
+
+            if (qlisto) activo[emisor] = false;
+        }
+
+        # condición de parada: todas las filas tienen al menos un true
+        bool todas_conocidas = true;
+        for f = 1 to n*n {
+            bool tiene_vecino = false;
+            for c = 1 to n*n {
+                if (top[f, c]) {
+                    tiene_vecino = true;
+                }
+            }
+            if (not tiene_vecino) {
+                todas_conocidas = false;
+            }
+        }
+
+        if (todas_conocidas) {
+            listo = true;
+        }
+    }
+
+    # enviar estado final a los vecinos aún activos
+    for q = 1 to n*n st activo[q] {
+        send topologia[q](p, listo, top, maxAutos, minAutos, maxMotos, minMotos);
+    }
+
+    # limpiar el canal recibiendo los mensajes restantes
+    for q = 1 to n*n st activo[q] {
+        receive topologia[p](emisor, _, nuevatop, nuevoMaxAutos, nuevoMinAutos, nuevoMaxMotos, nuevoMinMotos);
+    }
+}
+```
 
 ---
 
@@ -841,7 +1007,9 @@ Implemente una solución al problema de **exclusión mutua distribuida entre n p
 Suponga una ciudad representada por una **matriz A(n×n)**. De cada esquina **x, y** se conocen dos valores enteros que representan la cantidad de **autos y motos** que cruzaron en la última hora. Los valores de cada esquina son mantenidos por un proceso distinto **P(x,y)**.  
 Cada proceso puede comunicarse con sus vecinos **izquierdo, derecho, arriba y abajo**, y también con los de las **4 diagonales** (los procesos de las esquinas tienen solo 3 vecinos y los otros en los bordes de la grilla tienen 5 vecinos).
 
-> **Nota:** Para aprobar el final, es **requerimiento obligatorio tener los ejercicios 4 y 5 resueltos.**
+
+
+
 
 ---
 
