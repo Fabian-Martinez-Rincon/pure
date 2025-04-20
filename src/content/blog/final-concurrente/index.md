@@ -477,7 +477,9 @@ Para no ocupar los procesos **User** en el manejo de los **tokens**, ideamos un 
 
 ```cpp
 chan canal_token[n]() ;                   # para envío de tokens
-chan canal_solicitud_entrada[n](), canal_permiso_entrada[n](), canal_salida_seccion_critica[n](); # para comunicación proceso-helper
+chan canal_solicitud_entrada[n]()
+chan canal_permiso_entrada[n]()
+chan canal_salida_seccion_critica[n](); # para comunicación proceso-helper
 
 process ProcesoHelper[i = 1..N] {
     while(true){
@@ -549,157 +551,97 @@ Hay cierto grado de paralelismo en ambas etapas (varios hijos pueden enviar al m
 
 **Estrella (centralizada)**
 
-
-<table><tr><td>Suma Total</td><td>El Promedio</td></tr>
-<tr><td>
-
 ```c
-chan valor(INT);
-resultados[n](INT suma);
+chan canal_valores(INT);
+chan canal_promedios[n](REAL promedio);
 
-Process P[0]{
-    INT v; INT sum = 0;
-    sum = sum + v;
-    for (i = 1 to n-1){
-        receive valor(v);
-        sum = sum + v;
-    }
-    for (i = 1 to n-1)
-        send resultado[i](sum);
-}
-
-process P[i = 1 to n-1]{
-    INT v; INT sum;
-    send valor(v);
-    receive resultado[i](sum);
-}
-```
-</td><td>
-
-```c
-chan valor(INT);
-resultados[n](REAL promedio);
-
-process P[0]{              // Coordinador
-    INT v; REAL promedio;
-    INT suma = v;
-    for (i = 1 to n - 1) {
-        receive valor(v);
-        suma = suma + v;
-    }
-    promedio = suma / n;
-    for (i = 1 to n - 1)
-        send resultados[i](promedio);
-}
-
-process P[i = 1 to n - 1]{ // Workers
-    INT v; REAL promedio;
-    send valor(v);
-    receive resultados[i](promedio);
-}
-```
-</td></tr></table>
-
-Anillo circular
-
-<table><tr><td>Suma Total</td><td>El Promedio</td></tr>
-<tr><td>
-
-```c
-chan valor[n](suma);
-
-process p[0] {
-    INT v;
-    INT suma = v;
-    send valor[1](suma);
-    receive valor[0](suma);
-    send valor[1](suma);
-}
-
-process p[i = 1 to n-1] {
-    INT v;
-    INT suma;
-    receive valor[i](suma);
-    suma = suma + v;
-    send valor[(i + 1) mod n](suma);
-    receive valor[i](suma);
-    if (i < n - 1)
-        send valor[i + 1](suma);
-}
-```
-</td><td>
-
-```c
-chan valor[n](INT);      // para suma
-chan difusion[n](REAL);  // para promedio
-
-process P[0] {
-    INT v, suma = v;
-    REAL promedio;
-    send valor[1](suma);
-    receive valor[0](suma);
-    promedio = suma / n;
-    send difusion[1](promedio);
-}
-
-process P[i = 1 to n - 1] {
-    INT v, suma;
-    REAL promedio;
-
-    receive valor[i](suma);
-    suma = suma + v;
-    send valor[(i + 1) mod n](suma);
-
-    receive difusion[i](promedio);
-    send difusion[(i + 1) mod n](promedio);
-}
-
-```
-</td></tr></table>
-
-Totalmente conectada (simetrica)
-
-<table><tr><td>Suma Total</td><td>El Promedio</td></tr>
-<tr><td>
-
-```c
-chan valor[n](INT);
-
-process p[i=0 to n-1] {
-    INT v;
-    INT nuevo, suma = v;
+process Coordinador[0]{              // Coordinador
+    INT valor_local;
+    INT suma_total  = valor_local;
+    REAL promedio_global;
     
-    for (k=0 to n-1 st k <> i)
-        send valor[k](v);
-        
-    for (k=0 to n-1 st k <> i) {
-        receive valor[i](nuevo);
-        suma = suma + nuevo;
+    for (i = 1 to n - 1) {
+        INT valor_recibido;
+        receive canal_valores(valor_recibido);
+        suma = suma + valor_recibido;
     }
+    promedio_global  = suma_total / n;
+    for (i = 1 to n - 1)
+        send canal_promedios[i](promedio_global);
+}
+
+process ProcesoTrabajador[i = 1 to n - 1]{ // Cada proceso envía su valor y recibe el promedio
+    INT valor_local;
+    REAL promedio_recibido;
+
+    send canal_valores(valor_local);
+    receive canal_promedios[i](promedio_recibido);
 }
 ```
-</td><td>
+
+**Anillo circular**
 
 ```c
-chan valor[n](INT);
+chan canal_suma[n](INT suma_parcial);      // Para pasar sumas parciales en el anillo
+chan canal_promedio[n](REAL promedio_global);  // Para difundir el promedio calculado
 
-process P[i = 0 to n - 1] {
-    INT v = ..., nuevo;
-    INT suma = v;
-    REAL promedio;
+process ProcesoInicial[0] {
+    INT valor_local
+    INT suma_total  = valor_local;
+    REAL promedio_calculado;
 
-    for (k = 0 to n - 1 st k <> i)
-        send valor[k](v);
+    // Fase 1
+    send canal_suma[1](suma_total);
 
-    for (k = 0 to n - 1 st k <> i) {
-        receive valor[i](nuevo);
-        suma = suma + nuevo;
-    }
+    //Fase 2
+    receive canal_suma[0](suma_total);
 
-    promedio = suma / n;
+    promedio_calculado  = suma_total / n;
+    send canal_promedio[1](promedio_calculado);
+}
+
+process ProcesoAnillo[i = 1 to n - 1] {
+    INT valor_local, 
+    INT suma_total;
+    REAL promedio_recibido;
+    INT siguiente = (i + 1) mod n; // El siguiente proceso en el anillo
+
+    // Fase 1: recibe suma parcial, acumula y reenvía
+    receive canal_suma[i](suma_total);
+    suma_total = suma_total + v;
+    
+    send canal_suma[siguiente](suma_total);
+
+    // Fase 2: recibe el promedio y lo reenvía
+    receive canal_promedio[i](promedio_recibido);
+    send canal_promedio[siguiente](promedio_recibido);
 }
 ```
-</td></tr></table>
+
+**Totalmente conectada (simetrica)**
+
+```c
+chan canal_valores[n](INT valor_recibido); // Canal para intercambio de valores entre todos los procesos
+
+process ProcesoSimetrico[i = 0 to n - 1] {
+    INT valor_local  = ...;
+    INT suma_total  = valor_local ;
+    REAL promedio_local;
+
+    // Envío mi valor_local a todos los demás procesos
+    for (int destino = 0 to n - 1 st destino  <> i)
+        send canal_valores[k](valor_local );
+
+    // Recibo los valores de los demás procesos y acumulo la suma
+    for (int origen = 0 to n - 1 st origen <> i) {
+        INT valor_recibido
+        receive canal_valores[i](valor_recibido);
+        suma_total  = suma_total  + valor_recibido;
+    }
+    // Calculo el promedio de todos los valores
+    promedio_local = suma_total  / n;
+}
+```
 
 **c) Para cada una de las soluciones (todas), calcule la cantidad de mensajes y el tiempo (considerando que eventualmente hay operaciones que pueden realizarse concurrentemente).**
 
