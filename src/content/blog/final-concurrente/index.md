@@ -71,48 +71,52 @@ Suponga que una imagen se encuentra representada por una matriz a **(n×n)**, y 
 **a)** Escriba un algoritmo **Herbeat** que calcule el **máximo** y el **mínimo** valor de los píxeles de la imagen. Al terminar el programa, cada proceso debe conocer ambos valores.
 
 ```cpp
-chan topologia[1:n](emisor : int; listo : bool; top : [1:n,1:n] bool; max : int; min : int);
+chan topologia[1:n](
+    proceso_emisor : int;
+    ya_conoce_todo : bool;
+    topologia_conocida : [1:n,1:n] bool;
+    valor_max : int;
+    valor_min : int
+);
 
 process nodo[p = 1..n] {
-    bool vecinos[1:n];              # inicialmente vecinos[q] true si q es vecino de p
-    bool activo[1:n] = vecinos;     # vecinos aún activos
-    bool top[1:n,1:n] = ([n*n]false);  # vecinos conocidos (matriz de adyacencia)
-    bool nuevatop[1:n,1:n];
-    int r = 0;
-    bool listo = false;
-    int emisor;
-    bool qlisto;
-    int miValor, max, min;
+    bool vecinos_directos[1:n];              # inicialmente vecinos[q] true si q es vecino de p
+    bool vecinos_activos[1:n] = vecinos_directos;     # vecinos aún activos
+    bool topologia_conocida[1:n,1:n] = ([n*n]false);  # vecinos conocidos (matriz de adyacencia)
+    bool topologia_recibida[1:n,1:n];
+    bool ya_conoce_todo = false;
+    int proceso_emisor;
+    bool vecino_listo;
+    int valor_pixel_local, valor_max, valor_min;
     
-    top[p,1..n] = vecinos;          # llena la fila para los vecinos
-    max := miValor; 
-    min := miValor;                # miValor inicializado con el valor del píxel
+    topologia_conocida[p,1..n] = vecinos_directos;          # llena la fila para los vecinos
+    valor_max := valor_pixel_local; 
+    valor_min := valor_pixel_local;                # miValor inicializado con el valor del píxel
 
-    while (not listo) {            # envía conocimiento local de la topología a sus vecinos
-        for (q = 1 to n st activo[q]) {
-            send topologia[q](p, false, top, max, min);
+    while (not ya_conoce_todo) {            # envía conocimiento local de la topología a sus vecinos
+        for (vecino = 1 to n st vecinos_activos[vecino]) {
+            send topologia[vecino](p, false, topologia_conocida, valor_max, valor_min);
         }
 
-        for (q = 1 to n st activo[q]) {
-            receive topologia[p](emisor, qlisto, nuevatop, nuevoMax, nuevoMin);
-            top = top or nuevatop;                  # hace OR con su top juntando la información
-            if (nuevoMax > max) max := nuevoMax;    # actualiza los máximos y mínimos
-            if (nuevoMin < min) min := nuevoMin;
-            if (qlisto) activo[emisor] = false;
+        for (vecino = 1 to n st vecinos_activos[vecino]) {
+            receive topologia[p](proceso_emisor, vecino_listo, topologia_recibida, nuevoMax, nuevoMin);
+            topologia_conocida = topologia_conocida or topologia_recibida;                  # hace OR con su top juntando la información
+            if (nuevoMax > valor_max) valor_max := nuevoMax;    # actualiza los máximos y mínimos
+            if (nuevoMin < valor_min) valor_min := nuevoMin;
+            if (vecino_listo) vecinos_activos[proceso_emisor] = false;
         }
 
-        if (todas las filas de top tienen 1 entry true) listo = true;
-        r := r + 1;
+        if (todas las filas de topologia_conocida tienen 1 entry true) ya_conoce_todo = true;
     }
 
     # envía topología completa a todos sus vecinos aún activos
-    for (q = 1 to n st activo[q]) {
-        send topologia[q](p, listo, top, max, min);
+    for (vecino = 1 to n st vecinos_activos[vecino]) {
+        send topologia[vecino](p, ya_conoce_todo, topologia_conocida, valor_max, valor_min);
     }
 
     # recibe un mensaje de cada uno para limpiar el canal
-    for (q = 1 to n st activo[q]) {
-        receive topologia[p](emisor, d, nuevatop, nuevoMax, nuevoMin);
+    for (vecino = 1 to n st vecinos_activos[vecino]) {
+        receive topologia[p](proceso_emisor, ya_conoce_todo, topologia_recibida, nuevoMax, nuevoMin);
     }
 }
 ```
@@ -139,24 +143,27 @@ En cuanto a la performance global, los mensajes al coordinador se envían casi a
 Estos se quedarán esperando hasta que el coordinador termine de computar la suma y envíe el resultado a todos.
 
 ```c
-chan valor(INT);
-resultados[n](INT suma);
+chan canal_valor(INT);
+canal_resultado[n](INT suma);
 
-Process P[0]{              // coordinador, v está inicializado
-    INT v; INT sum = 0;
-    sum = sum + v;
+Process Coordinador[0]{              // coordinador, v está inicializado
+    INT valor_local; 
+    INT suma_total = 0;
+    suma_total = suma_total + valor_local;
+
     for (i = 1 to n-1){
-        receive valor(v);
-        sum = sum + v;
+        receive canal_valor(valor_recibido);
+        suma_total = suma_total + valor_recibido;
     }
     for (i = 1 to n-1)
         send resultado[i](sum);
 }
 
 process P[i = 1 to n-1]{   // worker, v está inicializado
-    INT v; INT sum;
-    send valor(v);
-    receive resultado[i](sum);
+    INT valor_local;
+    INT suma_total;
+    send canal_valor(valor_local);
+    receive canal_resultado[i](suma_total);
 }
 ```
 
