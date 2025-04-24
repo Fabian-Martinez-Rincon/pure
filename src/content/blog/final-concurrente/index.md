@@ -12,9 +12,6 @@ language: 'Spanish'
 
 Bueno como estoy re juguete para el parcial, hay ciertas preguntas que no toman ni en pepe, vamos a ir descartando cuales
 
----
-
-**💀Aprendelo o te moris**
 
 
 
@@ -61,6 +58,35 @@ Bueno como estoy re juguete para el parcial, hay ciertas preguntas que no toman 
 - [10) Una imagen se encuentra representada por una matriz](#10-una-imagen-se-encuentra-representada-por-una-matriz)
 
 ---
+
+## Notas
+
+![](./notas/1.jpg)
+![](./notas/2.jpg)
+![](./notas/3.jpg)
+![](./notas/4.jpg)
+![](./notas/5.jpg)
+![](./notas/6.jpg)
+![](./notas/7.jpg)
+![](./notas/8.jpg)
+![](./notas/9.jpg)
+![](./notas/10.jpg)
+![](./notas/11.jpg)
+![](./notas/12.jpg)
+![](./notas/13.jpg)
+![](./notas/14.jpg)
+![](./notas/15.jpg)
+![](./notas/16.jpg)
+![](./notas/17.jpg)
+![](./notas/18.jpg)
+![](./notas/19.jpg)
+![](./notas/20.jpg)
+![](./notas/21.jpg)
+![](./notas/23.jpg)
+
+
+---
+
 
 # Aprendes o te moris
 
@@ -121,6 +147,7 @@ process nodo[p = 1..n] {
 }
 ```
 
+> Esto se tiene que consultar, porque la solución es mucho mas simple de la que esta aca
 
 **b) Analice la solución de desde el punto de vista del número de mensajes.**
 
@@ -614,7 +641,8 @@ process ProcesoAnillo[i = 1 to n - 1] {
 
     // Fase 2: recibe el promedio y lo reenvía
     receive canal_promedio[i](promedio_recibido);
-    send canal_promedio[siguiente](promedio_recibido);
+    if (i < n - 1)
+        send canal_promedio[siguiente](promedio_recibido);
 }
 ```
 
@@ -818,125 +846,6 @@ Analice (desde el punto de vista del número de mensajes y la performance global
 **Definir conceptualmente y decir cantidad de mensajes de cada uno. Implementar dos de esos.**
 
 > **En la mesa de mayo eran los mismos ejercicios excepto el último**: había que implementar **heartbeat o passing the baton** (se elegía uno de los dos).
-
-```c
-# Procedimiento que convierte el ID plano del proceso a coordenadas (i, j)
-procedure coords(p: int; n: int; out i: int; out j: int) {
-    i := (p - 1) div n + 1;
-    j := (p - 1) mod n + 1;
-}
-
-# Procedimiento que calcula los vecinos (incluyendo diagonales)
-procedure calcular_vecinos(p: int; n: int; out vecinos: [1:n*n] bool) {
-    int i, j;
-    coords(p, n, i, j);
-
-    for di = -1 to 1 {
-        for dj = -1 to 1 {
-            if (di == 0 and dj == 0) skip;
-
-            int ni := i + di;
-            int nj := j + dj;
-
-            if (1 <= ni <= n and 1 <= nj <= n) {
-                int q := (ni - 1) * n + (nj - 1) + 1;
-                vecinos[q] := true;
-            }
-        }
-    }
-}
-
-# Canal para enviar topología y máximos/mínimos
-chan topologia[1:n*n](
-    emisor       : int;
-    listo        : bool;
-    top          : [1:n*n, 1:n*n] bool;
-    maxAutos     : int;
-    minAutos     : int;
-    maxMotos     : int;
-    minMotos     : int
-);
-
-process nodo[p = 1..n*n] {
-    bool vecinos[1:n*n];
-    bool activo[1:n*n];
-    bool top[1:n*n, 1:n*n] = ([n*n*n*n] false);
-    bool nuevatop[1:n*n, 1:n*n];
-    bool listo = false;
-    int emisor;
-    bool qlisto;
-    int autos, motos;               # datos de la esquina
-    int maxAutos, minAutos;
-    int maxMotos, minMotos;
-
-    # inicializa los vecinos y activos
-    calcular_vecinos(p, n, vecinos);
-    activo = vecinos;
-
-    # inicializa la fila p en la matriz de topología
-    for q = 1 to n*n {
-        if (vecinos[q]) {
-            top[p, q] = true;
-        }
-    }
-
-    # inicializa máximos y mínimos
-    maxAutos := autos;
-    minAutos := autos;
-    maxMotos := motos;
-    minMotos := motos;
-
-    while (not listo) {
-        # enviar estado actual a todos los vecinos activos
-        for q = 1 to n*n st activo[q] {
-            send topologia[q](p, false, top, maxAutos, minAutos, maxMotos, minMotos);
-        }
-
-        # recibir de vecinos activos
-        for q = 1 to n*n st activo[q] {
-            receive topologia[p](emisor, qlisto, nuevatop, nuevoMaxAutos, nuevoMinAutos, nuevoMaxMotos, nuevoMinMotos);
-
-            top = top or nuevatop;
-
-            if (nuevoMaxAutos > maxAutos) maxAutos := nuevoMaxAutos;
-            if (nuevoMinAutos < minAutos) minAutos := nuevoMinAutos;
-
-            if (nuevoMaxMotos > maxMotos) maxMotos := nuevoMaxMotos;
-            if (nuevoMinMotos < minMotos) minMotos := nuevoMinMotos;
-
-            if (qlisto) activo[emisor] = false;
-        }
-
-        # condición de parada: todas las filas tienen al menos un true
-        bool todas_conocidas = true;
-        for f = 1 to n*n {
-            bool tiene_vecino = false;
-            for c = 1 to n*n {
-                if (top[f, c]) {
-                    tiene_vecino = true;
-                }
-            }
-            if (not tiene_vecino) {
-                todas_conocidas = false;
-            }
-        }
-
-        if (todas_conocidas) {
-            listo = true;
-        }
-    }
-
-    # enviar estado final a los vecinos aún activos
-    for q = 1 to n*n st activo[q] {
-        send topologia[q](p, listo, top, maxAutos, minAutos, maxMotos, minMotos);
-    }
-
-    # limpiar el canal recibiendo los mensajes restantes
-    for q = 1 to n*n st activo[q] {
-        receive topologia[p](emisor, _, nuevatop, nuevoMaxAutos, nuevoMinAutos, nuevoMaxMotos, nuevoMinMotos);
-    }
-}
-```
 
 ---
 
