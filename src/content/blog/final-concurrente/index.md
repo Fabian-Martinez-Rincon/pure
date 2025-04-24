@@ -9,11 +9,9 @@ tags:
 language: 'Spanish'
 ---
 
+:D
 
-Bueno como estoy re juguete para el parcial, hay ciertas preguntas que no toman ni en pepe, vamos a ir descartando cuales
-
-
-
+![alt text](image-40.png)
 
 ---
 
