@@ -545,3 +545,189 @@ En el sistema de **control constitucional difuso**, como el que rige en Argentin
 </details>
 
 ---
+
+### Hechos y Actos Jurídicos
+
+En esta clase analizaremos como el derecho aprehende los fenomenos externos y les da un significado jurídíco, Veremos el concepto de acto humano voluntario tanto ilicito como lícito y dentro de estos últimos, nos detendremos en aquellos que tienen la intención de generar relaciones jurídicas 
+
+**1- La intervención de un oficial público le da carácter a un instrumento cuando**
+
+- [ ] Lo realiza según la normativa y con las formalidades previstas para tal acto  
+- [ ] Solo si el oficial público le otorga tal característica  
+- [ ] Debe ser certificado por el Estado mediante su presentación ante la autoridad competente
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-15.png)
+
+* [x] **Lo realiza según la normativa y con las formalidades previstas para tal acto**
+
+La intervención del oficial público no es por sí sola suficiente para conferir carácter de instrumento público. Es necesario que **se cumplan además las formalidades legales exigidas por el ordenamiento jurídico**, tal como se establece en el desarrollo sobre los instrumentos públicos y el artículo 979 del Código Civil.
+
+</details>
+
+---
+
+**2- La fe pública otorgada al instrumento se extiende**
+
+- [ ] A todo el contenido del instrumento  
+- [ ] A lo percibido por el oficial público y a las manifestaciones de las partes  
+- [ ] A lo percibido por el oficial público
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-16.png)
+
+✅ **Respuesta correcta: A lo percibido por el oficial público**
+
+La fe pública del instrumento **no se extiende a todo su contenido**, sino **solo a lo que el oficial público ha visto u oído directamente**. Las **manifestaciones de las partes** hacen fe **hasta prueba en contrario**, mientras que el **hecho de haberlas realizado ante el oficial sí tiene fe pública**. Por lo tanto, **la autenticidad del instrumento se limita a los hechos cumplidos ante el oficial público**, según lo establece el texto.
+
+</details>
+
+---
+
+**3- Un hecho se comete con dolo eventual en el caso que el autor**
+
+- [ ] Se represente el resultado de la acción y dirija sus acciones a su producción  
+- [ ] Se represente el resultado y le resulte indiferente si se produce o no  
+- [ ] No se presente ese resultado por negligencia o falta de cuidado
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-17.png)
+
+✅ **Respuesta correcta: Se represente el resultado y le resulte indiferente si se produce o no**
+
+Según el texto, el **dolo eventual** se configura cuando hay **representación del resultado**, pero el autor **no actúa directamente para causarlo**, sino que **le es indiferente si ocurre o no**. Se diferencia del dolo directo (donde se busca el resultado) y de la culpa (donde no se representa el resultado por negligencia o imprudencia).
+
+</details>
+
+---
+
+**4- En un acto jurídico accesorio**
+
+- [ ] La desaparición del accesorio implica la desaparición del principal  
+- [ ] La desaparición del principal conlleva la del accesorio  
+- [ ] Son independientes
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-18.png)
+
+✅ **Respuesta correcta: La desaparición del principal conlleva la del accesorio**
+
+En los actos jurídicos, el **accesorio depende del principal** para su validez y existencia. Tal como se menciona en el texto, “la nulidad del contrato principal hace caer la garantía dada por la fianza”, es decir, si desaparece el acto principal, **el accesorio también pierde efecto**.
+
+</details>
+
+---
+
+**5- La violencia afecta a qué elemento de la voluntad**
+
+- [ ] La libertad  
+- [ ] La intención  
+- [ ] El discernimiento
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-19.png)
+
+✅ **Respuesta correcta: La libertad**
+
+Según el texto, **la violencia** como vicio de los actos jurídicos “se encuentra directamente relacionada con la **libertad** o por lo menos con su falta”, ya que impide que el autor del acto pueda decidir libremente si lo realiza o no.
+
+</details>
+
+---
+
+### Contratos
+
+Dentro de los actos jurídicos, los contratos permiten la creación y modificacion de relaciones personales entre las partes. En la presente unidad, veremos en primer término los contratos en general, para luego adentrarnos en la problemática de los contratos sobre sistemas de información.
+
+**1- Un contrato informático es**
+
+- [ ] Un contrato sobre sistemas de información  
+- [ ] Un contrato celebrado mediante una red abierta como internet  
+- [ ] Un contrato celebrado por un sistema experto  
+
+
+<details><summary>Respuesta</summary>
+
+[x] **Un contrato sobre sistemas de información**
+
+**Justificación:**
+Según la definición de Mosset Iturraspe, un contrato informático es aquel mediante el cual se crean, modifican, transmiten o extinguen relaciones obligacionales sobre **bienes y/o servicios informáticos**. Estos bienes se integran generalmente en un **sistema destinado a la gestión organizada de información**.
+Por lo tanto, lo que caracteriza a este tipo de contrato es su objeto: **los sistemas de información** y no el medio por el que se celebra (como internet) ni el uso de inteligencia artificial.
+
+</details>
+
+---
+
+**2- Un sistema informático se define por**
+
+- [ ] Las especificaciones técnicas  
+- [ ] Las necesidades a satisfacer  
+- [ ] El hardware entregado  
+
+<details><summary>Respuesta</summary>
+
+[x] **Las necesidades a satisfacer**
+
+En los contratos informáticos, el sistema se define como un **conjunto de bienes organizados en función de un objetivo común**, es decir, lo que **define a un sistema informático es la función que debe cumplir según las necesidades del usuario**. No basta con especificaciones técnicas o hardware entregado si no se satisface la necesidad planteada por el cliente.
+Esto fue claramente sostenido en el fallo *“Sisteco S.A. c/ Sujoy”*, donde se concluyó que el cumplimiento de la obligación del proveedor no se mide por la entrega física de elementos, sino por la **adecuación del sistema a los fines previstos**.
+
+</details>
+
+---
+
+**3- La entrega del sistema se produce**
+
+- [ ] Cuando el mismo cumple con los test de funcionamiento  
+- [ ] Con la instalación del equipo  
+- [ ] Con la entrega física del material al cliente  
+
+<details><summary>Respuesta</summary>
+
+[x] **Cuando el mismo cumple con los test de funcionamiento**
+
+En los contratos informáticos, **la entrega del sistema no se limita a la entrega física del hardware ni a su instalación**, sino que se considera cumplida **cuando el sistema pasa satisfactoriamente el test de aceptación**.
+Este test consiste en una verificación funcional previamente acordada que demuestra que el sistema cumple con los requisitos y objetivos definidos. Por lo tanto, **la entrega efectiva se da cuando el sistema funciona conforme a lo pactado**, incluyendo su adecuación a las necesidades del usuario.
+
+</details>
+
+---
+
+**4- La obligación de consejo abarca**
+
+- [ ] Los aspectos económicos y técnicos del proyecto  
+- [ ] Todos los aspectos del proyecto  
+- [ ] Solo los aspectos técnicos  
+
+<details><summary>Respuesta</summary>
+
+[x] **Solo los aspectos técnicos**
+
+Según el marco teórico sobre contratos informáticos, **la obligación de consejo del proveedor se limita a los aspectos técnicos** del sistema, como la configuración, compatibilidad, escalabilidad y adecuación a las necesidades funcionales del usuario.
+**No abarca aspectos económicos ni decisiones empresariales**, ya que estos exceden el rol técnico del proveedor y son responsabilidad del cliente o de consultores externos. Esto fue confirmado por la jurisprudencia en casos como *“Cajus Face vs IBM”*.
+
+</details>
+
+---
+
+**5- ¿Cuál de las siguientes sería una excepción a la obligación de consejo?**
+
+- [ ] Que el cliente sea una empresa líder en su sector  
+- [ ] El acuerdo de partes  
+- [ ] La contratación de un consultor externo por parte del cliente  
+
+<details><summary>Respuesta</summary>
+
+[x] **La contratación de un consultor externo por parte del cliente**
+
+Según el contenido desarrollado sobre contratos informáticos, **cuando el cliente contrata a un consultor especializado para definir el pliego de condiciones**, la responsabilidad de asesoramiento **se traslada** de forma parcial o total al consultor.
+En ese caso, **el proveedor ya no tiene el deber de interpretar directamente las necesidades del usuario**, ya que se presume que fueron correctamente traducidas por el profesional contratado por este último.
+Esta posición fue sostenida por la jurisprudencia francesa en el caso *"Ste. Sopresur N.C.R. vs Sté Groupe Lebrun"*.
+
+</details>
+
+---
