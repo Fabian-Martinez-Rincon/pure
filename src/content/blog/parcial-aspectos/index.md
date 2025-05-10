@@ -338,3 +338,210 @@ Las otras opciones son incorrectas porque:
 
 ---
 
+### Aspectos Generales de la Ciencia Jurídica
+
+Primera Clase: en ella veremos el concepto de derecho, la diferencia entre derecho objetivo y subjetivo, las fuentes del derecho y las distintas divisiones, que desde el punto de vista académico se han intentado 
+
+**1-** La ciencia jurídica comprende el conjunto organizado de normas emanadas por un órgano competente
+
+- [ ] Verdadero  
+- [ ] Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-5.png)
+
+**✅ Verdadero** ESTO ES MAS FALSO QUE LA MIERDA PERO BUENO
+
+> “el conjunto organizado de normas emanadas de un poder estatal competente, las cuales son percibidas por la población como obligatorias.”
+
+Esa es justamente la definición que adopta la ciencia jurídica para estudiar el derecho objetivo dentro de un sistema legal específico (como el argentino), por lo tanto la afirmación es **verdadera**.
+
+</details>
+
+---
+
+**2-** El derecho real establece una relación entre dos personas
+
+- [ ] Verdadero  
+- [ ] Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-6.png)
+
+**✅ Falso**
+
+El **derecho real** no establece una relación entre dos personas, sino **una relación directa entre una persona y una cosa** (por ejemplo, la propiedad sobre un bien). Es un derecho que se ejerce *erga omnes* (frente a todos), y no entre partes específicas como sucede en los derechos personales u obligaciones.
+
+Esto se diferencia de los **derechos personales**, que **sí implican una relación entre personas**, como un contrato donde una parte exige algo a otra.
+
+</details>
+
+---
+
+**3-** El ejercicio de un derecho subjetivo siempre es lícito
+
+- [ ] Verdadero  
+- [ ] Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-7.png)
+
+**✅ Falso**
+
+El ejercicio de un **derecho subjetivo** **no siempre es lícito**. Aunque el derecho reconoce ciertas facultades, su ejercicio está limitado por el principio de **no abuso del derecho**.
+Como vimos en el texto, si una persona ejerce un derecho en forma abusiva, más allá de los fines legítimos para los cuales fue otorgado, puede incurrir en responsabilidad.
+
+➡️ Esta doctrina se consolidó con la idea de que los derechos no se ejercen en abstracto, sino en función de **intereses jurídicamente tutelados**.
+
+> COMO MIERDA ABUSAS DE UN DERECHO QUE MIERDA ESTA PASANDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO ODIO ESTA MATERIA PROGRE
+
+</details>
+
+---
+
+**4-** Cuando analizamos las fuentes del derecho, el decreto reglamentario de la ley de promoción de software es ley en sentido material pero no formal
+
+- [ ] Verdadero  
+- [ ] Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-8.png)
+
+**✅ Verdadero**
+
+En el marco de las **fuentes del derecho**, una norma tiene **valor de ley en sentido material** cuando **establece reglas generales y obligatorias**, sin importar qué órgano la haya dictado.
+El **decreto reglamentario** de la ley de promoción de software es **dictado por el Poder Ejecutivo**, y si bien **no es una ley formal** (porque no proviene del Congreso), **sí lo es en sentido material** ya que tiene contenido normativo obligatorio.
+
+Este concepto está claramente explicado en el material cuando se diferencia entre:
+
+* **Ley formal**: emanada del Congreso.
+* **Ley material**: cualquier norma obligatoria dictada por autoridad competente.
+
+</details>
+
+---
+
+**5-** El objeto de normas supletorias son obligatorias si las partes guardan silencio al momento del contrato, pero pueden apartarse de lo previsto si así lo desean
+
+- [ ] Verdadero  
+- [ ] Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-9.png)
+
+**✅ Verdadero**
+
+Las **normas supletorias** son aquellas que **se aplican automáticamente si las partes no acuerdan otra cosa** en un contrato. Como dice tu material:
+
+> "*El acuerdo de voluntades se compone por lo que las partes expresamente acordaron más lo que la ley marca en caso de silencio.*"
+
+Sin embargo, estas normas **pueden ser dejadas de lado** si las partes lo deciden expresamente, ya que **no son imperativas**. Es decir, **son obligatorias solo si no se pacta lo contrario**, y **pueden ser sustituidas por la voluntad de las partes**.
+
+</details>
+
+---
+
+### Estructura Constitucional
+
+En esta unidad repasaremos algunos conceptos de derecho constitucional, en particular, la forma del estado y del gobierno y los límites que el derecho le impone al poder estatal.
+
+**1- El habeas corpus es**
+
+- [ ] Un derecho constitucional contra las detenciones arbitrarias  
+- [ ] Una garantía que protege la libertad ambulatoria  
+- [ ] Una declaración de derechos humanos
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-10.png)
+
+
+✅ **Una garantía que protege la libertad ambulatoria**
+
+Según el texto que me compartiste, el *habeas corpus* es una **garantía constitucional** que **tutela la libertad física o ambulatoria** de una persona frente a detenciones o restricciones arbitrarias. Si bien puede considerarse un derecho constitucional, en sentido técnico y preciso **es una garantía**, es decir, un mecanismo procesal que permite proteger ese derecho.
+
+</details>
+
+---
+
+**2- Aparte del preámbulo el texto constitucional se divide en:**
+
+- [ ] Dos partes: Declaraciones derechos y garantías y autoridades de la nación  
+- [ ] Tres partes: Declaraciones derechos y garantías, autoridades de la nación y gobiernos provinciales  
+- [ ] Cuatro partes: Declaraciones derechos y garantías y tres correspondiendo a cada poder del estado
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-11.png)
+
+✅ **Dos partes: Declaraciones derechos y garantías y autoridades de la nación**
+
+Según el desarrollo teórico, el texto constitucional argentino —aparte del preámbulo— se divide en dos grandes secciones:
+
+* **Parte dogmática**: que contiene las declaraciones, derechos y garantías.
+* **Parte orgánica**: que regula la organización y funcionamiento de los poderes del Estado (autoridades de la Nación).
+
+</details>
+
+---
+
+**3- La monarquía es una forma**
+
+- [ ] De nación  
+- [ ] De estado  
+- [ ] De gobierno
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-12.png)
+
+✅ **De gobierno**
+
+Según el texto que compartiste, **la monarquía** se clasifica dentro de las **formas de gobierno**, ya que se refiere al modo en que se ejerce el poder sobre la población. Se contrapone a la república, y puede ser **constitucional** o **absoluta**, dependiendo del grado de poder del monarca.
+
+</details>
+
+---
+
+**4- La existencia del federalismo se relaciona**
+
+- [ ] Con la preexistencia de los gobiernos locales, que retienen para sí las competencias no expresamente delegadas  
+- [ ] La mayor descentralización de las facultades del estado en beneficio de los gobiernos locales  
+- [ ] La existencia de provincias en un territorio
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-13.png)
+
+✅ **Con la preexistencia de los gobiernos locales, que retienen para sí las competencias no expresamente delegadas**
+
+Según el texto, el federalismo argentino se basa en que **las provincias son preexistentes a la Nación** y, por lo tanto, **toda facultad no delegada permanece en ellas**, lo que implica una distribución de competencias en favor de los gobiernos locales. Esto es lo que distingue al federalismo de otras formas de organización estatal.
+
+
+</details>
+
+---
+
+**5-** Un sistema de control constitucional difuso implica
+
+- [ ] Que cualquier juez puede declarar la inconstitucionalidad  
+- [ ] Que la declaración se expande a los casos similares  
+- [ ] Que tanto el poder ejecutivo como el judicial puede declararla
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-14.png)
+
+✅ **Que cualquier juez puede declarar la inconstitucionalidad**
+
+
+En el sistema de **control constitucional difuso**, como el que rige en Argentina a nivel federal, **todos los jueces** tienen la facultad de declarar la inconstitucionalidad de una norma en un caso concreto. Esto lo diferencia del sistema concentrado, donde solo un tribunal específico tiene esa atribución.
+
+</details>
+
+---
