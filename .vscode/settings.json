@@ -1,0 +1,42 @@
+{
+    "workbench.colorCustomizations": {
+      // 🎨 Colores de fondo
+      "editor.background": "#1e1e1e",               // Fondo del editor
+      "sideBar.background": "#121212",              // Fondo del panel lateral
+      "activityBar.background": "#0f0f0f",           // Fondo de la barra lateral izquierda
+      "statusBar.background": "#222222",            // Fondo de la barra inferior
+      "titleBar.activeBackground": "#1a1a1a",        // Fondo de la barra de título
+      "panel.background": "#1a1a1a",                 // Fondo del panel inferior (terminal, etc.)
+  
+      // ✏️ Texto y contenido
+      "editor.foreground": "#e0e0e0",                // Color del texto principal en el editor
+      "sideBar.foreground": "#cccccc",               // Color del texto en la sidebar
+      "activityBar.foreground": "#ffffff",           // Iconos de la activity bar
+      "statusBar.foreground": "#cccccc",             // Texto del status bar
+  
+      // 🟡 Colores de acento / bordes
+      "editorGroup.border": "#ffcc00",
+      "sideBar.border": "#ffcc00",
+      "panel.border": "#ffcc00",
+      "tab.activeBorder": "#ffcc00",
+      "tab.inactiveBorder": "#444444",
+      "titleBar.border": "#ffcc00",
+  
+      // 🟢 Pestañas
+      "tab.activeBackground": "#2c2c2c",
+      "tab.inactiveBackground": "#1b1b1b",
+      "tab.activeForeground": "#ffffff",
+      "tab.inactiveForeground": "#999999",
+  
+      // ⚙️ Terminal
+    //   "terminal.background": "#000000",
+    //   "terminal.foreground": "#00ff00",              // Estilo “hacker” (verde fosforescente)
+      "terminalCursor.foreground": "#ffcc00",
+      "terminal.ansiBlack": "#000000",
+      "terminal.ansiBlue": "#3b8eea",
+      "terminal.ansiGreen": "#00ff00",
+      "terminal.ansiRed": "#ff5555",
+      "terminal.ansiYellow": "#ffff55"
+    }
+  }
+  
