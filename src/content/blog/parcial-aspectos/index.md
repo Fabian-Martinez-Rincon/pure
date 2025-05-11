@@ -1,4 +1,4 @@
-
+---
 title: 1er Parcial Aspectos Legales
 description: ""
 heroImage: { src: './thumbnail.jpg', color: '#904F14' }
@@ -6,8 +6,7 @@ publishDate: 2025-05-02
 tags: 
  - Trabajo
 language: 'Spanish'
-
-
+---
 
 # Temas
 
