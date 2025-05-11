@@ -1,4 +1,4 @@
----
+
 title: 1er Parcial Aspectos Legales
 description: ""
 heroImage: { src: './thumbnail.jpg', color: '#904F14' }
@@ -6,7 +6,7 @@ publishDate: 2025-05-02
 tags: 
  - Trabajo
 language: 'Spanish'
----
+
 
 
 # Temas
@@ -17,7 +17,7 @@ language: 'Spanish'
 - [4. Contratos]()
 - [5. Propiedad Intelectual]()
 
----
+
 
 ## Aspectos Generales de la Ciencia Jurídica
 
@@ -189,7 +189,7 @@ El **objeto** es la prestación que se debe cumplir. Debe ser **posible**, **lí
 
 </details>
 
----
+
 
 ## Evaluaciones
 
@@ -219,7 +219,7 @@ En cambio:
 
 </details>
 
----
+
 
 **2- La obligación de recabar los datos personales previa autorización de su titular, está vinculada a qué principio**
 
@@ -246,7 +246,7 @@ Las otras opciones:
 
 </details>
 
----
+
 
 **3- ¿Cuál es el sistema de la ley de bancos de datos respecto a la responsabilidad administrativa?**
 
@@ -280,7 +280,7 @@ Mi error fue asumir que todas las conductas prohibidas estaban claramente defini
 
 </details>
 
----
+
 
 **4- Los datos sensibles**
 
@@ -309,7 +309,7 @@ Por tanto, **su tratamiento está prohibido de forma general** y solo se permite
 
 </details>
 
----
+
 
 **5- ¿Cuál de las siguientes hipótesis es una excepción a la obligación de autorización para recabar los datos?**
 
@@ -336,7 +336,7 @@ Las otras opciones son incorrectas porque:
 
 </details>
 
----
+
 
 ### Aspectos Generales de la Ciencia Jurídica
 
@@ -359,7 +359,7 @@ Esa es justamente la definición que adopta la ciencia jurídica para estudiar e
 
 </details>
 
----
+
 
 **2-** El derecho real establece una relación entre dos personas
 
@@ -378,7 +378,7 @@ Esto se diferencia de los **derechos personales**, que **sí implican una relaci
 
 </details>
 
----
+
 
 **3-** El ejercicio de un derecho subjetivo siempre es lícito
 
@@ -400,7 +400,7 @@ Como vimos en el texto, si una persona ejerce un derecho en forma abusiva, más 
 
 </details>
 
----
+
 
 **4-** Cuando analizamos las fuentes del derecho, el decreto reglamentario de la ley de promoción de software es ley en sentido material pero no formal
 
@@ -423,7 +423,7 @@ Este concepto está claramente explicado en el material cuando se diferencia ent
 
 </details>
 
----
+
 
 **5-** El objeto de normas supletorias son obligatorias si las partes guardan silencio al momento del contrato, pero pueden apartarse de lo previsto si así lo desean
 
@@ -444,7 +444,7 @@ Sin embargo, estas normas **pueden ser dejadas de lado** si las partes lo decide
 
 </details>
 
----
+
 
 ### Estructura Constitucional
 
@@ -467,7 +467,7 @@ Según el texto que me compartiste, el *habeas corpus* es una **garantía consti
 
 </details>
 
----
+
 
 **2- Aparte del preámbulo el texto constitucional se divide en:**
 
@@ -488,7 +488,7 @@ Según el desarrollo teórico, el texto constitucional argentino —aparte del p
 
 </details>
 
----
+
 
 **3- La monarquía es una forma**
 
@@ -506,7 +506,7 @@ Según el texto que compartiste, **la monarquía** se clasifica dentro de las **
 
 </details>
 
----
+
 
 **4- La existencia del federalismo se relaciona**
 
@@ -525,7 +525,7 @@ Según el texto, el federalismo argentino se basa en que **las provincias son pr
 
 </details>
 
----
+
 
 **5-** Un sistema de control constitucional difuso implica
 
@@ -544,7 +544,7 @@ En el sistema de **control constitucional difuso**, como el que rige en Argentin
 
 </details>
 
----
+
 
 ### Hechos y Actos Jurídicos
 
@@ -566,7 +566,7 @@ La intervención del oficial público no es por sí sola suficiente para conferi
 
 </details>
 
----
+
 
 **2- La fe pública otorgada al instrumento se extiende**
 
@@ -584,7 +584,7 @@ La fe pública del instrumento **no se extiende a todo su contenido**, sino **so
 
 </details>
 
----
+
 
 **3- Un hecho se comete con dolo eventual en el caso que el autor**
 
@@ -602,7 +602,7 @@ Según el texto, el **dolo eventual** se configura cuando hay **representación 
 
 </details>
 
----
+
 
 **4- En un acto jurídico accesorio**
 
@@ -620,7 +620,7 @@ En los actos jurídicos, el **accesorio depende del principal** para su validez 
 
 </details>
 
----
+
 
 **5- La violencia afecta a qué elemento de la voluntad**
 
@@ -638,7 +638,7 @@ Según el texto, **la violencia** como vicio de los actos jurídicos “se encue
 
 </details>
 
----
+
 
 ### Contratos Informaticos
 
@@ -663,7 +663,7 @@ Por lo tanto, lo que caracteriza a este tipo de contrato es su objeto: **los sis
 
 </details>
 
----
+
 
 **2- Un sistema informático se define por**
 
@@ -682,7 +682,7 @@ Esto fue claramente sostenido en el fallo *“Sisteco S.A. c/ Sujoy”*, donde s
 
 </details>
 
----
+
 
 **3- La entrega del sistema se produce**
 
@@ -701,7 +701,7 @@ Este test consiste en una verificación funcional previamente acordada que demue
 
 </details>
 
----
+
 
 **4- La obligación de consejo abarca**
 
@@ -720,7 +720,7 @@ Según el marco teórico sobre contratos informáticos, **la obligación de cons
 
 </details>
 
----
+
 
 **5- ¿Cuál de las siguientes sería una excepción a la obligación de consejo?**
 
@@ -740,7 +740,7 @@ Esta posición fue sostenida por la jurisprudencia francesa en el caso *"Ste. So
 
 </details>
 
----
+
 
 ### Contratos Parte General
 
@@ -765,7 +765,7 @@ Esto se encuentra desarrollado tanto en la doctrina como en la jurisprudencia y 
 
 </details>
 
----
+
 
 **2) El contrato se perfecciona con la aceptación de la oferta**
 - ( ) Verdadero  
@@ -787,7 +787,7 @@ Este principio es esencial en la **formación del contrato**:
 
 </details>
 
----
+
 
 **3) Un contrato es un acto jurídico**
 - ( ) Verdadero  
@@ -805,7 +805,7 @@ En el marco de los contratos, se trata de un **acto jurídico bilateral o pluril
 
 </details>
 
----
+
 
 **4) Solo se pueden celebrar los contratos previstos por la ley**
 
@@ -824,7 +824,7 @@ Mientras no contravengan normas de orden público, la moral o las buenas costumb
 
 </details>
 
----
+
 
 **5 El pacto comisorio resuelve el contrato en caso de incumplimiento**
 - ( ) Verdadero  
@@ -845,7 +845,7 @@ Una vez resuelto, el contrato se considera extinguido con **efectos retroactivos
 
 </details>
 
----
+
 
 **6) El contrato se perfecciona con la firma de las partes**
 - ( ) Verdadero  
@@ -862,7 +862,7 @@ En muchos casos, el contrato es válido **aunque no haya sido firmado**, siempre
 
 </details>
 
----
+
 
 **7) Un contrato unilateral tiene una sola parte**
 - ( ) Verdadero  
@@ -878,7 +878,7 @@ Un contrato **unilateral** no implica que haya una sola **parte**, sino que **so
 
 </details>
 
----
+
 
 **8) Un contrato de adhesión es una convención con cláusulas predispuestas**
 - ( ) Verdadero  
@@ -894,7 +894,7 @@ Un **contrato de adhesión** es aquel en el que **las cláusulas están predispu
 
 </details>
 
----
+
 
 **9) Una aceptación que modifique la oferta implica una contraoferta**
 - ( ) Verdadero  
@@ -910,7 +910,7 @@ Según el Código Civil argentino (art. 1154), para que el contrato se perfeccio
 
 </details>
 
----
+
 
 **10) El objeto de un contrato debe ser posible**
 
@@ -927,7 +927,7 @@ Según el artículo 953 del Código Civil argentino, el objeto de los actos jur�
 
 </details>
 
----
+
 
 ### Propiedad intelectual
 
@@ -948,7 +948,7 @@ Según el texto, una vez vencido el plazo de protección (70 años desde la muer
 
 </details>
 
----
+
 
 **2) El software se protege mediante la ley de patentes de invención**
 
@@ -965,7 +965,7 @@ El software **no se protege** mediante la Ley de Patentes de Invención (Ley 24.
 
 </details>
 
----
+
 
 **3) Las marcas comerciales deben ser utilizadas en todas las categorías donde se anotan**
 
@@ -981,7 +981,7 @@ El software **no se protege** mediante la Ley de Patentes de Invención (Ley 24.
 La ley **no exige** que las marcas se utilicen en **todas** las categorías donde se anotan. Basta con que se **utilicen en al menos una** de las categorías inscriptas para que puedan ser renovadas. Las marcas inscritas en categorías donde no se pretende usarlas se conocen como **marcas de defensa**, y su objetivo es evitar la dilución de la marca por uso de terceros en rubros distintos.
 </details>
 
----
+
 
 **4) Toda obra registrada debe tener un mínimo de originalidad**
 
@@ -997,7 +997,7 @@ La ley **no exige** que las marcas se utilicen en **todas** las categorías dond
 La ley exige que para que una obra sea protegida por derechos de autor, debe poseer un **mínimo grado de originalidad**. No se requiere una originalidad absoluta, pero sí debe haber un aporte personal del autor que diferencie la obra de otras preexistentes. Esto es esencial para que la obra pueda considerarse una creación protegible.
 </details>
 
----
+
 
 **5) La protección ofrecida por la ley de derechos de autor es tecnológicamente neutra**
 
@@ -1014,7 +1014,7 @@ La **ley 11.723** de propiedad intelectual, especialmente tras su reforma, estab
 
 </details>
 
----
+
 
 ## Primer Parcial Aspectos Legales
 
@@ -1032,7 +1032,7 @@ Un sistema de control constitucional **difuso** implica que **todos los jueces**
 
 </details>
 
----
+
 
 **2) La propiedad intelectual de un software se regula**
 
@@ -1048,7 +1048,7 @@ Según la Ley 11.723 de Propiedad Intelectual (modificada), **el software está 
 
 </details>
 
----
+
 
 **3) Un sistema de información es una universalidad de bienes definida por**
 
@@ -1063,7 +1063,7 @@ Según la Ley 11.723 de Propiedad Intelectual (modificada), **el software está 
 Un sistema de información se define como una universalidad de bienes **cuya configuración depende de los objetivos y necesidades que debe satisfacer el usuario**, no simplemente por los bienes ofrecidos ni por lo que se establezca en el contrato .
 </details>
 
----
+
 
 **4) Por principio general, los contratos tienen el siguiente efecto respecto de los terceros**
 
@@ -1080,7 +1080,7 @@ Por principio general, los contratos **sólo producen efectos entre las partes q
 
 </details>
 
----
+
 
 **5) La fe pública de un documento se extiende**
 
@@ -1096,7 +1096,7 @@ La fe pública **se extiende solo a lo que el oficial público ha percibido por 
 
 </details>
 
----
+
 
 **6) La obligación de consejo se extiende a qué aspectos del proceso**
 
@@ -1112,7 +1112,7 @@ La obligación de consejo del proveedor en contratos informáticos **se limita a
 
 </details>
 
----
+
 
 **7) ¿Cuál de las siguientes características NO pertenece a las obligaciones personales?**
 
@@ -1128,7 +1128,7 @@ Las obligaciones personales **pueden originarse por ley, contrato, cuasicontrato
 
 </details>
 
----
+
 
 **8) Si una persona actúa con indiferencia respecto a la posibilidad de la producción de un resultado, estamos frente a un caso de**
 
@@ -1144,7 +1144,7 @@ El **dolo eventual** ocurre cuando una persona **se representa la posibilidad de
 
 </details>
 
----
+
 
 **9) Un contrato será bilateral cuando**
 
@@ -1160,7 +1160,7 @@ Un **contrato bilateral** es aquel en el que **ambas partes asumen obligaciones 
 
 </details>
 
----
+
 
 **10) Si un sistema de voto electrónico no permite acceder al código fuente ¿cuál de los requisitos estudiados se vería afectado directamente?**
 
@@ -1176,7 +1176,7 @@ Si no se puede acceder al código fuente de un sistema de voto electrónico, **n
 
 </details>
 
----
+
 
 ## Recuperatorio
 
@@ -1201,7 +1201,7 @@ Los derechos reales se caracterizan por:
 
 </details>
 
----
+
 
 **2) La fuerza física irresistible es un vicio de**
 
@@ -1220,7 +1220,7 @@ La **fuerza física irresistible** anula la libertad del sujeto para actuar, ya 
 
 </details>
 
----
+
 
 **3) Los requisitos de un instrumento público son**
 
@@ -1241,7 +1241,7 @@ Un **instrumento público** debe reunir determinados requisitos formales para se
 
 </details>
 
----
+
 
 **4) El software se protege por la ley**
 
@@ -1259,7 +1259,7 @@ Según la legislación argentina (Ley 11.723), el software está protegido como 
 
 </details>
 
----
+
 
 **5) ¿Cuáles son los requisitos comunes a todos los sistemas de sufragio según los pactos internacionales?**
 
@@ -1277,7 +1277,7 @@ Los pactos internacionales de derechos humanos, como el **Pacto Internacional de
 
 </details>
 
----
+
 
 **6) La obligación de consejo se extiende a qué aspectos del proyecto**
 
@@ -1295,7 +1295,7 @@ Según el análisis doctrinario y jurisprudencial, la **obligación de consejo**
 
 </details>
 
----
+
 
 **7) Un contrato unilateral tiene**
 
@@ -1312,7 +1312,7 @@ Según el análisis doctrinario y jurisprudencial, la **obligación de consejo**
 Un contrato **unilateral** tiene **al menos dos partes**, ya que todo contrato requiere el acuerdo entre dos o más personas. Lo que lo distingue es que **solo una de las partes asume obligaciones**, mientras la otra no tiene carga alguna. No debe confundirse con que haya una sola parte firmante o interviniente: siempre hay dos partes, aunque una no esté obligada.
 </details>
 
----
+
 
 **8) El contrato comienza a existir con**
 
@@ -1329,7 +1329,7 @@ Un contrato **unilateral** tiene **al menos dos partes**, ya que todo contrato r
 Según el régimen general de los contratos, **el contrato se perfecciona cuando la oferta es aceptada** en tiempo y forma. La firma puede ser una forma de expresar esa aceptación, pero lo que da nacimiento al contrato como vínculo jurídico es el **acuerdo de voluntades**, es decir, la **aceptación de la oferta**.
 </details>
 
----
+
 
 **9) Un contrato innominado es un contrato**
 
@@ -1347,7 +1347,7 @@ Un **contrato innominado** es aquel que **no tiene una regulación específica e
 
 </details>
 
----
+
 
 **10) Según el moderno concepto de entrega, ¿cuándo se cumple con la entrega de un sistema informático?**
 
@@ -1365,7 +1365,7 @@ Según el moderno concepto de entrega en los contratos informáticos, no basta c
 
 </details>
 
----
+
 
 ## Autoevaluacion - Parcial de prueba
 
@@ -1385,7 +1385,7 @@ En un sistema de control constitucional **difuso**, como el que rige en Argentin
 
 </details>
 
----
+
 
 **2) La existencia del federalismo se relaciona**
 
@@ -1403,7 +1403,7 @@ El **federalismo** implica la existencia de **gobiernos locales preexistentes** 
 
 </details>
 
----
+
 
 **3) La monarquía es una forma**
 
@@ -1421,7 +1421,7 @@ La **monarquía** es una forma de **gobierno**, ya que se refiere a cómo se org
 
 </details>
 
----
+
 
 **4) La entrega del sistema se produce**
 
@@ -1439,7 +1439,7 @@ Según el enfoque moderno sobre la entrega de sistemas informáticos, **la entre
 
 </details>
 
----
+
 
 **5) ¿Cuál de las siguientes sería una excepción a la obligación de consejo?**
 
@@ -1457,7 +1457,7 @@ Cuando el cliente contrata a un **consultor especializado**, se entiende que ya 
 
 </details>
 
----
+
 
 **6) En un acto jurídico accesorio**
 
@@ -1475,7 +1475,7 @@ Un acto jurídico accesorio está subordinado al principal y **carece de autonom
 
 </details>
 
----
+
 
 **7) La fe pública otorgada al instrumento se extiende**
 
@@ -1493,7 +1493,7 @@ La fe pública que otorga un instrumento público se limita a lo que el oficial 
 
 </details>
 
----
+
 
 **8) Un contrato unilateral tiene**
 
@@ -1511,7 +1511,7 @@ Un contrato unilateral **requiere al menos dos partes para su celebración**, ya
 
 </details>
 
----
+
 
 **9) La fuerza física irresistible es un vicio de**
 
@@ -1529,7 +1529,7 @@ La **fuerza física irresistible** afecta la **libertad**, ya que impide que la 
 
 </details>
 
----
+
 
 **10) La propiedad intelectual de un software se regula**
 
@@ -1547,7 +1547,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 
 </details>
 
----
+
 
 ## Autoevaluacion - Parcial de prueba 2
 
@@ -1562,7 +1562,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 ![alt text](image-60.png)
 </details>
 
----
+
 
 **2) La existencia del federalismo se relaciona**
 
@@ -1575,7 +1575,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 ![alt text](image-61.png)
 </details>
 
----
+
 
 **3) Un contrato unilateral tiene**
 
@@ -1588,7 +1588,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 ![alt text](image-62.png)
 </details>
 
----
+
 
 **4) La fuerza física irresistible es un vicio de**
 
@@ -1601,7 +1601,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 ![alt text](image-63.png)
 </details>
 
----
+
 
 **5) Un sistema informático se define por**
 
@@ -1614,7 +1614,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 ![alt text](image-64.png)
 </details>
 
----
+
 
 **6) Según el moderno concepto de entrega, ¿cuándo se cumple con la entrega de un sistema informático?**
 
@@ -1627,7 +1627,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 ![alt text](image-65.png)
 </details>
 
----
+
 
 **7) El contrato comienza a existir con**
 
@@ -1640,7 +1640,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 ![alt text](image-66.png)
 </details>
 
----
+
 
 **8) ¿Cuál de las siguientes características NO pertenece a las obligaciones personales?**
 
@@ -1653,7 +1653,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 ![alt text](image-67.png)
 </details>
 
----
+
 
 **9) Que un sistema de control constitucional sea difuso significa**
 
@@ -1666,7 +1666,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 ![alt text](image-68.png)
 </details>
 
----
+
 
 **10) Aparte del preámbulo el texto constitucional se divide en:**
 
