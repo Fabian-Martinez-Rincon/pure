@@ -640,7 +640,7 @@ Según el texto, **la violencia** como vicio de los actos jurídicos “se encue
 
 ---
 
-### Contratos
+### Contratos Informaticos
 
 Dentro de los actos jurídicos, los contratos permiten la creación y modificacion de relaciones personales entre las partes. En la presente unidad, veremos en primer término los contratos en general, para luego adentrarnos en la problemática de los contratos sobre sistemas de información.
 
@@ -652,6 +652,8 @@ Dentro de los actos jurídicos, los contratos permiten la creación y modificaci
 
 
 <details><summary>Respuesta</summary>
+
+![alt text](image-20.png)
 
 [x] **Un contrato sobre sistemas de información**
 
@@ -671,6 +673,8 @@ Por lo tanto, lo que caracteriza a este tipo de contrato es su objeto: **los sis
 
 <details><summary>Respuesta</summary>
 
+![alt text](image-21.png)
+
 [x] **Las necesidades a satisfacer**
 
 En los contratos informáticos, el sistema se define como un **conjunto de bienes organizados en función de un objetivo común**, es decir, lo que **define a un sistema informático es la función que debe cumplir según las necesidades del usuario**. No basta con especificaciones técnicas o hardware entregado si no se satisface la necesidad planteada por el cliente.
@@ -687,6 +691,8 @@ Esto fue claramente sostenido en el fallo *“Sisteco S.A. c/ Sujoy”*, donde s
 - [ ] Con la entrega física del material al cliente  
 
 <details><summary>Respuesta</summary>
+
+![alt text](image-22.png)
 
 [x] **Cuando el mismo cumple con los test de funcionamiento**
 
@@ -705,6 +711,8 @@ Este test consiste en una verificación funcional previamente acordada que demue
 
 <details><summary>Respuesta</summary>
 
+![alt text](image-23.png)
+
 [x] **Solo los aspectos técnicos**
 
 Según el marco teórico sobre contratos informáticos, **la obligación de consejo del proveedor se limita a los aspectos técnicos** del sistema, como la configuración, compatibilidad, escalabilidad y adecuación a las necesidades funcionales del usuario.
@@ -722,6 +730,8 @@ Según el marco teórico sobre contratos informáticos, **la obligación de cons
 
 <details><summary>Respuesta</summary>
 
+![alt text](image-24.png)
+
 [x] **La contratación de un consultor externo por parte del cliente**
 
 Según el contenido desarrollado sobre contratos informáticos, **cuando el cliente contrata a un consultor especializado para definir el pliego de condiciones**, la responsabilidad de asesoramiento **se traslada** de forma parcial o total al consultor.
@@ -731,3 +741,910 @@ Esta posición fue sostenida por la jurisprudencia francesa en el caso *"Ste. So
 </details>
 
 ---
+
+### Contratos Parte General
+
+**1) Todo contrato tiene efectos respecto de terceros**
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-25.png)
+
+**Respuesta: ( ) Falso**
+
+De acuerdo con el principio general del derecho contractual, **los contratos solo producen efectos entre las partes que los celebran**, no respecto de terceros. Esta regla está expresamente reconocida en el derecho argentino y es coherente con el principio de relatividad de los contratos.
+
+Sin embargo, existen **excepciones** a este principio, como:
+
+* **Contratos con cláusula a favor de terceros**, como los seguros de vida.
+* **Contratos que transfieren derechos reales**, los cuales pueden ser oponibles a terceros.
+
+Esto se encuentra desarrollado tanto en la doctrina como en la jurisprudencia y fue señalado en los materiales bajo estudio (como en el análisis sobre los sujetos en los contratos).
+
+</details>
+
+---
+
+**2) El contrato se perfecciona con la aceptación de la oferta**
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-26.png)
+
+**Respuesta: (✔) Verdadero**
+
+Según el **Código Civil y Comercial argentino (art. 1148 y siguientes)** y el material estudiado, **el contrato se perfecciona cuando la oferta es aceptada en tiempo y forma**. Es decir, cuando hay un **acuerdo de voluntades** entre dos o más partes sobre un objeto lícito, posible y determinado.
+
+Este principio es esencial en la **formación del contrato**:
+
+* La oferta debe contener los elementos esenciales del negocio.
+* La aceptación debe ser **lisa y llana**, sin modificar los términos de la oferta.
+* El contrato queda perfeccionado **en el momento del envío de la aceptación**, salvo pacto en contrario (art. 1154).
+
+</details>
+
+---
+
+**3) Un contrato es un acto jurídico**
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-27.png)
+
+**Respuesta: (✔) Verdadero**
+
+Un contrato es, efectivamente, un **acto jurídico** porque cumple con todas las características de este tipo de actos: es un hecho **voluntario, lícito y destinado a crear, modificar o extinguir derechos y obligaciones** entre las partes (art. 944 del Código Civil).
+
+En el marco de los contratos, se trata de un **acto jurídico bilateral o plurilateral**, ya que requiere el acuerdo de dos o más voluntades para su existencia.
+
+</details>
+
+---
+
+**4) Solo se pueden celebrar los contratos previstos por la ley**
+
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-28.png)
+
+**Respuesta: (✔) Falso**
+
+No es necesario que un contrato esté expresamente previsto por la ley para que sea válido. Existen **contratos nominados** (regulados por la ley) y **contratos innominados**, que surgen del **principio de la autonomía de la voluntad**.
+
+Mientras no contravengan normas de orden público, la moral o las buenas costumbres, **las partes pueden celebrar contratos atípicos o innominados**, fijando libremente su contenido, según sus intereses y necesidades. Esto está reconocido tanto en la doctrina como en la jurisprudencia argentina.
+
+</details>
+
+---
+
+**5 El pacto comisorio resuelve el contrato en caso de incumplimiento**
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-29.png)
+
+**Respuesta: (✔) Verdadero**
+
+El **pacto comisorio** es una cláusula que permite **resolver el contrato** cuando una de las partes **incumple** sus obligaciones. Según el artículo 1204 del Código Civil argentino (reformado por la ley 17.711), puede ser:
+
+* **Expreso**, si las partes lo pactan explícitamente (no requiere intimación).
+* **Tácito**, si no se pactó expresamente, pero se aplica de todos modos, con la **obligación de intimar** al cumplimiento en un plazo mínimo de 15 días.
+
+Una vez resuelto, el contrato se considera extinguido con **efectos retroactivos**, y puede dar lugar al reclamo de **daños y perjuicios**.
+
+</details>
+
+---
+
+**6) El contrato se perfecciona con la firma de las partes**
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-30.png)
+
+**Respuesta: (✘) Falso**
+
+El **contrato se perfecciona con el acuerdo de voluntades**, es decir, **cuando hay aceptación de la oferta** (art. 1154 del Código Civil). La **firma** no es un requisito esencial para todos los contratos; es solo una **forma de exteriorizar** ese consentimiento, especialmente en contratos escritos.
+En muchos casos, el contrato es válido **aunque no haya sido firmado**, siempre que haya consentimiento entre las partes y no se requiera una forma solemne para su validez.
+
+</details>
+
+---
+
+**7) Un contrato unilateral tiene una sola parte**
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-31.png)
+
+**Respuesta: (✘) Falso**
+
+Un contrato **unilateral** no implica que haya una sola **parte**, sino que **solo una de las partes asume obligaciones**. Siempre se requiere al menos **dos partes** para que exista un contrato (art. 1137 del Código Civil), pero en el contrato unilateral, **solo una queda obligada**. Ejemplo: una **donación**, donde el donante se obliga a entregar y el donatario no asume obligación alguna.
+
+</details>
+
+---
+
+**8) Un contrato de adhesión es una convención con cláusulas predispuestas**
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-32.png)
+
+**Respuesta: (✔) Verdadero**
+
+Un **contrato de adhesión** es aquel en el que **las cláusulas están predispuestas por una de las partes** (generalmente la más fuerte económicamente) y la otra parte solo puede **aceptarlas o rechazarlas**, sin posibilidad real de negociación. Este tipo de contratos es típico en servicios masivos como seguros, banca o telefonía.
+
+</details>
+
+---
+
+**9) Una aceptación que modifique la oferta implica una contraoferta**
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-33.png)
+
+**Respuesta: (✔) Verdadero**
+
+Según el Código Civil argentino (art. 1154), para que el contrato se perfeccione, la aceptación debe ser **lisa y llana**, es decir, no debe introducir modificaciones a la oferta. Si la aceptación **altera alguno de sus términos**, no constituye una aceptación propiamente dicha, sino que **implica una nueva oferta o contraoferta**, que deberá ser aceptada por quien realizó la oferta original.
+
+</details>
+
+---
+
+**10) El objeto de un contrato debe ser posible**
+
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-34.png)
+
+**Respuesta: (✔) Verdadero**
+
+Según el artículo 953 del Código Civil argentino, el objeto de los actos jurídicos —y por lo tanto, de los contratos— debe ser **posible**, **lícito**, y **conforme a la moral y las buenas costumbres**. Un objeto imposible (como obligarse a realizar una acción físicamente irrealizable) torna el contrato **nulo**, ya que no puede cumplirse válidamente.
+
+</details>
+
+---
+
+### Propiedad intelectual
+
+En esta clase veremos como el derecho recepta el trabajo intelectual y cuales son las formas de reinvidicar como propios los contenidos (software, marcas, etc) generados por el profesional informático
+
+**1) El dominio público implica que los derechos de explotación económica terminan**
+
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-35.png)
+
+**✅ Respuesta: Verdadero**
+
+Según el texto, una vez vencido el plazo de protección (70 años desde la muerte del autor), la obra entra en **dominio público**, lo cual significa que **los derechos patrimoniales** (económicos) del autor **quedan sin efecto**, y su utilización pasa a ser libre para todos sin necesidad de autorización ni pago .
+
+</details>
+
+---
+
+**2) El software se protege mediante la ley de patentes de invención**
+
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-36.png)
+
+**❌ Respuesta: Falso**
+
+El software **no se protege** mediante la Ley de Patentes de Invención (Ley 24.481), sino que está expresamente incluido en la **Ley 11.723 de Propiedad Intelectual** como una **obra literaria**. Esta protección fue incorporada luego del fallo “Pellicori” y tiene respaldo en tratados internacionales como el acuerdo TRIPS.
+
+</details>
+
+---
+
+**3) Las marcas comerciales deben ser utilizadas en todas las categorías donde se anotan**
+
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-37.png)
+
+**✅ Respuesta: Falso**
+
+La ley **no exige** que las marcas se utilicen en **todas** las categorías donde se anotan. Basta con que se **utilicen en al menos una** de las categorías inscriptas para que puedan ser renovadas. Las marcas inscritas en categorías donde no se pretende usarlas se conocen como **marcas de defensa**, y su objetivo es evitar la dilución de la marca por uso de terceros en rubros distintos.
+</details>
+
+---
+
+**4) Toda obra registrada debe tener un mínimo de originalidad**
+
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-38.png)
+
+**✅ Respuesta: Verdadero**
+
+La ley exige que para que una obra sea protegida por derechos de autor, debe poseer un **mínimo grado de originalidad**. No se requiere una originalidad absoluta, pero sí debe haber un aporte personal del autor que diferencie la obra de otras preexistentes. Esto es esencial para que la obra pueda considerarse una creación protegible.
+</details>
+
+---
+
+**5) La protección ofrecida por la ley de derechos de autor es tecnológicamente neutra**
+
+- ( ) Verdadero  
+- ( ) Falso
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-39.png)
+
+**✅ Respuesta: Verdadero**
+
+La **ley 11.723** de propiedad intelectual, especialmente tras su reforma, establece una protección **amplia y no taxativa** que permite incluir nuevas formas de expresión como el software. Su redacción, en especial en el **artículo 1**, fue diseñada para abarcar toda producción científica, literaria o artística **sin importar el medio o tecnología utilizada**, lo que confirma su **neutralidad tecnológica**.
+
+</details>
+
+---
+
+## Primer Parcial Aspectos Legales
+
+**1) Que un sistema de control constitucional sea difuso significa**
+
+- [ ] Que un cualquier juez puede decretar la inconstitucionalidad  
+- [ ] Que los efectos de la declaración se extienden a casos similares  
+- [ ] Que el planteo se puede producir en cualquier momento del proceso  
+
+<details><summary>Respuesta</summary>
+
+[x] **Que un cualquier juez puede decretar la inconstitucionalidad**
+
+Un sistema de control constitucional **difuso** implica que **todos los jueces** del país tienen la facultad de declarar la inconstitucionalidad de una norma en el caso concreto que estén resolviendo, a diferencia de un sistema **concentrado**, donde esa facultad está reservada a un tribunal específico (como una Corte Constitucional). ¿Querés que continúe con la siguiente pregunta?
+
+</details>
+
+---
+
+**2) La propiedad intelectual de un software se regula**
+
+- [ ] Por la ley de derechos de autor  
+- [ ] Por la ley de patentes de invención  
+- [ ] Por una ley especial creada a tal fin  
+
+<details><summary>Respuesta</summary>
+
+[x] **Por la ley de derechos de autor**
+
+Según la Ley 11.723 de Propiedad Intelectual (modificada), **el software está protegido como una obra literaria** dentro del régimen de derechos de autor, y **no** por la ley de patentes ni por una ley especial creada a tal fin. ¿Seguimos con la siguiente?
+
+</details>
+
+---
+
+**3) Un sistema de información es una universalidad de bienes definida por**
+
+- [ ] Los bienes ofrecidos  
+- [ ] Las necesidades a satisfacer  
+- [ ] El contenido del contrato  
+
+<details><summary>Respuesta</summary>
+
+[x] **Las necesidades a satisfacer**
+
+Un sistema de información se define como una universalidad de bienes **cuya configuración depende de los objetivos y necesidades que debe satisfacer el usuario**, no simplemente por los bienes ofrecidos ni por lo que se establezca en el contrato .
+</details>
+
+---
+
+**4) Por principio general, los contratos tienen el siguiente efecto respecto de los terceros**
+
+- [ ] Son obligatorios, salvo pacto en contrario  
+- [ ] Son obligatorios en los casos que se realizaron por instrumento público  
+- [ ] No le son oponibles  
+
+<details><summary>Respuesta</summary>
+
+[x] **No le son oponibles**
+
+Por principio general, los contratos **sólo producen efectos entre las partes que los celebran**. Es decir, **no son oponibles a terceros**, salvo en casos excepcionales previstos por la ley.
+
+
+</details>
+
+---
+
+**5) La fe pública de un documento se extiende**
+
+- [ ] A todo el contenido del documento
+- [ ] A lo manifestado por las partes
+- [ ] A lo percibido por el oficial público
+
+<details><summary>Respuesta</summary>
+
+[x] **A lo percibido por el oficial público**
+
+La fe pública **se extiende solo a lo que el oficial público ha percibido por sus sentidos o ha constatado personalmente**, no a lo manifestado por las partes, ya que esas manifestaciones pueden ser falsas o inexactas y no están bajo control directo del oficial.
+
+</details>
+
+---
+
+**6) La obligación de consejo se extiende a qué aspectos del proceso**
+
+- [ ] Los técnicos  
+- [ ] Los técnicos y financieros  
+- [ ] Todos los aspectos del proyecto  
+
+<details><summary>Respuesta</summary>
+
+[x] **Los técnicos**
+
+La obligación de consejo del proveedor en contratos informáticos **se limita a los aspectos técnicos**, relacionados con la funcionalidad, compatibilidad y adecuación del sistema a las necesidades del usuario. No abarca aspectos financieros o empresariales.
+
+</details>
+
+---
+
+**7) ¿Cuál de las siguientes características NO pertenece a las obligaciones personales?**
+
+- [ ] Se establecen entre dos personas  
+- [ ] Implican un hacer, un dar o un omitir  
+- [ ] Se crean solo por ley  
+
+<details><summary>Respuesta</summary>
+
+[x] **Se crean solo por ley**
+
+Las obligaciones personales **pueden originarse por ley, contrato, cuasicontrato, delito o cuasidelito**, pero **no se crean exclusivamente por ley**, por lo que esta opción **no** pertenece a sus características.
+
+</details>
+
+---
+
+**8) Si una persona actúa con indiferencia respecto a la posibilidad de la producción de un resultado, estamos frente a un caso de**
+
+- [ ] Dolo Eventual  
+- [ ] Dolo Directo  
+- [ ] Culpa con representación  
+
+<details><summary>Respuesta</summary>
+
+[x] **Dolo Eventual**
+
+El **dolo eventual** ocurre cuando una persona **se representa la posibilidad del resultado dañoso y, aun así, actúa con indiferencia respecto a su producción**. Es decir, no busca directamente el daño, pero lo acepta como posible consecuencia de su conducta.
+
+</details>
+
+---
+
+**9) Un contrato será bilateral cuando**
+
+- [ ] Las partes ocupen en forma simultánea la posición de deudor y acreedor  
+- [ ] Las obligaciones se puedan expresar en dinero  
+- [ ] Su celebración implica la participación de dos o más partes  
+
+<details><summary>Respuesta</summary>
+
+[x] **Las partes ocupen en forma simultánea la posición de deudor y acreedor**
+
+Un **contrato bilateral** es aquel en el que **ambas partes asumen obligaciones recíprocas**, es decir, **cada una es acreedora y deudora al mismo tiempo**. Por ejemplo, en una compraventa, el vendedor debe entregar la cosa y el comprador pagar el precio.
+
+</details>
+
+---
+
+**10) Si un sistema de voto electrónico no permite acceder al código fuente ¿cuál de los requisitos estudiados se vería afectado directamente?**
+
+- [ ] La universalidad  
+- [ ] La seguridad  
+- [ ] La transparencia  
+
+<details><summary>Respuesta</summary>
+
+[x] **La transparencia**
+
+Si no se puede acceder al código fuente de un sistema de voto electrónico, **no se puede verificar cómo funciona internamente**, lo que **afecta directamente la transparencia** del proceso electoral. La transparencia exige que tanto los ciudadanos como los especialistas puedan auditar el sistema para garantizar que funcione correctamente y sin manipulaciones.
+
+</details>
+
+---
+
+## Recuperatorio
+
+**1) Un elemento definitorio de los derechos reales es**
+
+- [ ] La relación directa entre la cosa y el titular  
+- [ ] Se crean solo por ley  
+- [ ] Son oponibles a todos los sujetos  
+- [ ] Todo lo anterior  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-40.png)
+
+[x] **Todo lo anterior**
+
+Los derechos reales se caracterizan por:
+
+* La **relación directa** entre el titular y la cosa (ej. dominio, usufructo).
+* **Se crean solo por ley**, no por la voluntad de las partes.
+* Son **oponibles a todos los sujetos** (eficacia "erga omnes").
+
+</details>
+
+---
+
+**2) La fuerza física irresistible es un vicio de**
+
+- [ ] La libertad  
+- [ ] La intención  
+- [ ] El discernimiento  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-41.png)
+
+[x] **La libertad**
+
+**Justificación:**
+La **fuerza física irresistible** anula la libertad del sujeto para actuar, ya que lo obliga a ejecutar una acción contra su voluntad. Por eso, se considera un **vicio de la libertad**, no de la intención ni del discernimiento.
+
+</details>
+
+---
+
+**3) Los requisitos de un instrumento público son**
+
+- [ ] La firma y la fecha cierta  
+- [ ] La firma y el doble ejemplar  
+- [ ] La fecha cierta y el doble ejemplar  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-42.png)
+
+[x] **La firma y la fecha cierta**
+
+Un **instrumento público** debe reunir determinados requisitos formales para ser válido, y los esenciales son:
+
+* La **firma** del funcionario autorizado.
+* La **fecha cierta**, que le otorga autenticidad y fuerza probatoria frente a terceros.
+
+</details>
+
+---
+
+**4) El software se protege por la ley**
+
+- [ ] De derechos de autor  
+- [ ] De patentes y diseños industriales  
+- [ ] De promoción de la sociedad del conocimiento  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-43.png)
+
+[x] **De derechos de autor**
+
+Según la legislación argentina (Ley 11.723), el software está protegido como una obra intelectual bajo el régimen de **derechos de autor**, y no por el sistema de patentes o diseños industriales. Esta protección fue incorporada expresamente tras el fallo "Autodesk".
+
+</details>
+
+---
+
+**5) ¿Cuáles son los requisitos comunes a todos los sistemas de sufragio según los pactos internacionales?**
+
+- [ ] La universalidad, la igualdad y la transparencia  
+- [ ] La Universalidad, La Igualdad y La Seguridad  
+- [ ] La Universalidad, La Igualdad y el Secreto  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-44.png)
+
+[x] **La Universalidad, La Igualdad y el Secreto**
+
+Los pactos internacionales de derechos humanos, como el **Pacto Internacional de Derechos Civiles y Políticos** (art. 25), establecen que todo ciudadano debe gozar del derecho al voto mediante un sistema **universal**, **igualitario** y mediante **voto secreto**, garantizando la libre expresión de la voluntad del elector.
+
+</details>
+
+---
+
+**6) La obligación de consejo se extiende a qué aspectos del proyecto**
+
+- [ ] A todos los aspectos del proyecto  
+- [ ] Solo a los aspectos técnicos  
+- [ ] A los aspectos técnicos y el posible beneficio económico del proyecto  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-45.png)
+
+[x] **Solo a los aspectos técnicos**
+
+Según el análisis doctrinario y jurisprudencial, la **obligación de consejo** en los contratos informáticos recae exclusivamente sobre los **aspectos técnicos** del sistema contratado. No se extiende a evaluaciones económicas ni decisiones empresariales, ya que esas competencias corresponden al usuario o a sus asesores. Así lo reflejan tanto la jurisprudencia argentina (como en *Sistex c/Oliva*) como la francesa (como en *Cajus Face vs IBM*).
+
+</details>
+
+---
+
+**7) Un contrato unilateral tiene**
+
+- [ ] Una parte  
+- [ ] Por lo menos dos partes  
+- [ ] Dos partes contratantes y un tercero que es el beneficiario de la prestación acordada  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-46.png)
+
+[x] **Por lo menos dos partes**
+
+Un contrato **unilateral** tiene **al menos dos partes**, ya que todo contrato requiere el acuerdo entre dos o más personas. Lo que lo distingue es que **solo una de las partes asume obligaciones**, mientras la otra no tiene carga alguna. No debe confundirse con que haya una sola parte firmante o interviniente: siempre hay dos partes, aunque una no esté obligada.
+</details>
+
+---
+
+**8) El contrato comienza a existir con**
+
+- [ ] La entrega del doble ejemplar  
+- [ ] La firma  
+- [ ] La aceptación de la oferta  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-47.png)
+
+[x] **La aceptación de la oferta**
+
+Según el régimen general de los contratos, **el contrato se perfecciona cuando la oferta es aceptada** en tiempo y forma. La firma puede ser una forma de expresar esa aceptación, pero lo que da nacimiento al contrato como vínculo jurídico es el **acuerdo de voluntades**, es decir, la **aceptación de la oferta**.
+</details>
+
+---
+
+**9) Un contrato innominado es un contrato**
+
+- [ ] Que está prohibido por la legislación vigente  
+- [ ] Que no está previsto en la legislación vigente  
+- [ ] Que tiene regulación supletoria en la legislación vigente  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-48.png)
+
+[x] **Que no está previsto en la legislación vigente**
+
+Un **contrato innominado** es aquel que **no tiene una regulación específica en la ley**, a diferencia de los contratos **nominados**, que sí están tipificados (como compraventa, locación, etc.). Sin embargo, los contratos innominados **son válidos** si respetan los principios generales del derecho contractual, y su contenido se rige por la voluntad de las partes y por normas supletorias en caso de omisiones.
+
+</details>
+
+---
+
+**10) Según el moderno concepto de entrega, ¿cuándo se cumple con la entrega de un sistema informático?**
+
+- [ ] Con la finalización de las pruebas de funcionamiento  
+- [ ] Con la puesta en funcionamiento  
+- [ ] Con la entrega física de los componentes  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-49.png)
+
+[x] **Con la finalización de las pruebas de funcionamiento**
+
+Según el moderno concepto de entrega en los contratos informáticos, no basta con la entrega física ni con la instalación del sistema. **La entrega se considera cumplida cuando el sistema supera el test de aceptación**, es decir, cuando se verifica que funciona conforme a lo pactado y satisface las necesidades del usuario.
+
+</details>
+
+---
+
+## Autoevaluacion - Parcial de prueba
+
+**1) Un sistema de control constitucional difuso implica**
+
+- [ ] Que cualquier juez puede declarar la inconstitucionalidad  
+- [ ] Que la declaración se expande a los casos similares  
+- [ ] Que tanto el poder ejecutivo como el judicial puede declararla  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-50.png)
+
+[x] **Que cualquier juez puede declarar la inconstitucionalidad**
+
+En un sistema de control constitucional **difuso**, como el que rige en Argentina, **cualquier juez** tiene la facultad de declarar la inconstitucionalidad de una norma al resolver un caso concreto. Este control se da en el marco de un juicio y sus efectos se limitan a las partes (control "inter partes").
+
+</details>
+
+---
+
+**2) La existencia del federalismo se relaciona**
+
+- [ ] Con la preexistencia de los gobiernos locales, que retienen para sí las competencias no expresamente delegadas  
+- [ ] La mayor descentralización de las facultades del estado en beneficio de los gobiernos locales  
+- [ ] La existencia de provincias en un territorio  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-51.png)
+
+[x] **Con la preexistencia de los gobiernos locales, que retienen para sí las competencias no expresamente delegadas**
+
+El **federalismo** implica la existencia de **gobiernos locales preexistentes** (como las provincias en Argentina) que conservan autonomía y **retienen las competencias no delegadas** expresamente al gobierno nacional. Es un principio constitucional clave en sistemas federales.
+
+</details>
+
+---
+
+**3) La monarquía es una forma**
+
+- [ ] De nación  
+- [ ] De estado  
+- [ ] De gobierno
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-52.png)
+
+[x] **De gobierno**
+
+La **monarquía** es una forma de **gobierno**, ya que se refiere a cómo se organiza el poder en un Estado. Se contrapone a otras formas como la república. En cambio, "forma de Estado" alude a la organización territorial del poder (unitario, federal), y "forma de nación" no es una categoría jurídica.
+
+</details>
+
+---
+
+**4) La entrega del sistema se produce**
+
+- [ ] Cuando el mismo cumple con los test de funcionamiento  
+- [ ] Con la instalación del equipo  
+- [ ] Con la entrega física del material al cliente  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-53.png)
+
+[x] **Cuando el mismo cumple con los test de funcionamiento**
+
+Según el enfoque moderno sobre la entrega de sistemas informáticos, **la entrega no se considera completada hasta que el sistema haya superado exitosamente las pruebas de funcionamiento**. Esto garantiza que el producto cumple con las especificaciones pactadas y es apto para su uso previsto.
+
+</details>
+
+---
+
+**5) ¿Cuál de las siguientes sería una excepción a la obligación de consejo?**
+
+- [ ] Que el cliente sea una empresa líder en su sector  
+- [ ] El acuerdo de partes  
+- [ ] La contratación de un consultor externo por parte del cliente  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-54.png)
+
+[x] **La contratación de un consultor externo por parte del cliente**
+
+Cuando el cliente contrata a un **consultor especializado**, se entiende que ya cuenta con el conocimiento técnico necesario para evaluar el sistema. Esto **disminuye o elimina la disparidad informativa** entre las partes, lo que a su vez **exime al proveedor de su obligación de consejo**, tal como ha sido reconocido por la jurisprudencia francesa y nacional.
+
+</details>
+
+---
+
+**6) En un acto jurídico accesorio**
+
+- [ ] La desaparición del accesorio implica la desaparición del principal  
+- [ ] La desaparición del principal conlleva la del accesorio  
+- [ ] Son independientes
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-55.png)
+
+[x] **La desaparición del principal conlleva la del accesorio**
+
+Un acto jurídico accesorio está subordinado al principal y **carece de autonomía propia**. Si el acto principal desaparece o se extingue, **el accesorio pierde su razón de ser y también se extingue**. Un ejemplo clásico es la fianza, que depende de un contrato principal como el de alquiler.
+
+</details>
+
+---
+
+**7) La fe pública otorgada al instrumento se extiende**
+
+- [ ] A todo el contenido del instrumento  
+- [ ] A lo percibido por el oficial público y a las manifestaciones de las partes  
+- [ ] A lo percibido por el oficial público  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-56.png)
+
+[x] **A lo percibido por el oficial público**
+
+La fe pública que otorga un instrumento público se limita a lo que el oficial público **percibe por sí mismo en el acto** (por ejemplo, la presencia de las partes, sus firmas, fecha y lugar), pero **no abarca las manifestaciones o declaraciones internas de las partes** si no fueron directamente percibidas por él.
+
+</details>
+
+---
+
+**8) Un contrato unilateral tiene**
+
+- [ ] Una parte  
+- [ ] Por lo menos dos partes  
+- [ ] Dos partes contratantes y un tercero que es el beneficiario de la prestación acordada  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-57.png)
+
+[x] **Por lo menos dos partes**
+
+Un contrato unilateral **requiere al menos dos partes para su celebración**, ya que todo contrato implica un acuerdo entre partes. Lo que lo caracteriza como "unilateral" es que **solo una de ellas asume obligaciones**, mientras la otra no contrae ninguna.
+
+</details>
+
+---
+
+**9) La fuerza física irresistible es un vicio de**
+
+- [ ] La libertad  
+- [ ] La intención  
+- [ ] El discernimiento
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-58.png)
+
+[x] **La libertad**
+
+La **fuerza física irresistible** afecta la **libertad**, ya que impide que la persona actúe de manera voluntaria. Si alguien es forzado físicamente a realizar un acto, no está ejerciendo libremente su voluntad, lo que vicia el consentimiento.
+
+</details>
+
+---
+
+**10) La propiedad intelectual de un software se regula**
+
+- [ ] Por la ley de derechos de autor  
+- [ ] Por la ley de patentes de invención  
+- [ ] Por una ley especial creada a tal fin  
+
+<details><summary>Respuesta</summary>
+
+![alt text](image-59.png)
+
+[x] **Por la ley de derechos de autor**
+
+En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propiedad Intelectual**, que fue modificada para incluir expresamente a los **programas de computación fuente y objeto**. Esta protección abarca tanto los derechos patrimoniales como los derechos morales del autor.
+
+</details>
+
+---
+
+## Autoevaluacion - Parcial de prueba 2
+
+**1) La monarquía es una forma**
+
+- [ ] De nación  
+- [ ] De estado  
+- [ ] De gobierno
+
+<details><summary>Respuesta</summary></details>
+
+---
+
+**2) La existencia del federalismo se relaciona**
+
+- [ ] Con la preexistencia de los gobiernos locales, que retienen para sí las competencias no expresamente delegadas  
+- [ ] La mayor descentralización de las facultades del estado en beneficio de los gobiernos locales  
+- [ ] La existencia de provincias en un territorio
+
+<details><summary>Respuesta</summary></details>
+
+---
+
+**3) Un contrato unilateral tiene**
+
+- [ ] Una parte  
+- [ ] Por lo menos dos partes  
+- [ ] Dos partes contratantes y un tercero que es el beneficiario de la prestación acordada
+
+<details><summary>Respuesta</summary></details>
+
+---
+
+**4) La fuerza física irresistible es un vicio de**
+
+- [ ] La libertad  
+- [ ] La intención  
+- [ ] El discernimiento
+
+<details><summary>Respuesta</summary></details>
+
+---
+
+**5) Un sistema informático se define por**
+
+- [ ] Las especificaciones técnicas  
+- [ ] Las necesidades a satisfacer  
+- [ ] El hardware entregado
+
+<details><summary>Respuesta</summary></details>
+
+---
+
+**6) Según el moderno concepto de entrega, ¿cuándo se cumple con la entrega de un sistema informático?**
+
+- [ ] Con la finalización de las pruebas de funcionamiento  
+- [ ] Con la puesta en funcionamiento  
+- [ ] Con la entrega física de los componentes
+
+<details><summary>Respuesta</summary></details>
+
+---
+
+**7) El contrato comienza a existir con**
+
+- [ ] La entrega del doble ejemplar  
+- [ ] La firma  
+- [ ] La aceptación de la oferta
+
+<details><summary>Respuesta</summary></details>
+
+---
+
+**8) ¿Cuál de las siguientes características NO pertenece a las obligaciones personales?**
+
+- [ ] Se establecen entre dos personas  
+- [ ] Implican un hacer, un dar o un omitir  
+- [ ] Se crean solo por ley
+
+<details><summary>Respuesta</summary></details>
+
+---
+
+**9) Que un sistema de control constitucional sea difuso significa**
+
+- [ ] Que un cualquier juez puede decretar la inconstitucionalidad  
+- [ ] Que los efectos de la declaración se extienden a casos similares  
+- [ ] Que el planteo se puede producir en cualquier momento del proceso
+
+<details><summary>Respuesta</summary></details>
+
+---
+
+**10) Aparte del preámbulo el texto constitucional se divide en:**
+
+- [ ] Dos partes: Declaraciones derechos y garantías y autoridades de la nación  
+- [ ] Tres partes: Declaraciones derechos y garantías, autoridades de la nación y gobiernos provinciales  
+- [ ] Cuatro partes: Declaraciones derechos y garantías y tres correspondiendo a cada poder del estado
+
+<details><summary>Respuesta</summary></details>
