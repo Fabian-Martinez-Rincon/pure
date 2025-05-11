@@ -1557,7 +1557,10 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] De estado  
 - [ ] De gobierno
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-60.png)
+</details>
 
 ---
 
@@ -1567,7 +1570,10 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] La mayor descentralización de las facultades del estado en beneficio de los gobiernos locales  
 - [ ] La existencia de provincias en un territorio
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-61.png)
+</details>
 
 ---
 
@@ -1577,7 +1583,10 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] Por lo menos dos partes  
 - [ ] Dos partes contratantes y un tercero que es el beneficiario de la prestación acordada
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-62.png)
+</details>
 
 ---
 
@@ -1587,7 +1596,10 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] La intención  
 - [ ] El discernimiento
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-63.png)
+</details>
 
 ---
 
@@ -1597,7 +1609,10 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] Las necesidades a satisfacer  
 - [ ] El hardware entregado
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-64.png)
+</details>
 
 ---
 
@@ -1607,7 +1622,10 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] Con la puesta en funcionamiento  
 - [ ] Con la entrega física de los componentes
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-65.png)
+</details>
 
 ---
 
@@ -1617,7 +1635,10 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] La firma  
 - [ ] La aceptación de la oferta
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-66.png)
+</details>
 
 ---
 
@@ -1627,7 +1648,10 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] Implican un hacer, un dar o un omitir  
 - [ ] Se crean solo por ley
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-67.png)
+</details>
 
 ---
 
@@ -1637,7 +1661,10 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] Que los efectos de la declaración se extienden a casos similares  
 - [ ] Que el planteo se puede producir en cualquier momento del proceso
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-68.png)
+</details>
 
 ---
 
@@ -1647,4 +1674,7 @@ En Argentina, el software se encuentra protegido bajo la **Ley 11.723 de Propied
 - [ ] Tres partes: Declaraciones derechos y garantías, autoridades de la nación y gobiernos provinciales  
 - [ ] Cuatro partes: Declaraciones derechos y garantías y tres correspondiendo a cada poder del estado
 
-<details><summary>Respuesta</summary></details>
+<details><summary>Respuesta</summary>
+
+![alt text](image-70.png)
+</details>
