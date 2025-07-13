@@ -19,7 +19,7 @@ switch (args._[0]) {
     const __dirname = dirname(fileURLToPath(import.meta.url))
     const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8'))
     console.log()
-    console.log('\x1b[46m%s\x1b[0m', ' 🐍 Python Developer ')
+    console.log('\x1b[46m%s\x1b[0m', ' 🐍 Data Engineer ')
     console.log('\nInformation:')
     console.log(`- Package:\t${packageJson.version}`)
     console.log(`- Node.js:\t${process.version}`)

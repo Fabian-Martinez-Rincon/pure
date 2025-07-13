@@ -1,6 +1,5 @@
 export { default as ArticleBottom } from './ArticleBottom.astro'
 export { default as BackToTop } from './BackToTop.astro'
-export { default as Copyright } from './Copyright.astro'
 export { default as Hero } from './Hero.astro'
 export { default as PageInfo } from './PageInfo.astro'
 export { default as Paginator } from './Paginator.astro'
