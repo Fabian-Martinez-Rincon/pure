@@ -62,20 +62,12 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       <!-- <div class="video-inline z-0 transition-transform duration-[1.5s] group-hover:scale-110">
         <video src='yo.mp4' class="max-w-screen-lg mx-auto noise left-0 h-56 w-full relative top-0 block overflow-hidden border-4 border-black" autoplay muted  loop></video>
       </div> -->
-     <div class="relative inline-block h-56">
-  <!-- Halo animado detrás de la imagen -->
-  <span class="absolute inset-12 border border-yellow-800 opacity-75 animate-ping"></span>
-
-  <!-- Imagen con borde estático encima -->
       <Image
-        src={avatar}
-        alt="profile"
-        class="relative h-full w-full l border  p-1 bg-background"
-        loading="eager"
-      />
-</div>
-
-
+      src={avatar}
+      alt='profile'
+      class='h-56 w-auto rounded-full border p-1'
+      loading='eager'
+    />
       <!-- <Image
       src={avatar}
       alt='profile'
