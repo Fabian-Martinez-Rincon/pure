@@ -108,7 +108,6 @@ export default defineConfig({
     }
   },
   experimental: {
-    svg: true
   },
   vite: {
     // plugins: [
