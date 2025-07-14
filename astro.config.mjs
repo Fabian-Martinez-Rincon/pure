@@ -107,8 +107,6 @@ export default defineConfig({
       ]
     }
   },
-  experimental: {
-  },
   vite: {
     // plugins: [
     //   visualizer({
