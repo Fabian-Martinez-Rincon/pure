@@ -9,8 +9,6 @@ tags:
 language: 'Spanish'
 ---
 
-:D
-
 ![alt text](image-40.png)
 
 ---
