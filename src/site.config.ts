@@ -150,10 +150,6 @@ export const terms: CardListData = {
       link: '/terms/terms-and-conditions'
     },
     {
-      title: 'Copyright',
-      link: '/terms/copyright'
-    },
-    {
       title: 'Disclaimer',
       link: '/terms/disclaimer'
     }
