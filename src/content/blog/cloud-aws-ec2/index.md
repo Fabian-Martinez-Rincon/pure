@@ -321,15 +321,23 @@ Con la IP Elástica ya asociada a la instancia **A01-INSTANCIA-1**, se realizó 
 
 ---
 
-## Ejercicio 11, 12 y 13: Nueva instancia, TAG, index.html
+## Ejercicio 11: Lanzar nueva instancia (t3.micro, Debian 13)
 
 
 **11) Lanzar una nueva instancia en AWS EC2, de tipo “t3.micro” con AMI “Debian 13”.**
 Se creó una nueva instancia EC2 de tipo **t3.micro** utilizando la AMI **Debian 13**, tal como se indica en la consigna.
 
+---
+
+## Ejercicio 12: Configurarla con TAG INSTANCIA-2
+
 **12) Configurar la nueva instancia con TAG “AXX-INSTANCIA-2”.**
 A la nueva instancia se le configuró el TAG con el nombre **A01-INSTANCIA-2**, lo que permite identificarla fácilmente dentro de la consola de AWS.
 ![alt text](image-33.png)
+
+---
+
+## Ejercicio 13: Crear archivo index.html con la leyenda correspondiente
 
 **13) Crear en el “DocumentRoot” el archivo index.html, que contengan la leyenda siguiente: “AXX-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1”.**
 Dentro del directorio **DocumentRoot** de Apache (`/var/www/html/`), se editó el archivo `index.html` y se reemplazó el contenido por la leyenda solicitada:
@@ -341,23 +349,83 @@ A01-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1
 Al acceder desde un navegador a la dirección IP pública de la instancia, se mostró la página personalizada, confirmando la correcta configuración del servidor web.
 ![alt text](image-34.png)
 
+---
+
+## Ejercicio 14: Re-asociar la IP Elástica
+
 **14) Re-asociar la IP Elástica a la instancia “AXX-INSTANCIA-2”.**
 
+En este paso se reasignó la **IP Elástica previamente reservada** (54.xx.xx.xx) a la nueva instancia **AXX-INSTANCIA-2**.
+
+Durante el proceso, AWS advierte que si la IP ya estaba asociada a otra instancia (en este caso *AXX-INSTANCIA-1*), será automáticamente desasociada y vinculada a la nueva.
+
 ![alt text](image-35.png)
+
+Una vez confirmada la acción, la consola mostró que la IP Elástica quedó correctamente asociada a **AXX-INSTANCIA-2**, garantizando que esta instancia pueda mantener conectividad pública estable independientemente de reinicios o cambios de la IP pública dinámica.
+
 ![alt text](image-36.png)
 
+---
+
+## Ejercicio 15: Verificar ping sin pérdida de paquetes
 
 **15) Verificar por consola, la NO pérdida de paquetes.**
 
+Se ejecutó el comando `ping` hacia la **IP Elástica 54.157.104.45**, comprobando la correcta conectividad con la instancia **AXX-INSTANCIA-2**.
+
+El resultado mostró respuestas constantes con tiempos estables de latencia y **sin pérdida de paquetes**, lo cual confirma que la IP Elástica se encuentra correctamente asociada y accesible desde el exterior.
+
 ![alt text](image-37.png)
 
+---
+
+## Ejercicio 16: Verificar acceso web
 
 **16) Verificar el acceso vía un navegador WEB, por medio de la IP Elástica, que responda el “AXX-INSTANCIA-2”.**
 
 ![alt text](image-38.png)
 
+---
+
+# Ejercicio 17: Apagar la instancia y chequear ICMP
+
 **17) Apagar la instancia “AXX-INSTANCIA-2”. Verificar el tráfico ICMP.**
+
+
+| Imagen 1 | Imagen 2 | Imagen 3 |
+|-----------|--------| ----------------|
+| ![alt text](image-39.png)      | ![alt text](image-40.png)     | ![alt text](image-41.png)      |
+
+---
+
+## Ejercicio 18: Encenderla y verificar ICMP
+
 **18) Volver a encender la instancia y verificar que el tráfico ICMP retoma la respuesta al encendido de la misma.**
+
+![alt text](image-42.png)
+
+---
+
+## Ejercicio 19: Verificar acceso web
+
 **19) Cambiar el puerto del servidor WEB de la instancia “AXX-INSTANCIA-2” del TCP 80 al TCP 8080.**
+
+![alt text](image-43.png)
+
+---
+
+## Ejercicio 20: Verificar acceso web
+
 **20) Verificar el acceso WEB desde una navegador.**
+
+![alt text](image-44.png)
+
+---
+
+## Ejercicio 21: Liberar IP Elástica y terminar instancias
+
 **21) Liberar la IP Elástica y “terminar” ambas instancias.**
+
+![alt text](image-45.png)
+![alt text](image-46.png)
+![alt text](image-47.png)
