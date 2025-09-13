@@ -234,10 +234,9 @@ Una vez instalado Apache2 y verificado su funcionamiento, se procedió a persona
 
 En este ejercicio se buscó comprobar cómo afecta el ciclo de apagado/encendido de una instancia EC2 a su conectividad de red.
 
+  
 1. **Prueba inicial de ICMP (Ping):**
-   Antes de detener la instancia, se ejecutó un ping hacia la IP pública de la misma. Durante la prueba se observó que las solicitudes no recibían respuesta, quedando en *“Tiempo de espera agotado”*.
-
-   ![alt text](image-23.png)
+   Antes de detener la instancia, se ejecutó un ping hacia la IP pública de la misma. Las solicitudes recibieron respuesta con valores de latencia, confirmando la conectividad de la instancia.
 
 2. **Apagado de la instancia:**
    Desde la consola de AWS, se seleccionó la instancia **A01** y se eligió la opción **Detener instancia**.
@@ -249,7 +248,9 @@ En este ejercicio se buscó comprobar cómo afecta el ciclo de apagado/encendido
    Una vez detenida, se volvió a encender la instancia mediante la opción **Iniciar instancia** en la consola de AWS. El estado cambió a **En ejecución**, lo que habilitó nuevamente los servicios de red y acceso remoto.
 
 4. **Verificación ICMP tras el encendido:**
-   Se repitió la prueba de ping hacia la IP pública asignada. En este caso, las solicitudes recibieron respuesta con valores de latencia, confirmando que la instancia recuperó la conectividad tras ser encendida nuevamente.
+   Se repitió la prueba de ping hacia la IP pública asignada. En este caso, se observó que las solicitudes no recibían respuesta, quedando en *“Tiempo de espera agotado”*. Esto ocurre porque, al apagar y volver a encender una instancia, su dirección IP pública cambia. Por lo tanto, si se intenta hacer ping a la IP anterior, se producirá un error, ya que ya no existe una máquina asociada a esa dirección.
+
+   ![alt text](image-23.png)
 
 ---
 
@@ -267,14 +268,11 @@ Con el fin de asegurar que la instancia mantenga siempre la misma dirección pú
    A continuación, se seleccionó la opción **Asociar dirección IP elástica**.
 
    * Se eligió como recurso la instancia **A01-INSTANCIA-1**, que estaba en estado *running*.
-   * Se mantuvo la configuración predeterminada de asociarla a la dirección privada principal de la instancia.
+   * Se mantuvo la configuración predeterminada.
 ![alt text](image-26.png)
 3. **Confirmación de asociación:**
    AWS mostró el mensaje de confirmación indicando que la dirección IP **54.157.104.45** había sido asociada correctamente a la instancia.
    ![alt text](image-27.png)
-4. **Verificación de acceso vía navegador:**
-   Finalmente, se accedió a la dirección **[http://54.157.104.45/](http://54.157.104.45/)** desde un navegador web, comprobando que respondía el servidor Apache con el contenido personalizado de la práctica.
-   ![alt text](image-28.png)
 
 ---
 
@@ -284,15 +282,19 @@ Con el fin de asegurar que la instancia mantenga siempre la misma dirección pú
 
 Una vez asociada la **IP Elástica** a la instancia **A01-INSTANCIA-1**, se procedió a verificar el acceso desde distintos puntos de red.
 
+   ![alt text](image-29.png)
+
+
 1. **Prueba con la IP Elástica (54.157.104.45):**
 
-   * Se realizó un **ping** a la dirección elástica, obteniendo respuestas estables con tiempos de entre 170 y 190 ms.
-   * Desde un navegador web, se accedió a `http://54.157.104.45/`, comprobando que el servidor Apache devolvía la página personalizada de la práctica.
-    ![alt text](image-29.png)
-    ![alt text](image-30.png)
+**Verificación de acceso vía navegador:**
+   Desde un navegador web, se accedió a `http://54.157.104.45/`, comprobando que el servidor Apache devolvía la página personalizada de la práctica.
+   
+   ![alt text](image-28.png)
+
 
 2. **Prueba con la IP pública previa:**
-   La instancia también tenía asignada una dirección IP pública temporal (54.234.245.179).
+   La instancia tenía asignada una dirección IP pública temporal (54.234.245.179).
 
    * Al intentar acceder a esta IP, **no se obtuvo respuesta ni por ping ni por navegador web**, confirmando que la asociación de la IP Elástica reemplaza la accesibilidad de la IP pública asignada automáticamente.
 
@@ -302,21 +304,12 @@ Una vez asociada la **IP Elástica** a la instancia **A01-INSTANCIA-1**, se proc
 
 **10) Abrir una consola y ejecutar el comando “ping” a la IP Elástica, verificando la NO pérdida de paquetes.**
 
-
-
 Con la IP Elástica ya asociada a la instancia **A01-INSTANCIA-1**, se realizó una prueba de conectividad desde una terminal local:
 
-1. **Ejecución del comando ping:**
-   Se utilizó la siguiente instrucción en consola:
+   * Se realizó un **ping** a la dirección elástica, obteniendo respuestas estables con tiempos de entre 170 y 190 ms.
 
-   ```bash
-   ping 54.157.104.45 -t
-   ```
-
-   La prueba mostró respuestas constantes desde la dirección IP, con valores de latencia estables entre **166 ms y 187 ms**, sin pérdida de paquetes.
-   ![alt text](image-32.png)
-
-2. **Confirmación de disponibilidad continua:**
+   ![alt text](image-30.png)
+   
    Esta prueba confirma que la IP Elástica mantiene la conectividad con la instancia, incluso si ésta se reinicia o cambia de IP pública temporal.
 
 ---
