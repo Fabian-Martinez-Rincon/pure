@@ -268,7 +268,7 @@ Con el fin de asegurar que la instancia mantenga siempre la misma dirección pú
    A continuación, se seleccionó la opción **Asociar dirección IP elástica**.
 
    * Se eligió como recurso la instancia **A01-INSTANCIA-1**, que estaba en estado *running*.
-   * Se mantuvo la configuración predeterminada de asociarla a la dirección privada principal de la instancia.
+   * Se mantuvo la configuración predeterminada.
 ![alt text](image-26.png)
 3. **Confirmación de asociación:**
    AWS mostró el mensaje de confirmación indicando que la dirección IP **54.157.104.45** había sido asociada correctamente a la instancia.
