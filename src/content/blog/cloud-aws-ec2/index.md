@@ -156,14 +156,13 @@ Para que la instancia EC2 pueda recibir y responder correctamente distintos tipo
    Se permitió el tráfico HTTP desde cualquier dirección (0.0.0.0/0). Esto permite acceder al servidor web Apache desde cualquier navegador en Internet.
 
 2. **Regla SSH (puerto 22/TCP):**
-   Se habilitó el acceso SSH, inicialmente para todo origen (0.0.0.0/0) y luego restringido a la IP de la red local o a la IP pública de la VPN en uso. Esto mejora la seguridad al limitar el acceso administrativo a direcciones específicas.
+   Se habilitó el acceso SSH, restringido a la IP de la red local. Esto mejora la seguridad al limitar el acceso administrativo a direcciones específicas. Para saber cual es la IP de la red local se utilizo un servicio web encontrado al buscar en internet "Cual es mi IP?".
+   
+![alt text](image-13.png)
 
 3. **Regla ICMP (Ping):**
    Se permitió el tráfico ICMP desde cualquier origen (0.0.0.0/0), lo que habilita realizar pruebas de conectividad hacia la instancia mediante el comando `ping`.
 
-
-![alt text](image-12.png)
-![alt text](image-13.png)
 ![alt text](image-14.png)
 
 
