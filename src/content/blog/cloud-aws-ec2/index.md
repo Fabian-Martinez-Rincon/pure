@@ -91,15 +91,17 @@ Una vez lanzada la instancia EC2, se procedió a establecer la conexión remota 
 2. Se utilizó la herramienta **PuTTY**, donde se configuraron los siguientes parámetros:
 
    * En la pestaña *Session*, se ingresó la dirección IP pública en el campo **Host Name (or IP address)** y el puerto **22**, correspondiente a SSH.
-   * En la sección *SSH → Auth*, se cargó el archivo de clave privada previamente generado.
-3. Al abrir la sesión, se utilizó el usuario **admin**, correspondiente a la AMI Debian 13 seleccionada.
-4. Tras la autenticación con la clave privada, se obtuvo acceso exitoso a la terminal de la instancia, quedando lista para su administración y configuración como servidor web.
-
-
-
+   
 ![alt text](image-4.png)
 
+   * En la sección *SSH → Auth*, se cargó el archivo de clave privada previamente generado.
+
+   
 ![alt text](image-6.png)
+
+
+3. Al abrir la sesión, se utilizó el usuario **admin**, correspondiente a la AMI Debian 13 seleccionada.
+4. Tras la autenticación con la clave privada, se obtuvo acceso exitoso a la terminal de la instancia, quedando lista para su administración y configuración como servidor web.
 
 ![alt text](image-7.png)
 
