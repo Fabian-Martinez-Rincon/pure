@@ -273,9 +273,6 @@ Con el fin de asegurar que la instancia mantenga siempre la misma dirección pú
 3. **Confirmación de asociación:**
    AWS mostró el mensaje de confirmación indicando que la dirección IP **54.157.104.45** había sido asociada correctamente a la instancia.
    ![alt text](image-27.png)
-4. **Verificación de acceso vía navegador:**
-   Finalmente, se accedió a la dirección **[http://54.157.104.45/](http://54.157.104.45/)** desde un navegador web, comprobando que respondía el servidor Apache con el contenido personalizado de la práctica.
-   ![alt text](image-28.png)
 
 ---
 
@@ -285,15 +282,23 @@ Con el fin de asegurar que la instancia mantenga siempre la misma dirección pú
 
 Una vez asociada la **IP Elástica** a la instancia **A01-INSTANCIA-1**, se procedió a verificar el acceso desde distintos puntos de red.
 
+   ![alt text](image-29.png)
+
+
 1. **Prueba con la IP Elástica (54.157.104.45):**
 
    * Se realizó un **ping** a la dirección elástica, obteniendo respuestas estables con tiempos de entre 170 y 190 ms.
-   * Desde un navegador web, se accedió a `http://54.157.104.45/`, comprobando que el servidor Apache devolvía la página personalizada de la práctica.
-    ![alt text](image-29.png)
-    ![alt text](image-30.png)
+
+   ![alt text](image-30.png)
+
+**Verificación de acceso vía navegador:**
+   Desde un navegador web, se accedió a `http://54.157.104.45/`, comprobando que el servidor Apache devolvía la página personalizada de la práctica.
+   
+   ![alt text](image-28.png)
+
 
 2. **Prueba con la IP pública previa:**
-   La instancia también tenía asignada una dirección IP pública temporal (54.234.245.179).
+   La instancia tenía asignada una dirección IP pública temporal (54.234.245.179).
 
    * Al intentar acceder a esta IP, **no se obtuvo respuesta ni por ping ni por navegador web**, confirmando que la asociación de la IP Elástica reemplaza la accesibilidad de la IP pública asignada automáticamente.
 
