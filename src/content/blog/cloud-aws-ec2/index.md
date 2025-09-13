@@ -63,11 +63,7 @@ Durante el lanzamiento de la instancia, AWS solicita la creación de un **par de
 3. Como formato de archivo se eligió **.ppk** utilizado en sistemas Windows.
 4. AWS generó el archivo privado automáticamente y lo descargó al equipo. Este archivo debe guardarse en un lugar seguro, ya que **será imprescindible para conectarse a la instancia** más adelante.
 
-
-
 ![alt text](image-1.png)
-
-
 
 Para controlar el acceso a la instancia desde la red, se creó un **grupo de seguridad** denominado **A01-SG1**.
 
@@ -102,7 +98,7 @@ Una vez lanzada la instancia EC2, se procedió a establecer la conexión remota 
 2. Se utilizó la herramienta **PuTTY**, donde se configuraron los siguientes parámetros:
 
    * En la pestaña *Session*, se ingresó la dirección IP pública en el campo **Host Name (or IP address)** y el puerto **22**, correspondiente a SSH.
-   * En la sección *SSH → Auth*, se cargó el archivo de clave privada previamente generado y convertido al formato `.ppk`.
+   * En la sección *SSH → Auth*, se cargó el archivo de clave privada previamente generado.
 3. Al abrir la sesión, se utilizó el usuario **admin**, correspondiente a la AMI Debian 13 seleccionada.
 4. Tras la autenticación con la clave privada, se obtuvo acceso exitoso a la terminal de la instancia, quedando lista para su administración y configuración como servidor web.
 
