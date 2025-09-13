@@ -376,6 +376,12 @@ El resultado mostró respuestas constantes con tiempos estables de latencia y **
 
 **16) Verificar el acceso vía un navegador WEB, por medio de la IP Elástica, que responda el “AXX-INSTANCIA-2”.**
 
+Se accedió desde un navegador a la **IP Elástica 54.157.104.45**, comprobando que la instancia **AXX-INSTANCIA-2** responde correctamente al servicio HTTP.
+
+En la página de bienvenida de Apache se visualiza la leyenda configurada en el archivo `index.html`:
+
+**“A01 – INSTANCIA 2 – AÑO 2025 – PRÁCTICA 1”**
+
 ![alt text](image-38.png)
 
 ---
@@ -383,6 +389,10 @@ El resultado mostró respuestas constantes con tiempos estables de latencia y **
 # Ejercicio 17: Apagar la instancia y chequear ICMP
 
 **17) Apagar la instancia “AXX-INSTANCIA-2”. Verificar el tráfico ICMP.**
+
+Se apagó la instancia **AXX-INSTANCIA-2** desde la consola de AWS.
+Mientras la instancia estuvo en ejecución, el comando `ping` a la IP Elástica respondió correctamente sin pérdida de paquetes.
+Una vez que la instancia fue detenida, el tráfico ICMP dejó de responder, confirmando que al estar apagada la instancia no procesa solicitudes de red.
 
 
 | Imagen 1 | Imagen 2 | Imagen 3 |
@@ -395,6 +405,10 @@ El resultado mostró respuestas constantes con tiempos estables de latencia y **
 
 **18) Volver a encender la instancia y verificar que el tráfico ICMP retoma la respuesta al encendido de la misma.**
 
+Se volvió a encender la instancia **AXX-INSTANCIA-2** desde la consola de AWS.
+Durante el apagado, las solicitudes ICMP (`ping`) no obtenían respuesta.
+Una vez encendida nuevamente, el tráfico ICMP retomó correctamente, respondiendo los paquetes enviados.
+
 ![alt text](image-42.png)
 
 ---
@@ -402,6 +416,11 @@ El resultado mostró respuestas constantes con tiempos estables de latencia y **
 ## Ejercicio 19: Verificar acceso web
 
 **19) Cambiar el puerto del servidor WEB de la instancia “AXX-INSTANCIA-2” del TCP 80 al TCP 8080.**
+
+Se modificó la configuración del servidor web Apache en la instancia **AXX-INSTANCIA-2**, cambiando el puerto de escucha de **80** a **8080**.
+Para permitir el acceso, se actualizó el **Grupo de Seguridad** en AWS agregando la regla de entrada correspondiente al puerto **8080/TCP**.
+
+Luego, se verificó el acceso web ingresando a la dirección pública de la instancia junto con el puerto `:8080`, confirmando que el servidor Apache responde correctamente en el nuevo puerto.
 
 ![alt text](image-43.png)
 
@@ -411,6 +430,11 @@ El resultado mostró respuestas constantes con tiempos estables de latencia y **
 
 **20) Verificar el acceso WEB desde una navegador.**
 
+
+Una vez configurado el servidor web Apache en la instancia **AXX-INSTANCIA-2** para escuchar en el puerto **8080**, se procedió a verificar el acceso desde un navegador.
+
+Se ingresó a la dirección **[http://54.157.104.45:8080](http://54.157.104.45:8080)**, confirmando que la página de inicio de Apache se despliega correctamente, con la leyenda personalizada **“AXX-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1”**.
+
 ![alt text](image-44.png)
 
 ---
@@ -418,6 +442,16 @@ El resultado mostró respuestas constantes con tiempos estables de latencia y **
 ## Ejercicio 21: Liberar IP Elástica y terminar instancias
 
 **21) Liberar la IP Elástica y “terminar” ambas instancias.**
+
+1. **Liberar la IP Elástica:**
+   Desde la consola de AWS, se seleccionó la dirección IP elástica asociada a las instancias. Luego, se utilizó la opción **“Liberar direcciones IP elásticas”**, lo que permite devolver dicha IP al pool de direcciones públicas de Amazon, dejándola disponible para otros usuarios.
+
+2. **Terminar instancias EC2:**
+   Posteriormente, se seleccionaron ambas instancias creadas (**A01** y **A01-INSTANCIA2**) y se eligió la opción **“Terminar”**. Esta acción elimina de forma definitiva las instancias, liberando los recursos asociados.
+
+Con estas acciones se concluye el ciclo de vida de las instancias creadas durante la práctica, asegurando que no queden recursos activos ni generen costos adicionales.
+
+
 
 ![alt text](image-45.png)
 ![alt text](image-46.png)
