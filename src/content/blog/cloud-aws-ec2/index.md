@@ -185,9 +185,8 @@ Para que la instancia EC2 pueda recibir y responder correctamente distintos tipo
 
 3. **Prueba SSH:**
    Se validó también que la conexión SSH seguía funcionando correctamente, tanto antes como después de ajustar las reglas del grupo de seguridad.
-   ![alt text](image-18.png)
-   ![alt text](image-19.png)
    ![alt text](image-20.png)
+   ![alt text](image-7.png)
 
 ---
 
