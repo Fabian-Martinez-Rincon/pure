@@ -323,29 +323,41 @@ Con la IP Elástica ya asociada a la instancia **A01-INSTANCIA-1**, se realizó 
 
 ## Ejercicio 11, 12 y 13: Nueva instancia, TAG, index.html
 
+
 **11) Lanzar una nueva instancia en AWS EC2, de tipo “t3.micro” con AMI “Debian 13”.**
+Se creó una nueva instancia EC2 de tipo **t3.micro** utilizando la AMI **Debian 13**, tal como se indica en la consigna.
+
 **12) Configurar la nueva instancia con TAG “AXX-INSTANCIA-2”.**
-**13) Crear en el “DocumentRoot” el archivo index.html, que contengan la leyenda siguiente: “AXX-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1”.**
-
-**Respuesta**
-
-> El procemiento fue similar al de la primera instancia, con las siguientes diferencias:
-1. Se asignó el nombre **A01** a la nueva instancia.
-2. Se creó un nuevo par de claves denominado **A01-1**.
-3. Se creó un nuevo grupo de seguridad llamado **A01-SG1**, con las mismas reglas que el anterior (HTTP, SSH, ICMP).
-4. Se etiquetó la instancia con el TAG **A01-INSTANCIA-2**.
-
+A la nueva instancia se le configuró el TAG con el nombre **A01-INSTANCIA-2**, lo que permite identificarla fácilmente dentro de la consola de AWS.
 ![alt text](image-33.png)
 
+**13) Crear en el “DocumentRoot” el archivo index.html, que contengan la leyenda siguiente: “AXX-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1”.**
+Dentro del directorio **DocumentRoot** de Apache (`/var/www/html/`), se editó el archivo `index.html` y se reemplazó el contenido por la leyenda solicitada:
+
+```
+A01-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1
+```
+
+Al acceder desde un navegador a la dirección IP pública de la instancia, se mostró la página personalizada, confirmando la correcta configuración del servidor web.
 ![alt text](image-34.png)
 
-14) Re-asociar la IP Elástica a la instancia “AXX-INSTANCIA-2”.
-15) Verificar por consola, la NO pérdida de paquetes.
-16) Verificar el acceso vía un navegador WEB, por medio de la IP Elástica, que responda el “AXX-INSTANCIA-2”.
-17) Apagar la instancia “AXX-INSTANCIA-2”. Verificar el tráfico ICMP.
-18) Volver a encender la instancia y verificar que el tráfico ICMP retoma la respuesta al
-encendido de la misma.
-19) Cambiar el puerto del servidor WEB de la instancia “AXX-INSTANCIA-2” del TCP 80 al
-TCP 8080.
-20) Verificar el acceso WEB desde una navegador.
-21) Liberar la IP Elástica y “terminar” ambas instancias.
+**14) Re-asociar la IP Elástica a la instancia “AXX-INSTANCIA-2”.**
+
+![alt text](image-35.png)
+![alt text](image-36.png)
+
+
+**15) Verificar por consola, la NO pérdida de paquetes.**
+
+![alt text](image-37.png)
+
+
+**16) Verificar el acceso vía un navegador WEB, por medio de la IP Elástica, que responda el “AXX-INSTANCIA-2”.**
+
+![alt text](image-38.png)
+
+**17) Apagar la instancia “AXX-INSTANCIA-2”. Verificar el tráfico ICMP.**
+**18) Volver a encender la instancia y verificar que el tráfico ICMP retoma la respuesta al encendido de la misma.**
+**19) Cambiar el puerto del servidor WEB de la instancia “AXX-INSTANCIA-2” del TCP 80 al TCP 8080.**
+**20) Verificar el acceso WEB desde una navegador.**
+**21) Liberar la IP Elástica y “terminar” ambas instancias.**
