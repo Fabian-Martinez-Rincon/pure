@@ -91,15 +91,17 @@ Una vez lanzada la instancia EC2, se procedió a establecer la conexión remota 
 2. Se utilizó la herramienta **PuTTY**, donde se configuraron los siguientes parámetros:
 
    * En la pestaña *Session*, se ingresó la dirección IP pública en el campo **Host Name (or IP address)** y el puerto **22**, correspondiente a SSH.
-   * En la sección *SSH → Auth*, se cargó el archivo de clave privada previamente generado.
-3. Al abrir la sesión, se utilizó el usuario **admin**, correspondiente a la AMI Debian 13 seleccionada.
-4. Tras la autenticación con la clave privada, se obtuvo acceso exitoso a la terminal de la instancia, quedando lista para su administración y configuración como servidor web.
-
-
-
+   
 ![alt text](image-4.png)
 
+   * En la sección *SSH → Auth*, se cargó el archivo de clave privada previamente generado.
+
+   
 ![alt text](image-6.png)
+
+
+3. Al abrir la sesión, se utilizó el usuario **admin**, correspondiente a la AMI Debian 13 seleccionada.
+4. Tras la autenticación con la clave privada, se obtuvo acceso exitoso a la terminal de la instancia, quedando lista para su administración y configuración como servidor web.
 
 ![alt text](image-7.png)
 
@@ -154,14 +156,13 @@ Para que la instancia EC2 pueda recibir y responder correctamente distintos tipo
    Se permitió el tráfico HTTP desde cualquier dirección (0.0.0.0/0). Esto permite acceder al servidor web Apache desde cualquier navegador en Internet.
 
 2. **Regla SSH (puerto 22/TCP):**
-   Se habilitó el acceso SSH, inicialmente para todo origen (0.0.0.0/0) y luego restringido a la IP de la red local o a la IP pública de la VPN en uso. Esto mejora la seguridad al limitar el acceso administrativo a direcciones específicas.
+   Se habilitó el acceso SSH, restringido a la IP de la red local. Esto mejora la seguridad al limitar el acceso administrativo a direcciones específicas. Para saber cual es la IP de la red local se utilizo un servicio web encontrado al buscar en internet "Cual es mi IP?".
+   
+![alt text](image-13.png)
 
 3. **Regla ICMP (Ping):**
    Se permitió el tráfico ICMP desde cualquier origen (0.0.0.0/0), lo que habilita realizar pruebas de conectividad hacia la instancia mediante el comando `ping`.
 
-
-![alt text](image-12.png)
-![alt text](image-13.png)
 ![alt text](image-14.png)
 
 
@@ -184,9 +185,8 @@ Para que la instancia EC2 pueda recibir y responder correctamente distintos tipo
 
 3. **Prueba SSH:**
    Se validó también que la conexión SSH seguía funcionando correctamente, tanto antes como después de ajustar las reglas del grupo de seguridad.
-   ![alt text](image-18.png)
-   ![alt text](image-19.png)
    ![alt text](image-20.png)
+   ![alt text](image-7.png)
 
 ---
 
