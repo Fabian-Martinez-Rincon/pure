@@ -318,7 +318,7 @@ Con la IP Elástica ya asociada a la instancia **A01-INSTANCIA-1**, se realizó 
 
 
 **11) Lanzar una nueva instancia en AWS EC2, de tipo “t3.micro” con AMI “Debian 13”.**
-Se creó una nueva instancia EC2 de tipo **t3.micro** utilizando la AMI **Debian 13**, tal como se indica en la consigna.
+Se creó una nueva instancia EC2 de tipo **t3.micro** utilizando la AMI **Debian 13**, tal como se indica en la consigna. Los pasos son los mismos que los ya explicados anteriormente, por lo que no se volveran a explicar.
 
 ---
 
@@ -344,9 +344,7 @@ Al acceder desde un navegador a la dirección IP pública de la instancia, se mo
 
 ---
 
-## Ejercicio 14: Re-asociar la IP Elástica
-
-**14) Re-asociar la IP Elástica a la instancia “AXX-INSTANCIA-2”.**
+## Ejercicio 14: Re-asociar la IP Elástica a la instancia “AXX-INSTANCIA-2”.
 
 En este paso se reasignó la **IP Elástica previamente reservada** (54.xx.xx.xx) a la nueva instancia **AXX-INSTANCIA-2**.
 
@@ -354,15 +352,13 @@ Durante el proceso, AWS advierte que si la IP ya estaba asociada a otra instanci
 
 ![alt text](image-35.png)
 
-Una vez confirmada la acción, la consola mostró que la IP Elástica quedó correctamente asociada a **AXX-INSTANCIA-2**, garantizando que esta instancia pueda mantener conectividad pública estable independientemente de reinicios o cambios de la IP pública dinámica.
+Una vez confirmada la acción, la consola mostró que la IP Elástica quedó correctamente asociada a **AXX-INSTANCIA-2**, garantizando que esta instancia pueda mantener conectividad pública estable independientemente de reinicios.
 
 ![alt text](image-36.png)
 
 ---
 
-## Ejercicio 15: Verificar ping sin pérdida de paquetes
-
-**15) Verificar por consola, la NO pérdida de paquetes.**
+## Ejercicio 15: Verificar por consola, la NO pérdida de paquetes.
 
 Se ejecutó el comando `ping` hacia la **IP Elástica 54.157.104.45**, comprobando la correcta conectividad con la instancia **AXX-INSTANCIA-2**.
 
@@ -372,9 +368,7 @@ El resultado mostró respuestas constantes con tiempos estables de latencia y **
 
 ---
 
-## Ejercicio 16: Verificar acceso web
-
-**16) Verificar el acceso vía un navegador WEB, por medio de la IP Elástica, que responda el “AXX-INSTANCIA-2”.**
+## Ejercicio 16: Verificar el acceso vía un navegador WEB, por medio de la IP Elástica, que responda el “AXX-INSTANCIA-2”.
 
 Se accedió desde un navegador a la **IP Elástica 54.157.104.45**, comprobando que la instancia **AXX-INSTANCIA-2** responde correctamente al servicio HTTP.
 
@@ -426,33 +420,29 @@ Luego, se verificó el acceso web ingresando a la dirección pública de la inst
 
 ---
 
-## Ejercicio 20: Verificar acceso web
-
-**20) Verificar el acceso WEB desde una navegador.**
+## Ejercicio 20: Verificar el acceso WEB desde una navegador.
 
 
 Una vez configurado el servidor web Apache en la instancia **AXX-INSTANCIA-2** para escuchar en el puerto **8080**, se procedió a verificar el acceso desde un navegador.
 
-Se ingresó a la dirección **[http://54.157.104.45:8080](http://54.157.104.45:8080)**, confirmando que la página de inicio de Apache se despliega correctamente, con la leyenda personalizada **“AXX-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1”**.
+Se ingresó a la dirección **http://54.157.104.45:8080**, confirmando que la página de inicio de Apache se despliega correctamente, con la leyenda personalizada **“AXX-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1”**.
 
 ![alt text](image-44.png)
 
 ---
 
-## Ejercicio 21: Liberar IP Elástica y terminar instancias
+## Ejercicio 21: Liberar la IP Elástica y “terminar” ambas instancias.
 
-**21) Liberar la IP Elástica y “terminar” ambas instancias.**
-
-1. **Liberar la IP Elástica:**
+**Liberar la IP Elástica:**
    Desde la consola de AWS, se seleccionó la dirección IP elástica asociada a las instancias. Luego, se utilizó la opción **“Liberar direcciones IP elásticas”**, lo que permite devolver dicha IP al pool de direcciones públicas de Amazon, dejándola disponible para otros usuarios.
 
-2. **Terminar instancias EC2:**
+![alt text](image-46.png)
+![alt text](image-47.png)
+
+**Terminar instancias EC2:**
    Posteriormente, se seleccionaron ambas instancias creadas (**A01** y **A01-INSTANCIA2**) y se eligió la opción **“Terminar”**. Esta acción elimina de forma definitiva las instancias, liberando los recursos asociados.
+
+![alt text](image-45.png)
 
 Con estas acciones se concluye el ciclo de vida de las instancias creadas durante la práctica, asegurando que no queden recursos activos ni generen costos adicionales.
 
-
-
-![alt text](image-45.png)
-![alt text](image-46.png)
-![alt text](image-47.png)
