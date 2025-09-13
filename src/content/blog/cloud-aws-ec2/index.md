@@ -446,3 +446,5 @@ Se ingresó a la dirección **http://54.157.104.45:8080**, confirmando que la p�
 
 Con estas acciones se concluye el ciclo de vida de las instancias creadas durante la práctica, asegurando que no queden recursos activos ni generen costos adicionales.
 
+
+<img src='https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExczEyZWQ2MW5iZXN2Nm1kaGE4bWh3bmEyMTZmdTJ0dzBzZ2x3N3o0YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QMHoU66sBXqqLqYvGO/giphy.gif'>
