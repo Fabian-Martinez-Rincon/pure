@@ -337,12 +337,14 @@ Con la IP Elástica ya asociada a la instancia **A01-INSTANCIA-1**, se realizó 
 **Respuesta**
 
 > El procemiento fue similar al de la primera instancia, con las siguientes diferencias:
-1. Se asignó el nombre **A02** a la nueva instancia.
-2. Se creó un nuevo par de claves denominado **A02-1**.
-3. Se creó un nuevo grupo de seguridad llamado **A02-SG1**, con las mismas reglas que el anterior (HTTP, SSH, ICMP).
-4. Se etiquetó la instancia con el TAG **A02-INSTANCIA-2**.
+1. Se asignó el nombre **A01** a la nueva instancia.
+2. Se creó un nuevo par de claves denominado **A01-1**.
+3. Se creó un nuevo grupo de seguridad llamado **A01-SG1**, con las mismas reglas que el anterior (HTTP, SSH, ICMP).
+4. Se etiquetó la instancia con el TAG **A01-INSTANCIA-2**.
 
 ![alt text](image-33.png)
+
+![alt text](image-34.png)
 
 14) Re-asociar la IP Elástica a la instancia “AXX-INSTANCIA-2”.
 15) Verificar por consola, la NO pérdida de paquetes.
