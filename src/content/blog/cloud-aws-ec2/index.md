@@ -1,7 +1,7 @@
 ---
 title: 'Lanzando una instancia de AWS EC2'
 publishDate: '2025-09-11'
-description: 'Actividad 1'
+description: 'Actividad 1 \n Ricciardi Nicolas y Fabian Martinez'
 heroImage: { src: './thumbnail.jpg', color: '#0C294F' }
 tags: 
  - AWS
