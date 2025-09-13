@@ -287,10 +287,6 @@ Una vez asociada la **IP Elástica** a la instancia **A01-INSTANCIA-1**, se proc
 
 1. **Prueba con la IP Elástica (54.157.104.45):**
 
-   * Se realizó un **ping** a la dirección elástica, obteniendo respuestas estables con tiempos de entre 170 y 190 ms.
-
-   ![alt text](image-30.png)
-
 **Verificación de acceso vía navegador:**
    Desde un navegador web, se accedió a `http://54.157.104.45/`, comprobando que el servidor Apache devolvía la página personalizada de la práctica.
    
@@ -308,21 +304,12 @@ Una vez asociada la **IP Elástica** a la instancia **A01-INSTANCIA-1**, se proc
 
 **10) Abrir una consola y ejecutar el comando “ping” a la IP Elástica, verificando la NO pérdida de paquetes.**
 
-
-
 Con la IP Elástica ya asociada a la instancia **A01-INSTANCIA-1**, se realizó una prueba de conectividad desde una terminal local:
 
-1. **Ejecución del comando ping:**
-   Se utilizó la siguiente instrucción en consola:
+   * Se realizó un **ping** a la dirección elástica, obteniendo respuestas estables con tiempos de entre 170 y 190 ms.
 
-   ```bash
-   ping 54.157.104.45 -t
-   ```
-
-   La prueba mostró respuestas constantes desde la dirección IP, con valores de latencia estables entre **166 ms y 187 ms**, sin pérdida de paquetes.
-   ![alt text](image-32.png)
-
-2. **Confirmación de disponibilidad continua:**
+   ![alt text](image-30.png)
+   
    Esta prueba confirma que la IP Elástica mantiene la conectividad con la instancia, incluso si ésta se reinicia o cambia de IP pública temporal.
 
 ---
