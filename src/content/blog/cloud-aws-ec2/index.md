@@ -69,14 +69,7 @@ Para controlar el acceso a la instancia desde la red, se creó un **grupo de seg
 
 1. Se seleccionó la opción **Crear grupo de seguridad**, lo que permite establecer reglas de tráfico personalizadas para esta instancia.
 2. Se asignó el nombre **A01-SG1** y se generó automáticamente una descripción por defecto.
-3. En las **reglas de entrada**, se agregó una primera configuración para permitir conexiones SSH:
-
-   * **Tipo:** SSH
-   * **Protocolo:** TCP
-   * **Puerto:** 22
-   * **Origen:** rango de direcciones personalizadas (CIDR `163.10.0.0/16`), lo cual restringe el acceso a un segmento específico de red y brinda mayor seguridad frente a accesos no autorizados.
-
-Este paso es esencial para poder conectarse de forma remota a la instancia utilizando el protocolo SSH, manteniendo al mismo tiempo un control sobre qué redes tienen permitido el acceso.
+3. En las **reglas de entrada**, se dejo por defecto, lo que permite entradas ssh desde cualquier lugar del mundo. Esto sera modificado en una paso siguiente de esta actividad. 
 
 
 ![alt text](image-3.png)
