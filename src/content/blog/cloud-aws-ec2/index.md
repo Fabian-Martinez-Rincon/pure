@@ -234,10 +234,9 @@ Una vez instalado Apache2 y verificado su funcionamiento, se procedió a persona
 
 En este ejercicio se buscó comprobar cómo afecta el ciclo de apagado/encendido de una instancia EC2 a su conectividad de red.
 
+  
 1. **Prueba inicial de ICMP (Ping):**
-   Antes de detener la instancia, se ejecutó un ping hacia la IP pública de la misma. Durante la prueba se observó que las solicitudes no recibían respuesta, quedando en *“Tiempo de espera agotado”*.
-
-   ![alt text](image-23.png)
+   Antes de detener la instancia, se ejecutó un ping hacia la IP pública de la misma. Las solicitudes recibieron respuesta con valores de latencia, confirmando la conectividad de la instancia.
 
 2. **Apagado de la instancia:**
    Desde la consola de AWS, se seleccionó la instancia **A01** y se eligió la opción **Detener instancia**.
@@ -249,7 +248,9 @@ En este ejercicio se buscó comprobar cómo afecta el ciclo de apagado/encendido
    Una vez detenida, se volvió a encender la instancia mediante la opción **Iniciar instancia** en la consola de AWS. El estado cambió a **En ejecución**, lo que habilitó nuevamente los servicios de red y acceso remoto.
 
 4. **Verificación ICMP tras el encendido:**
-   Se repitió la prueba de ping hacia la IP pública asignada. En este caso, las solicitudes recibieron respuesta con valores de latencia, confirmando que la instancia recuperó la conectividad tras ser encendida nuevamente.
+   Se repitió la prueba de ping hacia la IP pública asignada. En este caso, se observó que las solicitudes no recibían respuesta, quedando en *“Tiempo de espera agotado”*. Esto ocurre porque, al apagar y volver a encender una instancia, su dirección IP pública cambia. Por lo tanto, si se intenta hacer ping a la IP anterior, se producirá un error, ya que ya no existe una máquina asociada a esa dirección.
+
+   ![alt text](image-23.png)
 
 ---
 
