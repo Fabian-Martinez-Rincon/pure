@@ -60,7 +60,7 @@ Durante el lanzamiento de la instancia, AWS solicita la creación de un **par de
 
 1. Se asignó el nombre **A01-1** al par de claves.
 2. Se seleccionó el **tipo de clave RSA**, ampliamente utilizado para conexiones seguras mediante cifrado asimétrico.
-3. Como formato de archivo se eligió **.pem**, compatible con OpenSSH y recomendado para conexiones desde sistemas Linux o Windows con clientes como PowerShell.
+3. Como formato de archivo se eligió **.ppk** utilizado en sistemas Windows.
 4. AWS generó el archivo privado automáticamente y lo descargó al equipo. Este archivo debe guardarse en un lugar seguro, ya que **será imprescindible para conectarse a la instancia** más adelante.
 
 
@@ -334,10 +334,19 @@ Con la IP Elástica ya asociada a la instancia **A01-INSTANCIA-1**, se realizó 
 
 ## Ejercicio 11, 12 y 13: Nueva instancia, TAG, index.html
 
-11) Lanzar una nueva instancia en AWS EC2, de tipo “t3.micro” con AMI “Debian 13”.
-12) Configurar la nueva instancia con TAG “AXX-INSTANCIA-2”.
-13) Crear en el “DocumentRoot” el archivo index.html, que contengan la leyenda siguiente: “AXX-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1”.
+**11) Lanzar una nueva instancia en AWS EC2, de tipo “t3.micro” con AMI “Debian 13”.**
+**12) Configurar la nueva instancia con TAG “AXX-INSTANCIA-2”.**
+**13) Crear en el “DocumentRoot” el archivo index.html, que contengan la leyenda siguiente: “AXX-INSTANCIA-2 – AÑO 2025 – PRÁCTICA 1”.**
 
+**Respuesta**
+
+> El procemiento fue similar al de la primera instancia, con las siguientes diferencias:
+1. Se asignó el nombre **A02** a la nueva instancia.
+2. Se creó un nuevo par de claves denominado **A02-1**.
+3. Se creó un nuevo grupo de seguridad llamado **A02-SG1**, con las mismas reglas que el anterior (HTTP, SSH, ICMP).
+4. Se etiquetó la instancia con el TAG **A02-INSTANCIA-2**.
+
+![alt text](image-33.png)
 
 14) Re-asociar la IP Elástica a la instancia “AXX-INSTANCIA-2”.
 15) Verificar por consola, la NO pérdida de paquetes.
