@@ -50,9 +50,6 @@ const postDate = data.updatedDate ?? data.publishDate
         />
       )
     }
-
-    <FormattedDate class='min-w-[95px] py-1 text-xs' date={postDate} />
-
     <Tag class='z-10 flex-grow'>
       {/* title */}
       <div class='flex justify-between'>
@@ -107,24 +104,13 @@ const postDate = data.updatedDate ?? data.publishDate
                   {data.language}
                 </span>
               )}
+                  <FormattedDate class='min-w-[95px] py-1 text-xs' date={postDate} />
             </div>
           </>
         )
       }
     </Tag>
   </a>
-  <!-- tags -->
-  <!-- {
-    detailed && data.tags && (
-      <ul class='tag-list mt-1 flex flex-wrap gap-2'>
-        {data.tags.map((tag: string) => (
-          <li>
-            <Button title={tag} href={`/tags/${tag}`} style='pill' />
-          </li>
-        ))}
-      </ul>
-    )
-  } -->
 </li>
 
 <style>
