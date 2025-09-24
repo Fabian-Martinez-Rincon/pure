@@ -48,6 +48,14 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
             <Icon name='youtube' class='size-5' slot='icon' />
           </Label>
           <Label
+            title='Instagram'
+            as='a'
+            href='https://www.instagram.com/fabian.martinez.rincon/'
+            target='_blank'
+          >
+            <Icon name='instagram' class='size-5' slot='icon' />
+          </Label>
+          <Label
             title='fabianmartinezrincon.123@gmail.com'
             as='a'
             href='mailto:fabianmartinezrincon.123@gmail.com'
@@ -64,7 +72,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       <Image
       src={avatar}
       alt='profile'
-      class='h-56 w-auto rounded-full border border-yellow-500 p-3'
+      class='h-56 w-auto border border-yellow-500 p-3'
       loading='eager'
     />
       <!-- <Image

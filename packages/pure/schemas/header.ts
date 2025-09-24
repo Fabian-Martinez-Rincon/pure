@@ -9,6 +9,7 @@ export const HeaderMenuSchema = () =>
       })
     )
     .default([
+      { title: 'Blogs Cristianos', link: '/blog' },
       { title: 'Blog', link: '/blog' },
       { title: 'Projects', link: '/projects' },
       { title: 'Sobre Mi', link: '/about' }
