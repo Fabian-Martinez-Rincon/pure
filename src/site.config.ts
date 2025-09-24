@@ -47,10 +47,10 @@ export const theme: ThemeUserConfig = {
   /** Configure the header of your site. */
   header: {
     menu: [
-      { title: 'Blog', link: '/blog' },
-      { title: 'Blogs Cristianos', link: '/blog_cristianos' },
-      { title: 'Projects', link: '/projects' },
-      { title: 'Sobre Mi', link: '/about' }
+      { title: '📒 Blogs Facultad ', link: '/blog' },
+      { title: '✟ Blogs Cristianos ', link: '/blog_cristianos' },
+      { title: '💻 Proyectos ', link: '/projects' },
+      { title: '👤 Sobre Mi', link: '/about' }
     ]
   },
 
@@ -70,7 +70,7 @@ export const theme: ThemeUserConfig = {
   content: {
     externalLinksContent: ' ↗',
     /** Blog page size for pagination (optional) */
-    blogPageSize: 8,
+    blogPageSize: 100,
     externalLinkArrow: true, // show external link arrow
     // Currently support weibo, x, bluesky
     share: [],

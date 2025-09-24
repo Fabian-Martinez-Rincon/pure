@@ -9,9 +9,9 @@ export const HeaderMenuSchema = () =>
       })
     )
     .default([
-      { title: 'Blogs Cristianos', link: '/blog' },
-      { title: 'Blog', link: '/blog' },
-      { title: 'Projects', link: '/projects' },
-      { title: 'Sobre Mi', link: '/about' }
+      { title: 'Blogs Cristianos ✟ ', link: '/blog' },
+      { title: '📒 Blogs Facultad ', link: '/blog' },
+      { title: 'Proyectos 💻', link: '/projects' },
+      { title: 'Sobre Mi 👤', link: '/about' }
     ])
     .describe('The header menu items for your site.')
