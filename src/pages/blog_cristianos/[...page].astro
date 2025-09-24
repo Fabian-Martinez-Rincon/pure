@@ -5,7 +5,7 @@ import type { CollectionEntry } from 'astro:content'
 import { Paginator, PostPreview } from 'astro-pure/components/pages'
 import { getBlogCollection, getUniqueTags, sortMDByDate } from 'astro-pure/server'
 import { Button, Icon } from 'astro-pure/user'
-import PageLayout from '@/layouts/BaseLayout.astro'
+import PageLayout from '../../layouts/BaseLayout.astro'
 import config from '@/site-config'
 
 export const prerender = true
@@ -30,7 +30,7 @@ const { page, uniqueTags, collectionsCount } = Astro.props
 
 const meta = {
   description: 'Blogs de materias y temas de interés',
-  title: 'Blog'
+  title: 'Blogs Cristianos'
 }
 
 const paginationProps = {
