@@ -19,7 +19,10 @@ const imagesGlob = {
 }
 
 
-const renderContent = async (post: CollectionEntry<any>, site: URL) => {
+const renderContent = async (
+  post: CollectionEntry<'blog'> | CollectionEntry<'blogs_cristianos'>,
+  site: URL
+) => {
   // Replace image links with the correct path
   function remarkReplaceImageLink() {
     /**

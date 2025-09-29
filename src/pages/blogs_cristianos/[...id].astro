@@ -6,10 +6,8 @@ import PostLayout from '@/layouts/BlogPost.astro'
 export const prerender = true
 
 export async function getStaticPaths() {
-  // 👇 pedimos posts de la colección blogs_cristianos
   const posts = sortMDByDate(await getBlogCollection('blogs_cristianos'))
   return posts.map((post) => ({
-    // 👇 slug es lo que Astro espera para [id]
     params: { id: post.id },
     props: { post, posts }
   }))

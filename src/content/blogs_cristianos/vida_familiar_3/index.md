@@ -10,6 +10,8 @@ language: 'Spanish'
 category: iclp
 ---
 
+> Para ser un buen creyente no alcanza con buenas intenciones, sino con buenas decisiones
+
 ## **10 Máximas de la vida familiar**
 
 ### Punto 1
