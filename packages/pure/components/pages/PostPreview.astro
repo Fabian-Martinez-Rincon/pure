@@ -31,15 +31,16 @@ const postDate = data.updatedDate ?? data.publishDate
     `--preview-highlight:color-mix(in srgb,${data.heroImage.color} 40%,hsl(var(--foreground)/var(--tw-text-opacity,1)));
     --preview-highlight-bg:hsl(from ${data.heroImage.color} h s l/20%)`}
 >
-  <a
+    <a
     class={cn(
       'group/link w-full flex flex-col transition-all hover:text-primary',
       !detailed && 'sm:flex-row',
       detailed && data.heroImage && 'max-md:pt-24'
     )}
-    href={`/blog/${id}`}
+    href={`/${post.collection}/${id}`}
     data-astro-prefetch
   >
+
     {
       detailed && data.heroImage && (
         <Image
