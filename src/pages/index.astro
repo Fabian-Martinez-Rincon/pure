@@ -66,21 +66,12 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         </div>
       </div>
 
-      <!-- <div class="video-inline z-0 transition-transform duration-[1.5s] group-hover:scale-110">
-        <video src='yo.mp4' class="max-w-screen-lg mx-auto noise left-0 h-56 w-full relative top-0 block overflow-hidden border-4 border-black" autoplay muted  loop></video>
-      </div> -->
       <Image
       src={avatar}
       alt='profile'
       class='h-56 w-auto border border-yellow-500 '
       loading='eager'
-    />
-      <!-- <Image
-      src={avatar}
-      alt='profile'
-      class='h-64 w-auto border p-1  '
-      loading='eager'
-    /> -->
+      />
       {/* Get template */}
       <div class="flex gap-x-4">
         <!-- Botón 1 -->
@@ -197,66 +188,15 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           subheading='Competente en Java y patrones de diseño, metodologías ágiles (Scrum), PostgreSQL, SQL, Linux y bases de datos relacionales. Hábil en Bash Scripting, Python, Flask y tecnologías de front-end incluyendo HTML, CSS, JavaScript, React, Tailwind y Vue.js.'
           date='Marzo 2021 - Marzo 2025'
         >
-          <!-- {
-             <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-            molestiae laboriosam pariatur!
-          </li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
-        </ul> 
-          } -->
         </Card>
         <Card
           as='a'
           heading='Tecnico en Electronica | Promedio 8'
           subheading='Conocimientos básicos de C++, desarrollé convertidores de temperatura en Visual Basic y proyectos prácticos con Arduino.'
           date='Marzo 2014 - Marzo 2021'
-
         >
         </Card>
       </Section>
-
-      <!-- <Section title='Proyectos'>
-        <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
-          <ProjectCard
-            href='https://github.com/Fabian-Martinez-Rincon/Scraping_PLUTO_TV'
-            heading='Scraping Pluto TV'
-            subheading='Scraping en Python para Pluto TV'
-            imagePath='/src/assets/projects/pluto_tv.jpg'
-          />
-          <ProjectCard
-            href='https://github.com/Fabian-Martinez-Rincon/acl-manager'
-            heading='ACL-Manager'
-            subheading='Python, Pandas, OpenPyXL, PyAutoGUI'
-            imagePath='/src/assets/projects/acl-manager.jpg'
-          />
-          <ProjectCard
-            href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            heading='Emuti'
-            subheading='Python, Pandas, OpenPyXL, PyAutoGUI'
-            imagePath='/src/assets/projects/emuti.png'
-          />
-          <ProjectCard
-            href='/projects'
-            heading='Lab-Genetics'
-            subheading='Python | PostgreSQL | Flask | HTML |'
-            imagePath='/src/assets/projects/lab-genetics.png'
-          />
-          <ProjectCard
-            href='/projects'
-            heading='Hope-Trade'
-            subheading='Python | PostgreSQL | Flask | HTML |'
-            imagePath='/src/assets/projects/hopetrade.png'
-          />
-          <ProjectCard
-            href='/projects'
-            heading='Modify-SQL'
-            subheading='Python, Pandas, PostgreSQL'
-            imagePath='/src/assets/projects/sqlmodify.png'
-          />
-        </div>
-      </Section> -->
 
       <Section title='Skills'>
         <SkillLayout title='Languages' skills={languages} />

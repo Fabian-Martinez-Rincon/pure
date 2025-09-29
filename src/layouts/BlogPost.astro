@@ -12,18 +12,23 @@ import { cn } from 'astro-pure/utils'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import { integ } from '@/site-config'
 
-interface Props {
-  post: CollectionEntry<'blog'>
-  posts: CollectionEntry<'blog'>[]
+import type { CollectionKey } from 'astro:content'
+
+interface Props<T extends CollectionKey = CollectionKey> {
+  post: CollectionEntry<T>
+  posts: CollectionEntry<T>[]
   headings: MarkdownHeading[]
   remarkPluginFrontmatter: Record<string, unknown>
+  basePath?: string 
 }
+
 
 const {
   post: { id, data },
   posts,
   headings,
-  remarkPluginFrontmatter
+  remarkPluginFrontmatter,
+  basePath = "/blog"
 } = Astro.props
 
 const {
@@ -49,7 +54,9 @@ const primaryColor = data.heroImage?.color ?? 'hsl(var(--primary) / var(--tw-tex
   meta={{ articleDate, description, ogImage: socialImage, title }}
   highlightColor={primaryColor}
 >
-  <Button title='Volver' href='/blog' style='back' />
+  <Button title='Volver' href={basePath} style='back' />
+
+
   <main class='mt-6 items-start gap-x-10 md:flex'>
     {
       !!headings.length && (

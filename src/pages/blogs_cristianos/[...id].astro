@@ -1,28 +1,30 @@
 ---
 import { render, type CollectionEntry } from 'astro:content'
-
 import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
 import PostLayout from '@/layouts/BlogPost.astro'
 
 export const prerender = true
 
 export async function getStaticPaths() {
-  const posts = sortMDByDate(await getBlogCollection())
-  return posts.map((post: CollectionEntry<'blog'>) => ({
+  // 👇 pedimos posts de la colección blogs_cristianos
+  const posts = sortMDByDate(await getBlogCollection('blogs_cristianos'))
+  return posts.map((post) => ({
+    // 👇 slug es lo que Astro espera para [id]
     params: { id: post.id },
     props: { post, posts }
   }))
 }
 
 type Props = {
-  post: CollectionEntry<'blog'>
-  posts: CollectionEntry<'blog'>[]
+  post: CollectionEntry<'blogs_cristianos'>
+  posts: CollectionEntry<'blogs_cristianos'>[]
 }
 
 const { post, posts } = Astro.props
 const { Content, headings, remarkPluginFrontmatter } = await render(post)
 ---
 
-<PostLayout {post} {posts} {headings} {remarkPluginFrontmatter}>
+<PostLayout basePath="/blogs_cristianos" {post} {posts} {headings} {remarkPluginFrontmatter}>
   <Content />
 </PostLayout>
+

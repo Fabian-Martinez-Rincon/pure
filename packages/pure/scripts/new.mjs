@@ -52,11 +52,11 @@ Example:
   astro-pure new "Hello World"
   astro-pure new -l zh "你好，世界"
 `
-const TARGET_DIR = 'src/content/blog/'
+const TARGET_DIR = `src/content/${parsedArgs.collection}/`
 
 export default function main(args) {
   const parsedArgs = minimist(args, {
-    string: ['lang'],
+    string: ['lang', 'collection'],
     boolean: ['draft', 'mdx', 'help'],
     default: {
       lang: null,

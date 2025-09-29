@@ -23,6 +23,7 @@ const { post, posts } = Astro.props
 const { Content, headings, remarkPluginFrontmatter } = await render(post)
 ---
 
-<PostLayout {post} {posts} {headings} {remarkPluginFrontmatter}>
+<PostLayout basePath="/blog" {post} {posts} {headings} {remarkPluginFrontmatter}>
   <Content />
 </PostLayout>
+
