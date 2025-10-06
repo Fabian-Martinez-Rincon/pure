@@ -28,6 +28,21 @@ import {
 } from './src/plugins/shiki-transformers.ts'
 import config from './src/site.config.ts'
 
+// ✅ Import dinámico compatible con .ts
+import { pathToFileURL } from 'node:url'
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+const contentConfigPath = pathToFileURL(resolve(__dirname, './src/content/config.ts')).href
+const { collections } = await import(contentConfigPath)
+
+if (collections && collections.blogs_cristianos) {
+  collections['blog'] = collections['blog'] || collections.blogs_cristianos
+}
+
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
