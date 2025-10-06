@@ -28,19 +28,27 @@ import {
 } from './src/plugins/shiki-transformers.ts'
 import config from './src/site.config.ts'
 
-// ✅ Import dinámico compatible con .ts
-import { pathToFileURL } from 'node:url'
-import { fileURLToPath } from 'node:url'
+// ✅ Inyección segura de colección blogs_cristianos (compatible con Vercel)
+import { existsSync } from 'node:fs'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { dirname, resolve } from 'node:path'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
+const contentConfigPath = resolve(__dirname, './src/content.config.ts')
 
-const contentConfigPath = pathToFileURL(resolve(__dirname, './src/content/config.ts')).href
-const { collections } = await import(contentConfigPath)
-
-if (collections && collections.blogs_cristianos) {
-  collections['blog'] = collections['blog'] || collections.blogs_cristianos
+if (existsSync(contentConfigPath)) {
+  try {
+    const { collections } = await import(/* @vite-ignore */ pathToFileURL(contentConfigPath).href)
+    if (collections && collections.blogs_cristianos) {
+      collections.blog = collections.blog || collections.blogs_cristianos
+      console.log('[astro.config.mjs] Colección blogs_cristianos inyectada correctamente ✅')
+    }
+  } catch (err) {
+    console.warn('[astro.config.mjs] Error al importar src/content.config.ts:', err)
+  }
+} else {
+  console.warn('[astro.config.mjs] Advertencia: No se encontró src/content.config.ts')
 }
 
 // https://astro.build/config
