@@ -12,6 +12,13 @@ export async function getBlogCollection(contentType: CollectionKey = 'blog') {
   })
 }
 
+export async function getCristianoCollection(contentType: CollectionKey = 'blogs_cristianos') {
+  return await getCollection(contentType, ({ data }: CollectionEntry<typeof contentType>) => {
+    // Not in production & draft is not false
+    return prod ? !data.draft : true
+  })
+}
+
 export function groupCollectionsByYear<T extends CollectionKey>(
   collections: Collections
 ): [number, CollectionEntry<T>[]][] {

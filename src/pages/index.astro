@@ -3,7 +3,7 @@ import { Image } from 'astro:assets'
 
 import { Quote } from 'astro-pure/advanced'
 import { PostPreview } from 'astro-pure/components/pages'
-import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
+import { getBlogCollection, sortMDByDate, getCristianoCollection } from 'astro-pure/server'
 import { Button, Card, Icon, Label } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import Section from '@/components/home/Section.astro'
@@ -18,6 +18,9 @@ const backend = ['PostgreSQL', 'MongoDB']
 const MAX_POSTS = 5
 const allPosts = await getBlogCollection()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
+
+const cristianoPosts = await getCristianoCollection()
+const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
 ---
 
 <PageLayout meta={{ title: 'Home' }} highlightColor='#659EB966'>
@@ -136,6 +139,21 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           <Section title='📚 Blogs'>
             <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
               {allPostsByDate.map((p) => (
+                <li class='flex flex-col gap-x-2 sm:flex-row'>
+                  <PostPreview post={p} />
+                </li>
+              ))}
+            </ul>
+            <Button title='More posts' class='w-fit self-end' href='/blog' style='ahead' />
+          </Section>
+        )
+      }
+
+      {
+        cristianoPostsByDate.length > 0 && (
+          <Section title='📚 Blogs Cristianos'>
+            <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
+              {cristianoPostsByDate.map((p) => (
                 <li class='flex flex-col gap-x-2 sm:flex-row'>
                   <PostPreview post={p} />
                 </li>

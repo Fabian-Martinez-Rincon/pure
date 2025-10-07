@@ -3,7 +3,7 @@ import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 
 import { Paginator, PostPreview } from 'astro-pure/components/pages'
-import { getBlogCollection, getUniqueTags, sortMDByDate } from 'astro-pure/server'
+import { getUniqueTags, sortMDByDate, getCristianoCollection} from 'astro-pure/server'
 import { Button, Icon } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import config from '@/site-config'
@@ -11,7 +11,7 @@ import config from '@/site-config'
 export const prerender = true
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const collections = sortMDByDate(await getBlogCollection('blogs_cristianos'))
+  const collections = sortMDByDate(await getCristianoCollection())
   const uniqueTags = getUniqueTags(collections)
   const collectionsCount = collections.length
   return paginate(collections, {

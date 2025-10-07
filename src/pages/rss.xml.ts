@@ -10,7 +10,7 @@ import { unified } from 'unified'
 import { visit } from 'unist-util-visit'
 import config from 'virtual:config'
 
-import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
+import { getBlogCollection, sortMDByDate , getCristianoCollection} from 'astro-pure/server'
 
 // Get dynamic import of images as a map collection
 const imagesGlob = {
@@ -61,7 +61,7 @@ const renderContent = async (
 const GET = async (context: AstroGlobal) => {
   const allPostsByDate = sortMDByDate([
     ...(await getBlogCollection('blog')),
-    ...(await getBlogCollection('blogs_cristianos'))
+    ...(await getCristianoCollection('blogs_cristianos'))
   ])
 
   const siteUrl = context.site ?? new URL(import.meta.env.SITE)
