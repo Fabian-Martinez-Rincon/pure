@@ -8,6 +8,7 @@ tags:
  - jovenes
 language: 'Spanish'
 category: iclp
+basePath: blogs_cristianos
 ---
 
 > Para ser un buen creyente no alcanza con buenas intenciones, sino con buenas decisiones

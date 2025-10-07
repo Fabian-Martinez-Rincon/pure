@@ -38,7 +38,7 @@ const postDate = data.updatedDate ?? data.publishDate
       !detailed && 'sm:flex-row',
       detailed && data.heroImage && 'max-md:pt-24'
     )}
-    href={`${basePath ?? `/${post.collection}`}/${id}`}
+    href={`${post.basePath ?? `/${post.collection}`}/${id}`}
     data-astro-prefetch
   >
 
