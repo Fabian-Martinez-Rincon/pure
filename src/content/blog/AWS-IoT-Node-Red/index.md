@@ -78,122 +78,33 @@ Una configuracion necesaria para su correcto funcionamiento es la de la **polít
 
 ## **5) Desarrollar, en la instancia A, la solución de un “CONTROL REMOTO” para gestionar la iluminación de un ambiente: ´botón “ENCENDIDO/ON”, botón “APAGADO/OFF”, informe de estado de la luminaria y funcionalidad “TIMER de 5s” para que activada dicha funcionalidad, al encender la luminaria se apague a los 5 segundos.**
 
+Dentro de la **Instancia A**, se pueden encontrar los botones **ON**, **OFF** y el **Timer ON/OFF** con distintas funciones que manejan la lógica del encendido, apagado y el temporizador de 5 segundos.
+Cuando el temporizador está activo, la lámpara se apaga automáticamente después de esos 5 segundos de apretado el boton **ON**.
+Todas las acciones se envían por **MQTT** al canal configurado en **AWS IoT**, que luego es recibido por la **Instancia B**, encargada de mostrar el estado de la luminaria.
 
-La imagen muestra la **transmisión exitosa del mensaje “HOLA”** entre los nodos configurados en Node-RED mediante el **protocolo MQTT**.
-El flujo se compone de un nodo de inyección, un **nodo de publicación (“A01-Input Canal”)** y un **nodo de suscripción (“A01-Output Canal”)**, ambos conectados al bróker de **AWS IoT Core**.
-El panel de depuración (debug) confirma la correcta recepción del mensaje en el tópico configurado, demostrando la **comunicación bidireccional entre las instancias A y B** a través del servicio IoT.
+![alt text](image-26.png)
 
-
-![alt text](image-23.png)
-
-
-La imagen muestra el **flujo implementado en la Instancia A** para el **control remoto de la iluminación**.
-Se incorporan tres botones del *dashboard*: **ON**, **OFF** y **Timer ON/OFF**, cada uno conectado a su respectivo nodo de publicación MQTT (*A01 - Input Canal*).
-Este panel permite encender o apagar la luminaria y activar un temporizador de 5 segundos que apaga automáticamente el sistema.
-El flujo representa la lógica principal del control remoto, enviando las órdenes hacia la Instancia B mediante el **bróker MQTT de AWS IoT**.
-
-
-![alt text](image-24.png)
-
-En esta imagen se puede ver el **panel de control hecho con Node-RED Dashboard** desde la **Instancia A**.
-Tiene tres controles principales: un **botón ON**, un **botón OFF** y un **switch Timer ON/OFF**.
-Desde acá se puede encender, apagar o activar el temporizador de la luminaria, que la apaga automáticamente después de 5 segundos.
-Cada acción envía un mensaje por **MQTT** hacia la **Instancia B**, que se encarga de simular el encendido o apagado del sistema de iluminación.
-
+Si nos fijamos en **panel de control hecho con Node-RED Dashboard**, podemos ver los tres elemento: los botones **ON** y **OFF** y un switch **Timer ON/OFF**.
+Desde acá se puede encender y apagar la led o activar el temporizador de la luminaria, que la apaga automáticamente después de 5 segundos de apretado el boton **ON**.
 
 ![alt text](image-25.png)
+
+### NODOS A DETALLAR:
+
+* **Function 2** se encarga de **manejar el estado del temporizador** usando una variable global llamada **`TIMER_ON`**, cambiando cada vez que se ejecuta el estado de la variable: Si **`TIMER_ON` está en 1**, la función la cambia a **0** y si está en **0**, la cambia a **1**. De esta forma, el sistema alterna entre los dos modos (automático y manual) y mantiene sincronizado el estado del temporizador con el interruptor del panel.
+
+* **Function 1** se encarga de manejar el apagado de la luz teniendo en cuenta si el temporizador está activo: Esto lo hace revisando el valor de la variable global **`TIMER_ON`**, que guarda el estado del temporizador.
+Si el temporizador **está activado**, la función envía un mensaje al **delay** para que luego de 5 segundos se los transmita al la **Function 3**.
+En cambio, si el temporizador **no está activo**, no se envía nada, y el delay no se activa.
+
+* A su vez, si **delay** se activa, **Function 3** simplemente cambia el valor del payload a 0 (lo que representa el estado de apagado) y lo envía al mismo canal MQTT que controla la luz. De esta manera, cuando el temporizador está activo, el flujo primero enciende la luz con `payload = 1` y, tras los 5 segundos, esta función la apaga enviando `payload = 0`.
+Así logramos un sistema automático que prende y apaga sin intervención manual.
+
 
 ---
 
 ## **6) Desarrollar, en la instancia B, la solución para controlar la “ILUMINACIÓN” de un ambiente simulando el “ENCENDIDO/APAGADO” de la luminaria, informando el estado de la “LUMINARIA” y el estado del “TIMER”.**
 
-En esta parte se ve el **flujo completo armado en Node-RED** dentro de la **Instancia A**.
-Acá conectamos los botones **ON**, **OFF** y el **Timer ON/OFF** con distintas funciones que manejan la lógica del encendido, apagado y el temporizador de 5 segundos.
-Cuando el temporizador está activo, la lámpara se apaga automáticamente después de esos 5 segundos.
-Todas las acciones se envían por **MQTT** al canal configurado en **AWS IoT**, que luego es recibido por la **Instancia B**, encargada de mostrar el estado de la luminaria.
-
-![alt text](image-26.png)
-
-En esta imagen se puede ver la **configuración del botón OFF** dentro del panel de control en Node-RED.
-Desde esta ventana se definen las propiedades del botón, como el **grupo donde se muestra (CONTROL REMOTO)**, el **texto del botón**, y el **valor del payload** que se envía cuando se hace clic.
-En este caso, al presionar el botón se envía el valor **0**, que representa la acción de apagar la luminaria.
-De forma similar, el botón **ON** envía el valor **1** para encenderla.
-
-
-![alt text](image-27.png)
-
-En esta imagen se ve la **configuración del botón ON** dentro del grupo *CONTROL REMOTO* en Node-RED.
-Acá se define que al presionar el botón se envía un **payload con el valor 1**, lo que representa la acción de **encender la luminaria**.
-Este mensaje se publica a través del nodo MQTT y se envía al **canal configurado en AWS IoT**, donde la Instancia B recibe la orden y actualiza el estado del sistema.
-De esta forma, el panel permite controlar de manera sencilla el encendido de la luz desde la interfaz web.
-
-
-![alt text](image-28.png)
-
-En este bloque se puede ver el código de la **Function 1**, que se encarga de manejar el encendido de la luz teniendo en cuenta si el temporizador está activo.
-Primero obtiene el valor de la variable global **TIMER_ON**, que guarda el estado del temporizador.
-Si el temporizador **no está activado**, la función envía un mensaje con **payload = 1**, lo que indica encender la luz.
-En cambio, si **TIMER_ON está activo**, no se envía nada, ya que el temporizador se encarga de apagarla automáticamente después de los 5 segundos.
-
-
-
-![alt text](image-29.png)
-
-
-En esta parte se usa el **nodo Delay**, configurado para generar una pausa de **5 segundos** antes de enviar el siguiente mensaje.
-Esto permite simular un **temporizador automático**, de manera que, después de encender la luz, el sistema espere 5 segundos antes de enviar la orden de apagado.
-De esta forma, se logra un comportamiento automático cuando el **Timer ON/OFF** está activado, sin necesidad de presionar el botón manualmente.
-
-![alt text](image-30.png)
-
-En este paso se configuró el **nodo Delay** para que genere una **espera de 5 segundos** antes de continuar con el flujo.
-La idea es que, cuando el temporizador esté activado, este nodo actúe como un **apagado automático**, mandando la señal de apagado después del tiempo establecido.
-De esta forma, si el usuario prende la luz con el temporizador activado, el sistema la apaga solo pasados los 5 segundos, sin tener que presionar el botón OFF.
-Así simulamos un control más inteligente y práctico. 😎
-
-![alt text](image-31.png)
-
-Esta función se encarga de **apagar la luz automáticamente** después del retardo del nodo *Delay*.
-Simplemente cambia el valor del **payload a 0**, lo que representa el estado de apagado, y lo envía al mismo canal MQTT que controla la luz.
-De esta manera, cuando el temporizador está activo, el flujo primero enciende la luz con `payload = 1` y, tras los 5 segundos, esta función la apaga enviando `payload = 0`.
-Así logramos un sistema automático que prende y apaga sin intervención manual 👌.
-
-![alt text](image-32.png)
-
-El **nodo Debug** se usa para **monitorear los mensajes que circulan por el flujo** y asegurarse de que cada paso funcione correctamente.
-En este caso, está configurado para mostrar el valor de **`msg.payload`** en la ventana lateral de Node-RED.
-De esa forma, podemos ver si los botones, las funciones y los temporizadores están enviando los valores esperados (por ejemplo, `1` para encender y `0` para apagar).
-Básicamente, este nodo es nuestro “visor de control” durante las pruebas 💡.
-
-![alt text](image-33.png)
-
-Este es el **nodo Switch**, que usamos como un interruptor para controlar si el **temporizador automático** está activo o no.
-Cuando está en **ON**, el nodo envía `true` y guarda ese valor en una variable global llamada **`TIMER_ON`**, lo que permite que el sistema funcione en modo automático.
-Si está en **OFF**, manda `false`, desactivando el temporizador y dejando el control totalmente manual (solo con los botones ON y OFF).
-Básicamente, este nodo define si el sistema trabaja de forma automática o manual ⚙️.
-
-![alt text](image-34.png)
-
-Esta función se encarga de **manejar el estado del temporizador** usando una variable global llamada **`TIMER_ON`**.
-Cada vez que se ejecuta, verifica si la variable está activada o no:
-
-* Si **`TIMER_ON` está en 1 (activado)**, la función la cambia a **0 (apagado)** y envía un `payload = 0`.
-* Si está en **0 (apagado)**, la cambia a **1 (activado)** y envía un `payload = 1`.
-
-De esta forma, el sistema alterna entre los dos modos (automático y manual) y mantiene sincronizado el estado del temporizador con el interruptor del panel. ⚙️
-
-![alt text](image-35.png)
-
-En esta parte del nodo **Function 2**, usamos la pestaña **“On Start”** para **inicializar la variable global** `TIMER_ON` con el valor `0`.
-Esto significa que **cada vez que se arranca el flujo o se reinicia Node-RED**, el temporizador empieza desactivado por defecto.
-
-De esa forma, nos aseguramos de que el sistema no quede encendido accidentalmente al reiniciar —es como arrancar con todo apagado y seguro ⚡.
-
-![alt text](image-36.png)
-
-![alt text](image-37.png)
-
-![alt text](image-38.png)
 
 ![alt text](image-39.png)
 
@@ -257,6 +168,9 @@ Se habilita la conexión automática con cifrado **TLS**, utilizando el conjunto
 El uso de **MQTT v5** permite una comunicación más eficiente y confiable, optimizando el intercambio de mensajes entre la **Instancia A** y el servicio IoT de AWS.
 
 ![alt text](image-22.png)
+
+![alt text](image-37.png)
+
 
 ## **Ejemplo**
 
