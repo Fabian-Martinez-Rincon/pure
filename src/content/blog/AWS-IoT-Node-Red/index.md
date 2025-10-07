@@ -231,15 +231,48 @@ De esta forma, se logra un comportamiento automático cuando el **Timer ON/OFF**
 
 ![alt text](image-30.png)
 
+En este paso se configuró el **nodo Delay** para que genere una **espera de 5 segundos** antes de continuar con el flujo.
+La idea es que, cuando el temporizador esté activado, este nodo actúe como un **apagado automático**, mandando la señal de apagado después del tiempo establecido.
+De esta forma, si el usuario prende la luz con el temporizador activado, el sistema la apaga solo pasados los 5 segundos, sin tener que presionar el botón OFF.
+Así simulamos un control más inteligente y práctico. 😎
+
 ![alt text](image-31.png)
+
+Esta función se encarga de **apagar la luz automáticamente** después del retardo del nodo *Delay*.
+Simplemente cambia el valor del **payload a 0**, lo que representa el estado de apagado, y lo envía al mismo canal MQTT que controla la luz.
+De esta manera, cuando el temporizador está activo, el flujo primero enciende la luz con `payload = 1` y, tras los 5 segundos, esta función la apaga enviando `payload = 0`.
+Así logramos un sistema automático que prende y apaga sin intervención manual 👌.
 
 ![alt text](image-32.png)
 
+El **nodo Debug** se usa para **monitorear los mensajes que circulan por el flujo** y asegurarse de que cada paso funcione correctamente.
+En este caso, está configurado para mostrar el valor de **`msg.payload`** en la ventana lateral de Node-RED.
+De esa forma, podemos ver si los botones, las funciones y los temporizadores están enviando los valores esperados (por ejemplo, `1` para encender y `0` para apagar).
+Básicamente, este nodo es nuestro “visor de control” durante las pruebas 💡.
+
 ![alt text](image-33.png)
+
+Este es el **nodo Switch**, que usamos como un interruptor para controlar si el **temporizador automático** está activo o no.
+Cuando está en **ON**, el nodo envía `true` y guarda ese valor en una variable global llamada **`TIMER_ON`**, lo que permite que el sistema funcione en modo automático.
+Si está en **OFF**, manda `false`, desactivando el temporizador y dejando el control totalmente manual (solo con los botones ON y OFF).
+Básicamente, este nodo define si el sistema trabaja de forma automática o manual ⚙️.
 
 ![alt text](image-34.png)
 
+Esta función se encarga de **manejar el estado del temporizador** usando una variable global llamada **`TIMER_ON`**.
+Cada vez que se ejecuta, verifica si la variable está activada o no:
+
+* Si **`TIMER_ON` está en 1 (activado)**, la función la cambia a **0 (apagado)** y envía un `payload = 0`.
+* Si está en **0 (apagado)**, la cambia a **1 (activado)** y envía un `payload = 1`.
+
+De esta forma, el sistema alterna entre los dos modos (automático y manual) y mantiene sincronizado el estado del temporizador con el interruptor del panel. ⚙️
+
 ![alt text](image-35.png)
+
+En esta parte del nodo **Function 2**, usamos la pestaña **“On Start”** para **inicializar la variable global** `TIMER_ON` con el valor `0`.
+Esto significa que **cada vez que se arranca el flujo o se reinicia Node-RED**, el temporizador empieza desactivado por defecto.
+
+De esa forma, nos aseguramos de que el sistema no quede encendido accidentalmente al reiniciar —es como arrancar con todo apagado y seguro ⚡.
 
 ![alt text](image-36.png)
 
