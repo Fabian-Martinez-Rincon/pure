@@ -192,13 +192,42 @@ Cada acción envía un mensaje por **MQTT** hacia la **Instancia B**, que se enc
 
 **6) Desarrollar, en la instancia B, la solución para controlar la “ILUMINACIÓN” de un ambiente simulando el “ENCENDIDO/APAGADO” de la luminaria, informando el estado de la “LUMINARIA” y el estado del “TIMER”.**
 
+En esta parte se ve el **flujo completo armado en Node-RED** dentro de la **Instancia A**.
+Acá conectamos los botones **ON**, **OFF** y el **Timer ON/OFF** con distintas funciones que manejan la lógica del encendido, apagado y el temporizador de 5 segundos.
+Cuando el temporizador está activo, la lámpara se apaga automáticamente después de esos 5 segundos.
+Todas las acciones se envían por **MQTT** al canal configurado en **AWS IoT**, que luego es recibido por la **Instancia B**, encargada de mostrar el estado de la luminaria.
+
 ![alt text](image-26.png)
+
+En esta imagen se puede ver la **configuración del botón OFF** dentro del panel de control en Node-RED.
+Desde esta ventana se definen las propiedades del botón, como el **grupo donde se muestra (CONTROL REMOTO)**, el **texto del botón**, y el **valor del payload** que se envía cuando se hace clic.
+En este caso, al presionar el botón se envía el valor **0**, que representa la acción de apagar la luminaria.
+De forma similar, el botón **ON** envía el valor **1** para encenderla.
+
 
 ![alt text](image-27.png)
 
+En esta imagen se ve la **configuración del botón ON** dentro del grupo *CONTROL REMOTO* en Node-RED.
+Acá se define que al presionar el botón se envía un **payload con el valor 1**, lo que representa la acción de **encender la luminaria**.
+Este mensaje se publica a través del nodo MQTT y se envía al **canal configurado en AWS IoT**, donde la Instancia B recibe la orden y actualiza el estado del sistema.
+De esta forma, el panel permite controlar de manera sencilla el encendido de la luz desde la interfaz web.
+
+
 ![alt text](image-28.png)
 
+En este bloque se puede ver el código de la **Function 1**, que se encarga de manejar el encendido de la luz teniendo en cuenta si el temporizador está activo.
+Primero obtiene el valor de la variable global **TIMER_ON**, que guarda el estado del temporizador.
+Si el temporizador **no está activado**, la función envía un mensaje con **payload = 1**, lo que indica encender la luz.
+En cambio, si **TIMER_ON está activo**, no se envía nada, ya que el temporizador se encarga de apagarla automáticamente después de los 5 segundos.
+
+
+
 ![alt text](image-29.png)
+
+
+En esta parte se usa el **nodo Delay**, configurado para generar una pausa de **5 segundos** antes de enviar el siguiente mensaje.
+Esto permite simular un **temporizador automático**, de manera que, después de encender la luz, el sistema espere 5 segundos antes de enviar la orden de apagado.
+De esta forma, se logra un comportamiento automático cuando el **Timer ON/OFF** está activado, sin necesidad de presionar el botón manualmente.
 
 ![alt text](image-30.png)
 
