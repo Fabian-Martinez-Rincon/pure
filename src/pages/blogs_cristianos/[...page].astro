@@ -56,9 +56,13 @@ const meta = {
               ...(page.url.next && { nextUrl: { text: 'Página siguiente →', url: page.url.next } })
             }} />
             <ul class="flex flex-col gap-y-4 text-start">
-              <h2>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h2>
-              {page.data.map((post) => <PostPreview {post} detailed />)}
+              {page.data.map((post) => (
+                <a href={`/blogs_cristianos/${post.id}`} class="hover:opacity-80">
+                  <PostPreview {post} detailed />
+                </a>
+              ))}
             </ul>
+
           </section>
 
           {!!uniqueTags.length && (
