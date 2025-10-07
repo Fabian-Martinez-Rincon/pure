@@ -22,7 +22,7 @@ Las instancia quedaron listas para su conexión y posterior instalación de Node
 
 ---
 
-**2) Instalar “Node-RED” en ambas instancias.**
+## **2) Instalar “Node-RED” en ambas instancias.**
 
 Primero configuramos las **reglas de entrada** del grupo de seguridad asociado a las instancias, habilitando el **puerto 22 (SSH)** para permitir el acceso remoto desde cualquier dirección IP, y se agregando una regla **TCP personalizada en el puerto 1880**, utilizada por **Node-RED** para su interfaz web.
 Esta configuración permite acceder al panel de control de Node-RED desde el navegador, garantizando la comunicación externa necesaria para el proyecto.
@@ -49,9 +49,9 @@ Posteriormente probamos el acceso a la **interfaz gráfica de Node-RED** mediant
 
 Estos pasos confirman que la instalación y configuración del entorno Node-RED en las instancias se realizaron correctamente y que el servicio se encuentra operativo.
 
-**3) Instalar el nodo “node-red-dashboard”.**
+## **3) Instalar el nodo “node-red-dashboard”.**
 
-En la siguiente imagen se puede ver el menú de configuración de **Node-RED**, para instalar el paquete **`node-red-dashboard`**.
+En la siguientes imagenes se puede ver el menú de configuración de **Node-RED**, para instalar el paquete **`node-red-dashboard`**.
 Este módulo permite crear interfaces gráficas interactivas (dashboards) para visualizar y controlar variables del sistema, como el estado de la iluminación o los temporizadores.
 La instalación de este nodo es fundamental para el desarrollo del panel de control utilizado en el proyecto.
 
@@ -61,36 +61,22 @@ La instalación de este nodo es fundamental para el desarrollo del panel de cont
 
 ---
 
-**4) Registrar ambas instancias como objetos/dispositivos en AWS IoT para poder operar mediante el protocolo MQTT.**
+## **4) Registrar ambas instancias como objetos/dispositivos en AWS IoT para poder operar mediante el protocolo MQTT.**
 
-En la imagen se muestra el paso de **descarga del kit de conexión** en el servicio **AWS IoT Core**, correspondiente al dispositivo **A01-IOT-A**.
-El kit incluye los archivos necesarios para establecer la comunicación segura entre la instancia EC2 y el servicio IoT, tales como el **certificado digital (`.cert.pem`)**, la **clave privada (`.private.key`)** y la **política de acceso (`A01-IOT-A-Policy`)**.
-Estos elementos permiten autenticar el dispositivo y garantizar una conexión segura mediante el protocolo **MQTT**.
+En la siguiente imagen se muestra el paso de **descarga del kit de conexión** en el servicio **AWS IoT Core**, correspondiente al dispositivo **A01-IOT-A**.
+El kit incluye los archivos necesarios para establecer la comunicación segura entre la instancia EC2 y el servicio IoT. Estos elementos permiten autenticar el dispositivo y garantizar una conexión segura mediante el protocolo **MQTT**.
 
 ![alt text](image-12.png)
 
-En la imagen se observa la **política A01-IOT-A-Policy** dentro del servicio **AWS IoT Core**, la cual fue **creada y actualizada correctamente**.
-La versión activa de la política (versión 2) tiene como efecto **“Allow”**, lo que permite todas las acciones (`iot:*`) sobre cualquier recurso (`*`).
-Esta configuración es necesaria para que el dispositivo pueda **publicar y suscribirse a temas MQTT**, garantizando la comunicación entre las instancias EC2 y el bróker de AWS IoT.
+Una configuracion necesaria para su correcto funcionamiento es la de la **política de seguridad**, la cual fue **actualizada** de la siguiente manera: Se configuro la versión activa de la política la **versión 2**, que tiene como proposito permitir todas las acciones (`iot:*`) sobre cualquier recurso (`*`).
 
 ![alt text](image-13.png)
 
-La imagen muestra la **configuración del nodo MQTT** dentro de Node-RED, donde se incorporan los **certificados de seguridad proporcionados por AWS IoT Core** para establecer una conexión segura con el bróker MQTT.
-Se cargan el **certificado del dispositivo (`A01-IOT-A.cert.pem`)**, la **clave privada (`A01-IOT-A.private.key`)** y el **certificado raíz de Amazon (`AmazonRootCA1.pem`)**, asegurando la autenticación y el cifrado de las comunicaciones.
-En el flujo se observa un nodo de inyección con el mensaje “HOLA”, utilizado para probar la correcta transmisión de datos hacia AWS IoT.
-
-![alt text](image-14.png)
-
-
-La imagen muestra la **configuración del nodo MQTT** dentro de Node-RED, donde se incorporan los **certificados de seguridad proporcionados por AWS IoT Core** para establecer una conexión segura con el bróker MQTT.
-Se cargan el **certificado del dispositivo (`A01-IOT-A.cert.pem`)**, la **clave privada (`A01-IOT-A.private.key`)** y el **certificado raíz de Amazon (`AmazonRootCA1.pem`)**, asegurando la autenticación y el cifrado de las comunicaciones.
-En el flujo se observa un nodo de inyección con el mensaje “HOLA”, utilizado para probar la correcta transmisión de datos hacia AWS IoT.
-
-![alt text](image-15.png)
+**El mismo procesamiento fue realizado para el dispositivo **A01-IOT-B**.**
 
 ---
 
-**5) Desarrollar, en la instancia A, la solución de un “CONTROL REMOTO” para gestionar la iluminación de un ambiente: ´botón “ENCENDIDO/ON”, botón “APAGADO/OFF”, informe de estado de la luminaria y funcionalidad “TIMER de 5s” para que activada dicha funcionalidad, al encender la luminaria se apague a los 5 segundos.**
+## **5) Desarrollar, en la instancia A, la solución de un “CONTROL REMOTO” para gestionar la iluminación de un ambiente: ´botón “ENCENDIDO/ON”, botón “APAGADO/OFF”, informe de estado de la luminaria y funcionalidad “TIMER de 5s” para que activada dicha funcionalidad, al encender la luminaria se apague a los 5 segundos.**
 
 En la imagen se configura el **nodo de salida MQTT (`mqtt out`)** en Node-RED, utilizado para **publicar mensajes hacia AWS IoT Core**.
 El nodo está asociado al servidor **A01-ND**, que contiene los certificados de autenticación configurados previamente, y se define el **tópico “A0-CANALLL”**, que representa el canal de comunicación por el cual se enviarán los mensajes MQTT.
@@ -168,7 +154,7 @@ Cada acción envía un mensaje por **MQTT** hacia la **Instancia B**, que se enc
 
 ---
 
-**6) Desarrollar, en la instancia B, la solución para controlar la “ILUMINACIÓN” de un ambiente simulando el “ENCENDIDO/APAGADO” de la luminaria, informando el estado de la “LUMINARIA” y el estado del “TIMER”.**
+## **6) Desarrollar, en la instancia B, la solución para controlar la “ILUMINACIÓN” de un ambiente simulando el “ENCENDIDO/APAGADO” de la luminaria, informando el estado de la “LUMINARIA” y el estado del “TIMER”.**
 
 En esta parte se ve el **flujo completo armado en Node-RED** dentro de la **Instancia A**.
 Acá conectamos los botones **ON**, **OFF** y el **Timer ON/OFF** con distintas funciones que manejan la lógica del encendido, apagado y el temporizador de 5 segundos.
@@ -268,7 +254,14 @@ De esa forma, nos aseguramos de que el sistema no quede encendido accidentalment
 
 ---
 
-**7) Las instancias A y B deben comunicarse por medio de MQTT utilizando el bróker de AWS IoT.**
+## **7) Las instancias A y B deben comunicarse por medio de MQTT utilizando el bróker de AWS IoT.**
+
+
+En la **configuración del nodo MQTT** dentro de Node-RED, se incorporon los **certificados de seguridad proporcionados por AWS** para establecer una conexión segura con el bróker MQTT.
+Se cargan el **certificado del dispositivo (`A01-IOT-A.cert.pem`)**, la **clave privada (`A01-IOT-A.private.key`)** y el **certificado raíz de Amazon (`AmazonRootCA1.pem`)**, asegurando la autenticación y el cifrado de las comunicaciones.
+En el flujo se observa un nodo de inyección con el mensaje “HOLA”, utilizado para probar la correcta transmisión de datos hacia AWS IoT.
+
+![alt text](image-14.png)
 
 **Ejemplo**
 
