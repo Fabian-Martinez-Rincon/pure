@@ -2,7 +2,9 @@
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 
-import { Paginator, PostPreview } from 'astro-pure/components/pages'
+import { Paginator } from 'astro-pure/components/pages'
+import { PostPreview } from '../../../packages/pure/components/pages'
+
 import { getUniqueTags, sortMDByDate} from 'astro-pure/server'
 import { getCristianoCollection } from 'pure/utils/server'
 import { Button, Icon } from 'astro-pure/user'
