@@ -57,7 +57,6 @@ const meta = {
               ...(page.url.prev && { prevUrl: { text: '← Página previa', url: page.url.prev } }),
               ...(page.url.next && { nextUrl: { text: 'Página siguiente →', url: page.url.next } })
             }} />
-            <h1>PUBLICACIONEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</h1>
             <ul class="flex flex-col gap-y-4 text-start">
               {page.data.map((post) => (
                 <a href={`/blogs_cristianos/${post.id}`} class="hover:opacity-80">
