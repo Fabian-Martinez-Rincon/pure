@@ -38,8 +38,6 @@ language: 'Spanish'
 
 **1) Lanzar una instancia en AWS EC2, de tipo “t3.micro” con AMI “Debian 13”.**
 
-
-
 Para comenzar con la práctica, se procedió a **crear una nueva instancia EC2** en la consola de Amazon Web Services (AWS).
 
 1. Se asignó el nombre **A01** a la instancia, lo que permite identificarla fácilmente dentro del entorno.
