@@ -10,7 +10,7 @@ language: 'Spanish'
 
 # Indice
 
-### **1) Desplegar dos instancias t3.micro con Linux Debian 13 en AWS EC2: Instancia A e Instancia B.**
+## **1) Desplegar dos instancias t3.micro con Linux Debian 13 en AWS EC2: Instancia A e Instancia B.**
 
 La imagen muestra el **inicio exitoso de una instancia EC2** en AWS, correspondiente a la **Instancia A**.
 El proceso de creación se completó correctamente, incluyendo la inicialización, la configuración de grupos y reglas de seguridad, y el lanzamiento final.
@@ -179,6 +179,12 @@ El flujo representa la lógica principal del control remoto, enviando las órden
 
 
 ![alt text](image-24.png)
+
+En esta imagen se puede ver el **panel de control hecho con Node-RED Dashboard** desde la **Instancia A**.
+Tiene tres controles principales: un **botón ON**, un **botón OFF** y un **switch Timer ON/OFF**.
+Desde acá se puede encender, apagar o activar el temporizador de la luminaria, que la apaga automáticamente después de 5 segundos.
+Cada acción envía un mensaje por **MQTT** hacia la **Instancia B**, que se encarga de simular el encendido o apagado del sistema de iluminación.
+
 
 ![alt text](image-25.png)
 
