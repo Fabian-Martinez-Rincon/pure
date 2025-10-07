@@ -10,9 +10,10 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
   post: CollectionEntry<CollectionKey>
   detailed?: boolean
   class?: string
+  basePath?: string
 }
 
-const { as: Tag = 'div', post, detailed = false, class: className } = Astro.props
+const { as: Tag = 'div', post, detailed = false, class: className, basePath } = Astro.props
 
 const { id, data } = post
 
@@ -37,7 +38,7 @@ const postDate = data.updatedDate ?? data.publishDate
       !detailed && 'sm:flex-row',
       detailed && data.heroImage && 'max-md:pt-24'
     )}
-    href={`/${post.collection}/${id}`}
+    href={`${basePath ?? `/${post.collection}`}/${id}`}
     data-astro-prefetch
   >
 
