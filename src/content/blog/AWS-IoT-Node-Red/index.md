@@ -12,16 +12,11 @@ language: 'Spanish'
 
 ## **1) Desplegar dos instancias t3.micro con Linux Debian 13 en AWS EC2: Instancia A e Instancia B.**
 
-La imagen muestra el **inicio exitoso de una instancia EC2** en AWS, correspondiente a la **Instancia A**.
+Las siguientes imagenes muestran el **inicio exitoso de las instancias EC2** en AWS, **Instancia A** e **Instancia B**.
 El proceso de creación se completó correctamente, incluyendo la inicialización, la configuración de grupos y reglas de seguridad, y el lanzamiento final.
-La instancia quedó lista para su conexión y posterior instalación de Node-RED.
+Las instancia quedaron listas para su conexión y posterior instalación de Node-RED.
 
 ![alt text](image-4.png)
-
-La imagen muestra el **lanzamiento exitoso de la Instancia B** en AWS, utilizada junto con la Instancia A para la comunicación mediante MQTT.
-El sistema confirma que el proceso se completó correctamente, incluyendo la creación de los grupos y reglas de seguridad necesarios.
-La instancia, identificada con el código **i-0195d62f16b49e964**, quedó lista para su conexión y posterior instalación de Node-RED.
-
 
 ![alt text](image-5.png)
 
