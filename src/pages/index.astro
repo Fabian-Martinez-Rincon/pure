@@ -3,7 +3,10 @@ import { Image } from 'astro:assets'
 
 import { Quote } from 'astro-pure/advanced'
 import { PostPreview } from 'astro-pure/components/pages'
-import { getBlogCollection, sortMDByDate, getCristianoCollection } from 'astro-pure/server'
+import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
+import { getCristianoCollection } from 'pure/utils/server'
+
+
 import { Button, Card, Icon, Label } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import Section from '@/components/home/Section.astro'

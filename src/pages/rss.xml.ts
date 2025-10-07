@@ -10,8 +10,8 @@ import { unified } from 'unified'
 import { visit } from 'unist-util-visit'
 import config from 'virtual:config'
 
-import { getBlogCollection, sortMDByDate , getCristianoCollection} from 'astro-pure/server'
-
+import { getBlogCollection, sortMDByDate} from 'astro-pure/server'
+import { getCristianoCollection } from 'pure/utils/server'
 // Get dynamic import of images as a map collection
 const imagesGlob = {
   ...import.meta.glob<{ default: ImageMetadata }>('/src/content/blog/**/*.{jpeg,jpg,png,gif}'),
