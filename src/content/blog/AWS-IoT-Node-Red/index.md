@@ -24,53 +24,36 @@ Las instancia quedaron listas para su conexión y posterior instalación de Node
 
 **2) Instalar “Node-RED” en ambas instancias.**
 
-Ejecutamos los siguientes comandos en ambas instancias:
-
-```bash
-sudo apt update
-sudo apt install snapd
-```
-
----
-
-**3) Instalar el nodo “node-red-dashboard”.**
-
-```bash
-sudo apt update
-sudo apt install snapd
-```
-
-La imagen muestra la **conexión por SSH a la Instancia A** desde la consola de AWS, donde se ejecutan los comandos necesarios para instalar herramientas complementarias y verificar el estado de Node-RED.
-Se utilizó el comando `sudo apt install net-tools` para disponer de utilidades de red y, posteriormente, `sudo netstat -na | grep 1880` para confirmar que el servicio de Node-RED se encuentra escuchando en el **puerto 1880**, indicando que la instalación y el despliegue se realizaron correctamente.
-
-![alt text](image-6.png)
-
-En la imagen se muestra la **configuración de reglas de entrada** del grupo de seguridad asociado a la instancia EC2.
-Se habilitó el **puerto 22 (SSH)** para permitir el acceso remoto desde cualquier dirección IP, y se agregó una regla **TCP personalizada en el puerto 1880**, utilizada por **Node-RED** para su interfaz web.
+Primero configuramos las **reglas de entrada** del grupo de seguridad asociado a las instancias, habilitando el **puerto 22 (SSH)** para permitir el acceso remoto desde cualquier dirección IP, y se agregando una regla **TCP personalizada en el puerto 1880**, utilizada por **Node-RED** para su interfaz web.
 Esta configuración permite acceder al panel de control de Node-RED desde el navegador, garantizando la comunicación externa necesaria para el proyecto.
-
 
 ![alt text](image-7.png)
 
-La imagen muestra el **acceso exitoso a la interfaz gráfica de Node-RED** mediante el navegador, utilizando la dirección pública de la instancia (**[http://50.17.91.145:1880](http://50.17.91.145:1880)**).
-Desde esta consola visual se pueden crear flujos de automatización arrastrando y conectando nodos lógicos y de control.
-Este paso confirma que la instalación y configuración del entorno Node-RED en la instancia A se realizaron correctamente y que el servicio se encuentra operativo.
+Ya habiendo configurado las **reglas de entrada**, ejecutamos los siguientes comandos en ambas instancias para instalar **node-red**:
+
+```bash
+sudo apt update
+sudo apt install snapd
+sudo snap install core
+sudo snap install node-red
+```
+---
+
+Y para verificar su correcto funcionamiento utilizamos el comando `sudo apt install net-tools` para disponer de utilidades de red y, posteriormente, `sudo netstat -na | grep 1880` para confirmar que el servicio de Node-RED se encuentra escuchando en el **puerto 1880**, indicando que la instalación y el despliegue se realizaron correctamente.
+
+![alt text](image-6.png)
+
+Posteriormente probamos el acceso a la **interfaz gráfica de Node-RED** mediante el navegador, utilizando las direcciónes públicas de las instancias. 
 
 ![alt text](image-8.png)
 
-**Lo hacemos en la segunda instancia**
+Estos pasos confirman que la instalación y configuración del entorno Node-RED en las instancias se realizaron correctamente y que el servicio se encuentra operativo.
 
-La imagen muestra la **instalación y ejecución de Node-RED en las dos instancias EC2** (Instancia A e Instancia B).
-En ambas se utilizó el comando `sudo apt install net-tools` para incorporar utilidades de red y se verificó el servicio con `sudo netstat -na | grep 1880`, confirmando que Node-RED se encuentra escuchando en el **puerto 1880**.
-De esta manera, se asegura que los dos servidores están correctamente configurados y listos para la comunicación mediante el protocolo MQTT.
+**3) Instalar el nodo “node-red-dashboard”.**
 
-![alt text](image-9.png)
-
-
-La imagen muestra la **interfaz de Node-RED** en la **Instancia B**, donde se accede al menú de configuración de la paleta de nodos para instalar el paquete **`node-red-dashboard`**.
+En la siguiente imagen se puede ver el menú de configuración de **Node-RED**, para instalar el paquete **`node-red-dashboard`**.
 Este módulo permite crear interfaces gráficas interactivas (dashboards) para visualizar y controlar variables del sistema, como el estado de la iluminación o los temporizadores.
 La instalación de este nodo es fundamental para el desarrollo del panel de control utilizado en el proyecto.
-
 
 ![alt text](image-10.png)
 
