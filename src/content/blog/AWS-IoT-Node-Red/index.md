@@ -118,57 +118,34 @@ Los valores recibidos se muestran en tiempo real dentro del dashboard.
 
 ## **7) Las instancias A y B deben comunicarse por medio de MQTT utilizando el bróker de AWS IoT.**
 
-En la intancia 1, la **configuración del nodo MQTT** dentro de Node-RED, se incorporon los **certificados de seguridad proporcionados por AWS** para establecer una conexión segura con el bróker MQTT.
+En la intancia 1, en la **configuración del nodo MQTT** dentro de Node-RED, se incorporon los **certificados de seguridad proporcionados por AWS** para establecer una conexión segura con el bróker MQTT.
 Se cargon: El **certificado del dispositivo (`A01-IOT-A.cert.pem`)**, la **clave privada (`A01-IOT-A.private.key`)** y el **certificado raíz de Amazon (`AmazonRootCA1.pem`)**, asegurando la autenticación y el cifrado de las comunicaciones.
 
 ![alt text](image-14.png)
 
-El nodo está asociado al servidor **A01-ND**, que contiene los certificados de autenticación configurados previamente, y se define el **tópico “A0-CANALLL”**, que representa el canal de comunicación por el cual se enviarán los mensajes MQTT.
-El flujo mostrado envía el mensaje “HOLA”, comprobando la correcta transmisión de datos desde la **Instancia A** hacia el bróker de AWS IoT.
-
+El nodo está asociado al servidor **A01-ND**, que contiene los certificados de autenticación configurados previamente, y se define el **tópico “A0-CANALLL”**, que representa el canal de comunicación por el cual se enviarán los mensajes MQTT. Ademas, se le configuro el QoS para que tenga **tipo 0**.
 
 ![alt text](image-20.png)
 
-En la imagen se muestra la **configuración del bróker MQTT** en Node-RED para la **Instancia A**, donde se establecen los parámetros de conexión con **AWS IoT Core**.
-Se habilita la opción **“Use TLS”**, asociando el conjunto de certificados **A01-CERTIFICADOS** previamente cargado, garantizando así una conexión segura y cifrada.
+Por ultimo, el nodo ademas tiene la siguiente configuracion: Se habilita la opción **“Use TLS”**, asociando el conjunto de certificados **A01-CERTIFICADOS** previamente cargado, garantizando así una conexión segura y cifrada.
 Además, se utiliza el protocolo **MQTT versión 3.1.1**, con conexión automática y sesión limpia, lo que asegura una comunicación estable y autenticada con el servidor IoT.
-
 
 ![alt text](image-18.png)
 
 
-La imagen muestra la configuración del **nodo de entrada MQTT (`mqtt in`)** en Node-RED, utilizado para **suscribirse al tópico “A0-CANALLL”** dentro de AWS IoT Core.
-El nodo está vinculado al servidor **A01-ND**, configurado con conexión segura TLS y los certificados correspondientes.
-Mediante esta suscripción, la instancia puede **recibir mensajes publicados** en dicho canal, verificando así la correcta comunicación entre las instancias a través del **protocolo MQTT**.
-
-
-![alt text](image-20.png)
-
-La imagen muestra la **configuración completa del bróker MQTT** en Node-RED, donde se establece la conexión con el **endpoint de AWS IoT Core**:
-`a19dtnoi0vf30n-ats.iot.us-east-1.amazonaws.com`.
-Se habilita la conexión automática y el uso de **TLS** con los certificados **A01-CERTIFICADOS**, utilizando el **protocolo MQTT v3.1.1** sobre el **puerto 1883**.
-Esta configuración permite que la **Instancia A** publique mensajes de forma segura hacia el bróker IoT, garantizando la autenticación y la integridad de los datos transmitidos.
-
-
-![alt text](image-21.png)
-
-En la imagen se observa la configuración del **bróker MQTT en Node-RED**, estableciendo la conexión con el **endpoint de AWS IoT Core** mediante el protocolo **MQTT versión 5**.
-Se habilita la conexión automática con cifrado **TLS**, utilizando el conjunto de certificados **A01-CERTIFICADOS** para la autenticación del dispositivo.
-El uso de **MQTT v5** permite una comunicación más eficiente y confiable, optimizando el intercambio de mensajes entre la **Instancia A** y el servicio IoT de AWS.
-
-![alt text](image-22.png)
-
+# TODO: El nodo in 2:
 ![alt text](image-37.png)
 
 ---
 
-Similarmente, se hicieron las configuraciones necesarias para la instancia B
+# TODO: Similarmente, se hicieron las configuraciones necesarias para la instancia B
 
 ![alt text](image-19.png)
 
 
+# Imagenes finales que muestran el funcionamiento
 
-## **Ejemplo**
+## **Ejemplo** que muestra el funcionamiento esperado
 
 ![alt text](image.png)
 
@@ -180,7 +157,7 @@ Similarmente, se hicieron las configuraciones necesarias para la instancia B
 
 ---
 
-### Resolucion
+## Resolucion
 
 ![alt text](image-43.png)
 
@@ -189,282 +166,9 @@ Similarmente, se hicieron las configuraciones necesarias para la instancia B
 
 ---
 
-### Intancia 1
+# JSON de instancias
 
-```json
-[
-    {
-        "id": "8e0cbc430664e608",
-        "type": "function",
-        "z": "5e1db891e60b5c59",
-        "name": "function 2",
-        "func": "// Obtener el valor de la variable global \"TIMER_ON\"\nvar timerOn = global.get(\"TIMER_ON\");\n\nif (timerOn) {\n    global.set('TIMER_ON', 0);\n    \n    msg.payload = 0;\n    return msg;  \n} else {\n    global.set('TIMER_ON', 1);\n\n\n\n    msg.payload = 1;\n    return msg;  \n}\n\nreturn null;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set('TIMER_ON', 0);\n",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 440,
-        "wires": [
-            [
-                "4643e7018dabdb67",
-                "a9649b8b6a640eb1"
-            ]
-        ]
-    }
-]
-```
+## TODO: Intancia 1
 
-### Instancia 2
 
-```json
-[
-    {
-        "id": "851e7fe4014bb0d5",
-        "type": "tab",
-        "label": "Flow 1",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "bf13f7c233638d0b",
-        "type": "mqtt in",
-        "z": "851e7fe4014bb0d5",
-        "name": "",
-        "topic": "A0 - CANAL 1",
-        "qos": "0",
-        "datatype": "auto-detect",
-        "broker": "89528596d9aa8d87",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 350,
-        "y": 260,
-        "wires": [
-            [
-                "d2dea35af5752b39",
-                "92e0e2c9e46981de"
-            ]
-        ]
-    },
-    {
-        "id": "d2dea35af5752b39",
-        "type": "ui_gauge",
-        "z": "851e7fe4014bb0d5",
-        "name": "",
-        "group": "93785911cc895a9d",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "1",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 610,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "da8eff1728975e77",
-        "type": "mqtt in",
-        "z": "851e7fe4014bb0d5",
-        "name": "",
-        "topic": "A0 - CANAL 2",
-        "qos": "0",
-        "datatype": "auto-detect",
-        "broker": "89528596d9aa8d87",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 170,
-        "y": 360,
-        "wires": [
-            [
-                "46131f48d11a2d93"
-            ]
-        ]
-    },
-    {
-        "id": "43e3a7017615bf0b",
-        "type": "ui_text",
-        "z": "851e7fe4014bb0d5",
-        "group": "93785911cc895a9d",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "ESTADO DE TIMER",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 640,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "c350c83e29f26b57",
-        "type": "mqtt out",
-        "z": "851e7fe4014bb0d5",
-        "name": "",
-        "topic": "A0 - CANAL 3",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "89528596d9aa8d87",
-        "x": 620,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "92e0e2c9e46981de",
-        "type": "function",
-        "z": "851e7fe4014bb0d5",
-        "name": "function 1",
-        "func": "if (msg.payload === 1) {\n    msg.payload = true;\n    return msg;\n} else if (msg.payload === 0) {\n    msg.payload = false;\n    return msg;\n}\n\n// Si no es 0 ni 1, no enviar nada\nreturn null;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 460,
-        "wires": [
-            [
-                "c350c83e29f26b57",
-                "ef083061253f6d22"
-            ]
-        ]
-    },
-    {
-        "id": "ef083061253f6d22",
-        "type": "ui_text",
-        "z": "851e7fe4014bb0d5",
-        "group": "93785911cc895a9d",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "ESTADO DE LED",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 590,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "46131f48d11a2d93",
-        "type": "function",
-        "z": "851e7fe4014bb0d5",
-        "name": "function 2",
-        "func": "if (msg.payload === 1) {\n    msg.payload = true;\n    return msg;\n} else if (msg.payload === 0) {\n    msg.payload = false;\n    return msg;\n}\n\n// Si no es 0 ni 1, no enviar nada\nreturn null;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 380,
-        "wires": [
-            [
-                "43e3a7017615bf0b"
-            ]
-        ]
-    },
-    {
-        "id": "89528596d9aa8d87",
-        "type": "mqtt-broker",
-        "name": "",
-        "broker": "a19dtnoi0vf30n-ats.iot.us-east-1.amazonaws.com",
-        "port": "8883",
-        "tls": "aea41aa768c86303",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": true,
-        "protocolVersion": "5",
-        "keepalive": "60",
-        "cleansession": true,
-        "autoUnsubscribe": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willRetain": "false",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
-    },
-    {
-        "id": "93785911cc895a9d",
-        "type": "ui_group",
-        "name": "Default",
-        "tab": "32ebd9f119ce5fb1",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "aea41aa768c86303",
-        "type": "tls-config",
-        "name": "A01-B",
-        "cert": "",
-        "key": "",
-        "ca": "",
-        "certname": "A01-IOT-B.cert.pem",
-        "keyname": "A01-IOT-B.private.key",
-        "caname": "AmazonRootCA1.pem",
-        "servername": "",
-        "verifyservercert": false,
-        "alpnprotocol": ""
-    },
-    {
-        "id": "32ebd9f119ce5fb1",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    }
-]
-```
+## TODO: Instancia 2
