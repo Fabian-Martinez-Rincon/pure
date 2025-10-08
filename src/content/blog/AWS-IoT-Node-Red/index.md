@@ -111,7 +111,7 @@ Dentro de la **Instancia B** se estableció la recepción de las señales recibi
 
 Los valores recibidos se muestran en tiempo real dentro del dashboard. 
 
-# TODO: Que muestre el dashboard -> ![alt text](image-XXXXXX.png) 
+### TODO: Que muestre el dashboard -> ![alt text](image-XXXXXX.png) 
 
 
 ---
@@ -133,12 +133,12 @@ Además, se utiliza el protocolo **MQTT versión 3.1.1**, con conexión automát
 ![alt text](image-18.png)
 
 
-# TODO: El nodo in 2:
+### TODO: El nodo in 2:
 ![alt text](image-37.png)
 
 ---
 
-# TODO: Similarmente, se hicieron las configuraciones necesarias para la instancia B
+### TODO: Similarmente, se hicieron las configuraciones necesarias para la instancia B
 
 ![alt text](image-19.png)
 
@@ -168,7 +168,7 @@ Además, se utiliza el protocolo **MQTT versión 3.1.1**, con conexión automát
 
 # JSON de instancias
 
-## TODO: Intancia 1
+### TODO: Intancia 1
 
 
-## TODO: Instancia 2
+### TODO: Instancia 2
