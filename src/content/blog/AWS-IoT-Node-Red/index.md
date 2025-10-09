@@ -12,7 +12,7 @@ language: 'Spanish'
 
 ## ACLARACION DEL TRABAJO: 
 
-**DEBIDO A FALTA DE TIEMPO NO SE LLEGO A SACAR TODAS LAS IMAGENES DEL PROTOTIPO FINAL**, por lo que las imagenes no son 100% representativas del trabajo realizado en clase. Las imagenes que muestran lo ultimo realizado son las del flujo de Node-red en el ejercicio 5 y 6, algunas de las demas (como por ejemplo las del dashboard) estan desactualizadas. Para ver la ultima version del dashboard, ver el video.
+**DEBIDO A FALTA DE TIEMPO NO SE LLEGO A SACAR TODAS LAS IMAGENES DEL PROTOTIPO FINAL NI DE ACTUALIZAR LOS JSON**, por lo que las imagenes no son 100% representativas del trabajo realizado en clase. Las imagenes que muestran lo ultimo realizado son las del flujo de Node-red en el ejercicio 5 y 6, algunas de las demas (como por ejemplo las del dashboard) estan desactualizadas. Para ver la ultima version del dashboard, ver el video.
 
 ## **1) Desplegar dos instancias t3.micro con Linux Debian 13 en AWS EC2: Instancia A e Instancia B.**
 
@@ -164,7 +164,7 @@ Con esto generamos la **comunicación cifrada y autenticada** entre Node-RED y e
 
 ### ACLARACION DEL TRABAJO: 
 
-Como se comento al inicio del trabajo, **DEBIDO A FALTA DE TIEMPO NO SE LLEGO A SACAR TODAS LAS IMAGENES DEL PROTOTIPO FINAL**, por lo que las imagenes no son 100% representativas del trabajo realizado en clase. Las imagenes que muestran lo ultimo realizado son las del flujo de Node-red en el ejercicio 5 y 6, algunas de las demas (como por ejemplo las del dashboard) estan desactualizadas. Para ver la ultima version del dashboard, ver el video.
+Como se comento al inicio del trabajo, **DEBIDO A FALTA DE TIEMPO NO SE LLEGO A SACAR TODAS LAS IMAGENES DEL PROTOTIPO FINAL NI DE ACTUALIZAR LOS JSON**, por lo que las imagenes no son 100% representativas del trabajo realizado en clase. Las imagenes que muestran lo ultimo realizado son las del flujo de Node-red en el ejercicio 5 y 6, algunas de las demas (como por ejemplo las del dashboard) estan desactualizadas. Para ver la ultima version del dashboard, ver el video.
 
 
 ![alt text](image-43.png)
