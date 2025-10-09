@@ -10,6 +10,10 @@ language: 'Spanish'
 
 # Indice
 
+## ACLARACION DEL TRABAJO: 
+
+**DEBIDO A FALTA DE TIEMPO NO SE LLEGO A SACAR TODAS LAS IMAGENES DEL PROTOTIPO FINAL**, por lo que las imagenes no son 100% representativas del trabajo realizado en clase. Las imagenes que muestran lo ultimo realizado son las del flujo de Node-red en el ejercicio 5 y 6, algunas de las demas (como por ejemplo las del dashboard) estan desactualizadas. Para ver la ultima version del dashboard, ver el video.
+
 ## **1) Desplegar dos instancias t3.micro con Linux Debian 13 en AWS EC2: Instancia A e Instancia B.**
 
 Las siguientes imagenes muestran el **inicio exitoso de las instancias EC2** en AWS, **Instancia A** e **Instancia B**.
@@ -84,10 +88,8 @@ Todas las acciones se envían por **MQTT** al canal configurado en **AWS IoT**, 
 
 ![alt text](image-45.png)
 
-Si nos fijamos en **panel de control hecho con Node-RED Dashboard**, podemos ver los tres elemento: los botones **ON** y **OFF** y un switch **Timer ON/OFF**.
-Desde acá se puede encender y apagar la led o activar el temporizador de la luminaria, que la apaga automáticamente después de 5 segundos de apretado el boton **ON**.
-
-![alt text](image-25.png)
+Si nos fijamos en **panel de control hecho con Node-RED Dashboard**, se podran ver elementos como los botones **ON** y **OFF** y un switch **Timer ON/OFF**.
+Desde el dashboard se puede encender y apagar la led o activar el temporizador de la luminaria, que la apaga automáticamente después de 5 segundos de apretado el boton **ON**.
 
 ### NODOS A DETALLAR:
 
@@ -111,9 +113,6 @@ Dentro de la **Instancia B** se estableció la recepción de las señales recibi
 
 Los valores recibidos se muestran en tiempo real dentro del dashboard. 
 
-### TODO: Que muestre el dashboard 
-
-
 ---
 
 ## **7) Las instancias A y B deben comunicarse por medio de MQTT utilizando el bróker de AWS IoT.**
@@ -123,27 +122,18 @@ Se cargon: El **certificado del dispositivo (`A01-IOT-A.cert.pem`)**, la **clave
 
 ![alt text](image-14.png)
 
-El nodo está asociado al servidor **A01-ND**, que contiene los certificados de autenticación configurados previamente, y se define el **tópico “A0-CANALLL”**, que representa el canal de comunicación por el cual se enviarán los mensajes MQTT. Ademas, se le configuro el QoS para que tenga **tipo 0**.
-
-![alt text](image-20.png)
-
-Por ultimo, el nodo ademas tiene la siguiente configuracion: Se habilita la opción **“Use TLS”**, asociando el conjunto de certificados **A01-CERTIFICADOS** previamente cargado, garantizando así una conexión segura y cifrada.
+El nodo ademas tiene la siguiente configuracion: Se habilita la opción **“Use TLS”**, asociando el conjunto de certificados **A01-CERTIFICADOS** previamente cargado, garantizando así una conexión segura y cifrada.
 Además, se utiliza el protocolo **MQTT versión 3.1.1**, con conexión automática y sesión limpia, lo que asegura una comunicación estable y autenticada con el servidor IoT.
 
 ![alt text](image-18.png)
 
+Por ultimo, el nodo está asociado al servidor **A01-ND**, que contiene los certificados de autenticación configurados previamente, y se define el **tópico “A0-CANALLL”**, que representa el canal de comunicación por el cual se enviarán los mensajes MQTT. Ademas, se le configuro el QoS para que tenga **tipo 0**.
 
-### TODO: El nodo in 2:
-
-**Nodo MQTT Out** configurado con el servidor **A01-ND** y el **tópico “A0-CANAL 2”**. Este nodo envía los mensajes al bróker de **AWS IoT** con **QoS 0**, estableciendo la comunicación entre las instancias.
-A la derecha, el panel **debug** confirma el envío correcto de los datos (`msg.payload : number`).
-
-
-![alt text](image-37.png)
+![alt text](image-20.png)
 
 ---
 
-### TODO: Similarmente, se hicieron las configuraciones necesarias para la instancia B
+### Similarmente, se hicieron las configuraciones necesarias para la instancia B
 
 **Configuración TLS** para la **Instancia B**, donde se cargan los certificados necesarios para la conexión segura con **AWS IoT**:
 
@@ -171,6 +161,12 @@ Con esto generamos la **comunicación cifrada y autenticada** entre Node-RED y e
 
 ## Resolucion
 
+
+### ACLARACION DEL TRABAJO: 
+
+Como se comento al inicio del trabajo, **DEBIDO A FALTA DE TIEMPO NO SE LLEGO A SACAR TODAS LAS IMAGENES DEL PROTOTIPO FINAL**, por lo que las imagenes no son 100% representativas del trabajo realizado en clase. Las imagenes que muestran lo ultimo realizado son las del flujo de Node-red en el ejercicio 5 y 6, algunas de las demas (como por ejemplo las del dashboard) estan desactualizadas. Para ver la ultima version del dashboard, ver el video.
+
+
 ![alt text](image-43.png)
 
 ![alt text](image-44.png)
@@ -183,7 +179,7 @@ Con esto generamos la **comunicación cifrada y autenticada** entre Node-RED y e
 
 # JSON de instancias
 
-### TODO: Intancia 1
+### Intancia 1
 
 ```json
 [
@@ -211,7 +207,7 @@ Con esto generamos la **comunicación cifrada y autenticada** entre Node-RED y e
 ]
 ```
 
-### TODO: Instancia 2
+### Instancia 2
 
 ```json
 [
