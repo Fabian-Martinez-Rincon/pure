@@ -8,9 +8,6 @@ tags:
 language: 'Spanish'
 ---
 
-Muchos de los ejercicios fueron sacados de varios githubs y comparandolos con chatGPT
-
-- [Juan Menduiña](https://github.com/menduinajuan)
 
 # TP 3 Numeros
 
@@ -156,7 +153,7 @@ Calcular el máximo común divisor entre:
 
 ---
 
-### Ejercicio 8
+## Ejercicio 8
 
 Hallar  $$mcd(5k + 3, 3k + 2) $$, para cualquier k entero
 
@@ -183,3 +180,174 @@ Hallar, si existe, un número entero $$ q $$ tal que $$ 7290q $$ es el cubo de u
 ---
 
 ## Ejercicio 11
+
+Demostrar que dados $$ a $$ y $$ b $$ en $$ \mathbb{Q} $$ tales que $$ a < b $$, existe otro número racional $$ x $$ tal que
+$$ a < x < b $$.
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+## Ejercicio 12
+
+Probar que no existe un número racional cuyo cubo sea igual a 2.
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+## Ejercicio 13
+
+Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $$ de los siguientes complejos:
+
+**a)**  $$ z = \sqrt{-49} $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**b)**  $$ z = \sqrt{-20} $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**c)**  $$ z = \sqrt{-\dfrac{9}{16}} $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**d)**  $$ z = -8 $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**e)**  $$ z = 7i $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**f)**  $$ z = (3 + i) + (5 - 4i)$$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**g)**  $$ z = 3i - (5 - 2i) $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**h)**  $$ z = \dfrac{1 + 3i}{3 - i} $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**i)**  $$ z = \dfrac{1 - i}{(1 + i)^2} $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+## Ejercicio 14
+
+La suma de un número complejo y su conjugado es −8 y la suma de sus módulos es 10. De qué números complejos se trata?
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+## Ejercicio 15
+
+Hallar, si existe, $$ x $$ real tal que $$ \text{Re}(z) = \text{Im}(z) $$ siendo $$ z = \dfrac{x + 2i}{4 - 3i} $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+
+## Ejercicio 16
+
+Encontrar, si existe, un valor de $$ k $$ real para que el complejo $$ \frac{2 - (1 + k)i}{1 - ki} $$ *sea un número real.*
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+## Ejercicio 17
+
+*Calcular las siguientes potencias:*
+
+**a)**  $$ i^{489} $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**b)**  $$ -i^{1026} $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+**c)**  $$(3i)^{168} $$
+
+<details><summary>Respuesta</summary>
+</details>
+
+---
+
+## Ejercicio 18
+
+*Dados los siguientes números complejos, encontrar la forma más adecuada para realizar las operaciones pedidas:*
+
+$$
+\begin{aligned}
+z_1&=3+3i &\quad z_2&=-1+i &\quad z_3&=5+4i &\quad z_4&=9 &\quad z_5&=5i \\
+z_6&=-7   &\quad z_7&=-4-4i &\quad z_8&=-8i  &\quad z_9&=2-2i &\quad z_{10}&=3-4i
+\end{aligned}
+$$
+
+**Operaciones:**
+
+- a) $$ z_1+z_7 $$  
+- b) $$ z_5 - z_3 $$  
+- c) $$ z_9 \cdot z_6 $$  
+- d) $$ \dfrac{z_8}{z_{10}} $$  
+- e) $$ z_3 + z_6 $$  
+- f) $$ z_2 - z_6 $$  
+- g) $$ z_3 \cdot z_{10} $$  
+- h) $$ z_1^{3} $$  
+- i) $$ z_{9}^{9} $$  
+- j) $$ z_{5}^{15} $$  
+- k) $$ z_{10}^{3} $$
+
+l) Hallar las **raíces cuartas** de $$ z_2 $$.  
+m) Hallar las **raíces cúbicas** de $$ z_4 $$.  
+n) Hallar las **raíces séptimas** de $$ i $$.
+
+<details><summary>Respuesta</summary>
+</details>
+
+
