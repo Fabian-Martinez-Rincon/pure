@@ -40,10 +40,26 @@ html.dark {
 }
 
 /* Katex */
-span.katex-display {
-  overflow-y: scroll;
-  padding: 0.5rem;
+/* KaTeX — centrado y estético */
+.katex-display {
+  display: flex;
+  justify-content: center;
+  margin: 1.25rem 0; /* espacio arriba y abajo */
+  overflow: visible !important; /* elimina el scroll vertical */
+  padding: 0.5rem 0;
 }
+
+.katex {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .katex {
+    font-size: 1.25rem;
+  }
+}
+
 
 /* Shiki */
 .astro-code {
