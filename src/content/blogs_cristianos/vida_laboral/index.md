@@ -13,6 +13,10 @@ basePath: blogs_cristianos
 
 - [Link de la reunion](https://www.youtube.com/live/t1qBwq6yfo0?si=Zq3ItR5dok3PhnTT)
 
+
+
+
+
 Hacemos memoria de lo que fue la vida de Jesús, acordándonos de que este comenzó su ministerio a los 30 años (Lucas 3:23-38).
 
 ![alt text](image-2.png)
@@ -97,6 +101,16 @@ Todos surgieron de un trabajo simple y sencillo. Nos habla de hombres y mujeres 
 > Todos ellos dejaron que Jesús entre en su día a día ¿Vos permitís que Jesús irrumpa en tu día a día? O simplemente guardas el día de culto y reuniones y el resto del tiempo haces lo que querés?
 
 Antes de comenzar con el trabajo o con algún asunto importante es recomendable que nos tomemos un tiempo para orar y pedirle a Dios que nos guíe en lo que vamos a hacer.
+
+---
+
+| Puntos del 1 al 5 | Puntos del 6 al 10 |
+|-----------|-----------|
+| ![alt text](image-46.png)    | ![alt text](image-47.png)    |
+
+
+
+
 
 ## Punto 1 Trabajar es un mandamiento de Dios.
 
