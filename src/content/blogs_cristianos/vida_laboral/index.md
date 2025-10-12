@@ -11,6 +11,8 @@ category: iclp
 basePath: blogs_cristianos
 ---
 
+- [Link de la reunion](https://www.youtube.com/live/t1qBwq6yfo0?si=Zq3ItR5dok3PhnTT)
+
 Hacemos memoria de lo que fue la vida de jesus, acordandonos de que este comenzo su ministerio a los 30 años (Lucas 3:23-38). 
 
 ![alt text](image-2.png)
@@ -231,4 +233,83 @@ Esto puede pasar cuando estamos tan enfocados en conseguir un aumento o en aprob
 
 ---
 
-## Punto 8 El tiempo es un don de Dios
+## Punto 8 El tiempo es un don de Dios, adminístralo con sabiduría.
+
+**Salmos 31:14-15**
+
+![alt text](image-31.png)
+
+''No tengo tiempo'', muchos dicen, pero la verdad es que todos tenemos las mismas 24 hs y muchos no lo sabemos administrar de la mejor manera.
+
+![alt text](image-32.png)
+
+- [Fuente](https://www.tiempoar.com.ar/ta_article/adolescentes-y-celulares-cada-vez-mas-horas-de-uso-impacto-en-la-salud-mental-y-el-sueno/#:~:text=La%20muestra%2C%20tal%20como%20comparti%C3%B3,entre%2011%20y%2018%20a%C3%B1os.&text=Los%20datos%20reflejaron%20un%20incremento,entre%20chicas%20que%20entre%20chicos.)
+
+---
+
+## Punto 9 Dale a Dios lo que es de Dios. Sé generoso. Así evitarás que el dinero se convierta en tu idolo.
+
+**Proverbios 19:17**
+
+![alt text](image-33.png)
+
+**Proverbios 28:27**
+
+![alt text](image-34.png)
+
+**2 Corintios 9:6**
+
+![alt text](image-35.png)
+
+**Malaquías 3:10**
+
+![alt text](image-36.png)
+
+**Génesis 14:20**
+
+![alt text](image-37.png)
+
+**1 Corintios 16:2**
+
+![alt text](image-38.png)
+
+**Génesis 4:4-5**
+
+![alt text](image-39.png)
+
+**Lucas 21:1-4**
+
+![alt text](image-40.png)
+
+**1 Timoteo 6:10**
+
+![alt text](image-41.png)
+
+---
+
+## Tu trabajo, tu carrera y tus ocupaciones son una bendición, no una crisis. Jesús es de paz.
+
+Muchas veces estamos durante la semana con tantas actividades que somos un cumulo de nervios. Yo por lo menos trabajo de lunes a viernes 8/9hs, trato de estudiar un par de horas y a la noche voy a hacer deporte. Por suerte a medida que uno va profundizando en la palabra de dios, se va organizando mejor y va entendiendo que todo lo que hace es una bendicion.
+
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2ltNWRyMzU4YnY3ZnkzY3YxZTNmcmdjeXBzamphYngydTVvbjlvYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TfRDVuQr4QYJlmNjfZ/giphy.gif" alt="alt text">
+
+
+**1 Tesalonicenses 4:11**
+
+Dice ocupense, no dice 'preocupense'
+
+![alt text](image-42.png)
+
+**Eclesiastés 3:9**
+
+Desde el Edem, el trabajo es una bendicion y el diablo quiere es que te preocupes y alteres por eso. Ya que uno cosa lleva a la otra y podemos terminar alejandonos de dios.
+
+![alt text](image-43.png)
+
+**Mateo 6:25-34**
+
+![alt text](image-44.png)
+
+**Filipenses 4:6-7**
+
+![alt text](image-45.png)
