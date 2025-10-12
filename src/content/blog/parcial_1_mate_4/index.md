@@ -160,14 +160,72 @@ Igualando ambas expresiones:
 
 Sean $$ a $$ y $$ b $$ dos números enteros que tienen restos 4 y 7 respectivamente en la división por 11. Hallar los restos de la división por 11 de $$ a + b^2 $$.
 
+<details><summary>Respuesta</summary>
+
+Variables:
+
+- $$ a = 11k_1 + 4, \quad k_1 \in \mathbb{Z} $$
+- $$ b = 11k_2 + 7, \quad k_2 \in \mathbb{Z} $$
+
+**Paso 1**: Calculamos la suma
+
+Sabemos que ambos números son múltiplos de 11 más su respectivo resto.  
+Sumando las dos expresiones obtenemos:
+
+- $$ a + b = 11k_1 + 4 + 11k_2 + 7 \\ $$
+- $$ a + b = 11 (k_1 + k_2) + 11 \\ $$
+- $$ a + b = 11 (k_1 + k_2 + 1) \\ $$
+
+Por lo tanto -> $$ a + b = 11k_3, \quad k_3 \equiv (k_1 + k_2 + 1) \in \mathbb{Z} $$
+
+**Paso 2**: Calculamos el cuadrado (Elevamos ambos lados al cuadrado):
+
+- $$ (a + b)^2 = (11k_3)^2 \\ $$
+- $$ (a + b)^2 = 11 \times 11k_3^2 \\ $$
+- $$ (a + b)^2 = 11k_4, \quad k_4 \equiv 11k_3^2 \in \mathbb{Z} $$
+
+
+**Por lo tanto, el resto de la división por 11 de \( (a + b)^2 \) es 0.**
+
+</details>
+
 ---
 
 ## Ejercicio 5
 
 Convertir los siguientes números de base 10 a base 8:
-- (a) 98
-- (b) 44
-- (c) 20
+<details><summary>(a) 98</summary>
+
+- $$ 98 = 8 \times 12 + 2 $$  
+- $$ 12 = 8 \times 1 + 4 $$
+- $$ 1 = 8 \times 0 + 1 $$
+
+Por lo tanto:
+
+- $$ 98 = (142)_8 $$
+
+</details>
+
+<details><summary>(b) 44</summary>
+
+- $$ 44 = 8 \times 5 + 4 $$
+- $$ 5 = 8 \times 0 + 5 $$
+
+Por lo tanto:
+
+- $$ 44 = (54)_8 $$
+</details>
+
+<details><summary>(c) 20</summary>
+
+- $$ 20 = 8 \times 2 + 4 $$  
+- $$ 2 = 8 \times 0 + 2 $$
+
+Por lo tanto:
+
+- $$ 20 = (24)_8 $$
+
+</details>
 
 ---
 
