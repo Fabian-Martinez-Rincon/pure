@@ -288,7 +288,7 @@ Esto puede pasar cuando estamos tan enfocados en conseguir un aumento o en aprob
 
 ---
 
-## Tu trabajo, tu carrera y tus ocupaciones son una bendición, no una crisis. Jesús es de paz.
+## Punto 10 Tu trabajo, tu carrera y tus ocupaciones son una bendición, no una crisis. Jesús es de paz.
 
 Muchas veces estamos durante la semana con tantas actividades que somos un cúmulo de nervios. Yo por lo menos trabajo de lunes a viernes 8/9 hs, trato de estudiar un par de horas y a la noche voy a hacer deporte. Por suerte a medida que uno va profundizando en la palabra de dios, se va organizando mejor y va entendiendo que todo lo que hace es una bendición.
 
