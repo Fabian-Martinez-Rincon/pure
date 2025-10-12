@@ -75,9 +75,11 @@ const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
       <Image
       src={avatar}
       alt='profile'
-      class='h-56 w-auto border border-yellow-500 '
+      class='h-56 w-auto border border-black '
       loading='eager'
       />
+
+      
       {/* Get template */}
       <div class="flex gap-x-4">
         <!-- Botón 1 -->
@@ -142,21 +144,6 @@ const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
           <Section title='📚 Blogs'>
             <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
               {allPostsByDate.map((p) => (
-                <li class='flex flex-col gap-x-2 sm:flex-row'>
-                  <PostPreview post={p} />
-                </li>
-              ))}
-            </ul>
-            <Button title='More posts' class='w-fit self-end' href='/blog' style='ahead' />
-          </Section>
-        )
-      }
-
-      {
-        cristianoPostsByDate.length > 0 && (
-          <Section title='📚 Blogs Cristianos'>
-            <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
-              {cristianoPostsByDate.map((p) => (
                 <li class='flex flex-col gap-x-2 sm:flex-row'>
                   <PostPreview post={p} />
                 </li>

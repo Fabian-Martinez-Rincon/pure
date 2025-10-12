@@ -8,6 +8,7 @@ tags:
 language: 'Spanish'
 ---
 
+https://youtu.be/DfwWEvyZGWY?si=aMl1qzhjDDe-ONxM
 
 # TP 3 Numeros
 
@@ -18,26 +19,13 @@ language: 'Spanish'
 <details><summary>Respuesta</summary>
 
 
-**Número par** -> Un número entero \( n \) es **par** si existe un número entero \( k \) tal que  
+**Número par** -> Un número entero $$ n $$ es **par** si existe un número entero $$ k $$ tal que  $$ n = 2k $$ Es decir, $$ n $$ es divisible por 2.
 
-$$
-n = 2k
-$$
-
-Es decir, \( n \) es divisible por 2.
-
-
-**Número impar** -> Un número entero \( n \) es **impar** si existe un número entero \( k \) tal que  
-
-$$
-n = 2k + 1
-$$
-
-Es decir, \( n \) no es divisible por 2.
+**Número impar** -> Un número entero $$ n $$ es **impar** si existe un número entero $$ k $$ tal que  $$ n = 2k + 1 $$ Es decir, $$ n $$ no es divisible por 2.
 
 
 **Demostración** -> Para que un número sea simultáneamente par e impar, debería cumplir ambas definiciones al mismo tiempo.  
-Es decir, existirían enteros \( k_1 \) y \( k_2 \) tales que:
+Es decir, existirían enteros $$ k_1 $$ y $$ k_2 $$ tales que:
 
 $$
 n = 2k_1 \quad \text{y} \quad n = 2k_2 + 1
@@ -77,7 +65,6 @@ $$
 ## Ejercicio 2
 
 *Analizar si las siguientes afirmaciones son verdaderas o falsas.*
-
 
 
 **(a)** Si  $$a \mid 1 \quad \text{entonces} \quad a = 1 \ \text{o}\ a = -1$$

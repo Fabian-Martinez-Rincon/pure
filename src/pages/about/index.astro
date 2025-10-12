@@ -3,7 +3,8 @@ import PageLayout from '@/layouts/CommonPage.astro'
 import Substats from '@/components/about/Substats.astro'
 import ToolSection from '@/components/about/ToolSection.astro'
 import { Image } from 'astro:assets'
-
+import diploma from '@/assets/certificaciones/diploma.png'
+import bb from '@/assets/bb.jpg'
 const headings = [
   { depth: 2, slug: 'resume', text: 'Resume' },
   { depth: 2, slug: 'imagenes', text: 'Algunas Imagenes' },
@@ -48,7 +49,24 @@ const headings = [
 
     <h2 id='imagenes'>Algunas Imagenes</h2>
     <p>Imagenes que me parecieron interesantes mostrar en la pagina para que sea un poco mas entretenida :D</p>
+
     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+      
+
+      <Image
+        src={bb}
+        alt="Imagen 3"
+        width={450}
+        height={250}
+        class="w-full max-w-[300px] h-[350px] object-cover rounded-xl"
+      />
+    </div>
+
+    <br>
+
+    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+      
+
       <Image
         src="https://rincondelfabo.vercel.app/images/3.webp"
         alt="Imagen 3"
@@ -145,6 +163,15 @@ const headings = [
 
   <h2 id='certificados'>Certificados</h2>
   <p>Diplomas/Certificados que consiguiendo a lo largo del tiempo</p>
+
+  <div class="flex flex-row flex-wrap justify-center gap-4 mt-4">
+        <Image
+          src={diploma}
+          alt="Espacio de trabajo 1"
+          class="h-72 w-auto border border-black"
+        />
+      </div>
+
   <div class="max-w-5xl mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 gap-6">
     <!-- Tarjeta 1 -->
     <img
