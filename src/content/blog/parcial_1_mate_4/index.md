@@ -50,7 +50,7 @@ $$
 $$
 
 **Conclusión** -> Aquí se llega a una **contradicción**, ya que el lado izquierdo de la ecuación es un número par (por ser múltiplo de 2), mientras que el lado derecho es 1, que es impar.  
-No existe ningún par de enteros \( k_1 \) y \( k_2 \) que satisfagan esta igualdad.
+No existe ningún par de enteros $$k_1$$ y $$k_2$$ que satisfagan esta igualdad.
 
 Por lo tanto:
 
@@ -70,21 +70,62 @@ $$
 **(a)** Si  $$a \mid 1 \quad \text{entonces} \quad a = 1 \ \text{o}\ a = -1$$
 
 <details><summary>Respuesta</summary>
+
+1 = a·k, con k ∈ ℤ  
+k = 1/a
+
+Para que esta ecuación sea verdadera, k debe ser igual a $$ \frac{1}{a} $$.  
+Pero, para que k sea un entero, **a debe ser un divisor de 1**.  
+
+Los divisores de 1 son aquellos números enteros que, multiplicados por otro entero, dan como resultado 1.  
+Estos divisores son, únicamente:
+
+- a = 1  
+- a = -1  
+
+ya que $$ 1 = 1 \times 1 $$ y $$ 1 = (-1) \times (-1) $$.
+
+**La afirmación es VERDADERA.**
+
 </details>
 
 **(b)** $$ a \mid b \ \text{y}\ b \mid c \ \text{entonces}\ a \mid c$$
 
 <details><summary>Respuesta</summary>
+
+b = a·k₁, con k₁ ∈ ℤ.  
+c = b·k₂, con k₂ ∈ ℤ.  
+
+c = a·k₁·k₂  
+c = a·k₃, con k₃ ≡ k₁·k₂ ∈ ℤ.  
+
+**La afirmación es VERDADERA.**
+
 </details>
 
 **(c)**  $$ a(a - 1) \ \text{es par} $$
 
 <details><summary>Respuesta</summary>
+
+Si a es par, (a - 1) es impar y, entonces, el producto es par.  
+Si a es impar, (a - 1) es par y, entonces, el producto es par.  
+
+**La afirmación es VERDADERA.**
+
 </details>
 
 **(d)**  $$ x \mid y \ \text{y}\ y \mid z \ \text{entonces}\ x \mid yz$$
 
 <details><summary>Respuesta</summary>
+
+y = x·k₁, con k₁ ∈ ℤ.  
+z = y·k₂, con k₂ ∈ ℤ.  
+
+yz = x·k₁·z  
+yz = x·k₃, con k₃ ≡ k₁·z ∈ ℤ.  
+
+**La afirmación es VERDADERA.**
+
 </details>
 
 ---
