@@ -99,3 +99,136 @@ Antes de comenzar con el trabajo o con algun asunto importante es recomendable q
 **Exodo 20:9**
 
 ![alt text](image-1.png)
+
+---
+
+## Punto 2 Mi trabajo es mi manera de honrar a Dios.
+
+**Colosenses 3:22-24**
+
+![alt text](image-10.png)
+
+**Mateo 5:16**
+
+Otro versiculo que nos habla sobre honrar a dios con nuestro trabajo.
+
+![alt text](image-13.png)
+
+**1 Timoteo 5:8**`
+
+A mi me pasa en este pasaje que veo muy a menudo amigos o familiares que prefieren gastar mas con sus amigos, ya sea saliendo a comer algo, o cualquier otro plan, y se olvidan completamente de su familia. Es una situación que me paso a mi tambien ya que muchas veces uno tiende a minimizar lo que tiene, como diciendo **'total es mi familia, siempre van a estar ahi'** y no es asi.
+
+![alt text](image-14.png)
+
+---
+
+## Punto 3 El ocioso le abre un portón a la tentación.
+
+**Proverbios 13:4**
+
+![alt text](image-11.png)
+
+> Una persona diligente se caracteriza por su responsabilidad, compromiso, puntualidad, organización y atención al detalle. Se esfuerza por hacer las cosas bien y a tiempo, y busca siempre la mejor manera de lograr sus objetivos.
+> Una persona diligente es aquella que tiene una actitud favorable hacia el trabajo y las obligaciones, haciendo uso de su inteligencia, con economía de recursos y alto grado de eficiencia.
+
+**2 Samuel 11:1-5**
+
+La historia comienza con una situacion de oscio ya que no estaba donde debia estar (En la guerra).
+
+![alt text](image-12.png)
+
+Si en mi vida priorizo el oscio, le estoy abriendo la puerta a la tentacion.
+
+**2 Pedro 1:5-10**
+
+![alt text](image-15.png)
+
+---
+
+## Punto 4 Trabaja con excelencia, no solo para zafar. Jesus nos pide una milla más
+
+**Proverbios 18:9**
+
+A mi me venia pasando ultimamente que como estamos en epocas de examenes, estaba mas preocupado en estudiar que en hacer bien mi trabajo. En cambio cuando no estaba en epoca de examenes dedicaba todo el tiempo posible a hacer bien mi trabajo. A medida que uno va adquiriendo responsabilidades, tiende a querer zafar de las cosas y hacerlas a medias. Pero dios nos pide que hagamos todo con excelencia.
+
+![alt text](image-16.png)
+
+En **Efesios 5**, nos habla de que debemos imitar a dios en todo lo que hacemos.
+
+![alt text](image-17.png)
+
+**Proverbios 22:29**
+
+![alt text](image-18.png)
+
+**Proverbios 24:10**
+
+![alt text](image-19.png)
+
+**Mateo 5:41**
+
+![alt text](image-20.png)
+
+Dejo Éxodo 40 que habla sobre como dios le pide a Moises que arme el tabernaculo con excelencia.
+
+<details>
+<summary>Éxodo 40</summary>
+
+![alt text](image-22.png)
+
+</details>
+
+---
+
+## Punto 5 No intentes ser el mejor, sino dar lo mejor. Es para Su gloria, no para la nuestra.
+
+La idea principal es no caer en el egoismo, comparandonos constanemtene con los demas. Sino que debemos enfocarnos en dar lo mejor de nosotros, sin importar si somos los mejores o no. Que usualmente cuando uno se enfoca en dar lo mejor de si, termina acercandose.
+
+Cuando tengas un exito, cuando apruebes una materia, cuando te recibas, cuando te asciendan en el trabajo, vas a entender que es para su gloria, no para la nuestra. Es para onrarlo a el, no para nostros.
+
+**1 Corintios 10:31**
+
+![alt text](image-23.png)
+
+**2 Crónicas 32:27-31**
+
+![alt text](image-24.png)
+
+---
+
+## La santidad y la justicia deben reflejarse en mi trabajo y mi estudio. No las comprometas por tomar un atajo.
+
+**Proverbios 20:23**
+
+Puede que nos encontremos en situaciones que por tomar un atajo, negociemos nuestra integridad. Ya sea en un examen, en un mal trabajo o en un negocio. Pero nosotros sabemos que el que ve todas las cosas es el señor. Incluso lo hacemos por accion o por omision. (De esto se habla tambien en un pasaje Santiago 4:17 si mal no recuerdo)
+
+
+![alt text](image-25.png)
+
+> Dios tampoco nos llama a ser un justiciero, andar por ahi juzgando a todo el mundo. Te llama a ser una persona justa en mirarte primero a vos y decirte si verdaderamente estas trabajando con justicia.
+
+**Salmo 128:1-2**
+
+![alt text](image-26.png)
+
+---
+
+## Punto 7 Esfuérzate en todo, pero nunca negocies tus prioridades. Dios, familia, trabajo/carrera.
+
+**Proverbios 15:27**
+
+Esto puede pasar cuando estamos tan enfocados en conseguir un aumento o en aprobar la maxima de materias posibles o querer seguir una dieta estricta y entrenar que muchas veces descuidamos lo mas importante que es dios y la familia. En mi caso particular, escucho bastante la biblia por audio pero despues no me tomo el tiempo en profundizar en muchos temas.
+
+![alt text](image-27.png)
+
+**Mateo 16:26**
+
+![alt text](image-28.png)
+
+**Juan 6:27**
+
+![alt text](image-29.png)
+
+---
+
+## Punto 8 El tiempo es un don de Dios
