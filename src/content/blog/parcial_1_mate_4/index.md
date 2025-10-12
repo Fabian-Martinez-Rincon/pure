@@ -137,13 +137,28 @@ Si a un número se lo divide por 5, el resto es 3 y si se lo divide por 7, el re
 ¿Cuál es el resto si se lo divide por 35 ?
 
 <details><summary>Respuesta</summary>
+
+- $$ x = 5k_1 + 3, \quad k_1 \in \mathbb{Z} $$
+- $$ x = 7k_2 + 4, \quad k_2 \in \mathbb{Z} $$
+
+Igualando ambas expresiones:
+
+- $$ 5k_1 + 3 = 7k_2 + 4 $$
+- $$ 5k_1 = 7k_2 + 1 $$
+- $$ k_1 = 3, \quad k_2 = 2 $$
+- $$ x = 5 \times 3 + 3 = 15 + 3 = 18 $$
+- $$ x = 7 \times 2 + 4 = 14 + 4 = 18 $$
+- $$ x = 35k_3 + 18, \quad k_3 \in \mathbb{Z} $$
+
+**Por lo tanto, si se lo divide por 35, el resto es 18.**
+
 </details>
 
 ---
 
 ## Ejercicio 4
 
-*Sean \( a \) y \( b \) dos números enteros que tienen restos 4 y 7 respectivamente en la división por 11. Hallar los restos de la división por 11 de \( a + b^2 \).*
+Sean $$ a $$ y $$ b $$ dos números enteros que tienen restos 4 y 7 respectivamente en la división por 11. Hallar los restos de la división por 11 de $$ a + b^2 $$.
 
 ---
 
