@@ -7,7 +7,7 @@ export const theme: ThemeUserConfig = {
   /** Will be used in index page & copyright declaration */
   author: 'Fabian Martinez Rincon',
   /** Description metadata for your website. Can be used in page metadata. */
-  description: 'Stay hungry, stay foolish',
+  description: 'Portfolio con blogs y proyectos',
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
   favicon: '/favicon/f.svg',
   /** Specify the default language for this site. */

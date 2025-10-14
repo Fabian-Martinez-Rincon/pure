@@ -20,7 +20,7 @@ export const FriendLinksSchema = () =>
       logbook: [],
       applyTip: {
         name: 'Astro Pure',
-        desc: 'Stay hungry, stay foolish.',
+        desc: 'Portfolio con blogs y proyectos',
         url: 'https://astro-pure.js.org',
         avatar: 'https://astro-pure.js.org/favicon/f.svg'
       }

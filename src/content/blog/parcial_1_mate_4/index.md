@@ -14,9 +14,8 @@ https://youtu.be/DfwWEvyZGWY?si=aMl1qzhjDDe-ONxM
 
 ## Ejercicio 1
 
-*Probar que no hay enteros, simultáneamente, pares e impares.*
 
-<details><summary>Respuesta</summary>
+<details><summary>Probar que no hay enteros, simultáneamente, pares e impares.</summary>
 
 
 **Número par** -> Un número entero $$ n $$ es **par** si existe un número entero $$ k $$ tal que  $$ n = 2k $$ Es decir, $$ n $$ es divisible por 2.
@@ -134,9 +133,7 @@ yz = x·k₃, con k₃ ≡ k₁·z ∈ ℤ.
 
 Si a un número se lo divide por 5, el resto es 3 y si se lo divide por 7, el resto es 4.
 
-¿Cuál es el resto si se lo divide por 35 ?
-
-<details><summary>Respuesta</summary>
+<details><summary>¿Cuál es el resto si se lo divide por 35?</summary>
 
 - $$ x = 5k_1 + 3, \quad k_1 \in \mathbb{Z} $$
 - $$ x = 7k_2 + 4, \quad k_2 \in \mathbb{Z} $$
@@ -185,7 +182,7 @@ Por lo tanto -> $$ a + b = 11k_3, \quad k_3 \equiv (k_1 + k_2 + 1) \in \mathbb{Z
 - $$ (a + b)^2 = 11k_4, \quad k_4 \equiv 11k_3^2 \in \mathbb{Z} $$
 
 
-**Por lo tanto, el resto de la división por 11 de \( (a + b)^2 \) es 0.**
+**Por lo tanto, el resto de la división por 11 de $$ (a + b)^2 $$ es 0.**
 
 </details>
 
@@ -233,30 +230,122 @@ Por lo tanto:
 
 Calcular el máximo común divisor entre:
 
-- i) (16, 24) 
-- ii) (70, 50) 
-- iii) (121, 88)
-- iv) (−90, 90)
-- v) (980, 224)
+<details><summary>i) (16, 24)</summary>
+
+- $$ (24, 16) = (16, 8) = (8, 0) = 8 $$
+
+Por lo tanto:
+
+- $$ \text{mcd}(16, 24) = 8 $$
+
+</details>
+
+<details><summary>ii) (70, 50)</summary>
+
+- $$ (70, 50) = (50, 20) = (20, 10) = (10, 0) = 10 $$
+
+Por lo tanto:
+
+- $$ \text{mcd}(70, 50) = 10 $$
+
+</details>
+
+<details><summary>iii) (121, 88)</summary>
+
+- $$ (121, 88) = (88, 33) = (33, 22) = (22, 11) = (11, 0) = 11 $$
+
+Por lo tanto:
+
+- $$ \text{mcd}(121, 88) = 11 $$
+
+</details>
+
+<details><summary>iv) (−90, 90)</summary>
+
+- $$ (-90, 90) = (90, 0) $$
+
+Por lo tanto:
+
+- $$ \text{mcd}(-90, 90) = 90 $$
+
+</details>
+
+<details><summary>v) (980, 224)</summary>
+
+- $$ (980, 224) = (224, 84) = (84, 56) = (56, 28) = (28, 0) = 28 $$
+
+Por lo tanto:
+
+- $$ \text{mcd}(980, 224) = 28 $$
+
+</details>
+
 
 ---
 
 ## Ejercicio 7
 
-*Probar que si \( a \) y \( b \) son enteros:*
+*Probar que si $$ a $$ y $$ b $$ son enteros:*
 
 
 **(a)**  $$a + b \ \text{es coprimo con} \ a$$
 
+<details><summary>Respuesta</summary>
+
+Definición de coprimo -> Dos números son coprimos si su máximo común divisor es 1.
+
+- $$ a = dk_1, \quad k_1 \in \mathbb{Z} $$
+- $$ a + b = dk_2, \quad k_2 \in \mathbb{Z} $$
+
+Igualando ambas expresiones:
+
+- $$ dk_1 + b = dk_2 $$
+- $$ b = dk_2 - dk_1 $$
+- $$ b = d(k_2 - k_1) $$
+- $$ b = dk_3, \quad k_3 \equiv (k_2 - k_1) \in \mathbb{Z} $$
+
+
+No hay razón para que $$a$$ y $$b$$ tengan un divisor común que no sea $$d = 1$$.
+Por lo tanto:
+
+$$ (a + b,\, a) = 1 $$
+
+</details>
+
 **(b)**  $$\text{Si } a \text{ es no nulo, } (a, 0) = |a|$$
 
+<details><summary>Respuesta</summary>
+
+$$ a = |a|k_1, \quad k_1 \in \mathbb{Z} $$  
+$$ 0 = |a|k_2, \quad k_2 \in \mathbb{Z} $$
+
+No hay divisores comunes entre $$ a $$ y $$ 0 $$ que sean mayores a $$ |a| $$.  
+Por lo tanto:
+
+$$ (a, 0) = |a| $$
+</details>
+
 **(c)**  $$(a, b) = 1 \ \text{entonces} \ ma + nb = k, \ \text{con } m, n, k \in \mathbb{Z}$$
+
+<details><summary>Respuesta</summary>
+
+ma + nb= 1.
+</details>
 
 ---
 
 ## Ejercicio 8
 
 Hallar  $$mcd(5k + 3, 3k + 2) $$, para cualquier k entero
+
+<details><summary>Respuesta</summary>
+
+$$(5k + 3,\, 3k + 2) = (3k + 2,\, 2k + 1) = (2k + 1,\, k + 1) = (k + 1,\, k) = (k,\, 1) = (1,\, 0)$$
+
+Por lo tanto:
+
+$$ \text{mcd}(5k + 3,\, 3k + 2) = 1 $$
+</details>
 
 ---
 
@@ -267,6 +356,46 @@ Sean $$ ( a, b \in \mathbb{Z} ) $$ y sea $$ p $$ primo. Demostrar que si $$ ( p 
 Mostrar que esto no se cumple si $$ p $$ no es primo.
 
 <details><summary>Respuesta</summary>
+
+\[
+a = p_1^{e_1} p_2^{e_2} \dots p_m^{e_m}, \quad p_i \in \mathbb{Z}, \quad i = 1, 2, \dots, m
+\]
+
+\[
+b = q_1^{f_1} q_2^{f_2} \dots q_n^{f_n}, \quad q_i \in \mathbb{Z}, \quad i = 1, 2, \dots, n
+\]
+
+\[
+ab = p^s k, \quad k \in \mathbb{Z}
+\]
+
+donde \( k \) es el producto de los factores primos que no son \( p \)  
+y \( s \) es el número de veces que \( p \) divide el producto \( ab \).
+
+---
+
+Dado que \( p \) es primo y que \( ab \) se compone de factores primos,  
+\( p \) debe aparecer en la factorización de, al menos, uno de los factores \( a \) o \( b \).
+
+Esto **no se cumple** si \( p \) no es primo.  
+Consideremos un contraejemplo:
+
+\[
+p = 6, \quad a = 2, \quad b = 3
+\]
+
+\[
+p \mid ab \Rightarrow 6 \mid 6
+\]
+pero  
+\[
+p \nmid a \Rightarrow 6 \nmid 2
+\quad \text{y} \quad
+p \nmid b \Rightarrow 6 \nmid 3
+\]
+
+Por lo tanto, si \( p \) **no es primo**, la propiedad deja de cumplirse.
+s
 </details>
 
 ---
