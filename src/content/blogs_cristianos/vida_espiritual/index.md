@@ -52,7 +52,7 @@ Todos tenemos diferentes caracteristicas personales.
 
 Cuando nosotros vivimos una vida espiritual hay caracteristicas, mas alla de nuestras caracteristicas personales, que nos definen como cristianos, como hijos de dios.
 
-SI NO ENTENDES LO QUE ES LA VIDA ESPIRITUAL, NI VENGAS A LAS PROXIMAS REUNIONES!!! 😂
+> SI NO ENTENDES LO QUE ES LA VIDA ESPIRITUAL, NI VENGAS A LAS PROXIMAS REUNIONES!!! 😂
 
 No tiene sentido enfocarnos en otras areas de la vida si no tenemos una vida espiritual.
 
@@ -103,4 +103,74 @@ Vamos a la palabra de dios
 Dios nos escogio antes de la fundacion del mundo y yo ni siquiera puedo imaginarme cuando se fundo el mundo, no me puedo imaginar ese momento.
 
 ---
+
+**2 Corintios 3:18**
+
+![alt text](image-8.png)
+
+**Efesios 4:11-13**
+
+![alt text](image-9.png)
+
+> El crecimiento espiritual se relaciona cuando nosotros en nuestro caminar cristiano, somo transformados para ser cada dia mas parecidos a jesus. Hasta la medida de la estatura de la plenitud de cristo. 
+
+SIMPLEMENTE ESO
+
+¿Que es vivir una vida espiritual?
+
+Dejar que el espiritud santo cada dia me haga mas parecido a jesus. Dejar que el espiritud santo que vive en mi, cada dia me transforme para parecerme mas a jesus.
+
+---
+
+#### **¿Como nos damos cuenta si nos parecemos a Jesus?**
+
+Bueno, es todo un progreso y dice que vamos siendo transformados.
+
+Aveces pensamos que como hijos de dios va a llegar un momento en el que voy a ir a una gran reunion y va a llegar el rayo santificador y de un momento a otro, empiezo a hacer todo bien.
+
+<img src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExemRmazVxZzM0MHNjdTlxMzJqaGtkZXRmanN6OGZ4bTZuNHhyaDMyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8cPIM9UdW25vZ8opnJ/giphy.gif'>
+
+No se trata de un momento unico, sino que el crecimiento espiritual es un dia a dia. Porque si en una reunion, dios me hablo, eso significa que yo mañana me tengo que levantar a buscarlo. Y asi cada dia.
+
+No se trata de que dios me toca con la varita magica, sino que la biblia habla de un proceso.
+
+Lo que si es instantaneo, es cuando dios te perdona y te justifica.
+
+**Ejemplo**
+
+Hay un juicio a un asesino (Este mato a 20 personas un divino). Se para delante del juez. Este lo mira a los ojos y le dice 'Por lo que hiciste te tendria que condenar de por vida pero sabes que? Yo te perdono, anda tranqui.
+
+El asesino se va feliz dicendio 'wow, me sacaron la condena'. Esa persona cuando sale del tribunal continua siento tan asesino como antes de entrar y probablemente va a volver a matar. No fue contenado pero salio IGUAL.
+
+ESO NO ES EL EVANGELIO.
+
+El evangelio tiene esa cuota de perdon, dios como juez ve que jesus ocupo tu lugar y te dice, si a vos! que cometiste pecado, que sabes bien en tu corazon que hiciste mal, a vos, te perdono porque Jesus ocupo tu lugar. Pero cuando salis del juzgado, dios te dice, pero esperaa. Te voy a dar el espiritud santo para que ya no seas la misma persona y seas transformado.
+
+Entonces cuando nosotros somos perdonados, y dios nos da el espiritu santo para ser transformados para no seguir siendo los mismos.
+
+> Y esa transformacion que nos va cambiando es la vida espiritual. Es por eso que nosotros tenemos que llenarnos para dejar que el espiritu santo nos ministre y transforme.
+
+Dios nos puede llenar en cualquier momento pero nosotros tenemos que 'abrir el recipiente'.
+
+> El crecimiento espiritual se relaciona con abrirle al espiritud santo todas las puertas de mi corazon.
+
+No es que el espiritud se quede corto sino que nosotros no le abrimos las puertas.
+
+**Salmos 16:8**
+
+![alt text](image-10.png)
+
+**¿¿Y yo porque voy a querer poner primero a dios??**
+
+Cuando entendemos lo que dios hizo por nosotros, cuando entendemos que Jesus nos libro de la condenación. Cuando realmente comprendemos de lo que fuimos rescatados, el deseo de nuestro corazon no va a ser otro que el querer onrarle. Y que querer vivir para el.
+
+El evangelio no se trata de hacer las cosas bien, para que me vaya bien a mi (te puede ir bien pero es una consecuencia). Sino que se trata de entender de que soy perdonado entonces vivo para onrar a dios.
+
+Si nunca en la vida sentiste un puñal de que soy un pecador de que yo necesito que dios me perdone no entendi el evangelio.
+
+---
+
+## No negociables
+
+![alt text](image-11.png)
 
