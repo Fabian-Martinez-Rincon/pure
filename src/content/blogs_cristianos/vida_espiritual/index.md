@@ -234,17 +234,74 @@ No contamines tus ojos
 
 ![alt text](image-18.png)
 
+Tenemos que ser cuidadosos con lo que vemos y oimos si queremos tener un vida espiritual
+
 ---
 
 ## 5) Alimenta tu mente con pensamientos saludables, desecha los pensamientos que te contaminan.
+
+Generalmente lo que entra por los ojos y oidos es lo que alimenta nuestros pensamientos.
+
+A nuestra mente la tenemos que alimentar con pensamientos saludables. Y que hago???
+
+Por eso es importante la palabra de dios.
+
+**Filipenses 4:8**
+
+![alt text](image-19.png)
+
+Tu mente tiene que ser un filtro y mas hoy en dia. Cualquier pensamiento que sea mentira y que no se condiga con la palabra, que sea impuro, cualquier pensamiento que no onre a dios, inmediatamente lo tenes que desechar. No tenes que perder el tiempo peleando con ese mal pensamiento.
 
 ---
 
 ## 6) Llenate del Espiritu Santo
 
+> Recuerda que el carácter del cristiano tiene frutos espirituales.
+
+Como se si estoy lleno del espiritu santo? Porque se ven los frutos del espiritu en mi vida.
+
+Si yo no le abro todas las puertas al espiritu, nunca me voy a poder llenar, no porque el espiritu se quede corto sino porque yo no le abro las puertas.
+
+![alt text](image-20.png)
+
+Como se si estoy lleno del espiritu santo? Porque se ven los frutos del espiritu en mi vida.
+
+![alt text](image-21.png)
+
+![alt text](image-22.png)
+
+- Gozo ->  Sentimiento de complacencia en la posesión, recuerdo o esperanza de bienes o cosas apetecibles.
+- Paz ->   Estado de quien no está perturbado por ningún conflicto o inquietud. Disfrutar de una paz profunda.
+- Benignidad -> ![alt text](image-23.png) Antónimos u opuestos de «benignidad»
+malignidad, maldad.
+- Fe -> Encontre este blog que habla bastante sobre este tema [Link](https://www.unrudodespertar.tv/emuna-la-fe-que-nos-sustenta/) Tambien encontre este [¿La «fe» es una idea bíblica?](https://weekly.israelbiblecenter.com/es/la-fe-es-una-idea-biblica)
+- Mansedumbre -> Este blog lo explica bastante bien [Link](https://www.bibliaon.com/es/significado_biblico_mansedumbre/)
+
+Si estas cosas abundan en mi, estoy lleno del espiritu santo. Si estas cosas no abundan en mi, tengo que entregarle mas al señor. Tengo que dejar que el llene mas areas de mi vida.
+
+Podes tener el mejor auto del mundo pero si no tenes combustible no sirve de nada.
+
+Porque decimos esto? Porque el espiritu santo, es el combustible de nuestra vida espiritual.
+
+![alt text](image-24.png)
+
+Como puedo cumplir esto?? Llenate del espiritu santo, entregale tu vida al espiritu.
+
 ---
 
 ## 7) Sirve al Señor. Recuerda que el servicio del cristiano es según los dones espirituales.
+
+Los frutos del espiritu revelan nuestro caracter, nos sirven para parecernos mas a Jesus, los dones del espiritud son los que determinan nuestro servicio. Dios a cada uno nos permite tener los frutos y los frutos son para todos por igual. 
+
+Los dones los da de manera especial a cada uno, como el quiere. Esos dones son para que los pongas al servicio del señor. Porque son herramientas que dios te dio para vendecir a otros
+
+**1 Corintios 12**
+
+![alt text](image-25.png)
+
+Muchas veces nosotros tenemos una habilidad, tenemos un don, pero no dejamos que el señor trabaje en los frutos y el ejercer el don sin el fruto del espiritu, es decir, ejercer mi habilidad sin el caracter lamentablemente, puede ser un desastre. Porque yo necesito estar formado en el caracter, en los frutos del espiritu.
+
+
 
 ---
 
