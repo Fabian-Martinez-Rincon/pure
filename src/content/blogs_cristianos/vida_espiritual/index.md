@@ -174,3 +174,90 @@ Si nunca en la vida sentiste un puñal de que soy un pecador de que yo necesito 
 
 ![alt text](image-11.png)
 
+---
+
+## 1) Habla con Dios cada día
+
+**Mateo 26:41**
+
+![alt text](image-12.png)
+
+Tu cuerpo no quiere que ores, tu mente te dice que hay cosas mas importantes. Si vos queres vivir tu vida espiritual, no negocies la oración.
+
+**Daniel 6:10**
+
+![alt text](image-13.png)
+
+Hoy no tenemos amenaza de muerte sobre ninguno de nosotros y a pesar de eso negociamos la oración.
+
+**Hebreos 11:6**
+
+![alt text](image-14.png)
+
+Yo tengo que ser conciente que cuando yo oro, y cuando digo 'Padre en el nombre de Jesus' DE VERDAD ESTOY HABLANDO CON DIOS.
+
+---
+
+## 2) Deja que Dios te hable cada día
+
+No podemos negociar la palabra de dios, es la palabra la que nos da las herramientas para vivir una vida cristiana. Es la que nos aumenta la fe. Toda la biblia es inspiradad.
+
+**2 Timoteo 3:16-17**
+
+![alt text](image-15.png)
+
+**Salmo 119**
+
+![alt text](image-16.png)
+
+La palabra del señor nos enseña, a vivir por la eternidad, como no vamos a amar su palabra
+
+
+---
+
+## 3) Habla de Dios cada dia
+
+Que sale de tu boca? Estas hablando de dios? A tus amigos? a las personas que te rodean?
+
+Si nadie sabe en tu entorno que vos crees en dios, que amas a Jesus, es hora de que lo sepan.
+
+**Hechos 4:20-21**
+
+![alt text](image-17.png)
+
+
+---
+
+## 4) Recuerda que tus ojos son la lámpara del cuerpo
+
+No contamines tus ojos
+
+![alt text](image-18.png)
+
+---
+
+## 5) Alimenta tu mente con pensamientos saludables, desecha los pensamientos que te contaminan.
+
+---
+
+## 6) Llenate del Espiritu Santo
+
+---
+
+## 7) Sirve al Señor. Recuerda que el servicio del cristiano es según los dones espirituales.
+
+---
+
+## 8) Se humilde. Todo es por gracia y todo es a través de sus fuerzas.
+
+---
+
+## 9) No te menosprecies. Porque asi no podrás cumplir el segundo mandamiento.
+
+---
+
+## 10) Honra a Dios en todo
+
+---
+
+## 11) Recuerda que el carácter del cristiano se perfecciona mediante una vida de relación. Es allí donde evalúas como estás.
