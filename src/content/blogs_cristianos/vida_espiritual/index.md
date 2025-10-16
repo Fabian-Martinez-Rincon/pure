@@ -92,4 +92,15 @@ Otro mito es el conocimiento, que yo sepa mucho de la palabra de dios que yo sep
 
 **¿¿ENTONCES QUE ME HACE UNA PERSONA ESPIRITUAL???**
 
-<img src=''>
+<img src='https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDBuN3g3Zm9kbXBmdGcwOTE5aXBwZWYyYzd6OHhsdDQ1Z2Qwa3piaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cZv60VbwlLI6kbbUJQ/giphy.gif'>
+
+Vamos a la palabra de dios
+
+**Efesios 1:4**
+
+![alt text](image-7.png)
+
+Dios nos escogio antes de la fundacion del mundo y yo ni siquiera puedo imaginarme cuando se fundo el mundo, no me puedo imaginar ese momento.
+
+---
+
