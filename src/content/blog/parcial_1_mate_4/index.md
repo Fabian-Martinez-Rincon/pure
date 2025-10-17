@@ -1902,6 +1902,51 @@ i) $$ z_{9}^{9} $$
 
 <details><summary>Respuesta</summary>
 
+**1) Módulo y argumento de $$z_9$$:**
+
+$$
+|z_9|=\sqrt{2^2+(-2)^2}=\sqrt{8}=2\sqrt{2}, 
+\qquad 
+\alpha=\arg(z_9)=\tan^{-1}\!\left(\frac{-2}{2}\right)=\tan^{-1}(-1)=-\frac{\pi}{4}.
+$$
+
+**2) De Moivre:**
+
+$$
+z_9^{\,9}=\big(|z_9|\,e^{i\alpha}\big)^{9}
+=|z_9|^{9}\,e^{i\,9\alpha}
+=(2\sqrt{2})^{9}\,e^{-i\,\frac{9\pi}{4}}.
+$$
+
+Como $$-\dfrac{9\pi}{4}\equiv -\dfrac{\pi}{4}\ (\text{mod }2\pi)$$:
+
+$$
+z_9^{\,9}=(2\sqrt{2})^{9}\left[\cos\!\left(-\frac{\pi}{4}\right)+
+i\sin\!\left(-\frac{\pi}{4}\right)\right]
+=(2\sqrt{2})^{9}\left(\frac{1}{\sqrt{2}}-\frac{i}{\sqrt{2}}\right).
+$$
+
+**3) Simplificación del módulo:**
+
+$$
+(2\sqrt{2})^{9}=2^{9}(\sqrt{2})^{9}
+=2^{9}\cdot 2^{\frac{9}{2}}
+=2^{13}\sqrt{2}.
+$$
+
+Entonces:
+
+$$
+z_9^{\,9}=2^{13}\sqrt{2}\left(\frac{1}{\sqrt{2}}-\frac{i}{\sqrt{2}}\right)
+=2^{13}(1-i).
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{\,z_9^{\,9}=2^{13}(1-i)=8192-8192\,i\, }.
+$$
+
 </details>
 
 ---
@@ -1910,7 +1955,60 @@ j) $$ z_{5}^{15} $$
 
 <details><summary>Respuesta</summary>
 
+**Paso 1 – Reemplazamos el valor de $$z_5$$:**
+
+$$
+z_5^{15} = (5i)^{15}
+$$
+
+**Paso 2 – Separación de potencias:**
+
+$$
+z_5^{15} = 5^{15} \cdot i^{15}
+$$
+
+**Paso 3 – Descomposición del exponente:**
+
+$$
+i^{15} = i^{4 \times 3 + 3}
+$$
+
+**Paso 4 – Simplificación usando $$i^4 = 1$$:**
+
+$$
+i^{15} = (i^4)^3 \cdot i^3
+$$
+
+$$
+i^{15} = 1^3 \cdot i^3
+$$
+
+**Paso 5 – Recordamos que $$i^3 = -i$$:**
+
+$$
+i^{15} = -i
+$$
+
+**Paso 6 – Sustituimos en la expresión original:**
+
+$$
+z_5^{15} = 5^{15} \cdot (-i)
+$$
+
+$$
+z_5^{15} = -5^{15} i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{z_5^{15} = -5^{15} i}
+$$
+
+
 </details>
+
+## Estos ejercicio son bastantes complejos y los obviamos :(
 
 ---
 
