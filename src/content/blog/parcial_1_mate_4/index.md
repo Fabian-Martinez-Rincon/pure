@@ -573,9 +573,87 @@ es un número racional tal que $$ a < x < b $$.
 
 ## Ejercicio 12
 
-Probar que no existe un número racional cuyo cubo sea igual a 2.
+**Probar que no existe un número racional cuyo cubo sea igual a 2.**
 
 <details><summary>Respuesta</summary>
+
+**1️⃣ Suposición inicial**
+
+Supongamos, por contradicción, que existe un número racional $$\frac{p}{q}$$, con $$p, q \in \mathbb{Z}$$, $$ q \neq 0 $$, y en su forma más simple (es decir, $$ p $$ y $$ q $$ son coprimos), tal que:
+
+$$
+\left(\frac{p}{q}\right)^3 = 2
+$$
+
+**2️⃣ Desarrollo de la ecuación**
+
+Elevando al cubo:
+
+$$
+\frac{p^3}{q^3} = 2
+$$
+
+Multiplicamos ambos lados por $$ q^3 $$:
+
+$$
+p^3 = 2q^3
+$$
+
+Esto implica que $$ p^3 $$ es **un número par**, ya que es el doble de otro entero.
+
+**3️⃣ Deducción: $$ p $$ debe ser par**
+
+Si $$ p^3 $$ es par, entonces $$ p $$ también es par.  
+Por lo tanto, podemos escribir:
+
+$$
+p = 2k
+$$
+
+donde $$ k $$ es un número entero.
+
+4️⃣ Sustitución en la ecuación original
+
+Sustituyendo $$ p = 2k $$ en $$ p^3 = 2q^3 $$:
+
+$$
+(2k)^3 = 2q^3
+$$
+
+Desarrollamos:
+
+$$
+8k^3 = 2q^3
+$$
+
+Dividimos ambos lados por 2:
+
+$$
+4k^3 = q^3
+$$
+
+O equivalentemente:
+
+$$
+q^3 = 2 \times (2k^3)
+$$
+
+Esto muestra que $$ q^3 $$ también es **par**, lo cual implica que $$ q $$ también es par.
+
+5️⃣ Contradicción
+
+Si tanto $$ p $$ como $$ q $$ son pares, entonces ambos tienen un factor común (el 2).  
+Esto contradice la suposición inicial de que $$ \frac{p}{q} $$ está en su **forma más simple** (coprimos).
+
+6️⃣ Conclusión
+
+Dado que llegamos a una contradicción, **no puede existir tal número racional**.  
+Por lo tanto:
+
+$$
+\boxed{\text{No existe un número racional cuyo cubo sea igual a 2.}}
+$$
+
 </details>
 
 ---
