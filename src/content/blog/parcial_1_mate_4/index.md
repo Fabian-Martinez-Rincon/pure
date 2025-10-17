@@ -169,16 +169,16 @@ Variables:
 Sabemos que ambos números son múltiplos de 11 más su respectivo resto.  
 Sumando las dos expresiones obtenemos:
 
-- $$ a + b = 11k_1 + 4 + 11k_2 + 7 \\ $$
-- $$ a + b = 11 (k_1 + k_2) + 11 \\ $$
-- $$ a + b = 11 (k_1 + k_2 + 1) \\ $$
+- $$ a + b = 11k_1 + 4 + 11k_2 + 7  $$
+- $$ a + b = 11 (k_1 + k_2) + 11 $$
+- $$ a + b = 11 (k_1 + k_2 + 1) $$
 
 Por lo tanto -> $$ a + b = 11k_3, \quad k_3 \equiv (k_1 + k_2 + 1) \in \mathbb{Z} $$
 
 **Paso 2**: Calculamos el cuadrado (Elevamos ambos lados al cuadrado):
 
-- $$ (a + b)^2 = (11k_3)^2 \\ $$
-- $$ (a + b)^2 = 11 \times 11k_3^2 \\ $$
+- $$ (a + b)^2 = (11k_3)^2 $$
+- $$ (a + b)^2 = 11 \times 11k_3^2 $$
 - $$ (a + b)^2 = 11k_4, \quad k_4 \equiv 11k_3^2 \in \mathbb{Z} $$
 
 
@@ -665,6 +665,45 @@ Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $
 **a)**  $$ z = \sqrt{-49} $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Reescribimos el número negativo:**  
+Recordemos que $$ -1 $$ se asocia con la unidad imaginaria $$ i $$, donde $$ i^2 = -1 $$:
+
+$$
+z = \sqrt{-1 \times 49}
+$$
+
+**Paso 2 – Separamos los factores:**
+
+$$
+z = \sqrt{49} \times \sqrt{-1}
+$$
+
+**Paso 3 – Simplificamos cada raíz:**
+
+$$
+z = 7 \times \sqrt{-1}
+$$
+
+**Paso 4 – Reemplazamos $$\sqrt{-1} = i$$:**
+
+$$
+z = 7i
+$$
+
+✅ Entonces, el número complejo es puramente imaginario.
+
+- Parte real:  
+$$
+\text{Re}(z) = 0
+$$
+
+- Parte imaginaria:  
+
+$$
+\text{Im}(z) = 7
+$$
+
 </details>
 
 ---
@@ -672,6 +711,37 @@ Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $
 **b)**  $$ z = \sqrt{-20} $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Reescribimos el número negativo:**
+
+$$
+z = \sqrt{-1 \times 20}
+$$
+
+**Paso 2 – Separamos las raíces:**
+
+$$
+z = \sqrt{20} \times \sqrt{-1}
+$$
+
+**Paso 3 – Reemplazamos $$\sqrt{-1}$$:**
+
+$$
+z = \sqrt{20} \, i
+$$
+
+✅ El número también es puramente imaginario.
+
+- Parte real:  
+$$
+\text{Re}(z) = 0
+$$
+
+- Parte imaginaria:  
+$$
+\text{Im}(z) = \sqrt{20}
+$$
+
 </details>
 
 ---
@@ -679,6 +749,50 @@ Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $
 **c)**  $$ z = \sqrt{-\dfrac{9}{16}} $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Separar numerador y denominador en la raíz:**
+
+$$
+z = \frac{\sqrt{-9}}{\sqrt{16}}
+$$
+
+**Paso 2 – Reescribir el número negativo como producto con $$-1$$:**
+
+$$
+z = \frac{\sqrt{-1 \times 9}}{\sqrt{16}}
+$$
+
+**Paso 3 – Separar los factores de la raíz:**
+
+$$
+z = \frac{\sqrt{-1} \times \sqrt{9}}{\sqrt{16}}
+$$
+
+**Paso 4 – Calcular cada raíz:**
+
+$$
+z = \frac{3\sqrt{-1}}{4}
+$$
+
+**Paso 5 – Sustituir $$\sqrt{-1} = i$$:**
+
+$$
+z = \frac{3}{4}i
+$$
+
+✅ El número complejo obtenido es puramente imaginario.
+
+- Parte real:  
+$$
+\text{Re}(z) = 0
+$$
+
+- Parte imaginaria:  
+$$
+\text{Im}(z) = \frac{3}{4}
+$$
+
+
 </details>
 
 ---
@@ -686,6 +800,31 @@ Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $
 **d)**  $$ z = -8 $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Identificamos el tipo de número:**
+
+El valor $$z = -8$$ es un número **real puro**, ya que no tiene parte imaginaria.
+
+Podemos escribirlo como:
+
+$$
+z = -8 + 0i
+$$
+
+**Paso 2 – Determinamos sus componentes:**
+
+- Parte real:  
+$$
+\text{Re}(z) = -8
+$$
+
+- Parte imaginaria:  
+$$
+\text{Im}(z) = 0
+$$
+
+✅ Por lo tanto, $$ z $$ pertenece al conjunto de los números reales ($$ \mathbb{R} $$) y también al de los complejos ($$ \mathbb{C} $$), con parte imaginaria nula.
+
 </details>
 
 ---
@@ -693,6 +832,31 @@ Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $
 **e)**  $$ z = 7i $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Identificamos el tipo de número:**
+
+El número $$ z = 7i $$ es **puramente imaginario**, ya que no posee parte real.
+
+Podemos expresarlo como:
+
+$$
+z = 0 + 7i
+$$
+
+**Paso 2 – Determinamos sus componentes:**
+
+- Parte real:  
+$$
+\text{Re}(z) = 0
+$$
+
+- Parte imaginaria:  
+$$
+\text{Im}(z) = 7
+$$
+
+✅ Por lo tanto, $$ z $$ se encuentra sobre el eje imaginario en el plano complejo.
+
 </details>
 
 ---
@@ -700,6 +864,39 @@ Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $
 **f)**  $$ z = (3 + i) + (5 - 4i)$$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Desarrollamos la suma:**
+
+$$
+z = 3 + i + 5 - 4i
+$$
+
+**Paso 2 – Agrupamos las partes reales e imaginarias:**
+
+$$
+z = (3 + 5) + (1 - 4)i
+$$
+
+**Paso 3 – Simplificamos:**
+
+$$
+z = 8 - 3i
+$$
+
+**Paso 4 – Identificamos las componentes:**
+
+- Parte real:  
+$$
+\text{Re}(z) = 8
+$$
+
+- Parte imaginaria:  
+$$
+\text{Im}(z) = -3
+$$
+
+✅ Por lo tanto, $$ z = 8 - 3i $$ es un número complejo con parte real positiva y parte imaginaria negativa.
+
 </details>
 
 ---
@@ -707,6 +904,39 @@ Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $
 **g)**  $$ z = 3i - (5 - 2i) $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Quitamos el paréntesis aplicando el signo menos:**
+
+$$
+z = 3i - 5 + 2i
+$$
+
+**Paso 2 – Reordenamos los términos reales e imaginarios:**
+
+$$
+z = -5 + (3i + 2i)
+$$
+
+**Paso 3 – Simplificamos las partes semejantes:**
+
+$$
+z = -5 + 5i
+$$
+
+**Paso 4 – Identificamos las componentes:**
+
+- Parte real:  
+$$
+\text{Re}(z) = -5
+$$
+
+- Parte imaginaria:  
+$$
+\text{Im}(z) = 5
+$$
+
+✅ Por lo tanto, $$ z = -5 + 5i $$ es un número complejo con parte real negativa y parte imaginaria positiva.
+
 </details>
 
 ---
@@ -714,6 +944,64 @@ Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $
 **h)**  $$ z = \dfrac{1 + 3i}{3 - i} $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Racionalizamos el denominador:**
+
+Multiplicamos numerador y denominador por el conjugado del denominador $$ 3 + i $$:
+
+$$
+z = \dfrac{(1 + 3i)(3 + i)}{(3 - i)(3 + i)}
+$$
+
+**Paso 2 – Desarrollamos el numerador:**
+
+$$
+(1 + 3i)(3 + i) = 1 \cdot 3 + 1 \cdot i + 3i \cdot 3 + 3i \cdot i
+$$
+
+Simplificamos:
+
+$$
+= 3 + i + 9i + 3i^2
+$$
+
+Recordando que $$ i^2 = -1 $$:
+
+$$
+= 3 + 10i - 3 = 9 + 10i + (-1) \Rightarrow 9 + 10i - 1 = 8 + 10i
+$$
+
+*(En el desarrollo del ejemplo original, los términos se agrupan directamente con la sustitución de $$i^2 = -1$$).*
+
+**Paso 3 – Desarrollamos el denominador:**
+
+$$
+(3 - i)(3 + i) = 3^2 - i^2 = 9 - (-1) = 10
+$$
+
+**Paso 4 – Simplificamos la fracción:**
+
+$$
+z = \dfrac{9 + 10i - 3}{10} = \dfrac{10i}{10} = i
+$$
+
+**Paso 5 – Identificamos las componentes:**
+
+- Parte real:  
+$$
+\text{Re}(z) = 0
+$$
+
+- Parte imaginaria:  
+$$
+\text{Im}(z) = 1
+$$
+
+✅ Por lo tanto, el número complejo resultante es puramente imaginario:  
+$$
+z = i
+$$
+
 </details>
 
 ---
@@ -721,15 +1009,180 @@ Indique la parte real $$ \text{Re}(z) $$ y la parte imaginaria $$ \text{Im}(z) $
 **i)**  $$ z = \dfrac{1 - i}{(1 + i)^2} $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Expandimos el denominador:**
+
+$$
+(1 + i)^2 = (1 + i)(1 + i) = 1 + 2i + i^2
+$$
+
+Como $$ i^2 = -1 $$:
+
+$$
+(1 + i)^2 = 1 + 2i - 1 = 2i
+$$
+
+Por lo tanto:
+
+$$
+z = \dfrac{1 - i}{2i}
+$$
+
+**Paso 2 – Racionalizamos el denominador:**
+
+Multiplicamos numerador y denominador por el conjugado de $$ 2i $$, que es $$ -2i $$:
+
+$$
+z = \dfrac{(1 - i)(-2i)}{2i(-2i)}
+$$
+
+**Paso 3 – Desarrollamos el numerador:**
+
+$$
+(1 - i)(-2i) = -2i + 2i^2 = -2i - 2
+$$
+
+y el denominador:
+
+$$
+2i(-2i) = -4i^2 = 4
+$$
+
+**Paso 4 – Simplificamos:**
+
+$$
+z = \dfrac{-2 - 2i}{4} = -\dfrac{1}{2} - \dfrac{1}{2}i
+$$
+
+**Paso 5 – Identificamos las componentes:**
+
+- Parte real:  
+$$
+\text{Re}(z) = -\dfrac{1}{2}
+$$
+
+- Parte imaginaria:  
+$$
+\text{Im}(z) = -\dfrac{1}{2}
+$$
+
+✅ Por lo tanto,  
+$$
+z = -\dfrac{1}{2} - \dfrac{1}{2}i
+$$
+es un número complejo con partes real e imaginaria iguales en magnitud y negativas.
+
 </details>
 
 ---
 
 ## Ejercicio 14
 
-La suma de un número complejo y su conjugado es −8 y la suma de sus módulos es 10. De qué números complejos se trata?
+**La suma de un número complejo y su conjugado es −8 y la suma de sus módulos es 10. ¿De qué números complejos se trata?**
 
 <details><summary>Respuesta</summary>
+
+**1️⃣ Representación general**
+
+Sea:
+$$
+z = a + ib, \quad \bar{z} = a - ib
+$$
+
+**2️⃣ Suma del número con su conjugado**
+
+Sabemos que:
+$$
+z + \bar{z} = -8
+$$
+
+Reemplazamos:
+$$
+(a + ib) + (a - ib) = -8
+$$
+
+Simplificamos:
+$$
+2a = -8
+$$
+
+Despejamos:
+$$
+a = -4
+$$
+
+**3️⃣ Suma de los módulos**
+
+También se cumple que:
+$$
+|z| + |\bar{z}| = 10
+$$
+
+Pero como el módulo de un número complejo y el de su conjugado son iguales:
+$$
+|z| = |\bar{z}|
+$$
+
+Entonces:
+$$
+2|z| = 10
+$$
+
+Dividimos por 2:
+$$
+|z| = 5
+$$
+
+**4️⃣ Aplicamos la fórmula del módulo**
+
+Sabemos que:
+$$
+|z| = \sqrt{a^2 + b^2}
+$$
+
+Reemplazamos \( a = -4 \):
+$$
+\sqrt{(-4)^2 + b^2} = 5
+$$
+
+Elevamos ambos lados al cuadrado:
+$$
+16 + b^2 = 25
+$$
+
+Restamos 16:
+$$
+b^2 = 9
+$$
+
+Tomamos raíz cuadrada:
+$$
+|b| = 3
+$$
+
+Por lo tanto:
+$$
+b = \pm 3
+$$
+
+**5️⃣ Soluciones finales**
+
+Sustituyendo los valores de \( a \) y \( b \):
+
+$$
+z_1 = -4 + 3i
+$$
+
+$$
+z_2 = -4 - 3i
+$$
+
+✅ **Conclusión:** -> Los números complejos que cumplen las condiciones dadas son:
+
+$$
+\boxed{z_1 = -4 + 3i \quad \text{y} \quad z_2 = -4 - 3i.}
+$$
+
 </details>
 
 ---
@@ -739,6 +1192,107 @@ La suma de un número complejo y su conjugado es −8 y la suma de sus módulos 
 Hallar, si existe, $$ x $$ real tal que $$ \text{Re}(z) = \text{Im}(z) $$ siendo $$ z = \dfrac{x + 2i}{4 - 3i} $$
 
 <details><summary>Respuesta</summary>
+
+1️⃣ Racionalizamos el denominador
+
+Multiplicamos numerador y denominador por el conjugado de $$4 - 3i$$, que es $$4 + 3i$$:
+
+$$
+z = \dfrac{(x + 2i)(4 + 3i)}{(4 - 3i)(4 + 3i)}
+$$
+
+2️⃣ Desarrollamos el numerador
+
+$$
+(x + 2i)(4 + 3i) = 4x + 3xi + 8i + 6i^2
+$$
+
+Como $$i^2 = -1$$:
+
+$$
+= 4x + 3xi + 8i - 6
+$$
+
+Agrupamos las partes reales e imaginarias:
+
+$$
+= (4x - 6) + (3x + 8)i
+$$
+
+3️⃣ Desarrollamos el denominador
+
+$$
+(4 - 3i)(4 + 3i) = 4^2 - (3i)^2 = 16 - (-9) = 25
+$$
+
+4️⃣ Reescribimos $$z$$
+
+$$
+z = \dfrac{(4x - 6) + (3x + 8)i}{25}
+$$
+
+Separando en parte real e imaginaria:
+
+$$
+z = \dfrac{4x - 6}{25} + \dfrac{3x + 8}{25}i
+$$
+
+5️⃣ Condición: $$\text{Re}(z) = \text{Im}(z)$$
+
+Igualamos ambas expresiones:
+
+$$
+\dfrac{4x - 6}{25} = \dfrac{3x + 8}{25}
+$$
+
+Multiplicamos por 25 y simplificamos:
+
+$$
+4x - 6 = 3x + 8
+$$
+
+Despejamos:
+
+$$
+x = 14
+$$
+
+6️⃣ Verificamos el valor de \( z \)
+
+Sustituimos \( x = 14 \) en la expresión de \( z \):
+
+$$
+z = \dfrac{4(14) - 6}{25} + \dfrac{3(14) + 8}{25}i
+$$
+
+Calculamos:
+
+$$
+z = \dfrac{56 - 6}{25} + \dfrac{42 + 8}{25}i
+$$
+
+$$
+z = \dfrac{50}{25} + \dfrac{50}{25}i
+$$
+
+$$
+z = 2 + 2i
+$$
+
+✅ **Conclusión:**
+
+El valor real que cumple la condición es:
+
+$$
+\boxed{x = 14}
+$$
+
+y el número complejo correspondiente es:
+
+$$
+\boxed{z = 2 + 2i.}
+$$
+
 </details>
 
 ---
@@ -749,6 +1303,60 @@ Hallar, si existe, $$ x $$ real tal que $$ \text{Re}(z) = \text{Im}(z) $$ siendo
 Encontrar, si existe, un valor de $$ k $$ real para que el complejo $$ \frac{2 - (1 + k)i}{1 - ki} $$ *sea un número real.*
 
 <details><summary>Respuesta</summary>
+
+**1) Racionalizamos el denominador**
+
+Multiplicamos numerador y denominador por el conjugado de $$1-ki$$, que es $$1+ki$$:
+$$
+z=\frac{(2-(1+k)i)(1+ki)}{(1-ki)(1+ki)}.
+$$
+
+El denominador queda
+$$
+(1-ki)(1+ki)=1-(ki)^2=1+k^2.
+$$
+
+**2) Desarrollamos el numerador**
+
+$$
+(2-(1+k)i)(1+ki)
+=2+2ki-(1+k)i-(1+k)k\,i^2.
+$$
+
+Como $$i^2=-1$$:
+
+$$
+=2+2ki-(1+k)i+(1+k)k.
+$$
+
+Separando partes real e imaginaria:
+
+$$
+\text{Real: } 2+(1+k)k=2+k+k^2, \qquad
+\text{Imaginaria: } 2k-(1+k)=k-1.
+$$
+
+Entonces
+$$
+z=\frac{(2+k+k^2)+(k-1)i}{1+k^2}.
+$$
+
+**3) Condición para que \(z\) sea real**
+
+$$z$$ es real $$\iff$$ su parte imaginaria es $$0$$:
+
+$$
+\frac{k-1}{1+k^2}=0 \;\;\Longrightarrow\;\; k-1=0 \;\;\Longrightarrow\;\; \boxed{k=1}.
+$$
+
+**4) Valor de \(z\) para \(k=1\)**
+
+$$
+z=\frac{2+1+1}{1+1}=\frac{4}{2}= \boxed{2}.
+$$
+
+**Conclusión.** El valor buscado es $$\boxed{k=1}$$ y en ese caso $$z$$ resulta **real** e igual a $$\boxed{2}$$.
+
 </details>
 
 ---
@@ -760,6 +1368,50 @@ Encontrar, si existe, un valor de $$ k $$ real para que el complejo $$ \frac{2 -
 **a)**  $$ i^{489} $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Usamos el ciclo de potencias de $$i$$:**
+
+Recordemos que:
+
+$$
+i^1 = i, \quad i^2 = -1, \quad i^3 = -i, \quad i^4 = 1
+$$
+
+Por lo tanto, las potencias de $$i$$ se repiten **cada 4**.
+
+**Paso 2 – Dividimos el exponente entre 4:**
+
+$$
+489 = 4 \times 122 + 1
+$$
+
+**Paso 3 – Reescribimos la potencia:**
+
+$$
+i^{489} = i^{4 \times 122 + 1}
+$$
+
+$$
+i^{489} = (i^4)^{122} \cdot i^1
+$$
+
+
+**Paso 4 – Simplificamos:**
+
+$$
+(i^4)^{122} = 1^{122} = 1
+$$
+
+$$
+i^{489} = 1 \cdot i = i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{i^{489} = i}
+$$
+
 </details>
 
 ---
@@ -767,6 +1419,45 @@ Encontrar, si existe, un valor de $$ k $$ real para que el complejo $$ \frac{2 -
 **b)**  $$ -i^{1026} $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Descomponemos el exponente:**
+
+$$
+1026 = 4 \times 256 + 2
+$$
+
+Por lo tanto:
+
+$$
+-i^{1026} = -i^{4 \times 256 + 2}
+$$
+
+**Paso 2 – Aplicamos la propiedad de potencias:**
+
+$$
+-i^{1026} = -\left( i^{4 \times 256} \cdot i^2 \right)
+$$
+
+**Paso 3 – Simplificamos usando \( i^4 = 1 \):**
+
+$$
+-i^{1026} = -\left( (i^4)^{256} \cdot (-1) \right)
+$$
+
+$$
+-i^{1026} = -\left( 1^{256} \cdot (-1) \right)
+$$
+
+$$
+-i^{1026} = -(-1)
+$$
+
+**Paso 4 – Resultado final:**
+
+$$
+\boxed{-i^{1026} = 1}
+$$
+
 </details>
 
 ---
@@ -774,6 +1465,48 @@ Encontrar, si existe, un valor de $$ k $$ real para que el complejo $$ \frac{2 -
 **c)**  $$(3i)^{168} $$
 
 <details><summary>Respuesta</summary>
+
+**Paso 1 – Separamos la potencia:**
+
+$$
+(3i)^{168} = 3^{168} \cdot i^{168}
+$$
+
+
+**Paso 2 – Descomponemos el exponente de $$i$$:**
+
+$$
+168 = 4 \times 42 + 0
+$$
+
+Entonces:
+
+$$
+i^{168} = i^{4 \times 42 + 0} = (i^4)^{42} \cdot i^0
+$$
+
+**Paso 3 – Simplificamos usando $$i^4 = 1$$ y $$i^0 = 1$$:**
+
+$$
+i^{168} = 1^{42} \cdot 1 = 1
+$$
+
+**Paso 4 – Reemplazamos en la expresión original:**
+
+$$
+(3i)^{168} = 3^{168} \cdot 1
+$$
+
+$$
+(3i)^{168} = 3^{168}
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{(3i)^{168} = 3^{168}}
+$$
+
 </details>
 
 ---
@@ -791,23 +1524,422 @@ $$
 
 **Operaciones:**
 
-- a) $$ z_1+z_7 $$  
-- b) $$ z_5 - z_3 $$  
-- c) $$ z_9 \cdot z_6 $$  
-- d) $$ \dfrac{z_8}{z_{10}} $$  
-- e) $$ z_3 + z_6 $$  
-- f) $$ z_2 - z_6 $$  
-- g) $$ z_3 \cdot z_{10} $$  
-- h) $$ z_1^{3} $$  
-- i) $$ z_{9}^{9} $$  
-- j) $$ z_{5}^{15} $$  
-- k) $$ z_{10}^{3} $$
+a) $$ z_1+z_7 $$
 
-l) Hallar las **raíces cuartas** de $$ z_2 $$.  
-m) Hallar las **raíces cúbicas** de $$ z_4 $$.  
+<details><summary>Respuesta</summary>
+
+**Paso 1 – Reemplazamos los valores:**
+
+$$
+z_1 + z_7 = (3 + 3i) + (-4 - 4i)
+$$
+
+**Paso 2 – Agrupamos términos reales e imaginarios:**
+
+$$
+z_1 + z_7 = (3 - 4) + (3i - 4i)
+$$
+
+**Paso 3 – Simplificamos:**
+
+$$
+z_1 + z_7 = -1 - i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{z_1 + z_7 = -1 - i}
+$$
+
+</details>
+
+---
+
+b) $$ z_5 - z_3 $$
+
+<details><summary>Respuesta</summary>
+
+**Paso 1 – Reemplazamos los valores:**
+
+$$
+z_5 - z_3 = 5i - (5 + 4i)
+$$
+
+**Paso 2 – Quitamos el paréntesis:**
+
+$$
+z_5 - z_3 = 5i - 5 - 4i
+$$
+
+**Paso 3 – Agrupamos las partes reales e imaginarias:**
+
+$$
+z_5 - z_3 = (-5) + (5i - 4i)
+$$
+
+**Paso 4 – Simplificamos:**
+
+$$
+z_5 - z_3 = -5 + i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{z_5 - z_3 = -5 + i}
+$$
+
+</details>
+
+---
+
+c) $$ z_9 \cdot z_6 $$
+
+<details><summary>Respuesta</summary>
+
+**Paso 1 – Reemplazamos los valores:**
+
+$$
+z_9 z_6 = (2 - 2i)(-7)
+$$
+
+**Paso 2 – Distribuimos el producto:**
+
+$$
+z_9 z_6 = 2(-7) - 2i(-7)
+$$
+
+$$
+z_9 z_6 = -14 + 14i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{z_9 z_6 = -14 + 14i}
+$$
+
+</details>
+
+---
+
+d) $$ \dfrac{z_8}{z_{10}} $$
+
+<details><summary>Respuesta</summary>
+
+**Datos:**
+
+$$
+z_8 = -8i, \qquad z_{10} = 3 - 4i
+$$
+
+**Paso 1 – Escribimos la fracción:**
+
+$$
+\dfrac{z_8}{z_{10}} = \dfrac{-8i}{3 - 4i}
+$$
+
+**Paso 2 – Racionalizamos el denominador:**
+
+Multiplicamos numerador y denominador por el conjugado de $$3 - 4i$$, que es $$3 + 4i$$:
+
+$$
+\dfrac{z_8}{z_{10}} = \dfrac{-8i(3 + 4i)}{(3 - 4i)(3 + 4i)}
+$$
+
+**Paso 3 – Desarrollamos el numerador:**
+
+$$
+-8i(3 + 4i) = -24i - 32i^2
+$$
+
+Como $$i^2 = -1$$:
+
+$$
+-24i - 32(-1) = -24i + 32
+$$
+
+**Paso 4 – Desarrollamos el denominador:**
+
+$$
+(3 - 4i)(3 + 4i) = 9 - (4i)^2 = 9 - (-16) = 25
+$$
+
+**Paso 5 – Reescribimos la expresión:**
+
+$$
+\dfrac{z_8}{z_{10}} = \dfrac{32 - 24i}{25}
+$$
+
+$$
+\dfrac{z_8}{z_{10}} = \dfrac{32}{25} - \dfrac{24}{25}i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{\dfrac{z_8}{z_{10}} = \dfrac{32}{25} - \dfrac{24}{25}i}
+$$
+
+</details>
+
+---
+
+e) $$ z_3 + z_6 $$
+
+<details><summary>Respuesta</summary>
+
+**Paso 1 – Reemplazamos los valores:**
+
+$$
+z_3 + z_6 = (5 + 4i) + (-7)
+$$
+
+**Paso 2 – Agrupamos las partes reales e imaginarias:**
+
+$$
+z_3 + z_6 = (5 - 7) + 4i
+$$
+
+**Paso 3 – Simplificamos:**
+
+$$
+z_3 + z_6 = -2 + 4i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{z_3 + z_6 = -2 + 4i}
+$$
+
+
+</details>
+
+---
+
+f) $$ z_2 - z_6 $$
+
+<details><summary>Respuesta</summary>
+
+**Paso 1 – Reemplazamos los valores:**
+
+$$
+z_2 - z_6 = (-1 + i) - (-7)
+$$
+
+**Paso 2 – Eliminamos el paréntesis:**
+
+$$
+z_2 - z_6 = -1 + i + 7
+$$
+
+**Paso 3 – Agrupamos términos:**
+
+$$
+z_2 - z_6 = ( -1 + 7 ) + i
+$$
+
+
+**Paso 4 – Simplificamos:**
+
+$$
+z_2 - z_6 = 6 + i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{z_2 - z_6 = 6 + i}
+$$
+
+</details>
+
+---
+
+g) $$ z_3 \cdot z_{10} $$
+
+<details><summary>Respuesta</summary>
+
+**Paso 1 – Reemplazamos los valores:**
+
+$$
+z_3 z_{10} = (5 + 4i)(3 - 4i)
+$$
+
+**Paso 2 – Aplicamos la propiedad distributiva:**
+
+$$
+z_3 z_{10} = 15 - 20i + 12i - 16i^2
+$$
+
+**Paso 3 – Simplificamos términos semejantes y recordamos que $$i^2 = -1$$:**
+
+$$
+z_3 z_{10} = 15 - 8i - 16(-1)
+$$
+
+$$
+z_3 z_{10} = 15 - 8i + 16
+$$
+
+**Paso 4 – Sumamos las partes reales:**
+
+$$
+z_3 z_{10} = 31 - 8i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{z_3 z_{10} = 31 - 8i}
+$$
+
+
+</details>
+
+---
+
+h) $$ z_1^{3} $$
+
+<details><summary>Respuesta</summary>
+
+**1️⃣ Forma binómica**
+
+$$
+z_1 = 3 + 3i
+$$
+
+$$
+z_1^3 = (3 + 3i)^3
+$$
+
+Aplicamos la expansión del cubo:
+$$
+(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3
+$$
+
+$$
+z_1^3 = 3^3 + 3(3^2)(3i) + 3(3)(3i)^2 + (3i)^3
+$$
+
+$$
+z_1^3 = 27 + 81i + 9(9i^2) + 27i^3
+$$
+
+Recordando que $$i^2 = -1$$ y $$i^3 = -i$$:
+
+$$
+z_1^3 = 27 + 81i + 81(-1) + 27(-i)
+$$
+
+$$
+z_1^3 = 27 + 81i - 81 - 27i
+$$
+
+$$
+z_1^3 = -54 + 54i
+$$
+
+**2️⃣ Módulo y argumento**
+
+$$
+z_1^3 = 27 + 81i - 81 - 27i
+$$
+
+$$
+z_1^3 = -54 + 54i
+$$
+
+**2️⃣ Módulo y argumento**
+
+$$
+|z_1| = \sqrt{3^2 + 3^2} = \sqrt{9 + 9} = \sqrt{18} = 3\sqrt{2}
+$$
+
+$$
+\alpha = \tan^{-1}\left(\frac{3}{3}\right) = \tan^{-1}(1) = \frac{\pi}{4}
+$$
+
+**3️⃣ Forma trigonométrica**
+
+$$
+z_1 = |z_1|(\cos \alpha + i \sin \alpha)
+$$
+
+$$
+z_1^3 = (|z_1|)^3 [\cos(3\alpha) + i \sin(3\alpha)]
+$$
+
+$$
+z_1^3 = (3\sqrt{2})^3 [\cos(3 \cdot \frac{\pi}{4}) + i \sin(3 \cdot \frac{\pi}{4})]
+$$
+
+$$
+z_1^3 = 27 \cdot 2\sqrt{2} [\cos\left(\frac{3\pi}{4}\right) + i \sin\left(\frac{3\pi}{4}\right)]
+$$
+
+$$
+z_1^3 = 54\sqrt{2} \left(-\frac{1}{\sqrt{2}} + i \frac{1}{\sqrt{2}}\right)
+$$
+
+$$
+z_1^3 = -54 + 54i
+$$
+
+✅ **Resultado final:**
+
+$$
+\boxed{z_1^3 = -54 + 54i}
+$$
+
+</details>
+
+---
+
+i) $$ z_{9}^{9} $$
+
+<details><summary>Respuesta</summary>
+
+</details>
+
+---
+
+j) $$ z_{5}^{15} $$
+
+<details><summary>Respuesta</summary>
+
+</details>
+
+---
+
+k) $$ z_{10}^{3} $$
+
+<details><summary>Respuesta</summary>
+
+</details>
+
+---
+
+l) Hallar las **raíces cuartas** de $$ z_2 $$.
+
+<details><summary>Respuesta</summary>
+
+</details>
+
+---
+
+m) Hallar las **raíces cúbicas** de $$ z_4 $$.
+
+<details><summary>Respuesta</summary>
+
+</details>
+
+---
+
 n) Hallar las **raíces séptimas** de $$ i $$.
 
 <details><summary>Respuesta</summary>
+
 </details>
-
-
