@@ -357,45 +357,28 @@ Mostrar que esto no se cumple si $$ p $$ no es primo.
 
 <details><summary>Respuesta</summary>
 
-\[
-a = p_1^{e_1} p_2^{e_2} \dots p_m^{e_m}, \quad p_i \in \mathbb{Z}, \quad i = 1, 2, \dots, m
-\]
+$$ a = p_1^{e_1} p_2^{e_2} \dots p_m^{e_m}, \quad p_i \in \mathbb{Z}, \quad i = 1, 2, \dots, m $$
 
-\[
-b = q_1^{f_1} q_2^{f_2} \dots q_n^{f_n}, \quad q_i \in \mathbb{Z}, \quad i = 1, 2, \dots, n
-\]
+$$ b = q_1^{f_1} q_2^{f_2} \dots q_n^{f_n}, \quad q_i \in \mathbb{Z}, \quad i = 1, 2, \dots, n $$
 
-\[
-ab = p^s k, \quad k \in \mathbb{Z}
-\]
+$$ ab = p^s k, \quad k \in \mathbb{Z} $$
 
-donde \( k \) es el producto de los factores primos que no son \( p \)  
-y \( s \) es el número de veces que \( p \) divide el producto \( ab \).
+donde $$ k $$ es el producto de los factores primos que no son $$ p $$ y $$ s $$ es el número de veces que $$ p $$ divide el producto $$ ab $$.
 
----
+Dado que $$ p $$ es primo y que $$ ab $$ se compone de factores primos, $$ p $$ debe aparecer en la factorización de, al menos, uno de los factores $$ a $$ o $$ b $$.
 
-Dado que \( p \) es primo y que \( ab \) se compone de factores primos,  
-\( p \) debe aparecer en la factorización de, al menos, uno de los factores \( a \) o \( b \).
-
-Esto **no se cumple** si \( p \) no es primo.  
+Esto **no se cumple** si $$ p $$ no es primo.  
 Consideremos un contraejemplo:
 
-\[
-p = 6, \quad a = 2, \quad b = 3
-\]
+$$ p = 6, \quad a = 2, \quad b = 3 $$
 
-\[
-p \mid ab \Rightarrow 6 \mid 6
-\]
-pero  
-\[
-p \nmid a \Rightarrow 6 \nmid 2
-\quad \text{y} \quad
-p \nmid b \Rightarrow 6 \nmid 3
-\]
+$$ p \mid ab \Rightarrow 6 \mid 6 $$
 
-Por lo tanto, si \( p \) **no es primo**, la propiedad deja de cumplirse.
-s
+pero
+
+$$ p \nmid a \Rightarrow 6 \nmid 2 \quad \text{y} \quad p \nmid b \Rightarrow 6 \nmid 3 $$
+
+Por lo tanto, si $$ p $$ **no es primo**, la propiedad deja de cumplirse.
 </details>
 
 ---
@@ -405,6 +388,93 @@ s
 Hallar, si existe, un número entero $$ q $$ tal que $$ 7290q $$ es el cubo de un entero.
 
 <details><summary>Respuesta</summary>
+
+**1️⃣ Factorización de 7290**
+
+Comenzamos descomponiendo $$ 7290 $$ en sus factores primos:
+
+$$
+7290 = 3645 \times 2 \\
+7290 = 1215 \times 3 \times 2 \\
+7290 = 405 \times 3^2 \times 2 \\
+7290 = 135 \times 3^3 \times 2 \\
+7290 = 45 \times 3^4 \times 2 \\
+7290 = 15 \times 3^5 \times 2 \\
+7290 = 5 \times 3^6 \times 2
+$$
+
+Por lo tanto, la **factorización prima de 7290** es:
+
+$$
+7290 = 2 \times 3^6 \times 5
+$$
+
+**2️⃣ Hallar el valor de $$ q $$**
+
+Para que $$ 7290q $$ sea el **cubo de un número entero**, cada exponente en la factorización debe ser múltiplo de 3.
+
+Actualmente tenemos:
+
+- $$ 2^1 $$
+- $$ 3^6 $$
+- $$ 5^1 $$
+
+Faltan potencias para que todos los exponentes sean múltiplos de 3.  
+Necesitamos completar:
+
+- $$ 2^1 \to 2^3 $$ → multiplicamos por $$ 2^2 $$
+- $$ 3^6 \to 3^6 $$ → ya es múltiplo de 3
+- $$ 5^1 \to 5^3 $$ → multiplicamos por $$ 5^2 $$
+
+Por lo tanto:
+
+$$
+q = 5^2 \times 2^2
+$$
+
+$$
+q = 25 \times 4 = 100
+$$
+
+**3️⃣ Comprobamos que $$ 7290q $$ sea un cubo perfecto**
+
+Multiplicamos ambos:
+
+$$
+n^3 = 7290 \times 100
+$$
+
+Reemplazamos por las factorizaciones:
+
+$$
+n^3 = (5 \times 3^6 \times 2) \times (5^2 \times 2^2)
+$$
+
+Agrupando factores semejantes:
+
+$$
+n^3 = 5^3 \times 3^6 \times 2^3
+$$
+
+Extraemos la raíz cúbica:
+
+$$
+n = (5^3 \, 3^6 \, 2^3)^{\frac{1}{3}} = 5 \times 3^2 \times 2
+$$
+
+Simplificamos:
+
+$$
+n = 5 \times 9 \times 2 = 90
+$$
+
+✅ Por lo tanto:
+
+$$
+\boxed{q = 100 \quad \text{y} \quad n = 90.}
+$$
+
+
 </details>
 
 ---
@@ -415,6 +485,88 @@ Demostrar que dados $$ a $$ y $$ b $$ en $$ \mathbb{Q} $$ tales que $$ a < b $$,
 $$ a < x < b $$.
 
 <details><summary>Respuesta</summary>
+
+**1️⃣ Punto de partida**
+
+Sabemos que $$ a < b $$.  
+Queremos encontrar un número **racional** $$ x $$ que esté **entre** ellos, es decir:
+
+$$
+a < x < b.
+$$
+
+**2️⃣ Proponemos un candidato**
+
+Un candidato natural es el **promedio aritmético** de ambos:
+
+$$
+x = \frac{a + b}{2}.
+$$
+
+Este número es racional porque $$ a, b \in \mathbb{Q} $$ y la suma y división entre racionales sigue siendo racional.
+
+**3️⃣ Demostramos que $$ a < \frac{a + b}{2} $$**
+
+Partimos de la desigualdad inicial $$ a < b $$:
+
+$$
+a + a < a + b
+$$
+
+Sumamos $$ a $$ en ambos lados.  
+Luego simplificamos:
+
+$$
+2a < a + b
+$$
+
+Dividimos por 2 (como 2 > 0, la desigualdad se mantiene):
+
+$$
+a < \frac{a + b}{2}
+$$
+
+✅ Por lo tanto, el promedio es **mayor que $$ a $$**.
+
+**4️⃣ Demostramos que $$ \frac{a + b}{2} < b $$**
+
+Partimos nuevamente de $$ a < b $$ y ahora sumamos $$ b $$ en ambos lados:
+
+$$
+a + b < b + b
+$$
+
+Simplificamos:
+
+$$
+a + b < 2b
+$$
+
+Dividimos por 2:
+
+$$
+\frac{a + b}{2} < b
+$$
+
+✅ Entonces el promedio es **menor que \( b \)**.
+
+**5️⃣ Conclusión**
+
+Hemos probado que:
+
+$$
+a < \frac{a + b}{2} < b
+$$
+
+Por lo tanto, el número racional $$ x = \frac{a + b}{2} $$ **cumple** con la condición pedida.
+
+✅ **Resultado final:**
+
+$$
+\boxed{x = \frac{a + b}{2}}
+$$
+
+es un número racional tal que $$ a < x < b $$.
 </details>
 
 ---
