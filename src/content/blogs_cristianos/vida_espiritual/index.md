@@ -64,6 +64,8 @@ No tiene sentido enfocarnos en otras áreas la vida si no tenemos una vida espir
 
 ![alt text](image-4.png)
 
+
+
 **¿Pero bueno, que significa que yo pueda tener una vida espiritual?** En el correr de la vida cristiana se habla mucho del crecer de la vida espiritual.
 
 ---
