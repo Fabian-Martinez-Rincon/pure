@@ -54,7 +54,7 @@ Cuando nosotros vivimos una vida espiritual hay características, más allá de 
 
 > SI NO ENTENDÉS LO QUE ES LA VIDA ESPIRITUAL, NI VENGAS A LAS PRÓXIMAS REUNIONES!!! 😂
 
-<img src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExampsZHdyYzQ0Mnd3YnUzMjFtOTk1OWhnaG80bXR3eGM0b21jYmhwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kGCuRgmbnO9EI/giphy.gif'>
+<img src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2Zvbm8ydDQzZmNtejRhcTY3dXNka3Z3dzR6ejdwZHFrbXI5eGVyZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Pxvh9fqwIyfkY/giphy.gif'>
 
 No tiene sentido enfocarnos en otras áreas la vida si no tenemos una vida espiritual.
 
@@ -96,7 +96,7 @@ Otro mito es el conocimiento, que yo sepa mucho de la palabra de dios que yo sep
 
 **¿¿ENTONCES QUE ME HACE UNA PERSONA ESPIRITUAL???**
 
-<img src='https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3lua3VmcjU3YXEwZWltNXJsYWx5bG4xeGQ4OTI0NWpibWhjcHZvayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bOPhzKjxMoQCwh1kPO/giphy.gif'>
+<img src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMndzNmNyNHo0em52cWsyMzVjZ3Y2NDJ1dXFhOW5raTNlZWZzd2FuZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/oSHrQ3y3WU8Te/giphy.gif'>
 
 Vamos a la palabra de dios
 
@@ -120,7 +120,7 @@ Dios nos escogió antes de la fundación del mundo y yo ni siquiera puedo imagin
 
 SIMPLEMENTE ESO
 
-¿Qué es vivir una vida espiritual?
+**¿Qué es vivir una vida espiritual?**
 
 Dejar que el Espíritu Santo cada día me haga más parecido a Jesús. Dejar que el Espíritu Santo que vive en mí, cada día me transforme para parecerme más a Jesús.
 
@@ -165,13 +165,13 @@ No es que el espiritud se quede corto sino que nosotros no le abrimos las puerta
 
 ![alt text](image-10.png)
 
-**¿¿Y yo porque voy a querer poner primero a dios??**
+**¿¿Y yo por qué voy a querer poner primero a Dios?**
 
-Cuando entendemos lo que dios hizo por nosotros, cuando entendemos que Jesus nos libro de la condenación. Cuando realmente comprendemos de lo que fuimos rescatados, el deseo de nuestro corazon no va a ser otro que el querer onrarle. Y que querer vivir para el.
+Cuando entendemos lo que Dios hizo por nosotros, cuando entendemos que Jesús nos libró de la condenación. Cuando realmente comprendemos de lo que fuimos rescatados, el deseo de nuestro corazón no va a ser otro que el querer honrarle. ¡Y qué querer vivir para él!
 
-El evangelio no se trata de hacer las cosas bien, para que me vaya bien a mi (te puede ir bien pero es una consecuencia). Sino que se trata de entender de que soy perdonado entonces vivo para onrar a dios.
+El evangelio no se trata de hacer las cosas bien, para que me vaya bien a mí (te puede ir bien, pero es una consecuencia). Si no que se trata de entender de que soy perdonado, entonces vivo para honrar a Dios.
 
-Si nunca en la vida sentiste un puñal de que soy un pecador de que yo necesito que dios me perdone no entendi el evangelio.
+Si nunca en la vida sentiste un puñal de que soy un pecador, de que yo necesito que Dios me perdone, no entendiste el evangelio.
 
 ---
 
@@ -187,7 +187,7 @@ Si nunca en la vida sentiste un puñal de que soy un pecador de que yo necesito 
 
 ![alt text](image-12.png)
 
-Tu cuerpo no quiere que ores, tu mente te dice que hay cosas mas importantes. Si vos queres vivir tu vida espiritual, no negocies la oración.
+Tu cuerpo no quiere que ores, tu mente te dice que hay cosas más importantes. Si vos querés vivir tu vida espiritual, no negocies la oración.
 
 **Daniel 6:10**
 
@@ -199,7 +199,7 @@ Hoy no tenemos amenaza de muerte sobre ninguno de nosotros y a pesar de eso nego
 
 ![alt text](image-14.png)
 
-Yo tengo que ser conciente que cuando yo oro, y cuando digo 'Padre en el nombre de Jesus' DE VERDAD ESTOY HABLANDO CON DIOS.
+Yo tengo que ser consciente que cuando yo oro, y cuando digo 'Padre en el nombre de Jesús' DE VERDAD ESTOY HABLANDO CON DIOS.
 
 ---
 
