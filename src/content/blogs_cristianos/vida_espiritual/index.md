@@ -13,13 +13,13 @@ basePath: blogs_cristianos
 
 - [Link de la reunion](https://www.youtube.com/live/axbSxhv95E0?si=M3B_e1kHXO0YHzDI)
 
-La idea de estos blogs que es podamos vivir el evangelio de modo práctico y no solo teórico. La palabra de dios es viva y eficaz.
+La idea de estos blogs es que podamos vivir el evangelio de modo práctico y no solo teórico. La palabra de Dios es viva y eficaz.
 
 **Hebreos 4:12**
 
 ![alt text](image1.png)
 
-Si yo creo en dios, si yo soy un hijo de dios, si yo soy creyente. Tengo que vivir una vida cristiana, no me puedo quedar en un marco teórico, con pensamiento o ideas.
+Sí, yo creo en Dios, sí, yo soy un hijo de Dios, sí, yo soy creyente. Tengo que vivir una vida cristiana; no me puedo quedar en un marco teórico, con pensamiento o ideas.
 
 Entonces la vida plena la encontramos en Jesús y es a través de la gracia.
 
@@ -27,13 +27,13 @@ Entonces la vida plena la encontramos en Jesús y es a través de la gracia.
 
 ![alt text](image-1.png)
 
-Y es por gracia y para todos
+Y es por gracia y para todos.
 
 **Hechos 10:34**
 
 ![alt text](image-2.png)
 
-Y es gracias y por voluntad de dios
+Y es gracias y por voluntad de Dios.
 
 **Job 12:10**
 
@@ -45,18 +45,22 @@ Y es gracias y por voluntad de dios
 
 > Si queremos tener una vida plena, este es el primer ladrillo que tenemos que poner
 
-- **Vida espiritual** -------> Caracter
-- **Caracter** -------> Conjunto de cualidades o circunstancias propias de una cosa, de una persona o de una colectividad, que las distingue, por su modo de ser u obrar, de las demás. El carácter español. El carácter insufrible de Fulano.
+- **Vida espiritual** -------> **Carácter**
+
+- **Carácter** -------> Conjunto de cualidades o circunstancias propias de una cosa, de una persona o de una colectividad, que las distingue, por su modo de ser u obrar, de las demás. El carácter español.
 
 Todos tenemos diferentes características personales.
 
-Cuando nosotros vivimos una vida espiritual hay características, más allá de nuestras características personales, que nos definen como cristianos, como hijos de dios.
+Cuando nosotros vivimos una vida espiritual, hay características, más allá de nuestras características personales, que nos definen como cristianos, como hijos de Dios.
+
 
 > SI NO ENTENDÉS LO QUE ES LA VIDA ESPIRITUAL, NI VENGAS A LAS PRÓXIMAS REUNIONES!!! 😂
 
+
 <img src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2Zvbm8ydDQzZmNtejRhcTY3dXNka3Z3dzR6ejdwZHFrbXI5eGVyZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Pxvh9fqwIyfkY/giphy.gif'>
 
-No tiene sentido enfocarnos en otras áreas la vida si no tenemos una vida espiritual.
+
+No tiene sentido enfocarnos en otras áreas de la vida si no tenemos una vida espiritual.
 
 ---
 
@@ -64,27 +68,25 @@ No tiene sentido enfocarnos en otras áreas la vida si no tenemos una vida espir
 
 ![alt text](image-4.png)
 
-
-
-**¿Pero bueno, que significa que yo pueda tener una vida espiritual?** En el correr de la vida cristiana se habla mucho del crecer de la vida espiritual.
+Pero bueno, **¿qué significa que yo pueda tener una vida espiritual?** En el correr de la vida cristiana se habla mucho del crecer de la vida espiritual.
 
 ---
 
 ## Mitos del crecimiento espiritual
 
-### ⏱️ No depende del tiempo
+### ⏱️ No depende del tiempo.
 
-El crecimiento espiritual no tiene que ver con el tiempo, el simple echo de que vayas a la iglesia por muchos o pocos años no significa que estés creciendo espiritualmente. No tiene que ver con el paso del tiempo.
+El crecimiento espiritual no tiene que ver con el tiempo; el simple hecho de que vayas a la iglesia por muchos o pocos años no significa que estés creciendo espiritualmente. No tiene que ver con el paso del tiempo.
 
-Podés estar años y años yendo a una congregación y ser tan bebe como el primer día que llegaste espiritualmente hablando. O puede ser un tiempo corto y crecer muchísimo
+Podés estar años y años yendo a una congregación y ser tan bebé como el primer día que llegaste, espiritualmente hablando. O puede ser un tiempo corto y crecer muchísimo.
 
 ### No depende de la actividad
 
-Tampoco tiene que ver con la actividad, el hecho de tener una actividad en la iglesia no significa que estés creciendo espiritualmente. Podés estar muy activo en la iglesia y no crecer espiritualmente. Obviamente que es bueno y saludable, pero el simple echo de hacer una tarea no me define como una persona espiritualmente madura.
+Tampoco tiene que ver con la actividad; el hecho de tener una actividad en la iglesia no significa que estés creciendo espiritualmente. Podés estar muy activo en la iglesia y no crecer espiritualmente. Obviamente que es bueno y saludable, pero el simple hecho de hacer una tarea no me define como una persona espiritualmente madura.
 
-### No se trata de ganarse el amor de Dios
+### No se trata de ganarse el amor de Dios.
 
-Tampoco lo espiritual tiene que ver con ganarse el amor de dios, mientras más vida espiritual yo tenga, dios me va a amar más. O me va a favorecer más.
+Tampoco lo espiritual tiene que ver con ganarse el amor de Dios; mientras más vida espiritual yo tenga, Dios me va a amar más. O me va a favorecer más.
 
 **1 Pedro 1:20**
 
@@ -92,19 +94,19 @@ Tampoco lo espiritual tiene que ver con ganarse el amor de dios, mientras más v
 
 ### No se basa en el conocimiento
 
-Otro mito es el conocimiento, que yo sepa mucho de la palabra de dios que yo sepa mucho como se maneja una iglesia por ejemplo, como es un culto, que te conozcas todos los versículos y te sabes de memoria la biblia, no significa que estés creciendo espiritualmente.
+Otro mito es el conocimiento; que yo sepa mucho de la palabra de Dios, que yo sepa mucho cómo se maneja una iglesia, por ejemplo, cómo es un culto, que te conozcas todos los versículos y te sepas de memoria la Biblia, no significa que estés creciendo espiritualmente.
 
-**¿¿ENTONCES QUE ME HACE UNA PERSONA ESPIRITUAL???**
+**¿¿ENTONCES QUÉ ME HACE UNA PERSONA ESPIRITUAL???**
 
 <img src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMndzNmNyNHo0em52cWsyMzVjZ3Y2NDJ1dXFhOW5raTNlZWZzd2FuZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/oSHrQ3y3WU8Te/giphy.gif'>
 
-Vamos a la palabra de dios
+Vamos a la palabra de Dios.
 
 **Efesios 1:4**
 
 ![alt text](image-7.png)
 
-Dios nos escogió antes de la fundación del mundo y yo ni siquiera puedo imaginarme cuando se fundó el mundo, no me puedo imaginar ese momento.
+Dios nos escogió antes de la fundación del mundo y yo ni siquiera puedo imaginarme cuándo se fundó el mundo; no me puedo imaginar ese momento.
 
 ---
 
@@ -116,62 +118,64 @@ Dios nos escogió antes de la fundación del mundo y yo ni siquiera puedo imagin
 
 ![alt text](image-9.png)
 
-> El crecimiento espiritual se relaciona cuando nosotros en nuestro caminar cristiano, somos transformados para ser cada día más parecidos a Jesús. Hasta la medida de la estatura de la plenitud de cristo.
 
-SIMPLEMENTE ESO
+> El crecimiento espiritual se relaciona cuando nosotros en nuestro caminar cristiano, **somos transformados para ser cada día más parecidos a Jesús. Hasta la medida de la estatura de la plenitud de cristo.**
+
+"*SIMPLEMENTE ESO.*"
 
 **¿Qué es vivir una vida espiritual?**
 
-Dejar que el Espíritu Santo cada día me haga más parecido a Jesús. Dejar que el Espíritu Santo que vive en mí, cada día me transforme para parecerme más a Jesús.
+> Dejar que el Espíritu Santo cada día me haga más parecido a Jesús. Dejar que el Espíritu Santo que vive en mí cada día me transforme para parecerme más a Jesús.
 
 ---
 
-#### **¿cómo nos damos cuenta si nos parecemos a Jesús?**
+#### ¿Cómo nos damos cuenta si nos parecemos a Jesús?
 
-Bueno, es todo un progreso y dice que vamos siendo transformados.
+Bueno, es todo un proceso y dice que vamos siendo transformados.
 
-Aveces pensamos que como hijos de Dios va a llegar un momento en el que voy a ir a una gran reunión y va a llegar el rayo santificador y de un momento a otro, empiezo a hacer todo bien.
+A veces pensamos que, como hijos de Dios, va a llegar un momento en el que voy a ir a una gran reunión y va a llegar el rayo santificador y, de un momento a otro, empiezo a hacer todo bien.
 
 <img src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExemRmazVxZzM0MHNjdTlxMzJqaGtkZXRmanN6OGZ4bTZuNHhyaDMyayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8cPIM9UdW25vZ8opnJ/giphy.gif'>
 
-No se trata de un momento único, sino que el crecimiento espiritual es un día a día. Porque si en una reunión, dios me hablo, eso significa que yo mañana me tengo que levantar a buscarlo. Y así cada día.
+No se trata de un momento único, sino que el crecimiento espiritual es un día a día. Porque si en una reunión Dios me habló, eso significa que yo mañana me tengo que levantar a buscarlo. Y así cada día.
 
-No se trata de que dios me toca con la varita mágica, sino que la biblia habla de un proceso.
+No se trata de que Dios me toca con la varita mágica, sino que la Biblia habla de un proceso.
 
-Lo que si es instantáneo, es cuando dios te perdona y te justifica.
+Lo que sí es instantáneo es cuando Dios te perdona y te justifica.
 
 **Ejemplo**
 
-Hay un juicio a un asesino (Este mató a 20 personas un divino). Se para delante del juez. Este lo mira a los ojos y le dice **¿Por lo que hiciste te tendría que condenar de por vida pero sabes que?** Yo te perdono, anda tranqui.
+Hay un juicio a un asesino (este mató a 20 personas, un divino). Se para delante del juez. Este lo mira a los ojos y le dice: **"¿Por lo que hiciste te tendría que condenar de por vida, pero sabes qué? Yo te perdono, anda, tranqui.**
 
+El asesino se va feliz diciendo 'wow, me sacaron la condena'. Esa persona, cuando sale del tribunal, continúa siendo tan asesina como antes de entrar y probablemente va a volver a matar. No fue condenado, pero salió IGUAL.
 
-El asesino se va feliz diciendo 'wow, me sacaron la condena'. Esa persona cuando sale del tribunal continúa siento tan asesino como antes de entrar y probablemente va a volver a matar. No fue condenado pero salió IGUAL.
+> **ESO NO ES EL EVANGELIO.**
 
-ESO NO ES EL EVANGELIO.
+El evangelio tiene esa cuota de perdón; Dios, como juez, ve que Jesús ocupó tu lugar y te dice, **¡sí, a vos!**, que cometiste pecado, que sabes bien en tu corazón que hiciste mal, a vos, te perdono porque Jesús ocupó tu lugar. Pero cuando salís del juzgado, Dios te dice: "Pero espera". Te voy a dar el Espíritu Santo para que ya no seas la misma persona y seas transformado.
 
-El evangelio tiene esa cuota de perdon, dios como juez ve que jesus ocupo tu lugar y te dice, si a vos! que cometiste pecado, que sabes bien en tu corazon que hiciste mal, a vos, te perdono porque Jesus ocupo tu lugar. Pero cuando salis del juzgado, dios te dice, pero esperaa. Te voy a dar el espiritud santo para que ya no seas la misma persona y seas transformado.
-
-Entonces cuando nosotros somos perdonados, y dios nos da el espiritu santo para ser transformados para no seguir siendo los mismos.
+Entonces, cuando nosotros somos perdonados, Dios nos da el Espíritu Santo para ser transformados, para no seguir siendo los mismos.
 
 > Y esa transformacion que nos va cambiando es la vida espiritual. Es por eso que nosotros tenemos que llenarnos para dejar que el espiritu santo nos ministre y transforme.
 
-Dios nos puede llenar en cualquier momento pero nosotros tenemos que 'abrir el recipiente'.
+Dios nos puede llenar en cualquier momento, pero nosotros tenemos que **'abrir el recipiente'**.
 
 > El crecimiento espiritual se relaciona con abrirle al espiritud santo todas las puertas de mi corazon.
 
-No es que el espiritud se quede corto sino que nosotros no le abrimos las puertas.
+No es que el espíritu se quede corto, sino que nosotros no le abrimos las puertas.
+
+![alt text](image-39.png)
 
 **Salmos 16:8**
 
 ![alt text](image-10.png)
 
-**¿¿Y yo por qué voy a querer poner primero a Dios?**
+**¿¿Y yo por qué voy a querer poner primero a Dios??**
 
-Cuando entendemos lo que Dios hizo por nosotros, cuando entendemos que Jesús nos libró de la condenación. Cuando realmente comprendemos de lo que fuimos rescatados, el deseo de nuestro corazón no va a ser otro que el querer honrarle. ¡Y qué querer vivir para él!
+Cuando entendemos lo que Dios hizo por nosotros, cuando entendemos que Jesús nos libró de la condenación. Cuando realmente comprendemos de lo que fuimos rescatados, el deseo de nuestro corazón no va a ser otro que el querer honrarle. **¡Y qué querer vivir para él!**
 
-El evangelio no se trata de hacer las cosas bien, para que me vaya bien a mí (te puede ir bien, pero es una consecuencia). Si no que se trata de entender de que soy perdonado, entonces vivo para honrar a Dios.
+El evangelio no se trata de hacer las cosas bien, para que me vaya bien a mí (te puede ir bien, pero es una consecuencia). Si no, que se trata de entender que soy perdonado, entonces vivo para honrar a Dios.
 
-Si nunca en la vida sentiste un puñal de que soy un pecador, de que yo necesito que Dios me perdone, no entendiste el evangelio.
+> Si nunca en la vida sentiste un puñal de que soy un pecador, de que yo necesito que Dios me perdone, no entendiste el evangelio.
 
 ---
 
@@ -193,19 +197,19 @@ Tu cuerpo no quiere que ores, tu mente te dice que hay cosas más importantes. S
 
 ![alt text](image-13.png)
 
-Hoy no tenemos amenaza de muerte sobre ninguno de nosotros y a pesar de eso negociamos la oración.
+Hoy no tenemos amenaza de muerte sobre ninguno de nosotros y, a pesar de eso, negociamos la oración.
 
 **Hebreos 11:6**
 
 ![alt text](image-14.png)
 
-Yo tengo que ser consciente que cuando yo oro, y cuando digo 'Padre en el nombre de Jesús' DE VERDAD ESTOY HABLANDO CON DIOS.
+Yo tengo que ser consciente de que cuando yo oro, y cuando digo 'Padre, en el nombre de Jesús', **DE VERDAD ESTOY HABLANDO CON DIOS.**
 
 ---
 
 ## 2) Deja que Dios te hable cada día
 
-No podemos negociar la palabra de dios, es la palabra la que nos da las herramientas para vivir una vida cristiana. Es la que nos aumenta la fe. Toda la biblia es inspiradad.
+No podemos negociar la palabra de Dios; **es la palabra la que nos da las herramientas para vivir una vida cristiana**. Es la que nos aumenta la fe. Toda la Biblia es inspirada.
 
 **2 Timoteo 3:16-17**
 
@@ -215,38 +219,37 @@ No podemos negociar la palabra de dios, es la palabra la que nos da las herramie
 
 ![alt text](image-16.png)
 
-La palabra del señor nos enseña, a vivir por la eternidad, como no vamos a amar su palabra
-
+La palabra del Señor nos enseña a vivir por la eternidad; ¿cómo no vamos a amar su palabra?
 
 ---
 
-## 3) Habla de Dios cada dia
+## 3) Habla de Dios cada día.
 
-¿Que sale de tu boca? Estás hablando de dios? ¿A tus amigos? A las personas que te rodean?
+**¿Qué sale de tu boca? ¿Estás hablando de Dios? ¿A tus amigos? ¿A las personas que te rodean?**
 
-Si nadie sabe en tu entorno que vos creés en dios, que amas a Jesús, es hora de que lo sepan.
+Si nadie sabe en tu entorno que vos creés en Dios, que amas a Jesús, es hora de que lo sepan.
 
 **Hechos 4:20-21**
 
 ![alt text](image-17.png)
 
-
 ---
 
-## 4) Recuerda que tus ojos son la lámpara del cuerpo
+## 4) Recuerda que tus ojos son la lámpara del cuerpo.
 
-No contamines tus ojos
+No contamines tus ojos 👀.
 
 ![alt text](image-18.png)
 
-Tenemos que ser cuidadosos con lo que vemos y oímos si queremos tener una vida espiritual
+Tenemos que ser cuidadosos con lo que vemos y oímos si queremos tener una vida espiritual.
 
 ---
 
 ## 5) Alimenta tu mente con pensamientos saludables, desecha los pensamientos que te contaminan.
 
-Generalmente lo que entra por los ojos y oídos es lo que alimenta nuestros pensamientos.
-A nuestra mente la tenemos que alimentar con pensamientos saludables. ¿Y qué hago???
+Generalmente, lo que entra por los ojos y oídos es lo que alimenta nuestros pensamientos.
+
+A nuestra mente la tenemos que alimentar con pensamientos saludables. ¿¿¿Y qué hago???
 
 Por eso es importante la palabra de Dios.
 
@@ -262,54 +265,58 @@ Tu mente tiene que ser un filtro y más hoy en día. Cualquier pensamiento que s
 
 > Recuerda que el carácter del cristiano tiene frutos espirituales.
 
-¿Como sé si estoy lleno del espíritu santo? Porque se ven los frutos del espíritu en mi vida.
+**¿Cómo sé si estoy lleno del Espíritu Santo? Porque se ven los frutos del espíritu en mi vida.**
 
-Si yo no le abro todas las puertas al espíritu, nunca me voy a poder llenar, no porque el espíritu se quede corto sino porque yo no le abro las puertas.
+Si yo no le abro todas las puertas al espíritu, nunca me voy a poder llenar, no porque el espíritu se quede corto, sino porque yo no le abro las puertas.
 
 ![alt text](image-20.png)
 
-¿Como sé si estoy lleno del espíritu santo? Porque se ven los frutos del espíritu en mi vida.
+¿Cómo sé si estoy lleno del Espíritu Santo? Porque se ven los frutos del espíritu en mi vida.
 
 ![alt text](image-21.png)
 
 ![alt text](image-22.png)
 
-- Gozo ->  Sentimiento de complacencia en la posesión, recuerdo o esperanza de bienes o cosas apetecibles.
-- Paz ->   Estado de quien no está perturbado por ningún conflicto o inquietud. Disfrutar de una paz profunda.
-- Benignidad -> ![alt text](image-23.png) Antónimos u opuestos de «benignidad»
-malignidad, maldad.
-- Fe -> Encontre este blog que habla bastante sobre este tema [Link](https://www.unrudodespertar.tv/emuna-la-fe-que-nos-sustenta/) Tambien encontre este [¿La «fe» es una idea bíblica?](https://weekly.israelbiblecenter.com/es/la-fe-es-una-idea-biblica)
-- Mansedumbre -> Este blog lo explica bastante bien [Link](https://www.bibliaon.com/es/significado_biblico_mansedumbre/)
+- Gozo -> Sentimiento de complacencia en la posesión, recuerdo o esperanza de bienes o cosas apetecibles.
 
-Si estas cosas abundan en mí, estoy lleno del espíritu santo. Si estas cosas no abundan en mí, tengo que entregarle más al señor. Tengo que dejar que él llene más áreas de mi vida.
+- Paz -> Estado de quien no está perturbado por ningún conflicto o inquietud. Disfrutar de una paz profunda.
 
-Podés tener el mejor auto del mundo, pero si no tenés combustible no sirve de nada.
+- Benignidad -> ![alt text](image-23.png) Antónimos u opuestos de «benignidad» (Malignidad, maldad.)
 
-¿Por qué decimos esto? Porque el espíritu santo, es el combustible de nuestra vida espiritual.
+- Fe -> Encontré este blog que habla bastante sobre este tema: [Link](https://www.unrudodespertar.tv/emuna-la-fe-que-nos-sustenta/). También encontré este: [¿La «fe» es una idea bíblica?](https://weekly.israelbiblecenter.com/es/la-fe-es-una-idea-biblica)
+
+- Mansedumbre -> Este blog lo explica bastante bien. [Link](https://www.bibliaon.com/es/significado_biblico_mansedumbre/)
+
+
+Si estas cosas abundan en mí, estoy lleno del Espíritu Santo. Si estas cosas no abundan en mí, tengo que entregarle más al Señor. Tengo que dejar que él llene más áreas de mi vida.
+
+Podés tener el mejor auto del mundo, pero si no tenés combustible, no sirve de nada.
+
+**¿Por qué decimos esto?** Porque el Espíritu Santo es el combustible de nuestra vida espiritual.
 
 ![alt text](image-24.png)
 
-¿Como puedo cumplir esto?? Llenate del espíritu santo, entregale tu vida al espíritu.
+**¿¿Cómo puedo cumplir esto??** Llénate del Espíritu Santo, entrégale tu vida al Espíritu.
 
 ---
 
 ## 7) Sirve al Señor. Recuerda que el servicio del cristiano es según los dones espirituales.
 
-Los frutos del espíritu revelan nuestro carácter, nos sirven para parecernos más a Jesús, los dones del espíritu son los que determinan nuestro servicio. Dios a cada uno nos permite tener los frutos y los frutos son para todos por igual. 
+Los frutos del espíritu revelan nuestro carácter, nos sirven para parecernos más a Jesús; los dones del espíritu son los que determinan nuestro servicio. Dios a cada uno nos permite tener los frutos y los frutos son para todos por igual. 
 
-Los dones los da de manera especial a cada uno, como él quiere. Esos dones son para que los pongas al servicio del señor. Porque son herramientas que dios te dio para bendecir a otros
+Los dones los da de manera especial a cada uno, como él quiere. Esos dones son para que los pongas al servicio del Señor. Porque son herramientas que Dios te dio para bendecir a otros.
 
 **1 Corintios 12**
 
 ![alt text](image-25.png)
 
-Muchas veces nosotros tenemos una habilidad, tenemos un don, pero no dejamos que el señor trabaje en los frutos y el ejercer el don sin el fruto del espíritu, es decir, ejercer mi habilidad sin el carácter lamentablemente, puede ser un desastre. Porque yo necesito estar formado en el carácter, en los frutos del espíritu.
+Muchas veces nosotros tenemos una habilidad, tenemos un don, pero no dejamos que el Señor trabaje en los frutos, y el ejercer el don sin el fruto del espíritu, es decir, ejercer mi habilidad sin el carácter, lamentablemente, puede ser un desastre. Porque yo necesito estar formado en el carácter, en los frutos del espíritu.
 
-Yo necesito estar formado en el carácter del espíritu santo para poder ejercer mi don.
+Yo necesito estar formado en el carácter del Espíritu Santo para poder ejercer mi don.
 
 ---
 
-## 8) Se humilde. Todo es por gracia y todo es a través de sus fuerzas.
+## 8) Sé humilde. Todo es por gracia y todo es a través de sus fuerzas.
 
 ![alt text](image-26.png)
 
@@ -321,9 +328,9 @@ Yo necesito estar formado en el carácter del espíritu santo para poder ejercer
 
 Si nosotros nos menospreciamos, también vamos a menospreciar a los demás. Si yo me considero una basura, a mi prójimo lo voy a considerar una basura.
 
-No nos tenemos que menospreciar porque dios nos escogió antes de la fundación del mundo. ¿Quien soy yo para menospreciarme? Si el creador del universo me escogió a mí antes de crear el mundo.
+No nos tenemos que menospreciar porque Dios nos escogió antes de la fundación del mundo. **¿Quién soy yo para menospreciarme?** Si el creador del universo me escogió a mí antes de crear el mundo.
 
-No te la tenés que creer pero tampoco te tenés que menospreciar.
+No te la tenés que creer, pero tampoco te tenés que menospreciar.
 
 ![alt text](image-28.png)
 
@@ -333,27 +340,27 @@ No te la tenés que creer pero tampoco te tenés que menospreciar.
 
 ![alt text](image-29.png)
 
-Puede ser muy difícil que en absolutamente cada decisión en el día, yo tengo que honrar al señor.
+Puede ser muy difícil que en absolutamente cada decisión en el día, yo tenga que honrar al Señor.
 
 ![alt text](image-30.png)
 
 ---
 
-## 11) Recuerda que el carácter del cristiano se perfecciona mediante una vida de relación. Es allí donde evalúas como estás.
+## 11) Recuerda que el carácter del cristiano se perfecciona mediante una vida de relación. Es allí donde evalúas cómo estás.
 
-No somos llamados a vivir en soledad, estamos llamados a vivir en un cuerpo
+No somos llamados a vivir en soledad, estamos llamados a vivir en un cuerpo.
 
 ![alt text](image-31.png)
 
-¿Las personas con las que me junto me están contagiando a buscar al señor?
+**¿Las personas con las que me junto me están contagiando a buscar al Señor?**
 
-Porque si las personas con las cuales paso la mayor parte del tiempo no me influencian en buscar al señor. Tengo que empezar a tomar decisiones. De hablarles la palabra del señor, pero nosotros no podemos ser uña y carne con alguien que no quiere saber nada de dios. Yo no puedo perder el tiempo en el cual lo yo tendría que estar invirtiendo en mi vida espiritual.
+Porque si las personas con las cuales paso la mayor parte del tiempo no me influencian en buscar al Señor. Tengo que empezar a tomar decisiones. De hablarles la palabra del Señor, pero nosotros no podemos ser uña y carne con alguien que no quiere saber nada de Dios. Yo no puedo perder el tiempo en el cual yo tendría que estar invirtiendo en mi vida espiritual.
 
-Con esto no estamos diciendo que odies a las personas, que no les hables o que seas un aislado, sino que tenemos que ser sabios en con quien pasamos la mayor parte del tiempo.
+Con esto no estamos diciendo que odies a las personas, que no les hables o que seas un aislado, sino que tenemos que ser sabios con quién pasamos la mayor parte del tiempo.
 
 ![alt text](image-32.png)
 
-Yo tengo que ser una persona que cuando se acerca a mí, de alguna manera se pueda acercar a Jesús. Que yo pueda ser alguien que empuje a otros a buscar a Jesús. Y que pueda tener el discernimiento que seguramente nos lo va a dar el espíritu santo, para entender que las personas a las cuales les abro todo mi corazón y depósito toda mi confianza, no son personas que buscan ornar a dios, lamentablemente no voy a estar yendo por buen camino.
+Yo tengo que ser una persona que, cuando se acerca a mí, de alguna manera se pueda acercar a Jesús. Que yo pueda ser alguien que empuje a otros a buscar a Jesús. Y que pueda tener el discernimiento, que seguramente nos lo va a dar el Espíritu Santo, para entender que las personas a las cuales les abro todo mi corazón y deposito toda mi confianza no son personas que buscan honrar a Dios; lamentablemente, no voy a estar yendo por buen camino.
 
 **Hebreos 10:25**
 
@@ -363,43 +370,46 @@ Yo tengo que ser una persona que cuando se acerca a mí, de alguna manera se pue
 
 ![alt text](image-34.png)
 
-Si vamos sacando la plata de lugar en lugar, buscando la ultima moda, la ultima emoción, nuestras raices se van a secar. Pero si nosotros nos afirmamos en el lugar donde dios nos puso, es ahi cuando vamos a crecer y vamos a dar frutos.
+Si vamos sacando la plata de lugar en lugar, buscando la última moda, la última emoción, nuestras raíces se van a secar. Pero si nosotros nos afirmamos en el lugar donde Dios nos puso, es ahí cuando vamos a crecer y vamos a dar frutos.
 
-Si vos estas en un lugar, empapate de la visión que dios dio a los siervos de ese lugar.
+Si vos estás en un lugar, empápate de la visión que Dios dio a los siervos de ese lugar.
 
-Si queres servir al señor, preparate, anda a la escuela biblica, involucrate en algún area de servicio, en la medida que vos vayas terminando y cumpliendo todos los requisitos.
+Si querés servir al Señor, prepárate, anda a la escuela bíblica, involúcrate en algún área de servicio, en la medida en que vos vayas terminando y cumpliendo todos los requisitos.
 
-Involucrate en tus actividades.
+Involúcrate en tus actividades.
 
 ---
 
-¿LA VIDA ESPIRITUAL ES VIVIR A LA MANERA DE JESÚS, Como vivió? ¿Cómo hablo? ¿Cómo trato a los demás? Como respondía Jesús ante la injusticia, dice la biblia que Jesús estaba lleno del espíritu.
+**LA VIDA ESPIRITUAL ES VIVIR A LA MANERA DE JESÚS, ¿CÓMO VIVIÓ? ¿Cómo hablo? ¿Cómo trato a los demás? ¿Cómo respondía Jesús ante la injusticia? Dice la Biblia que Jesús estaba lleno del espíritu.**
 
 Vivir a la manera de Jesús es vivir de manera espiritual, pero para eso tenemos que buscarlo y llenarlo y alimentarnos de su palabra. POR ESO SIEMPRE LO ENFATIZAMOS.
 
-
-No hay ciencias ni procedimientos mágicos, es la palabra la que nos transforma. Amar la palabra de dios es la que nos va a fortalecer
+No hay ciencias ni procedimientos mágicos; es la palabra la que nos transforma. Amar la palabra de Dios es la que nos va a fortalecer.
 
 **Lucas 4**
 
 ![alt text](image-35.png)
 
-El objetivo es que nosotros seamos formados a la imagen de Jesús, de que cuando nosotros nos movamos en cualquier ámbito de nuestra vida, podamos decidir conforme a la voluntad de dios. Podamos formar familias en la santidad de dios y que podamos estar en nuestras profesiones honrando a dios.
+El objetivo es que nosotros seamos formados a la imagen de Jesús, que cuando nosotros nos movamos en cualquier ámbito de nuestra vida, podamos decidir conforme a la voluntad de Dios. Podamos formar familias en la santidad de Dios y que podamos estar en nuestras profesiones honrando a Dios.
 
 Cuando respaldamos con nuestra vida lo que creemos.
 
-La iglesia es el centro del entrenamiento, pero la batalla esta en el día a día, la batalla esta en cada desafío que nos toque enfrentar. Y para eso nos estamos preparando
+La iglesia es el centro del entrenamiento, pero la batalla está en el día a día, la batalla está en cada desafío que nos toque enfrentar. Y para eso nos estamos preparando.
 
 ![alt text](image-36.png)
 
 ---
 
-## ¿Cual es el proposito de dios para mi?
+## ¿Cuál es el propósito de Dios para mí?
 
 ![alt text](image-37.png)
 
-¿Queres un propósito en la vida? Ese es el propósito. ¿Queres un objetivo en la vida? Ese es el objetivo. Ser formados a la imagen de Jesús y todo lo que hagas y suceda es una circunstancia, pero el propósito central es que en cada situación de tu vida, vos puedas vivir como Jesús vivió.
+**¿Queres un propósito en la vida?** Ese es el propósito.
 
-Y eso es entender una vida espiritual, porque es así que vos te vas a manejar como cristo en tu casa, en tus estudios, en tu trabajo, en todo lugar y contexto donde te muevas. Por eso dios tiene un gran propósito que es formarte a la imagen de Jesús.
+**¿Queres un objetivo en la vida?** Ese es el objetivo.
 
-Hay cosas que suceden en nuestras vidas que no entendemos o no comprendemos. O situaciones en las cuales tenemos que esperar y no lo podemos entender, es que dios está formando nuestro carácter, para que seamos hechos conforme a la imagen de Jesús.
+Ser formados a la imagen de Jesús y todo lo que hagas y suceda es una circunstancia, pero el propósito central es que en cada situación de tu vida, vos puedas vivir como Jesús vivió.
+
+Y eso es entender una vida espiritual, porque es así que vos te vas a manejar como Cristo en tu casa, en tus estudios, en tu trabajo, en todo lugar y contexto donde te muevas. Por eso Dios tiene un gran propósito, que es formarte a la imagen de Jesús.
+
+Hay cosas que suceden en nuestras vidas que no entendemos o no comprendemos. O situaciones en las cuales tenemos que esperar y no lo podemos entender; es que Dios está formando nuestro carácter, para que seamos hechos conforme a la imagen de Jesús.
