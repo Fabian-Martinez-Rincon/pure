@@ -9,7 +9,7 @@ export const HeaderMenuSchema = () =>
       })
     )
     .default([
-      { title: 'Blogs Cristianos ✟ ', link: '/blogs_cristianos' },
+      { title: 'Blogs ICLP ', link: '/blogs_cristianos' },
       { title: '📒 Blogs Facultad ', link: '/blog' },
       { title: 'Proyectos 💻', link: '/projects' },
       { title: 'Sobre Mi 👤', link: '/about' }

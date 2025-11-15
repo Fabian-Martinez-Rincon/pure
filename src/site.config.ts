@@ -48,7 +48,7 @@ export const theme: ThemeUserConfig = {
   header: {
     menu: [
       { title: '📒 Blogs Facultad ', link: '/blog' },
-      { title: '✟ Blogs Cristianos ', link: '/blogs_cristianos' },
+      { title: 'Blogs ICLP ', link: '/blogs_cristianos' },
       { title: '💻 Proyectos ', link: '/projects' },
       { title: '👤 Sobre Mi', link: '/about' }
     ]
