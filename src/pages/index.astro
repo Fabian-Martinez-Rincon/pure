@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets'
 
 import { Quote } from 'astro-pure/advanced'
-import { PostPreview } from 'astro-pure/components/pages'
 import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
 import { getCristianoCollection } from 'pure/utils/server'
 
@@ -11,7 +10,7 @@ import { Button, Card, Icon, Label } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
-import avatar from '@/assets/yo.jpg'
+import avatar from '@/assets/yo.png'
 import config from '@/site-config'
 
 const languages = ['Python', 'Html', 'JavaScript', 'CSS', 'Shell', 'C++', 'Bash', 'SQL']
@@ -26,45 +25,28 @@ const cristianoPosts = await getCristianoCollection()
 const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
 ---
 
-<PageLayout meta={{ title: 'Home' }} highlightColor='#659EB966'>
+<PageLayout meta={{ title: 'Home' }} highlightColor='#42793C'>
   <main class='flex w-full flex-col items-center'>
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
-      
-
       <div class='flex flex-col items-center gap-y-4'>
         <h1 class='text-3xl font-bold'>{config.author}</h1>
-        <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-          <Label title='Argentina'>
-            <Icon name='location' class='size-5' slot='icon' />
-          </Label>
-          <Label
-            title='Github'
-            as='a'
-            href='https://github.com/Fabian-Martinez-Rincon'
-            target='_blank'
-          >
-            <Icon name='github' class='size-5' slot='icon' />
-          </Label>
-          <Label
-            title='fabianmartinezrincon.123@gmail.com'
-            as='a'
-            href='mailto:fabianmartinezrincon.123@gmail.com'
-            target='_blank'
-          >
-            <Icon name='email' class='size-5' slot='icon' />
-          </Label>
-        </div>
+        <h3>Data Engineer</h3>
       </div>
-
       <Image
-      src={avatar}
-      alt='profile'
-      class='h-56 w-auto border border-black '
-      loading='eager'
+        src={avatar}
+        alt='profile'
+        class='h-56 w-auto border-border border-4 object-cover'
+        loading='eager'
       />
+    </section>
 
-      
-      {/* Get template */}
+    <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
+      <Section title='Sobre mi'>
+        <p class='text-muted-foreground'>
+          Trabajo como Data Engineer, especializado en Web Scraping usando Python, MongoDB, Insomnia y demás Tecnologías. También soy Técnico, Analista Programador Universitario y estoy terminando la Licenciatura en Sistemas en UNLP Informática
+        </p>    
+      </Section>
+
       <div class="flex gap-x-4">
         <!-- Botón 1 -->
         <a
@@ -73,9 +55,7 @@ const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
           class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
         >
           <span class="relative flex items-center justify-center">
-            <span
-              class="absolute size-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75"
-            ></span>
+            <span class="absolute size-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75"></span>
             <span class="size-2 rounded-full bg-green-400"></span>
           </span>
           <p class="font-medium text-muted-foreground">LinkedIn</p>
@@ -88,12 +68,34 @@ const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
           class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
         >
           <span class="relative flex items-center justify-center">
-            <span
-              class="absolute size-2 animate-ping rounded-full border border-blue-400 bg-blue-400 opacity-75"
-            ></span>
+            <span class="absolute size-2 animate-ping rounded-full border border-blue-400 bg-blue-400 opacity-75"></span>
             <span class="size-2 rounded-full bg-blue-400"></span>
           </span>
           <p class="font-medium text-muted-foreground">Curriculum</p>
+        </a>
+
+        <a
+          href="https://github.com/Fabian-Martinez-Rincon"
+          target="_blank"
+          class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
+        >
+          <span class="relative flex items-center justify-center">
+            <span class="absolute size-2 animate-ping rounded-full border border-gray-400 bg-gray-400 opacity-75"></span>
+            <span class="size-2 rounded-full bg-gray-400"></span>
+          </span>
+          <p class="font-medium text-muted-foreground">GitHub</p>
+        </a>
+
+        <a
+          href="fabianmartinezrincon.123@gmail.com"
+          target="_blank"
+          class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
+        >
+          <span class="relative flex items-center justify-center">
+            <span class="absolute size-2 animate-ping rounded-full border border-blue-400 bg-blue-400 opacity-75"></span>
+            <span class="size-2 rounded-full bg-blue-400"></span>
+          </span>
+          <p class="font-medium text-muted-foreground">Mail</p>
         </a>
 
         <!-- Botón 3 -->
@@ -103,82 +105,57 @@ const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
           class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
         >
           <span class="relative flex items-center justify-center">
-            <span
-              class="absolute size-2 animate-ping rounded-full border border-yellow-400 bg-yellow-400 opacity-75"
-            ></span>
+            <span class="absolute size-2 animate-ping rounded-full border border-yellow-400 bg-yellow-400 opacity-75"></span>
             <span class="size-2 rounded-full bg-yellow-400"></span>
           </span>
           <p class="font-medium text-muted-foreground">HomeLab</p>
         </a>
       </div>
-      
-      
-    </section>
 
-    <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
-      <Section title='Sobre mi'>
-        <p class='text-muted-foreground'>💻 💵 Data Engineer / 📚 👨‍🎓Analista Programador Universitario / 📔👨‍🔧 Tecnico En Electronica</p>
-        <p class='text-muted-foreground'>
-          Trabajo como Data Engineer en BB-Media, especializado en Web Scraping usando Python, MongoDB, Insomnia y demás Tecnologías. También soy Técnico, Analista Programador Universitario y estoy terminando la Licenciatura en Sistemas en UNLP Informática
-        </p>
-        <Button title='Leer Mas sobre mi' class='w-fit self-end' href='/about' style='ahead' />        
-      </Section>
-      {
-       <Section title='🖥️Experiencia'>
-        
-      <Card
-        heading='Data Engineer'
-        subheading='BB-Media'
-        date='17/09/2024 - Actualidad'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      >
-        <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Realicé varios scrapings utilizando Playwright, Beautifulsoup y/o APIs según corresponda. Los datos se almacenan y manipulan usando NoSQL en MongoDB.
-          </li>
-        </ul>
-      </Card>
-      <Card
-        heading='Testing Engineer'
-        subheading='Gaming Labs Sudamerica'
-        date='01/07/2023 - 17/09/2024'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      >
-        <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Software en Python usando Pandas, PyGetWindow, OpenPyXL, PyAutoGUI y Tkinter para automatizar la entrada de datos en máquinas de juego, reduciendo el tiempo de pruebas de 60hs a solo 5hs con un margen de error del 0%.
-          </li>
-        </ul>
-      </Card>
-      <Button title='Mirar Experiencia Completa' class='w-fit self-end' href='/about' style='ahead' />
-      
-    </Section>
-      }
-      <Section title='🎒 Educación'>
+      <Section title='Experiencia'>
         <Card
-          as='a'
-          heading='Analista Programador Universitario | Promedio 7'
-          subheading='Competente en Java y patrones de diseño, metodologías ágiles (Scrum), PostgreSQL, SQL, Linux y bases de datos relacionales. Hábil en Bash Scripting, Python, Flask y tecnologías de front-end incluyendo HTML, CSS, JavaScript, React, Tailwind y Vue.js.'
+          heading='Data Engineer'
+          subheading='BB-Media'
+          date='17/09/2024 - Actualidad'
+          imagePath='/src/assets/about-astro.png'
+          altText=''
+          imageClass='h-12 w-auto'
+        ><p class='list-disc'>Realicé varios scrapings utilizando Playwright, Beautifulsoup y/o APIs según corresponda. Los datos se almacenan y manipulan usando NoSQL en MongoDB.</p>
+        </Card>
+
+        <Card
+          heading='Testing Engineer'
+          subheading='Gaming Labs Sudamerica'
+          date='01/07/2023 - 17/09/2024'
+          imagePath='/src/assets/about-astro.png'
+          altText=''
+          imageClass='h-12 w-auto md:-start-16'
+        ><p class='list-disc'>Software en Python usando Pandas, PyGetWindow, OpenPyXL, PyAutoGUI y Tkinter para automatizar la entrada de datos en máquinas de juego, reduciendo el tiempo de pruebas de 60hs a solo 5hs con un margen de error del 0%.</p>
+        </Card>
+        <Button title='Mirar Experiencia Completa' class='w-fit self-end' href='/about' style='ahead' />
+      
+      </Section>
+   
+      <Section title='Educación'>
+        <Card
+          heading='Analista Programador Universitario'
+          subheading='Promedio 7'
           date='Marzo 2021 - Marzo 2025'
-        >
+          imagePath='/src/assets/about-astro.png'
+          altText=''
+          imageClass='h-12 w-auto'
+        ><p class='list-disc'>Competente en Java y patrones de diseño, metodologías ágiles (Scrum), PostgreSQL, SQL, Linux y bases de datos relacionales. Hábil en Bash Scripting, Python, Flask y tecnologías de front-end incluyendo HTML, CSS, JavaScript, React, Tailwind y Vue.js.</p>
         </Card>
-        <Card
-          as='a'
-          heading='Tecnico en Electronica | Promedio 8'
-          subheading='Conocimientos básicos de C++, desarrollé convertidores de temperatura en Visual Basic y proyectos prácticos con Arduino.'
-          date='Marzo 2014 - Marzo 2021'
-        >
-        </Card>
-      </Section>
 
-      <Section title='Skills'>
-        <SkillLayout title='Languages' skills={languages} />
-        <SkillLayout title='Frontend' skills={frontend} />
-        <SkillLayout title='Backend' skills={backend} />
+        <Card
+          heading='Tecnico en Electronica'
+          subheading='Promedio 8'
+          date='Marzo 2014 - Marzo 2021'
+          imagePath='/src/assets/about-astro.png'
+          altText=''
+          imageClass='h-12 w-auto'
+        ><p class='list-disc'>Conocimientos básicos de C++, desarrollé convertidores de temperatura en Visual Basic y proyectos prácticos con Arduino.</p>
+        </Card>
       </Section>
     </div>
     <Quote class='mt-12' />

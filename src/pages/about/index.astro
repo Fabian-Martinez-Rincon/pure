@@ -9,27 +9,12 @@ const headings = [
   { depth: 2, slug: 'resume', text: 'Resume' },
   { depth: 2, slug: 'imagenes', text: 'Algunas Imagenes' },
   { depth: 2, slug: 'certificados', text: 'Certificados' },
-  { depth: 2, slug: 'tools', text: 'Tools' },
+  { depth: 2, slug: 'herramientas', text: 'Herramientas' },
   { depth: 2, slug: 'social', text: 'Redes' }
 ]
 ---
 
-<PageLayout title='About' {headings} info='/about'>
-  <p>💻 💵 Data Engineer / 📚 👨‍🎓Analista Programador Universitario / 📔👨‍🔧 Tecnico En Electronica</p>
-  <p>
-    Trabajo como Data Engineer en BB-Media, especializado en Web Scraping usando Python, MongoDB, Insomnia y demás Tecnologías. También soy Técnico, Analista Programador Universitario y estoy terminando la Licenciatura en Sistemas en UNLP Informática
-  </p>
-  
-  <p>
-    <Image
-      src='https://ghchart.rshah.org/659eb9/fabian-martinez-rincon'
-      alt='github activities'
-      inferSize
-      loading='lazy'
-    />
-  </p>
-
-  {/* general-talk */}
+<PageLayout title='Sobre Mi' {headings} info='/about'>
   <h2 id='resume'>Testing Engineer (Gaming Labs Sudamerica) 01/07/2023 - 17/09/2024</h2>
   <p>
     Desarrollé un software en Python usando <a>Pandas</a>, <a>PyGetWindow</a>, <a>OpenPyXL</a>, <a>PyAutoGUI</a> y <a>Tkinter</a> para automatizar la entrada de datos en máquinas de juego, mejorando notablemente la eficiencia, reduciendo el tiempo de pruebas de 60hs a solo 5hs con un margen de error del 0%.
@@ -219,7 +204,7 @@ const headings = [
   
 
   {/* tools */}
-  <h2 id='tools'>Tools</h2>
+  <h2 id='herramientas'>Herramientas</h2>
   <p>Mi stack de herramientas con las que me siento comodo trabajando:</p>
   <ToolSection
     class='mb-5'
