@@ -1,0 +1,49 @@
+---
+import { cn } from '../../utils'
+
+const {
+  as: Tag = 'div',
+  class: className,
+  href,
+  heading,
+  subheading,
+  date,
+} = Astro.props
+---
+
+<Tag
+  class={cn(
+    'not-prose relative rounded-2xl py-3',
+    href && 'transition-all',
+    className
+  )}
+  href={href}
+>
+  <div class="flex flex-col gap-y-2">
+    <!-- Línea de título unificada -->
+    <div class="flex flex-wrap items-center gap-x-3 text-base font-medium">
+
+      <!-- Heading (amarillo Python) -->
+      <span class="text-[#FFDD57]">
+        {heading}
+      </span>
+
+      <!-- Subheading (azul Python) -->
+      {subheading && (
+        <span class="text-[#347AB4] opacity-90">
+          {subheading}
+        </span>
+      )}
+
+      <!-- Date (violeta) -->
+      {date && (
+        <span class="text-[#6A5ACD] opacity-90">
+          {date}
+        </span>
+      )}
+    </div>
+
+    <slot />
+  </div>
+</Tag>
+

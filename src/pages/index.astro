@@ -6,10 +6,10 @@ import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
 import { getCristianoCollection } from 'pure/utils/server'
 
 
-import { Button, Card, Icon, Label } from 'astro-pure/user'
+import { Button} from 'astro-pure/user'
+import { Card } from '../../packages/pure/components/pages'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import Section from '@/components/home/Section.astro'
-import SkillLayout from '@/components/home/SkillLayout.astro'
 import avatar from '@/assets/yo.png'
 import config from '@/site-config'
 
@@ -32,20 +32,29 @@ const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
         <h1 class='text-3xl font-bold'>{config.author}</h1>
         <h3>Data Engineer</h3>
       </div>
-      <Image
-        src={avatar}
-        alt='profile'
-        class='h-56 w-auto border-border border-4 object-cover'
-        loading='eager'
-      />
     </section>
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
       <Section title='Sobre mi'>
-        <p class='text-muted-foreground'>
-          Trabajo como Data Engineer, especializado en Web Scraping usando Python, MongoDB, Insomnia y demás Tecnologías. También soy Técnico, Analista Programador Universitario y estoy terminando la Licenciatura en Sistemas en UNLP Informática
-        </p>    
-      </Section>
+  <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+
+    <!-- Texto -->
+    <p class="flex-1">
+      Trabajo como Data Engineer, especializado en Web Scraping usando Python, MongoDB,
+      Insomnia y demás Tecnologías. También soy Técnico, Analista Programador Universitario
+      y estoy terminando la Licenciatura en Sistemas en UNLP Informática.
+    </p>
+
+    <!-- Imagen a la derecha -->
+    <img
+      src={avatar.src}
+      alt="Foto de Fabián Martínez Rincón"
+      class="w-40 h-40 rounded-xl object-cover border-4 border-border shadow-md"
+      loading="lazy"
+    />
+  </div>
+</Section>
+
 
       <div class="flex gap-x-4">
         <!-- Botón 1 -->
