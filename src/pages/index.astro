@@ -27,12 +27,16 @@ const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
 
 <PageLayout meta={{ title: 'Home' }} highlightColor='#42793C'>
   <main class='flex w-full flex-col items-center'>
-    <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
-      <div class='flex flex-col items-center gap-y-4'>
-        <h1 class='text-3xl font-bold'>{config.author}</h1>
-        <h3>Data Engineer</h3>
+    <section class="animate mb-10 flex flex-col items-center gap-y-7" id="content-header">
+      <div class="flex flex-col items-center gap-y-4">
+        <h1
+        class="text-3xl font-bold relative after:content-[''] after:block after:h-[3px]  after:bg-[#EBD51C] after:mx-auto after:mt-2"
+      >
+        {config.author}
+      </h1>
       </div>
     </section>
+
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
       <Section title='Sobre mi'>
@@ -40,8 +44,8 @@ const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
 
     <!-- Texto -->
     <p class="flex-1">
-      Soy Data Engineer con más de 4 años de experiencia en Python. Me especializo en Web Scraping, automatización de tareas y bases de datos NoSQL. Tengo una gran obsesión por mejorar procesos: siempre busco formas de reducir tiempos, evitar errores y hacer que todo funcione de manera más eficiente.
-      <br>
+      Mas de 4 años de experiencia en Python. Me especializo en Web Scraping, automatización de tareas y bases de datos NoSQL. Tengo una gran obsesión por mejorar procesos: siempre busco formas de reducir tiempos, evitar errores y hacer que todo funcione de manera más eficiente.
+      <br><br>
       Me gusta involucrarme en la comunidad tech, participar en eventos y dar charlas técnicas cada vez que puedo.
       Soy Analista Programador Universitario y actualmente estoy finalizando la Licenciatura en Sistemas.
     </p>
@@ -97,15 +101,15 @@ const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
         </a>
 
         <a
-          href="fabianmartinezrincon.123@gmail.com"
-          target="_blank"
+          href="#"
+          onclick="navigator.clipboard.writeText('fabianmartinezrincon.123@gmail.com'); alert('Email copiado!');"
           class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
         >
           <span class="relative flex items-center justify-center">
-            <span class="absolute size-2 animate-ping rounded-full border border-blue-400 bg-blue-400 opacity-75"></span>
-            <span class="size-2 rounded-full bg-blue-400"></span>
+            <span class="absolute size-2 animate-ping rounded-full border border-orange-400 bg-orange-400 opacity-75"></span>
+            <span class="size-2 rounded-full bg-orange-400"></span>
           </span>
-          <p class="font-medium text-muted-foreground">Mail</p>
+          <p class="font-medium text-muted-foreground">Email</p>
         </a>
 
         <!-- Botón 3 -->
