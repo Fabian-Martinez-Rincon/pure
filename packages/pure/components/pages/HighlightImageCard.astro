@@ -4,14 +4,14 @@ import type { ImageMetadata } from "astro";
 import HighlightText from "./HighlightText.astro";
 
 interface Props {
-  imagePath: string;          // <-- ahora se pasa igual que ProjectCardHorizontal
+  imagePath: string;
   highlights: string[];
   color?: string;
 }
 
 const { imagePath, highlights, color = "#FF3A83" } = Astro.props;
 
-// Importar imágenes desde /src/assets/*
+// Cargar todas las imágenes permitidas
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{png,jpg,jpeg,webp,svg,avif,gif}"
 );
@@ -21,23 +21,76 @@ if (!images[imagePath]) {
   throw new Error(`La imagen "${imagePath}" no existe en /src/assets/`);
 }
 ---
+
 <div class="w-full my-4 grid md:grid-cols-[2fr_1fr] gap-6 items-start">
 
   <!-- TEXTO -->
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col">
     {highlights.map((text) => (
       <HighlightText text={text} color={color} />
     ))}
   </div>
 
-  <!-- IMAGEN OPTIMIZADA -->
+  <!-- IMAGEN OPTIMIZADA CON ZOOM -->
   <div class="flex justify-end">
     <Image
       src={images[imagePath]()}
       alt="highlight-image"
-      class="rounded-2xl max-w-[330px] object-contain opacity-95"
+      class="rounded-2xl max-w-[240px] object-contain opacity-95 cursor-zoom-in"
       loading="lazy"
+      data-js-zoom
     />
   </div>
 
 </div>
+
+<style is:global>
+  /* Overlay */
+  .image-zoom-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .image-zoom-overlay.show {
+    opacity: 1;
+  }
+
+  .image-zoom-full {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    transform: scale(0.85);
+    transition: transform 0.25s ease;
+  }
+  .image-zoom-overlay.show .image-zoom-full {
+    transform: scale(1);
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest("[data-js-zoom]");
+    if (!img) return;
+
+    const overlay = document.createElement("div");
+    overlay.className = "image-zoom-overlay";
+
+    const zoomImg = document.createElement("img");
+    zoomImg.src = img.src;
+    zoomImg.className = "image-zoom-full";
+
+    overlay.appendChild(zoomImg);
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => overlay.classList.add("show"));
+
+    overlay.addEventListener("click", () => overlay.remove());
+  });
+</script>
