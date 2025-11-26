@@ -50,7 +50,7 @@ const keywords = [
 const highlightStyle = `color: ${color}; font-weight: 600;`
 
 // Función que envuelve palabras clave en <span>
-function highlightText(t) {
+function highlightText(t: any) {
   let result = t
 
   keywords.forEach((word) => {
