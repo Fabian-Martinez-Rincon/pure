@@ -1,18 +1,16 @@
 ---
 import { Image } from 'astro:assets'
+
 import PageLayout from '@/layouts/CommonPage.astro'
 import ProjectSection from '@/components/projects/ProjectSection.astro'
-import config from '@/site-config'
 
 const headings = [
-  { depth: 2, slug: 'proyectos_python', text: 'Proyectos Python' },
-  { depth: 2, slug: 'proyectos_web', text: 'Proyectos Web' },
-  { depth: 2, slug: 'others', text: 'Otros Proyectos' },
+  { depth: 2, slug: 'proyectos', text: 'Proyectos' },
 ]
 ---
 
-<PageLayout title='Proyectos' {headings} info={{ slug: '/projects', hideComment: false }}>
-  <p>Github Activities:</p>
+<PageLayout title='Proyectos' {headings} view>
+  <p>Actividad en Github:</p>
   <p>
     <Image
       src='https://ghchart.rshah.org/659eb9/fabian-martinez-rincon'
@@ -25,10 +23,9 @@ const headings = [
     En este apartado se encuentran todos los proyectos relevantes que fui programando a lo largo de mi vida como desarrollador 😀. 
     Todos los dias trato de mejorar y seguir aprendiendo, si necesitas una mano o me queres consultar para algun trabajo no dudes en contactarme.
   </p>
-
-  <h2 id='proyectos_python'>Proyectos Python</h2>
+  <h2 id='proyectos'>Proyectos</h2>
   <ProjectSection
-    project={[
+    projects={[
       {
         name: 'Chart IT',
         description: 'Web con Flask, que permite a los usuarios registrarse, iniciar sesión, donar e intercambiar productos, con roles diferenciados. Usamos SQLAlchemy para la base de datos PostgreSQL, Flask-Bcrypt para la seguridad de contraseñas, Flask-Session para sesiones, Flask-WTF para formularios, y Flask-M',
@@ -48,7 +45,7 @@ const headings = [
       {
         name: 'ACL Manager',
         description: 'Proyecto para poder gestionar ACLs (Access Control List) en un entorno Linux, al tener muchos comandos repetidos basados en un excel se me ocurrio que seria mas comodo poder formater los comandos de forma automatica usando una interfaz "Amigable".',
-        image: 'acl-manager.jpg',
+        image: 'acl.png',
         links: [
           { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/acl-manager' },
         ]
@@ -89,201 +86,5 @@ const headings = [
     ]}
   />
 
-  <h2 id='proyectos_web'>Proyectos Webs</h2>
-  <ProjectSection
-    project={[
-      {
-        name: 'Eficiencia X',
-        description: 'Calcula la memoria estática de un programa en Pascal',
-        image: 'eficiencia_x.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Efficiency_X' },
-          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/Efficiency_X/' },
-          {
-            type: 'doc',
-            href: 'https://github.com/Fabian-Martinez-Rincon/Efficiency_X/blob/main/README.md'
-          }
-        ]
-      },
-      {
-        name: 'Ei Materias',
-        description: '✏️ Readme con apuntes, prácticas y códigos relacionados a la UNLP informática.',
-        image: 'eiMaterias.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/EI-Materias' },
-          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/EI-Materias/' },
-          {
-            type: 'doc',
-            href: 'https://github.com/Fabian-Martinez-Rincon/EI-Materias/blob/main/README.md'
-          }
-        ]
-      },
-      {
-        name: 'Fablog',
-        description: 'Blog en astro con codigos y temas de interes',
-        image: 'fablog.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Fablog' },
-          { type: 'site', href: 'https://fablogg.vercel.app/' },
-          {
-            type: 'doc',
-            href: 'https://github.com/Fabian-Martinez-Rincon/Fablog/blob/main/README.md'
-          }
-        ]
-      },
-      {
-        name: 'Gallerix',
-        description: 'Galeria de Imagenes con Logos Echos en IA',
-        image: 'gallerix.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Galleriix-Frontend' },
-          { type: 'site', href: 'https://galleriix-frontend.vercel.app/' },
-          {
-            type: 'doc',
-            href: 'https://github.com/Fabian-Martinez-Rincon/Galleriix-Backend/blob/main/README.md'
-          }
-        ]
-      },
-      {
-        name: 'LinkTree',
-        description: 'El Linktree de instagram, que es basicamente un conjunto de links',
-        image: 'linktree.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Linktree' },
-          { type: 'site', href: 'https://linktree-fabian.vercel.app/' },
-          {
-            type: 'doc',
-            href: 'https://github.com/Fabian-Martinez-Rincon/Linktree/blob/main/README.md'
-          }
-        ]
-      },
-      {
-        name: 'Mega-Conversor-OC',
-        description: '👾 automatización de muchas conversiones y operaciones en la materia “Organización de computadoras”.',
-        image: 'megaconversor.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Mega-Conversor-OC' },
-          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/Mega-Conversor-OC/' },
-          {
-            type: 'doc',
-            href: 'https://github.com/Fabian-Martinez-Rincon/Mega-Conversor-OC/blob/main/Readme.md'
-          }
-        ]
-      },
-      {
-        name: 'Nomadiix',
-        description: 'Web principal de Nomadiix en Astro',
-        image: 'nomadiix.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Nomadiix-Website' },
-          { type: 'site', href: 'https://nomadiix-website.vercel.app/' },
-          {
-            type: 'doc',
-            href: 'https://github.com/Fabian-Martinez-Rincon/Nomadiix-Website/blob/main/README.md'
-          }
-        ]
-      },
-      {
-        name: 'Old Porfolio',
-        description: 'Mi primer Porfolio, con html css y un poco de js',
-        image: 'oldPortfolio.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Old_Portfolio' },
-          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/Old_Portfolio/' },
-          {
-            type: 'doc',
-            href: 'https://github.com/Fabian-Martinez-Rincon/Old_Portfolio/blob/master/README.md'
-          }
-        ]
-      },
-      {
-        name: 'Portfolio Old',
-        description: 'Porfolio en React (Quedo obsoleto xd).',
-        image: 'portfolioOld.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Fabian-Martinez-Rincon-old' },
-        ]
-      },
-      {
-        name: 'Space Apps',
-        description: 'Organización creada con fines educativos para la hackaton Space Apps',
-        image: 'spaceApps.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Cuestion-de-Espacio' },
-          { type: 'site', href: 'https://cuestion-de-espacio.github.io/Frontend/' },
-          {
-            type: 'doc',
-            href: 'https://github.com/Cuestion-de-Espacio/.github/blob/main/profile/README.md'
-          }
-        ]
-      },
-      {
-        name: 'El Rincon del Fabo',
-        description: 'Portfolio con proyectos personales, blogs y un poco de historia sobre mi',
-        image: 'rinconfabo.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Rincon-De-Fabo' },
-          { type: 'site', href: 'https://github.com/Fabian-Martinez-Rincon/Rincon-De-Fabo' },
-        ]
-      },
-      {
-        name: 'Resume (VIEJO)',
-        description: 'Resume de todos los datos (Es el resume viejo).',
-        image: 'resume.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Resume' },
-          { type: 'site', href: 'https://fabian-martinez-rincon.github.io/Resume/' },
-        ]
-      },
-    ]}
-  />
-
-  <h2 id='others'>Otros Proyectos</h2>
-  <ProjectSection
-    project={[
-      {
-        name: 'Converter OC',
-        image: 'converter-oc.png',
-        description: "📟 Shows all the characteristics of a decimal or binary number.",
-        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Converter-OC' }]
-      },
-      {
-        name: 'Keypad',
-        image: 'keypad.png',
-        description: '⌨️ Keyboard connected by a bluetoh module and LCD screen',
-        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Keypad' }]
-      },
-      {
-        name: 'Lock',
-        image: 'lock.png',
-        description: '🔒 In this report we will see both the circuit simulation and the actual programming of a safe.',
-        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Lock' }]
-      },
-      {
-        name: 'Transform-Pokemon-Resolution',
-        image: 'transform-pokemon.jpg',
-        description: '🎮 Remove focus from an image using IA - Pix2Pix',
-        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Transform-Pokemon-Resolution' }]
-      }
-      
-    ]}
-  />
-  
 </PageLayout>
 
-<script
-  is:inline
-  type='module'
-  data-astro-rerun
-  define:vars={{ npmCDN: config.npmCDN, walineServer: config.integ.waline.server }}
->
-  const loadPageviewCount = async () => {
-    const pageview = await import(`${npmCDN}/@waline/client@v3/dist/pageview.js`)
-    pageview.pageviewCount({
-      serverURL: walineServer,
-      path: window.location.pathname
-    })
-  }
-
-  await loadPageviewCount()
-</script>

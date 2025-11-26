@@ -29,7 +29,7 @@ async function fetchCount(item: SubstatsItem) {
       item.count = data.count
     }
   } catch (error) {
-    console.error('Error in Substatus fetching: ' + error)
+    console.error('Error in Substats fetching: ' + error)
   }
 }
 
@@ -62,4 +62,12 @@ await Promise.all(stats.map(fetchCount))
       </a>
     ))
   }
+</div>
+<div class='mt-2 text-right text-sm'>
+  Display real-time; powered by <a
+    class='text-muted-foreground'
+    href='http://github.com/spencerwooo/substats'
+    target='_blank'
+    rel='noopener noreferrer'>Substats</a
+  >
 </div>

@@ -9,8 +9,7 @@ export const HeaderMenuSchema = () =>
       })
     )
     .default([
-      { title: '📒 Blogs Facultad ', link: '/blog' },
-      { title: 'Proyectos 💻', link: '/projects' },
-      { title: 'Sobre Mi 👤', link: '/about' }
+      { title: 'Blog', link: '/archives' },
+      { title: 'Proyectos', link: '/proyectos' },
     ])
-    .describe('Menu.')
+    .describe('The header menu items for your site.')

@@ -8,11 +8,10 @@ export const prerender = true
 
 export async function getStaticPaths() {
   const posts = sortMDByDate(await getBlogCollection())
-  return (posts as CollectionEntry<'blog'>[]).map((post) => ({
-  params: { id: post.id },
-  props: { post, posts }
-}))
-
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post, posts }
+  }))
 }
 
 type Props = {
@@ -24,7 +23,6 @@ const { post, posts } = Astro.props
 const { Content, headings, remarkPluginFrontmatter } = await render(post)
 ---
 
-<PostLayout basePath="/blog" {post} {posts} {headings} {remarkPluginFrontmatter}>
+<PostLayout {post} {posts} {headings} {remarkPluginFrontmatter}>
   <Content />
 </PostLayout>
-

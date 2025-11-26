@@ -1,0 +1,35 @@
+---
+import YoutubeCard from "@/components/YoutubeCard.astro"
+const VIDEOS = [
+  {
+    title: "Linktree para Instagram Next js 13",
+    description:
+      "Tenía un montón de links por todos lados y se me ocurrió hacer esto para tener un recopilatorio.",
+    id: "T9glxgwjWAA",
+  },
+  {
+    title: "Pagina Web Next js (Portada)",
+    description:
+      "Portada principal para Nomadiix (mi empresa) con algunas transiciones usando Tailiwind.",
+    id: "KB_tUK8yiSg",
+  },
+  {
+    title: "Readme para Github",
+    description:
+      "Readme principal de GitHub donde personalizo mis proyectos y le doy un poco de vida a la página usando Markdown.",
+    id: "TjzeV7slTOc",
+   }
+];
+---
+
+<section class="flex flex-col gap-y-10">
+  {
+    VIDEOS.map((video, i) => (
+      <YoutubeCard title={video.title} description={video.description} id={video.id} index={i} />
+    ))
+  }
+</section>
+
+<script>
+import "@justinribeiro/lite-youtube";
+</script>

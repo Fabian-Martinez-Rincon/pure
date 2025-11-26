@@ -1,0 +1,35 @@
+---
+interface Props {
+  title?: string
+  description?: string
+  id: string
+}
+
+const { title, description, id } = Astro.props
+---
+
+<div class="flex flex-col gap-8 my-14">
+  
+  {title && (
+    <h2 class="text-2xl font-bold text-yellow-500 text-center">
+      {title}
+    </h2>
+  )}
+
+  {description && (
+    <p class="text-center text-custom-text max-w-2xl mx-auto opacity-80">
+      {description}
+    </p>
+  )}
+
+  <lite-youtube
+    class="relative overflow-hidden w-full max-w-4xl mx-auto rounded-xl aspect-video"
+    videoid={id}
+    params="controls=1">
+  </lite-youtube>
+</div>
+
+<script>
+  import "@justinribeiro/lite-youtube";
+</script>
+

@@ -1,11 +1,3 @@
-html {
-  font-family: 'Satoshi', sans-serif;
-}
-
-html.dark {
-  color-scheme: dark;
-}
-
 /* Animation */
 @keyframes fade-in-up {
   0% {
@@ -40,36 +32,36 @@ html.dark {
 }
 
 /* Katex */
-/* KaTeX — centrado y estético */
-.katex-display {
-  display: flex;
-  justify-content: center;
-  margin: 1.25rem 0; /* espacio arriba y abajo */
-  overflow: visible !important; /* elimina el scroll vertical */
-  padding: 0.5rem 0;
+span.katex-display {
+  overflow-y: scroll;
+  padding: 0.5rem;
 }
-
-.katex {
-  font-size: 1.1rem;
-  text-align: center;
+.katex-html {
+  overflow: auto hidden;
+  padding: 3px;
 }
-
-@media (min-width: 768px) {
-  .katex {
-    font-size: 1.25rem;
-  }
+.katex-html .base {
+  margin-block: 0;
+  margin-inline: auto;
 }
-
+.katex-html .tag {
+  position: relative !important;
+  display: inline-block;
+  padding-inline-start: 0.5rem;
+}
 
 /* Shiki */
 .astro-code {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 0.5rem;
-  background-color: var(--tw-prose-pre-bg) !important;
+  background-color: hsl(var(--muted) / var(--un-bg-opacity, 1)) !important;
 
+  /* Code container */
   & pre {
     margin: 0;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
     padding-inline: 0;
     background: none;
     overflow-x: scroll;
@@ -89,10 +81,9 @@ html.dark {
         bottom: 0;
         content: '';
         display: block;
-        background-color: hsl(var(--muted) / var(--tw-bg-opacity, 1));
+        background-color: hsl(var(--muted) / var(--un-bg-opacity, 1));
         z-index: 1;
       }
-
       & .line {
         padding-inline-end: 3rem;
         &::before {
@@ -100,7 +91,7 @@ html.dark {
           content: counter(step);
           counter-increment: step;
           color: hsl(var(--muted-foreground) / 0.6);
-          background-color: hsl(var(--muted) / var(--tw-bg-opacity, 1));
+          background-color: hsl(var(--muted) / var(--un-bg-opacity, 1));
           inset-inline-start: 0;
           justify-content: end;
           display: inline-flex;
@@ -127,9 +118,28 @@ html.dark {
       top: calc(2rem + 0.8571429em);
     }
   }
+  & .title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0.5rem;
+  }
+  & .language {
+    transition: opacity 0.3s;
+    position: absolute;
+    top: 0.75rem;
+    right: 0;
+  }
   & button.copy {
+    transition: opacity 0.3s;
+    opacity: 0;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    user-select: none;
+
     & .success::before {
-      content: 'Roba2!';
+      content: 'Copied!';
       position: absolute;
       right: 100%;
       top: 0;
@@ -141,9 +151,9 @@ html.dark {
       padding: 0.5rem;
       margin-right: 0.5rem;
       border-radius: 0.25rem;
-      color: hsl(var(--muted-foreground) / var(--tw-text-opacity, 1));
-      background-color: hsl(var(--primary-foreground) / var(--tw-bg-opacity, 1));
-      border: 1px solid hsl(var(--border) / var(--tw-border-opacity, 1));
+      color: hsl(var(--muted-foreground) / var(--un-text-opacity, 1));
+      background-color: hsl(var(--primary-foreground) / var(--un-bg-opacity, 1));
+      border: 1px solid hsl(var(--border) / var(--un-border-opacity, 1));
     }
     &.copied {
       & .success {

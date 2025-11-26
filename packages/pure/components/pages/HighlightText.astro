@@ -1,0 +1,69 @@
+---
+const { text, color = "#dde7ef" } = Astro.props
+
+// Lista de palabras clave (editable)
+const keywords = [
+  'PyGetWindow',
+  "Java",
+  "patrones de diseño",
+  "Scrum",
+  "PostgreSQL",
+  "SQL",
+  "Scripting",
+  "CSS",
+  "JavaScript",
+  "React",
+  "Tailwind",
+  "Vue.js",
+  "Flask",
+  "C",
+  "Arduino",
+  "Python",
+  "Pandas",
+  "Tkinter",
+  "OpenPyXL",
+  "PyAutoGUI",
+  "HTML",
+  "BeautifulSoup",
+  "Difflib",
+  "Linux",
+  "Bash",
+  "CRUD",
+  "Xlsxwriter",
+  "Polars",
+  "MongoDB",
+  "Playwright",
+  "Regex",
+  "ETL",
+  "S3",
+  "JSONL",
+  "Jupyter",
+  "Ipywidgets",
+  "dotenv",
+  "Logging",
+  "SSH",
+  "Web Scraping",
+  'APIs'
+]
+
+// Genera clase dinamicamente según color
+const highlightStyle = `color: ${color}; font-weight: 600;`
+
+// Función que envuelve palabras clave en <span>
+function highlightText(t) {
+  let result = t
+
+  keywords.forEach((word) => {
+    const regex = new RegExp(`\\b${word}\\b`, "gi")
+    result = result.replace(
+      regex,
+      `<span style="${highlightStyle}">${word}</span>`
+    )
+  })
+
+  return result
+}
+
+const html = highlightText(text)
+---
+<p class="text-muted-foreground mb-3" set:html={html}></p>

@@ -6,8 +6,8 @@ import { cn, getFormattedDate } from '../../utils'
 import { QRCode } from '../advanced'
 import { Icon } from '../user'
 
-interface Props {
-  data: InferEntrySchema<CollectionKey>
+interface Props<T extends CollectionKey> {
+  data: InferEntrySchema<T>
   class?: string
 }
 
@@ -19,11 +19,14 @@ const {
 const image = typeof heroImage?.src === 'string' ? heroImage?.src : (heroImage?.src?.src ?? '')
 
 const shares = {
-  youtube: {
+  weibo: {
     link: `http://service.weibo.com/share/share.php?url=${Astro.url}&title=${title}&pic=${image}`
   },
-  github: {
+  x: {
     link: `https://x.com/intent/tweet?text='${title}'&url='${Astro.url}'&via='${config.author}'`
+  },
+  bluesky: {
+    link: `https://bsky.app/intent/compose?text=${title}%0A${Astro.url}`
   }
 } as const
 ---
@@ -48,16 +51,18 @@ const shares = {
       <span>Author</span>
       <span class='text-sm text-foreground max-sm:place-self-center'>{config.author}</span>
     </div>
-    <div class='flex gap-x-2 sm:min-w-16 sm:flex-col'>
-      <span>Published at</span>
-      <span class='text-sm text-foreground max-sm:place-self-center'
-        >{
-          getFormattedDate(publishDate, {
-            month: 'long'
-          })
-        }</span
-      >
-    </div>
+    {
+      publishDate && (
+        <div class='flex gap-x-2 sm:min-w-16 sm:flex-col'>
+          <span>Published at</span>
+          <span class='text-sm text-foreground max-sm:place-self-center'>
+            {getFormattedDate(publishDate, {
+              month: 'long'
+            })}
+          </span>
+        </div>
+      )
+    }
     <div class='flex gap-x-2 sm:flex-col'>
       <span>Copyright</span>
       <a
@@ -99,8 +104,7 @@ const shares = {
       }
     </div>
     <QRCode
-      aria-expanded='false'
-      class='absolute z-10 -mt-2 box-content max-h-0 max-w-44 overflow-hidden rounded-xl border bg-muted p-4 opacity-0 transition-all duration-300 ease-in-out aria-expanded:max-h-44 aria-expanded:translate-y-4 aria-expanded:opacity-100'
+      class='absolute z-10 -mt-2 box-content max-h-0 max-w-44 overflow-hidden rounded-xl border bg-muted p-4 opacity-0 transition-all duration-300 ease-in-out'
     />
   </div>
 </div>
@@ -111,10 +115,18 @@ const shares = {
     class='flex items-center justify-between text-muted-foreground no-underline'
     target='_blank'
   >
-    <span>Si el contenido les resulto util, me pueden seguir en github. <a href="https://github.com/Fabian-Martinez-Rincon">@fabian-martinez-rincon</a></span>
+    <span>Buy me a cup of coffee ☕.</span>
     <Icon class='box-content size-5 p-1' name='receive-money' />
   </a>
 </div>
+
+<style>
+  #qrcode-container.expanded {
+    max-height: 11rem;
+    transform: translateY(4px);
+    opacity: 100;
+  }
+</style>
 
 <script>
   import { showToast } from '../../utils'
@@ -130,12 +142,5 @@ const shares = {
   // QRCode
   const getQRCode = document.getElementById('get-qrcode')
   const qrcodeContainer = document.getElementById('qrcode-container')
-  if (!qrcodeContainer) throw new Error('qrcode container not found')
-  getQRCode?.addEventListener('click', () => {
-    if (qrcodeContainer.ariaExpanded === 'true') {
-      qrcodeContainer.ariaExpanded = 'false'
-    } else {
-      qrcodeContainer.ariaExpanded = 'true'
-    }
-  })
+  getQRCode?.addEventListener('click', () => qrcodeContainer?.classList.toggle('expanded'))
 </script>

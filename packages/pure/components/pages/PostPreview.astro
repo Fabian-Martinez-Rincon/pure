@@ -4,7 +4,7 @@ import { render, type CollectionEntry, type CollectionKey } from 'astro:content'
 import type { HTMLTag, Polymorphic } from 'astro/types'
 
 import { cn } from '../../utils'
-import {FormattedDate, Icon } from '../user'
+import { Button, FormattedDate, Icon } from '../user'
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
   post: CollectionEntry<CollectionKey>
@@ -22,35 +22,37 @@ const postDate = data.updatedDate ?? data.publishDate
 
 <li
   class={cn(
-    'post-preview group/card flex flex-col relative rounded-2xl border border-border bg-background transition-colors ease-in-out px-5 py-2.5 hover:bg-muted',
+    'post-preview group/card flex flex-col relative rounded-2xl border bg-background transition-colors ease-in-out px-5 py-2.5 hover:bg-muted',
     detailed && 'max-sm:px-4 sm:py-5',
     className
   )}
   style={detailed &&
     data.heroImage?.color &&
-    `--preview-highlight:color-mix(in srgb,${data.heroImage.color} 40%,hsl(var(--foreground)/var(--tw-text-opacity,1)));
+    `--preview-highlight:color-mix(in srgb,${data.heroImage.color} 40%,hsl(var(--foreground)/var(--un-text-opacity,1)));
     --preview-highlight-bg:hsl(from ${data.heroImage.color} h s l/20%)`}
 >
-    <a
+  <a
     class={cn(
       'group/link w-full flex flex-col transition-all hover:text-primary',
       !detailed && 'sm:flex-row',
       detailed && data.heroImage && 'max-md:pt-24'
     )}
-    href={`/${post.collection}/${id}`}
+    href={`/blog/${id}`}
     data-astro-prefetch
   >
-
     {
       detailed && data.heroImage && (
         <Image
-          src={data.heroImage.src}
           alt={data.heroImage.alt || data.title}
           class='cover-image absolute end-0 top-0 z-0 h-2/3 w-full rounded-2xl object-cover opacity-50 transition-opacity duration-300 group-hover/card:opacity-70 md:h-full md:w-3/5'
           loading='eager'
+          {...data.heroImage}
         />
       )
     }
+
+    <FormattedDate class='min-w-[95px] py-1 text-xs' date={postDate} />
+
     <Tag class='z-10 flex-grow'>
       {/* title */}
       <div class='flex justify-between'>
@@ -105,20 +107,31 @@ const postDate = data.updatedDate ?? data.publishDate
                   {data.language}
                 </span>
               )}
-                  <FormattedDate class='min-w-[95px] py-1 text-xs' date={postDate} />
             </div>
           </>
         )
       }
     </Tag>
   </a>
+  <!-- tags -->
+  {
+    detailed && data.tags && (
+      <ul class='tag-list mt-1 flex flex-wrap gap-2'>
+        {data.tags.map((tag: string) => (
+          <li>
+            <Button title={tag} href={`/tags/${tag}`} variant='pill' />
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </li>
 
 <style>
   .post-preview {
     --preview-highlight-final: var(
       --preview-highlight,
-      hsl(var(--primary) / var(--tw-text-opacity, 1))
+      hsl(var(--primary) / var(--un-text-opacity, 1))
     );
   }
   .post-preview:hover {
@@ -126,7 +139,7 @@ const postDate = data.updatedDate ?? data.publishDate
     & .tag-list a {
       background-color: var(
         --preview-highlight-bg,
-        hsl(var(--muted) / var(--tw-bg-opacity, 1))
+        hsl(var(--muted) / var(--un-bg-opacity, 1))
       ) !important;
     }
     & > a,

@@ -1,177 +1,353 @@
 ---
 import { Image } from 'astro:assets'
 
-import { Quote } from 'astro-pure/advanced'
-import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
-import { getCristianoCollection } from 'pure/utils/server'
-
-
-import { Button} from 'astro-pure/user'
-import { Card } from '../../packages/pure/components/pages'
+import { Button, Icon, Label } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import Section from '@/components/home/Section.astro'
 import avatar from '@/assets/yo.png'
 import config from '@/site-config'
+import ToolSection from '@/components/about/ToolSection.astro'
 
-const languages = ['Python', 'Html', 'JavaScript', 'CSS', 'Shell', 'C++', 'Bash', 'SQL']
-const frontend = ['Html', 'Flask', 'Tailwind', 'Astro']
-const backend = ['PostgreSQL', 'MongoDB']
+import { ProjectCardHorizontal, HighlightText, SkillBadges, Card } from '../../packages/pure/components/pages'
 
-const MAX_POSTS = 5
-const allPosts = await getBlogCollection()
-const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
-
-const cristianoPosts = await getCristianoCollection()
-const cristianoPostsByDate = sortMDByDate(cristianoPosts).slice(0, MAX_POSTS)
 ---
 
-<PageLayout meta={{ title: 'Home' }} highlightColor='#42793C'>
+<PageLayout meta={{ title: 'Home' }} highlightColor='#151718'>
   <main class='flex w-full flex-col items-center'>
+    
     <section class="animate mb-10 flex flex-col items-center gap-y-7" id="content-header">
       <div class="flex flex-col items-center gap-y-4">
         <h1
-        class="text-3xl font-bold relative after:content-[''] after:block after:h-[3px]  after:bg-[#EBD51C] after:mx-auto after:mt-2"
+        class="text-3xl font-bold relative after:content-[''] after:block after:h-[3px]  after:bg-[#EBBFA7] after:mx-auto after:mt-2"
       >
         {config.author}
       </h1>
+       <div class='flex flex-col items-center gap-y-4'>
+        <div class="flex flex-wrap justify-center gap-x-7 gap-y-3">
+
+          <Label
+            title="Github"
+            as="a"
+            href="https://github.com/Fabian-Martinez-Rincon"
+            target="_blank"
+            color="blue"
+          >
+            <Icon name="github" class="size-5" slot="icon" />
+          </Label>
+
+          <Label
+            title="Curriculum"
+            as="a"
+            href="/cv-fabianmartinezrincon.pdf"
+            target="_blank"
+            color="emerald"
+          >
+            <Icon name="document" class="size-5" slot="icon" />
+          </Label>
+
+          <Label
+            title="LinkedIn"
+            as="a"
+            href="https://www.linkedin.com/in/fabian-martinez-rincon/"
+            target="_blank"
+            color="orange"
+          >
+            <Icon name="link" class="size-5" slot="icon" />
+          </Label>
+
+            <Label
+              title="Email"
+              as="a"
+              onclick="navigator.clipboard.writeText('fabianmartinezrincon.123@gmail.com'); alert('Email copiado!');"
+              color="zinc"
+            >
+              <Icon name="email" class="size-5" slot="icon" />
+            </Label>
+
+        </div>
+
       </div>
     </section>
-
-
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
-      <Section title='Sobre mi'>
-  <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+      <Section title=''>
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+        <div class="flex-1 flex flex-col gap-4">
+          <p class="text-muted-foreground">
+            Estoy recibido y tengo más de dos años de experiencia profecional trabajando con 
+            <span class="text-yellow-800 dark:text-yellow-300">Python</span>.
+          </p>
 
-    <!-- Texto -->
-    <p class="flex-1">
-      Mas de 4 años de experiencia en Python. Me especializo en Web Scraping, automatización de tareas y bases de datos NoSQL. Tengo una gran obsesión por mejorar procesos: siempre busco formas de reducir tiempos, evitar errores y hacer que todo funcione de manera más eficiente.
-      <br><br>
-      Me gusta involucrarme en la comunidad tech, participar en eventos y dar charlas técnicas cada vez que puedo.
-      Soy Analista Programador Universitario y actualmente estoy finalizando la Licenciatura en Sistemas.
-    </p>
+          <p class="text-muted-foreground">
+            Me especializado en 
+            <span class="text-yellow-800 dark:text-yellow-300">automatización</span> y 
+            <span class="text-yellow-800 dark:text-yellow-300">Web Scraping</span>. 
+            Construyo herramientas que reducen tiempos, eliminan tareas manuales y mejoran la calidad de los datos. 
+            Trabajo con 
+            <span class="text-yellow-800 dark:text-yellow-300">Playwright</span>, 
+            <span class="text-yellow-800 dark:text-yellow-300">BeautifulSoup</span>, 
+            <span class="text-yellow-800 dark:text-yellow-300">Pandas</span>, 
+            <span class="text-yellow-800 dark:text-yellow-300">Polars</span> y 
+            <span class="text-yellow-800 dark:text-yellow-300">MongoDB</span> 
+            para crear soluciones eficientes y escalables.
+          </p>
 
-    <!-- Imagen a la derecha -->
-    <img
-      src={avatar.src}
-      alt="Foto de Fabián Martínez Rincón"
-      class="w-40 h-40 rounded-xl object-cover border-4 border-border shadow-md"
-      loading="lazy"
-    />
-  </div>
-</Section>
-
-
-      <div class="flex gap-x-4">
-        <!-- Botón 1 -->
-        <a
-          href="https://www.linkedin.com/in/fabian-martinez-rincon/"
-          target="_blank"
-          class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
-        >
-          <span class="relative flex items-center justify-center">
-            <span class="absolute size-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75"></span>
-            <span class="size-2 rounded-full bg-green-400"></span>
-          </span>
-          <p class="font-medium text-muted-foreground">LinkedIn</p>
-        </a>
-      
-        <!-- Botón 2 -->
-        <a
-          href="/cv-fabianmartinezrincon.pdf"
-          target="_blank"
-          class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
-        >
-          <span class="relative flex items-center justify-center">
-            <span class="absolute size-2 animate-ping rounded-full border border-blue-400 bg-blue-400 opacity-75"></span>
-            <span class="size-2 rounded-full bg-blue-400"></span>
-          </span>
-          <p class="font-medium text-muted-foreground">Curriculum</p>
-        </a>
-
-        <a
-          href="https://github.com/Fabian-Martinez-Rincon"
-          target="_blank"
-          class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
-        >
-          <span class="relative flex items-center justify-center">
-            <span class="absolute size-2 animate-ping rounded-full border border-gray-400 bg-gray-400 opacity-75"></span>
-            <span class="size-2 rounded-full bg-gray-400"></span>
-          </span>
-          <p class="font-medium text-muted-foreground">GitHub</p>
-        </a>
-
-        <a
-          href="#"
-          onclick="navigator.clipboard.writeText('fabianmartinezrincon.123@gmail.com'); alert('Email copiado!');"
-          class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
-        >
-          <span class="relative flex items-center justify-center">
-            <span class="absolute size-2 animate-ping rounded-full border border-orange-400 bg-orange-400 opacity-75"></span>
-            <span class="size-2 rounded-full bg-orange-400"></span>
-          </span>
-          <p class="font-medium text-muted-foreground">Email</p>
-        </a>
-
-        <!-- Botón 3 -->
-        <a
-          href="https://fabian-martinez-rincon-homelab.vercel.app/"
-          target="_blank"
-          class="flex flex-row items-center gap-x-3 rounded-full border border-border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md"
-        >
-          <span class="relative flex items-center justify-center">
-            <span class="absolute size-2 animate-ping rounded-full border border-yellow-400 bg-yellow-400 opacity-75"></span>
-            <span class="size-2 rounded-full bg-yellow-400"></span>
-          </span>
-          <p class="font-medium text-muted-foreground">HomeLab</p>
-        </a>
+          <Button 
+            title='Mas sobre mi'
+            class='w-fit'
+            href='/about'
+            variant='ahead'
+          />
+        </div>
+        <Image
+          src={avatar}
+          alt='profile'
+          class='h-40 w-auto rounded-xl border p-1'
+          loading='eager'
+        />
       </div>
+    </Section>
+     
+      {
+        
+      <Section title='Experiencia Laboral'> 
+    <Card
+      heading="FabricData"
+      subheading="Data Engineer"
+      date="18/09/2024 — Actualidad"
+      logo="https://media.licdn.com/dms/image/v2/D4D0BAQEytvAo0W5UtQ/company-logo_200_200/B4DZpJZZneKIAI-/0/1762167987046/fabricdata_logo?e=1765411200&v=beta&t=EjQHMhu7-pUhID2GLMHO1GmtU7sUitj4P47n2yK7Ork"
+    >
+      <HighlightText
+          text="Diseñé un framework completo de análisis en Jupyter que automatiza filtros, validaciones, búsquedas y reportes, reemplazando trabajo manual de analistas y acelerando auditorías."
+          color="#FF3A83"
+      />
+      <HighlightText 
+          text="Implementé pipelines ETL y Web Scraping para plataformas OTT usando Playwright, APIs, Regex y BeautifulSoup, garantizando datos limpios y trazables."
+          color="#FF3A83"
+        />
+      <HighlightText text="Desarrollé módulos de control de calidad con Polars para detección de anomalías, normalización de títulos, análisis de deeplinks y generación automática de reportes." color="#FF3A83"/>
+      <HighlightText
+          text="Integración y manejo de datos con MongoDB e históricos JSONL en S3, optimizando sincronización entre entornos."
+          color="#FF3A83"
+      />
 
-      <Section title='Experiencia'>
-        <Card
-          heading='Data Engineer'
-          subheading='BB-Media'
-          date='17/09/2024 - Actualidad'
-          imagePath='/src/assets/about-astro.png'
-          altText=''
-          imageClass='h-12 w-auto'
-        ><p class='list-disc'>Realicé varios scrapings utilizando Playwright, Beautifulsoup y/o APIs según corresponda. Los datos se almacenan y manipulan usando NoSQL en MongoDB.</p>
-        </Card>
+      <HighlightText 
+          text="Trabajo bajo metodología ágil, automatizando tareas repetitivas para mejorar tiempos y reducir errores humanos."
+          color="#FF3A83"
+      />
+     <SkillBadges
+      skills={[
+        'Python','Polars','Pandas','MongoDB','Selenium','PostgreSQL','ETL','APIs','Playwright',
+        'BeautifulSoup','Requests','aiohttp','Regex','S3','JSON','HTML','CSS','Studio 3T','PyMongo','OOP','Jupyter','Ipywidgets',
+      ]}
+    />
+    </Card>
+      <Card
+        heading="Gaming Labs Sudamérica"
+        subheading="Backend Developer"
+        date="01/07/2023 — 17/09/2024"
+        logo="https://media.licdn.com/dms/image/v2/C560BAQHPcaTk0tJnVA/company-logo_200_200/company-logo_200_200/0/1630588209696/gaming_laboratories_international_logo?e=1765411200&v=beta&t=wg-7qtwBFsLviikoeTxI6Jp4G9vRlnxht442iTX9kQw"
+      >
+        <HighlightText
+          text="Software con Pandas, PyGetWindow, OpenPyXL, PyAutoGUI y Tkinter para automatizar la entrada de datos en máquinas de juego, reduciendo el tiempo de pruebas de 60hs a solo 5hs con un margen de error del 0%."
+          color="#3375C0"
+      />
+      <HighlightText
+          text="Herramienta con Difflib para comparar dos bases de datos y detectar diferencias entre ellas, reduciendo el tiempo de 5 horas a solo unos minutos. Utilicé Xlsxwriter para los reportes en Excel."
+          color="#3375C0"
+      />
+      <HighlightText
+          text="Programa con Python, Pandas, Tkinter y OpenPyXL que automatiza un CRUD de permisos en Linux. Este software es aplicable a cualquier empresa que necesite gestionar permisos."
+          color="#3375C0"
+      />
+      <HighlightText
+          text="Desarrollé un programa en Python que extrae elementos HTML de una página web y los guarda en un archivo Excel para facilitar el trabajo del equipo de QA. Este programa utiliza bibliotecas como BeautifulSoup, HTML, Pandas, OpenPyXL. Esto ha mejorado la eficiencia y precisión en la captura y manejo de datos relevantes."
+          color="#3375C0"
+      />
+      <HighlightText
+          text="Optimicé la gestión de permisos de usuario implementando y administrando Listas de Control de Acceso (ACL) en un entorno Linux. Posteriormente, automatice el proceso mediante Bash Scripting desarrollado en Vim, que asigna eficientemente los permisos necesarios a los grupos correspondientes en toda la infraestructura empresarial"
+          color="#3375C0"
+      />
 
-        <Card
-          heading='Testing Engineer'
-          subheading='Gaming Labs Sudamerica'
-          date='01/07/2023 - 17/09/2024'
-          imagePath='/src/assets/about-astro.png'
-          altText=''
-          imageClass='h-12 w-auto md:-start-16'
-        ><p class='list-disc'>Software en Python usando Pandas, PyGetWindow, OpenPyXL, PyAutoGUI y Tkinter para automatizar la entrada de datos en máquinas de juego, reduciendo el tiempo de pruebas de 60hs a solo 5hs con un margen de error del 0%.</p>
-        </Card>
-        <Button title='Mirar Experiencia Completa' class='w-fit self-end' href='/about' style='ahead' />
-      
+        <SkillBadges
+          skills={[
+            "Python",
+            "Automation",
+            "Pandas",
+            "OpenPyXL",
+            "PyAutoGUI",
+            "Tkinter",
+            "Difflib",
+            "ACL",
+            "Linux",
+            "Bash"
+          ]}
+        />
+      </Card>
+    </Section> 
+      }
+
+      <Section title='Algunos Proyectos'>
+        <ProjectCardHorizontal
+          imagePath="/src/assets/projects/hopetrade.png"
+          heading="Hope Trade | Web de intercambios"
+          description="Plataforma web, que permite a los usuarios registrarse, iniciar sesión, donar e intercambiar productos, con roles y seguridad avanzada."
+          skills={[
+            "Flask","Python","SQLAlchemy","PostgreSQL", 'Authlib'
+          ]}
+          hrefCode="https://github.com/Fabian-Martinez-Rincon/Ingenieria-de-Software2"
+          hrefBlog="/blog/hope_trade"
+        >
+        </ProjectCardHorizontal>
+
+        
+        <ProjectCardHorizontal
+          imagePath="/src/assets/projects/acl.png"
+          heading="ACL Manager"
+          description="Software que automatiza un CRUD de permisos en Linux. Este software es aplicable a cualquier empresa que necesite gestionar permisos."
+          skills={[
+            "Python","Pandas","Tkinter","Linux","Bash"
+          ]}
+          hrefCode="https://github.com/Fabian-Martinez-Rincon/acl-manager"
+          hrefBlog="/blog/acl_manager"
+        >
+        </ProjectCardHorizontal>
+        <ProjectCardHorizontal
+          imagePath="/src/assets/projects/lab-genetics.png"
+          heading="Lab Genetics"
+          description=" Proyecto para la gestión de muestras biológicas de un laboratorio. Con metodos de pago y recorridos de viajes con Google Maps."
+          skills={[
+            "Python","Flask","SQLAlchemy","authlib","requests"
+          ]}
+          hrefCode="https://github.com/Fabian-Martinez-Rincon/TTPS-Opcion-E"
+          hrefBlog="/blog/lab_genetics"
+        >
+        </ProjectCardHorizontal>
+        <ProjectCardHorizontal
+          imagePath="/src/assets/projects/emuti.png"
+          heading="Emuti"
+          description="Software para automatizar la entrada de datos en ventanas."
+          skills={[
+            "Python","Pandas","PyGetWindow","OpenPyXL","PyAutoGUI","Tkinter"
+          ]}
+          hrefCode="https://github.com/Fabian-Martinez-Rincon/EmuTi"
+          hrefBlog="/blog/emuti"
+        >
+        </ProjectCardHorizontal>
+
       </Section>
-   
+
       <Section title='Educación'>
         <Card
-          heading='Analista Programador Universitario'
-          subheading='Promedio 7'
-          date='Marzo 2021 - Marzo 2025'
-          imagePath='/src/assets/about-astro.png'
-          altText=''
-          imageClass='h-12 w-auto'
-        ><p class='list-disc'>Competente en Java y patrones de diseño, metodologías ágiles (Scrum), PostgreSQL, SQL, Linux y bases de datos relacionales. Hábil en Bash Scripting, Python, Flask y tecnologías de front-end incluyendo HTML, CSS, JavaScript, React, Tailwind y Vue.js.</p>
-        </Card>
-
+        heading="Universidad Nacional de La Plata - Facultad de Informática"
+        subheading="Analista Programador Universitario"
+        date="01/02/2020 — 23/04/2025"
+        logo="https://www.info.unlp.edu.ar/wp-content/uploads/2019/07/logoo-768x768.jpg"
+      >
+      <HighlightText
+          text="Competente en Java y patrones de diseño, metodologías ágiles (Scrum), PostgreSQL, SQL, Linux y bases de datos relacionales. Hábil en Bash Scripting, Python, Flask y tecnologías de front-end incluyendo HTML, CSS, JavaScript, React, Tailwind y Vue.js."
+          color="#CA383D"
+      />
+      <SkillBadges
+          skills={[
+            'Python','Flask', 'Git', 'Github','Pandas','OpenPyXL','PyAutoGUI',
+            'Tkinter','Linux','Bash','PostgreSQL',
+            'SQL','HTML','CSS','JavaScript', 'React','Tailwind', 'POO','Scrum'
+          ]}
+        />
+      </Card>
         <Card
-          heading='Tecnico en Electronica'
-          subheading='Promedio 8'
-          date='Marzo 2014 - Marzo 2021'
-          imagePath='/src/assets/about-astro.png'
-          altText=''
-          imageClass='h-12 w-auto'
-        ><p class='list-disc'>Conocimientos básicos de C++, desarrollé convertidores de temperatura en Visual Basic y proyectos prácticos con Arduino.</p>
+        heading="EEST N°6 - Albert Thomas"
+        subheading="Tecnico en Electronica"
+        date="01/03/2014 — 10/12/2020"
+        logo="https://eest6albertthomas.com/wp-content/uploads/2022/03/cropped-Escudo-albert-thomas.jpg"
+        >
+        <HighlightText
+          text="Conocimientos básicos de C++, desarrollé convertidores de temperatura en Visual Basic y proyectos prácticos con Arduino."
+          color="#3375C0"
+      />
+      <SkillBadges
+          skills={[
+              'Python','HTML','C++','Git','Github',
+              'CSS','JavaScript','Arduino','Visual Basic'
+            ]}
+        />
         </Card>
       </Section>
+
+      <ToolSection
+        class='mb-5'
+        title='Skills'
+        tools={[
+          {
+            name: 'Python',
+            icon: import('@/assets/tools/python.svg?raw')
+          },
+          {
+            name: 'Flask',
+            icon: import('@/assets/tools/flask.svg?raw')
+          },
+          {
+            name: 'Polars',
+            icon: import('@/assets/tools/polars.svg?raw')
+          },
+          {
+            name: 'Pandas',
+            icon: import('@/assets/tools/pandas.svg?raw')
+          },
+          {
+            name: 'Spark',
+            icon: import('@/assets/tools/spark.svg?raw')
+          },
+          {
+            name: 'MongoDB',
+            icon: import('@/assets/tools/mongodb.svg?raw')
+          },
+          {
+            name: 'PostgreSQL',
+            icon: import('@/assets/tools/PostgresSQL.svg?raw')
+          },
+          {
+            name: 'Linux',
+            icon: import('@/assets/tools/linux.svg?raw')
+          },
+          {
+            name: 'Bash Scripting',
+            icon: import('@/assets/tools/Bash.svg?raw')
+          },
+          {
+            name: 'Git',
+            icon: import('@/assets/tools/Git.svg?raw')
+          },
+          {
+            name: 'HTML',
+            icon: import('@/assets/tools/html.svg?raw')
+          },
+          {
+            name: 'CSS',
+            icon: import('@/assets/tools/css.svg?raw')
+          },
+          {
+            name: 'JavaScript',
+            icon: import('@/assets/tools/JavaScript.svg?raw')
+          },
+          {
+            name: 'Github',
+            icon: import('@/assets/tools/GitHub.svg?raw')
+          },
+          {
+            name: 'Playwright ',
+            icon: import('@/assets/tools/Playwrite.svg?raw')
+          },
+          {
+            name: 'Selenium',
+            icon: import('@/assets/tools/Selenium.svg?raw')
+          },
+          {
+            name: 'GraphQL',
+            icon: import('@/assets/tools/GraphQL.svg?raw')
+          },
+        ]}
+      />
     </div>
-    <Quote class='mt-12' />
   </main>
 </PageLayout>

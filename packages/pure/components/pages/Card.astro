@@ -1,49 +1,89 @@
 ---
-import { cn } from '../../utils'
+// Card.astro
+import type { HTMLTag, Polymorphic } from "astro/types";
+import { cn } from "../../utils";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+  heading?: string;
+  subheading?: string;
+  date?: string;
+  logo?: string;
+  class?: string;
+};
 
 const {
-  as: Tag = 'div',
+  as: Tag = "div",
   class: className,
   href,
   heading,
   subheading,
   date,
-} = Astro.props
+  logo,
+} = Astro.props;
 ---
 
 <Tag
   class={cn(
-    'not-prose relative rounded-2xl py-3',
-    href && 'transition-all',
+    `
+      not-prose w-full relative rounded-2xl p-6
+      backdrop-blur-md transition-colors shadow-lg
+
+      /* Light mode */
+      bg-white/60  text-zinc-700 shadow-black/5
+
+      /* Dark mode */
+      dark:bg-zinc-900/40  dark:text-zinc-200 dark:shadow-black/30
+    `,
     className
   )}
   href={href}
 >
-  <div class="flex flex-col gap-y-2">
-    <!-- Línea de título unificada -->
-    <div class="flex flex-wrap items-center gap-x-3 text-base font-medium">
+  <div class="flex flex-col gap-4">
 
-      <!-- Heading (amarillo Python) -->
-      <span class="text-[#FFDD57]">
-        {heading}
-      </span>
+    <!-- Header -->
+    <div class="flex items-center gap-3">
+      {logo && (
+        <img
+          src={logo}
+          alt={heading}
+          class="
+            w-16 h-16 rounded-lg object-contain p-2
 
-      <!-- Subheading (azul Python) -->
-      {subheading && (
-        <span class="text-[#347AB4] opacity-90">
-          {subheading}
-        </span>
+            /* Light */
+            bg-zinc-100 border border-zinc-300/60
+
+            /* Dark */
+            dark:bg-zinc-950/50 dark:border-white/10
+          "
+        />
       )}
 
-      <!-- Date (violeta) -->
-      {date && (
-        <span class="text-[#6A5ACD] opacity-90">
-          {date}
-        </span>
-      )}
+      <div class="flex flex-col">
+        <h2 class="
+          text-xl font-semibold tracking-tight
+
+          /* Light */
+          text-zinc-900
+
+          /* Dark */
+          dark:text-white
+        ">
+          {heading}
+        </h2>
+
+        <p class="text-primary font-medium text-sm">{subheading}</p>
+
+        <p class="text-xs text-zinc-500 dark:text-zinc-400">{date}</p>
+      </div>
     </div>
 
-    <slot />
+    <!-- Divider -->
+    <div class="border-t border-zinc-300/40 dark:border-white/10"></div>
+
+    <!-- Content -->
+    <div class="text-left">
+      <slot />
+    </div>
+
   </div>
 </Tag>
-

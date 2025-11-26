@@ -5,30 +5,24 @@ import type { CollectionEntry } from 'astro:content'
 // Plugin styles
 import 'katex/dist/katex.min.css'
 
-import { Comment, MediumZoom } from 'astro-pure/advanced'
-import { ArticleBottom, BackToTop, Hero, TOC } from 'astro-pure/components/pages'
-import { Button } from 'astro-pure/user'
-import { cn } from 'astro-pure/utils'
-import PageLayout from '@/layouts/BaseLayout.astro'
+import { MediumZoom } from 'astro-pure/advanced'
+import { ArticleBottom, Copyright, Hero, TOC } from 'astro-pure/components/pages'
+import PageLayout from '@/layouts/ContentLayout.astro'
+import { Comment, PageInfo } from '@/components/waline'
 import { integ } from '@/site-config'
 
-import type { CollectionKey } from 'astro:content'
-
-interface Props<T extends CollectionKey = CollectionKey> {
-  post: CollectionEntry<T>
-  posts: CollectionEntry<T>[]
+interface Props {
+  post: CollectionEntry<'blog'>
+  posts: CollectionEntry<'blog'>[]
   headings: MarkdownHeading[]
   remarkPluginFrontmatter: Record<string, unknown>
-  basePath?: string 
 }
-
 
 const {
   post: { id, data },
   posts,
   headings,
-  remarkPluginFrontmatter,
-  basePath
+  remarkPluginFrontmatter
 } = Astro.props
 
 const {
@@ -47,53 +41,32 @@ const socialImage = heroImage
     : heroImage.src.src
   : '/images/social-card.png'
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString()
-const primaryColor = data.heroImage?.color ?? 'hsl(var(--primary) / var(--tw-text-opacity))'
+const primaryColor = data.heroImage?.color ?? 'hsl(var(--primary) / var(--un-text-opacity))'
 ---
 
 <PageLayout
   meta={{ articleDate, description, ogImage: socialImage, title }}
   highlightColor={primaryColor}
+  back='/blog'
 >
-  <Button title='Volver' href={basePath} style='back' />
+  {!!headings.length && <TOC {headings} slot='sidebar' />}
 
+  <Hero {data} {remarkPluginFrontmatter} slot='header'>
+    <Fragment slot='description'>
+      {!isDraft && enableComment && <PageInfo comment class='mt-1' />}
+    </Fragment>
+  </Hero>
 
-  <main class='mt-6 items-start gap-x-10 md:flex'>
-    {
-      !!headings.length && (
-        <TOC
-          class='animate top-24 min-w-48 basis-60 max-md:hidden md:sticky md:order-2 lg:shrink-0'
-          {headings}
-        />
-      )
-    }
+  <slot />
 
-    <article class='min-w-0 grow' data-pagefind-body>
-      <div id='content-header' class='animate'>
-        <Hero {data} {remarkPluginFrontmatter} />
-      </div>
-      <div
-        id='content'
-        class={cn('max-w-none animate mt-8 md:min-w-[45ch]', integ.typography.class)}
-      >
-        <slot />
-      </div>
-    </article>
-  </main>
+  <Fragment slot='bottom'>
+   
+    {/* Article recommend */}
+    <ArticleBottom collections={posts} {id} class='mt-3 sm:mt-6' />
+    {/* Comment */}
+  </Fragment>
 
-  <div class='mt-6 items-start gap-x-10 md:flex'>
-    <div class='mt-8 flex-1 text-muted-foreground md:min-w-[50ch]'>
-      {/* Copyright */}
-      {/* Article recommend */}
-      <ArticleBottom collections={posts} {id} class='mt-3 sm:mt-6' />
-      {/* Comment */}
-      {!isDraft && enableComment && <Comment class='mt-3 sm:mt-6' />}
-    </div>
-    <div class='min-w-48 basis-60'>
-      <slot name='bottom' />
-    </div>
-  </div>
-
-  <BackToTop header='content-header' content='content' />
+  <slot name='bottom-sidebar' slot='bottom-sidebar' />
 </PageLayout>
 
 {integ.mediumZoom.enable && <MediumZoom />}

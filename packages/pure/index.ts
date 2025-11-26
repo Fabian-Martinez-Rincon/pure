@@ -6,9 +6,10 @@ import type { AstroIntegration, RehypePlugins, RemarkPlugins } from 'astro'
 // Integrations
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
-import rehypeExternalLinks from 'rehype-external-links'
+import UnoCSS from 'unocss/astro'
 
+import rehypeExternalLinks from './plugins/rehype-external-links'
+import rehypeTable from './plugins/rehype-table'
 import { remarkAddZoomable, remarkReadingTime } from './plugins/remark-plugins'
 import { vitePluginUserConfig } from './plugins/virtual-user-config'
 import { UserConfigSchema, type UserInputConfig } from './types/user-config'
@@ -23,9 +24,10 @@ export default function AstroPureIntegration(opts: UserInputConfig): AstroIntegr
     hooks: {
       'astro:config:setup': async ({ config, updateConfig }) => {
         let userConfig = parseWithFriendlyErrors(
+          // @ts-ignore
           UserConfigSchema,
           opts,
-          'Invalid config passed to starlight integration'
+          'Invalid config passed to astro-pure integration'
         )
 
         // Add built-in integrations only if they are not already added by the user through the
@@ -37,8 +39,8 @@ export default function AstroPureIntegration(opts: UserInputConfig): AstroIntegr
         if (!allIntegrations.find(({ name }) => name === '@astrojs/mdx')) {
           integrations.push(mdx({ optimize: true }))
         }
-        if (!allIntegrations.find(({ name }) => name === '@astrojs/tailwind')) {
-          integrations.push(tailwind({ applyBaseStyles: false }))
+        if (!allIntegrations.find(({ name }) => name === 'unocss')) {
+          integrations.push(UnoCSS({ injectReset: true }))
         }
 
         // Add supported remark plugins based on user config.
@@ -50,19 +52,20 @@ export default function AstroPureIntegration(opts: UserInputConfig): AstroIntegr
         rehypePlugins.push([
           rehypeExternalLinks,
           {
-            content: { type: 'text', value: userConfig.content.externalLinksContent },
-            target: '_blank',
-            rel: ['nofollow', 'noopener', 'noreferrer']
+            content: {
+              type: 'text',
+              value: userConfig.content.externalLinks.content
+            },
+            contentProperties: userConfig.content.externalLinks.properties
           }
         ])
+        rehypePlugins.push(rehypeTable)
         // Add Starlight directives restoration integration at the end of the list so that remark
         // plugins injected by Starlight plugins through Astro integrations can handle text and
         // leaf directives before they are transformed back to their original form.
         // integrations.push(starlightDirectivesRestorationIntegration())
 
         // Add integrations immediately after Starlight in the config array.
-        // e.g. if a user has `integrations: [starlight(), tailwind()]`, then the order will be
-        // `[starlight(), expressiveCode(), sitemap(), mdx(), tailwind()]`.
         // This ensures users can add integrations before/after Starlight and we respect that order.
         const selfIndex = config.integrations.findIndex((i) => i.name === 'astro-pure')
         config.integrations.splice(selfIndex + 1, 0, ...integrations)

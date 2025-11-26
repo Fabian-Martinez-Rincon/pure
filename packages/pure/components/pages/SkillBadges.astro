@@ -1,0 +1,54 @@
+---
+const { skills = [] } = Astro.props
+
+// Paleta minimalista (solo bordes + texto)
+// Fondos muy sutiles, casi invisibles
+const colors = [
+  {
+    light: "border-zinc-300 text-zinc-700 bg-zinc-50",
+    dark: "dark:border-zinc-700 dark:text-zinc-200 dark:bg-zinc-900/30"
+  },
+  {
+    light: "border-blue-300 text-blue-700 bg-blue-50",
+    dark: "dark:border-blue-700 dark:text-blue-300 dark:bg-blue-900/20"
+  },
+  {
+    light: "border-emerald-300 text-emerald-700 bg-emerald-50",
+    dark: "dark:border-emerald-700 dark:text-emerald-300 dark:bg-emerald-900/20"
+  },
+  {
+    light: "border-purple-300 text-purple-700 bg-purple-50",
+    dark: "dark:border-purple-700 dark:text-purple-300 dark:bg-purple-900/20"
+  },
+  {
+    light: "border-orange-300 text-orange-700 bg-orange-50",
+    dark: "dark:border-orange-700 dark:text-orange-300 dark:bg-orange-900/20"
+  },
+]
+
+// Hash para color consistente
+function hash(str: any) {
+  let h = 0
+  for (let i = 0; i < str.length; i++) {
+    h = (h << 5) - h + str.charCodeAt(i)
+    h |= 0
+  }
+  return h
+}
+
+function getColor(skill: any) {
+  const index = Math.abs(hash(skill)) % colors.length
+  return `${colors[index].light} ${colors[index].dark}`
+}
+---
+
+<div class="flex flex-wrap gap-1.5 mt-4">
+  {skills.map((skill: any) => (
+    <span
+      class={`inline-flex items-center px-2.5 py-1 text-xs font-mono 
+       transition-colors ${getColor(skill)} `}
+    >
+      {skill}
+    </span>
+  ))}
+</div>

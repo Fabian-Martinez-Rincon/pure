@@ -1,6 +1,4 @@
 ---
-// import { ClientRouter } from 'astro:transitions'
-
 import { prod } from 'astro-pure/server'
 import type { SiteMeta } from 'astro-pure/types'
 import config from '@/site-config'
@@ -76,34 +74,23 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.png', As
 <link href='/sitemap-index.xml' rel='sitemap' />
 
 {/* RSS auto-discovery */}
-
+<link
+  rel='alternate'
+  type='application/rss+xml'
+  title={config.title}
+  href={`${Astro.site}rss.xml`}
+/>
 
 <meta content={Astro.generator} name='generator' />
 
 {/* Styles */}
 <link rel='stylesheet' href='/styles/global.css' />
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-/>
-{/* View transitions */}
-<!-- <ClientRouter /> -->
-<!-- <script is:inline>
-  const style = document.createElement('style')
-  style.textContent = `* { transition: none !important; }`
-  document.addEventListener('astro:after-swap', () => {
-    document.head.appendChild(style)
-    setTimeout(() => {
-      style.remove()
-    }, 100)
-  })
-</script> -->
 
 {
   /* User script*/
   prod && (
     <script>
-      console.log( '%c 🐍 Data Engineer %c https://github.com/cworld1/astro-theme-pure/',
+      console.log( '%c Astro Theme Pure %c https://github.com/cworld1/astro-theme-pure/',
       'color:#fff;background:linear-gradient(90deg,#448bff,#44e9ff);padding:5px 0;',
       'color:#000;background:linear-gradient(90deg,#44e9ff,#ffffff);padding:5px 10px 5px 0px;' )
     </script>
