@@ -71,24 +71,32 @@ import { ProjectCardHorizontal, HighlightText, HighlightImageCard, SkillBadges, 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
       <Section title=''>
       <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-        <div class="flex-1 flex flex-col gap-4">
+
+        <Image
+          src={avatar}
+          alt='profile'
+          class='h-40 w-auto rounded-xl border p-1 md:order-2'
+          loading='eager'
+        />
+
+        <!-- TEXTO -->
+        <div class="flex-1 flex flex-col gap-4 md:order-1">
           <p class="text-muted-foreground">
-            Estoy recibido y tengo más de dos años de experiencia profecional trabajando con 
+            Estoy recibido y tengo más de dos años de experiencia profesional trabajando con 
             <span class="text-yellow-800 dark:text-yellow-300">Python</span>.
           </p>
 
           <p class="text-muted-foreground">
             Me especializado en 
             <span class="text-yellow-800 dark:text-yellow-300">automatización</span> y 
-            <span class="text-yellow-800 dark:text-yellow-300">Web Scraping</span>. 
-            Construyo herramientas que reducen tiempos, eliminan tareas manuales y mejoran la calidad de los datos. 
+            <span class="text-yellow-800 dark:text-yellow-300">Web Scraping</span>.
+            Construyo herramientas que reducen tiempos, eliminan tareas manuales y mejoran la calidad de los datos.
             Trabajo con 
-            <span class="text-yellow-800 dark:text-yellow-300">Playwright</span>, 
-            <span class="text-yellow-800 dark:text-yellow-300">BeautifulSoup</span>, 
-            <span class="text-yellow-800 dark:text-yellow-300">Pandas</span>, 
+            <span class="text-yellow-800 dark:text-yellow-300">Playwright</span>,
+            <span class="text-yellow-800 dark:text-yellow-300">BeautifulSoup</span>,
+            <span class="text-yellow-800 dark:text-yellow-300">Pandas</span>,
             <span class="text-yellow-800 dark:text-yellow-300">Polars</span> y 
-            <span class="text-yellow-800 dark:text-yellow-300">MongoDB</span> 
-            para crear soluciones eficientes y escalables.
+            <span class="text-yellow-800 dark:text-yellow-300">MongoDB</span>.
           </p>
 
           <Button 
@@ -98,13 +106,9 @@ import { ProjectCardHorizontal, HighlightText, HighlightImageCard, SkillBadges, 
             variant='ahead'
           />
         </div>
-        <Image
-          src={avatar}
-          alt='profile'
-          class='h-40 w-auto rounded-xl border p-1'
-          loading='eager'
-        />
+
       </div>
+
     </Section>
      
       {
@@ -114,7 +118,7 @@ import { ProjectCardHorizontal, HighlightText, HighlightImageCard, SkillBadges, 
       heading="FabricData"
       subheading="Data Engineer"
       date="18/09/2024 — Actualidad"
-      logo="https://media.licdn.com/dms/image/v2/D4D0BAQEytvAo0W5UtQ/company-logo_200_200/B4DZpJZZneKIAI-/0/1762167987046/fabricdata_logo?e=1765411200&v=beta&t=EjQHMhu7-pUhID2GLMHO1GmtU7sUitj4P47n2yK7Ork"
+      logo="/src/assets/experiencia/fabric.jpg"
     >
       <HighlightText
           text="Logre reducir el tiempo de análisis de una plataforma de 8 hs a 30 minutos. Con el software se analizaron una tanda de 158 plataformas que de la manera tradicional se hubieran tardado 1264 hs (158 días laborales) y con el software se realizaron en 79 hs (10 días laborales)."
@@ -155,7 +159,7 @@ import { ProjectCardHorizontal, HighlightText, HighlightImageCard, SkillBadges, 
         heading="Gaming Labs Sudamérica"
         subheading="Backend Developer"
         date="01/07/2023 — 17/09/2024"
-        logo="https://media.licdn.com/dms/image/v2/C560BAQHPcaTk0tJnVA/company-logo_200_200/company-logo_200_200/0/1630588209696/gaming_laboratories_international_logo?e=1765411200&v=beta&t=wg-7qtwBFsLviikoeTxI6Jp4G9vRlnxht442iTX9kQw"
+        logo="/src/assets/experiencia/gli.jpg"
       >
         <HighlightText
           text="Software con Pandas, PyGetWindow, OpenPyXL, PyAutoGUI y Tkinter para automatizar la entrada de datos en máquinas de juego, reduciendo el tiempo de pruebas de 60hs a solo 5hs con un margen de error del 0%."
@@ -251,7 +255,7 @@ import { ProjectCardHorizontal, HighlightText, HighlightImageCard, SkillBadges, 
         heading="Universidad Nacional de La Plata - Facultad de Informática"
         subheading="Analista Programador Universitario"
         date="01/02/2020 — 23/04/2025"
-        logo="https://www.info.unlp.edu.ar/wp-content/uploads/2019/07/logoo-768x768.jpg"
+        logo="/src/assets/experiencia/unlp.jpg"
       >
       <HighlightText
           text="Competente en Java y patrones de diseño, metodologías ágiles (Scrum), PostgreSQL, SQL, Linux y bases de datos relacionales. Hábil en Bash Scripting, Python, Flask y tecnologías de front-end incluyendo HTML, CSS, JavaScript, React, Tailwind y Vue.js."
@@ -269,7 +273,7 @@ import { ProjectCardHorizontal, HighlightText, HighlightImageCard, SkillBadges, 
         heading="EEST N°6 - Albert Thomas"
         subheading="Tecnico en Electronica"
         date="01/03/2014 — 10/12/2020"
-        logo="https://eest6albertthomas.com/wp-content/uploads/2022/03/cropped-Escudo-albert-thomas.jpg"
+        logo="/src/assets/experiencia/thomas.jpg"
         >
         <HighlightText
           text="Conocimientos básicos de C++, desarrollé convertidores de temperatura en Visual Basic y proyectos prácticos con Arduino."
