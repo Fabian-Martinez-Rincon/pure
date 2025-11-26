@@ -8,7 +8,7 @@ import avatar from '@/assets/yo.png'
 import config from '@/site-config'
 import ToolSection from '@/components/about/ToolSection.astro'
 
-import { ProjectCardHorizontal, HighlightText, SkillBadges, Card } from '../../packages/pure/components/pages'
+import { ProjectCardHorizontal, HighlightText, HighlightImageCard, SkillBadges, Card } from '../../packages/pure/components/pages'
 
 ---
 
@@ -117,14 +117,21 @@ import { ProjectCardHorizontal, HighlightText, SkillBadges, Card } from '../../p
       logo="https://media.licdn.com/dms/image/v2/D4D0BAQEytvAo0W5UtQ/company-logo_200_200/B4DZpJZZneKIAI-/0/1762167987046/fabricdata_logo?e=1765411200&v=beta&t=EjQHMhu7-pUhID2GLMHO1GmtU7sUitj4P47n2yK7Ork"
     >
       <HighlightText
-          text="Diseñé un framework completo de análisis en Jupyter que automatiza filtros, validaciones, búsquedas y reportes, reemplazando trabajo manual de analistas y acelerando auditorías."
+          text="Logre reducir el tiempo de análisis de una plataforma de 8 hs a 30 minutos. Con el software se analizaron una tanda de 158 plataformas que de la manera tradicional se hubieran tardado 1264 hs (158 días laborales) y con el software se realizaron en 79 hs (10 días laborales)."
           color="#FF3A83"
+      />
+      <HighlightImageCard
+        image='/src/assets/polars.svg'
+        highlights={[
+          "Logre que un equipo de 13 Data Engineers no dependa de un equipo de analistas para hacer análisis de calidad de datos. Ya que el software desarrollado no requiere tener conocimientos de técnicos, solo un mínimo criterio.",
+          "Migre el proyecto de Pandas a Polars que está hecho en Rust y usa paralelismo real, pero el software al tener una interfaz externa, los devs no sienten la complejidad —solo el rendimiento",
+          "Soy uno de los que están a cargo de actualizar y mantener la documentación técnica como a nivel criterios de negocio."
+        ]}
       />
       <HighlightText 
           text="Implementé pipelines ETL y Web Scraping para plataformas OTT usando Playwright, APIs, Regex y BeautifulSoup, garantizando datos limpios y trazables."
           color="#FF3A83"
         />
-      <HighlightText text="Desarrollé módulos de control de calidad con Polars para detección de anomalías, normalización de títulos, análisis de deeplinks y generación automática de reportes." color="#FF3A83"/>
       <HighlightText
           text="Integración y manejo de datos con MongoDB e históricos JSONL en S3, optimizando sincronización entre entornos."
           color="#FF3A83"
