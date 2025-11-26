@@ -1,29 +1,41 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import HighlightText from "./HighlightText.astro";
 
 interface Props {
-  image: string;
+  imagePath: string;          // <-- ahora se pasa igual que ProjectCardHorizontal
   highlights: string[];
   color?: string;
 }
 
-const { image, highlights, color = "#FF3A83" } = Astro.props;
+const { imagePath, highlights, color = "#FF3A83" } = Astro.props;
+
+// Importar imágenes desde /src/assets/*
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{png,jpg,jpeg,webp,svg,avif,gif}"
+);
+
+// Validación
+if (!images[imagePath]) {
+  throw new Error(`La imagen "${imagePath}" no existe en /src/assets/`);
+}
 ---
+<div class="w-full my-4 grid md:grid-cols-[2fr_1fr] gap-6 items-start">
 
-<div class="w-full  grid md:grid-cols-[2fr_1fr] gap-6 items-start ">
-
-  <!-- COLUMNA IZQUIERDA -->
-  <div class="flex flex-col ">
-    {highlights.map(text => (
+  <!-- TEXTO -->
+  <div class="flex flex-col gap-4">
+    {highlights.map((text) => (
       <HighlightText text={text} color={color} />
     ))}
   </div>
 
-  <!-- COLUMNA DERECHA (IMAGEN MÁS CHICA Y SIN ESPACIO EXCESIVO) -->
+  <!-- IMAGEN OPTIMIZADA -->
   <div class="flex justify-end">
-    <img
-      src={image}
-      class="rounded-2xl my-4 max-w-[280px] object-contain opacity-95"
+    <Image
+      src={images[imagePath]()}
+      alt="highlight-image"
+      class="rounded-2xl max-w-[330px] object-contain opacity-95"
       loading="lazy"
     />
   </div>
