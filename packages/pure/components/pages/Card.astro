@@ -1,6 +1,7 @@
 ---
 // Card.astro
 import type { HTMLTag, Polymorphic } from "astro/types";
+import { Image } from "astro:assets"
 import { cn } from "../../utils";
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
@@ -20,6 +21,14 @@ const {
   date,
   logo,
 } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/experiencia/*.{jpeg,jpg,png,gif,avif,webp}"
+)
+
+if (!images[logo]) {
+  throw new Error(`"${logo}" no existe en /src/assets/experiencia/`)
+}
 ---
 
 <Tag
@@ -43,18 +52,10 @@ const {
     <!-- Header -->
     <div class="flex items-center gap-3">
       {logo && (
-        <img
-          src={logo}
+        <Image
+          src={images[logo]()}
           alt={heading}
-          class="
-            w-16 h-16 rounded-lg object-contain p-2
-
-            /* Light */
-            bg-zinc-100 border border-zinc-300/60
-
-            /* Dark */
-            dark:bg-zinc-950/50 dark:border-white/10
-          "
+          class="w-16 h-16 rounded-lg object-contain p-2 bg-zinc-100 border border-zinc-300/60 dark:bg-zinc-950/50 dark:border-white/10 "
         />
       )}
 
