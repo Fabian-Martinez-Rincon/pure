@@ -1,0 +1,195 @@
+---
+title: 'Lab Genetics'
+publishDate: '2025-12-05'
+description: 'Proyecto Flask, TailwindCSS y PostgreSQL para la gestión de un laboratorio de genética.'
+heroImage: { src: './thumbnail.jpg', color: '#6365EF' }
+tags: 
+ - Proyecto
+language: 'Spanish'
+---
+
+# Videos sobre el proyecto
+
+Algunos videos explicativos sobre el proyecto:
+
+import YoutubeVideo2 from "@/components/YoutubeVideo2.astro"
+
+<YoutubeVideo2
+  id="Bj9llOAoKJ4"
+  side="right"
+  title="Usuario Owner / Admin General"
+  description="Registrar, lista, y habilita/inhabilitar a los tipos de usuarios del sistema, además de gestionar laboratorios. También se ejemplifica el envío de contraseñas por correo, y el flujo de activación/inactivación de cuentas."
+/>
+
+<YoutubeVideo2
+  id="0oixeOgFAPM"
+  side="left"
+  title="Usuario Medico"
+  description="Permite registrar/asignar pacientes, visualizar/solicitar estudios, y revisar historiales y perfiles. Se muestra: registro de un paciente, envío de contraseña por email y uso de las funciones médicas, solicitudes de estudios y la muestra de resultados."
+/>
+
+<YoutubeVideo2
+  id="WkvMSmW3xCI"
+  side="right"
+  title="Admin Laboratorio y Paciente"
+  description="El paciente ve sus estudios, presupuestos y turnos. El laboratorio genera un presupuesto, el paciente sube el comprobante y el administrador lo acepta/rechaza. Una vez aprobado el pago, el paciente solicita un turno."
+/>
+
+<YoutubeVideo2
+  id="5F9k3Nhca9A"
+  side="left"
+  title="Laboratorio y Transportista"
+  description="El laboratorio gestiona los turnos; si no se confirman, se cancelan. Al confirmar un turno, el sistema genera pedidos para el transportista, iniciando su jornada, gestiona cada retiro (finalizando, posponiendo o cancelando pedidos) y al terminar la jornada hace un registro."
+/>
+
+<YoutubeVideo2
+  id="K6q02YfDIp0"
+  side="right"
+  title="Admin General Ultimas acciones"
+  description="El Transportista termina su jornada, los estudios pasan a espera de envío y el administrador los agrupa en paquetes para enviarlos al exterior. Se carga manualmente los resultados, y el paciente ve su estudio actualizado cuando está disponible."
+/>
+
+---
+
+## 🧬 Introducción
+
+> Que proyecto mas maravilloso :/
+
+Marco de indagación para generar “Prototipo de solución”:
+
+> “Un laboratorio que centraliza muestras biológicas (de otros laboratorios) para mandarlas a analizarlas al exterior quiere digitalizar su funcionamiento ya que actualmente no cuentan con un soporte digital”
+
+- [🤝🏼 Para Colaborar](#-para-colaborar)
+- [🧰 Recursos](#-recursos)
+- [⚙️ Instalación](#️-instalación)
+- [🕹️ Ejecución](#️-ejecución)
+- [👨‍💻 Variables de Entorno](#-variables-de-entorno)
+- [👤 Usuarios](#-usuarios)
+    - [Administrador General](#administrador-general)
+    - [Administrador de Laboratorio](#administrador-de-laboratorio)
+    - [Medico](#medico)
+    - [Paciente](#paciente)
+    - [Transportista](#transportista)
+
+---
+
+### 🤝🏼 Para Colaborar
+
+Para asegurarnos de que estamos en la rama main, antes de crear una mara
+
+```bash
+git branch
+```
+
+Si ya creamos una rama y queremos ir a esa, usamos
+
+```bash
+git checkout {nombre-rama}
+```
+
+Si no existe la rama, la creamos con un nombre descriptivo
+
+```bash
+git checkout -b {nombre-rama}
+```
+
+Una vez que estamos en la rama, hacemos un pull para asegurarnos de que estamos actualizados
+
+```bash
+git pull origin main
+```
+
+Hacemos la pull request
+
+```bash
+git add .
+git commit -m "Mensaje descriptivo"
+git push origin {nombre-rama}
+```
+
+---
+
+### 🧰 Recursos
+
+- [Python 3.8.10](https://www.python.org/downloads/release/python-3810/)
+- [PGAdmin](https://www.pgadmin.org/download/pgadmin-4-windows/)
+
+---
+
+### ⚙️ Instalación
+
+Creamos el entorno Virtual
+
+```bash
+python -m venv .venv
+```
+
+Activamos el entorno
+
+```bash
+.venv\Scripts\activate
+```
+
+En caso de no tener permisos
+
+```bash
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+Instalamos las dependencias (Solo hace falta la primera vez)
+
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+```
+
+---
+
+### 🕹️ Ejecución
+
+```bash
+flask resetdb
+flask seeddb
+```
+
+Para correr la aplicación
+
+```bash
+livetw dev
+```
+
+O los siguientes dos
+
+```bash
+flask run --debug
+livetw dev --no-flask
+```
+
+----
+
+### 👨‍💻 Variables de Entorno
+
+Para configurar las variables de entorno, copiamos y renombramos el archivo `.env.example` a `.env` y configuramos las variables de entorno.
+
+```json
+DB_PASS = "postgres"
+DB_USER = "postgres"
+DB_NAME = "localhost"
+DB_HOST = "grupo08"
+```
+
+---
+
+### 👤 Usuarios
+
+- [Owner](#administrador-general)
+- [Administrador de Laboratorio](#administrador-de-laboratorio)
+- [Laboratorio](#laboratorio)
+- [Medico](#medico)
+- [Paciente](#paciente)
+- [Transportista](#transportista)
+
+> [!NOTE]  
+> Las enfermedades raras son enfermedades geneticas
+
+---
+
