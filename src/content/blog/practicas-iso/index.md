@@ -1,5 +1,5 @@
 ---
-title: 'Parciales Introducción a los sitemas Operativos'
+title: 'Introducción a los sitemas Operativos'
 description: "Practica 1, 2 y 3 de Introducción a los Sistemas Operativos."
 heroImage: { src: './thumbnail.jpg', color: '#FFFFFF' }
 publishDate: '2022-07-15'
