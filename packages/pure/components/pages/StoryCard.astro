@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { cn } from "astro-pure/utils";
+
+interface Props {
+  imagePath: string;
+  heading?: string;
+  text?: string;
+  altText?: string;
+  reverse?: boolean; // <-- alterna imagen izquierda/derecha
+  class?: string;
+}
+
+const { imagePath, heading, text, altText, reverse = false, class: className } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif,avif,webp,svg}"
+);
+
+if (!imagePath) throw new Error("AboutSplit: imagePath es requerido");
+if (!images[imagePath]) throw new Error(`AboutSplit: "${imagePath}" no existe en /src/assets`);
+---
+
+<section
+  class={cn(
+    "w-full overflow-hidden rounded-2xl shadow-lg backdrop-blur-md " +
+      "bg-white/60 text-zinc-800 shadow-black/5 " +
+      "dark:bg-zinc-900/40 dark:text-zinc-200 dark:shadow-black/30 dark:border-white/10",
+    className
+  )}
+>
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <!-- Imagen -->
+    <div class={cn("p-4 md:p-6", reverse && "md:order-2")}>
+      <Image
+        src={images[imagePath]()}
+        alt={altText ?? heading ?? "imagen"}
+        loading="lazy"
+        class="about-zoom w-full h-64 md:h-full object-cover rounded-xl cursor-zoom-in"
+      />
+    </div>
+
+    <!-- Texto -->
+    <div class={cn("p-6 flex flex-col justify-center gap-3", reverse && "md:order-1")}>
+      {heading && <h3 class="text-2xl font-semibold">{heading}</h3>}
+      {text && <p class="leading-relaxed text-zinc-700 dark:text-zinc-200/90">{text}</p>}
+      <slot />
+    </div>
+  </div>
+</section>

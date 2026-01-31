@@ -23,10 +23,11 @@ const { title, description, id } = Astro.props
   )}
 
   <lite-youtube
-    class="relative overflow-hidden w-full max-w-4xl mx-auto rounded-xl aspect-video"
-    videoid={id}
-    params="controls=1">
-  </lite-youtube>
+  class="relative overflow-hidden w-full max-w-4xl mx-auto rounded-xl aspect-video"
+  videoid={id}
+    posterquality="sddefault"
+    params="controls=1"
+  ></lite-youtube>
 </div>
 
 <script>
