@@ -36,7 +36,7 @@ for (const path of imagePaths) {
         imagePaths.length >= 4 && "grid-cols-2 md:grid-cols-3"
       )}
     >
-      {imagePaths.map((path) => (
+      {imagePaths.map((path:any) => (
         <Image
           src={images[path]()}
           alt={altText ?? "imagen"}
