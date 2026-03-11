@@ -61,20 +61,14 @@ export const theme: ThemeUserConfig = {
     links: [
       // Registration link
       {
-        title: 'Moe ICP 114514',
-        link: 'https://icp.gov.moe/?keyword=114514',
+        title: 'Instagram',
+        link: 'https://www.instagram.com/fabosistemas/',
         style: 'text-sm' // Uno/TW CSS class
       },
       {
-        title: 'Travelling',
-        link: 'https://www.travellings.cn/go.html',
+        title: 'Github',
+        link: 'https://github.com/Fabian-Martinez-Rincon',
         style: 'text-sm'
-      },
-      // Privacy Policy link
-      {
-        title: 'Site Policy',
-        link: '/terms/list',
-        pos: 2 // position set to 2 will be appended to copyright line
       }
     ],
     /** Enable displaying a “Astro & Pure theme powered” link in your site’s footer. */
@@ -95,7 +89,7 @@ export const theme: ThemeUserConfig = {
     /** Blog page size for pagination (optional) */
     blogPageSize: 8,
     // Currently support weibo, x, bluesky
-    share: ['weibo', 'x', 'bluesky']
+    share: []
   }
 }
 
