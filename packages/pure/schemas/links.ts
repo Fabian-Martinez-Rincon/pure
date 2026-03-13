@@ -22,8 +22,8 @@ export const FriendLinksSchema = () =>
       applyTip: [
         { name: 'Name', val: 'Astro Pure' },
         { name: 'Desc', val: 'Null' },
-        { name: 'Link', val: 'https://astro-pure.js.org/' },
-        { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' }
+        { name: 'Link', val: 'https://fabianmartinezrincon.com/' },
+        { name: 'Avatar', val: 'https://fabianmartinezrincon.com/favicon/favicon.ico' }
       ],
       cacheAvatar: false
     })
