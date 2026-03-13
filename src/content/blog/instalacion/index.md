@@ -1,10 +1,11 @@
 ---
 title: 'Instalación'
 publishDate: '2026-03-13'
-description: 'Proyecto Flask, TailwindCSS y PostgreSQL para la gestión de un laboratorio de genética.'
+description: ''
+Guía paso a paso para instalar y configurar el entorno de desarrollo de Pascal en diferentes tipos de computadoras, desde equipos potentes hasta opciones en línea para PCs de bajos recursos.
 heroImage: { src: './thumbnail.jpg', color: '#6365EF' }
 tags: 
- - Proyecto
+ - Instalacion
 language: 'Spanish'
 ---
 
@@ -68,7 +69,7 @@ Lo instale normal, todo siguiente y me anduvo
 
 ![alt text](image-7.png)
 
-## Solo google xd
+## PC Super Humilde
 
 https://onecompiler.com/pascal
 
