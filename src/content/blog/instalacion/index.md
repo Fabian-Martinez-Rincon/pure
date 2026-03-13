@@ -4,7 +4,7 @@ publishDate: '2026-03-13'
 description: 'Guia paso a paso para instalar y configurar el entorno de desarrollo de Pascal en diferentes tipos de computadoras, desde equipos potentes hasta opciones en línea para PCs de bajos recursos.'
 heroImage: { src: './thumbnail.jpg', color: '#6365EF' }
 tags: 
- - Instalacion
+ - Blog
 language: 'Spanish'
 ---
 
