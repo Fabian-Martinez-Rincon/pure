@@ -51,6 +51,7 @@ export const theme: ThemeUserConfig = {
       { title: 'Blog', link: '/blog' },
       { title: 'Proyectos', link: '/projects' },
       { title: 'Sobre mi', link: '/about' },
+      { title: 'FaboSistemas', link: '/fabosistemas' },
     ]
   },
 

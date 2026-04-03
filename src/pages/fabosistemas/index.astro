@@ -1,0 +1,157 @@
+---
+import { Image } from 'astro:assets'
+import { Icon, Label } from 'astro-pure/user'
+import { MediumZoom } from "astro-pure/advanced";
+import PageLayout from '@/layouts/BaseLayout.astro'
+import Section from '@/components/home/Section.astro'
+import avatar from '@/assets/yo.png'
+import { StoryCard, HeroSplit } from 'packages/pure/components/pages'
+import YoutubeVideo2 from "@/components/YoutubeVideo2.astro"
+
+---
+
+<PageLayout meta={{ title: 'Home' }} highlightColor='#151718'>
+  <main class='flex w-full flex-col items-center'>
+    
+    <section class="animate mb-10 flex flex-col items-center gap-y-7" id="content-header">
+      <div class="flex flex-col items-center gap-y-4">
+        <h1
+        class="text-4xl font-bold relative after:content-[''] after:block after:h-[3px]  after:bg-[#C24D36] after:mx-auto after:mt-2"
+      >
+        FaboSistemas
+      </h1>
+      <h1
+        class="text-2xl font-bold relative after:content-[''] after:block after:h-[3px]  after:bg-[#EBF24B] after:mx-auto after:mt-2"
+      >
+        Particular UNLP Informática (En mis ratos libres)
+      </h1>
+      <div class='flex flex-col items-center gap-y-4'>
+        <div class="flex flex-wrap justify-center gap-x-7 gap-y-3">
+
+          <Label
+            title="Github"
+            as="a"
+            href="https://github.com/Fabian-Martinez-Rincon"
+            target="_blank"
+            color="blue"
+          >
+            <Icon name="github" class="size-5" slot="icon" />
+          </Label>
+
+          <Label
+            title="Curriculum"
+            as="a"
+            href="/fabianmartinezrincon.pdf"
+            target="_blank"
+            color="emerald"
+          >
+            <Icon name="document" class="size-5" slot="icon" />
+          </Label>
+
+          <Label
+            title="LinkedIn"
+            as="a"
+            href="https://www.linkedin.com/in/fabian-martinez-rincon/"
+            target="_blank"
+            color="orange"
+          >
+            <Icon name="link" class="size-5" slot="icon" />
+          </Label>
+
+            <Label
+              title="Email"
+              as="a"
+              onclick="navigator.clipboard.writeText('fabianmartinezrincon.123@gmail.com'); alert('Email copiado!');"
+              color="zinc"
+            >
+              <Icon name="email" class="size-5" slot="icon" />
+            </Label>
+
+        </div>
+    </section>
+    <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
+      <Section title=''>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
+          <div class="flex flex-col-reverse md:flex-row items-center gap-8">
+            
+            <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-5">
+              <p class="max-w-2xl text-muted-foreground leading-8">
+                Siempre me gustó dar clases y compartir lo que sé, por eso doy clases particulares de programación a estudiantes de la UNLP. Me enfoco en que entiendan los conceptos y puedan resolver los ejercicios por su cuenta, acompañando el proceso para que ganen confianza y mejoren su rendimiento.
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-4">
+  
+          <!-- BOTÓN PRINCIPAL -->
+          <a
+            href="https://wa.link/9idaht"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#C24D36] px-8 py-4 text-base md:text-lg font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:opacity-90"
+          >
+            <Icon name="calendar" class="size-5" />
+            Pedir una clase
+          </a>
+          <!-- CAFECITO -->
+          <a
+            href="#"
+            target="_blank"
+            class="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 px-6 py-4 text-base font-semibold text-white transition hover:bg-white/10"
+          >
+            ☕ Cafecito
+          </a>
+
+        </div>
+              
+            </div>
+
+            <div class="shrink-0">
+              <Image
+                src={avatar}
+                alt="Foto de perfil"
+                class="h-40 md:h-48 w-auto rounded-2xl border border-white/10 p-1 shadow-lg"
+                loading="eager"
+              />
+            </div>
+
+          </div>
+        </div>
+      </Section>
+      {    
+    <Section title='Algoritmos y Programación 1 Clases gratis!'> 
+    <YoutubeVideo2
+      id="ujBztR_lokw"
+      side="right"
+      title="AyP1 Practica 5 y 6 Procesos, funciones, alcance de las variables"
+      description="Clase práctica de AyP1 sobre modularización, máximos y mínimos, alcance de variables y funciones. Incluye parámetros por valor y referencia y un ejemplo de sumatoria 💻"
+    />
+    <br>
+    <YoutubeVideo2
+      id="2Ar5ssPIuA0"
+      side="left"
+      title="AyP1 - Practica 3 y 4 - Bucles, Funciones, Parámetros por valor y referencia"
+      description="Clase práctica de AyP1 en Pascal sobre bucles, funciones y parámetros. Se ven for vs while, paso por valor y referencia, y resolución de ejercicios de las prácticas 3 y 4 💻"
+    />
+    <br>
+    <YoutubeVideo2
+      id="eBSd3jINKd4"
+      side="right"
+      title="Practica 1 y 2 AyP1 CDO (Ejercicio en pascal)"
+      description="Clase práctica de AyP1 en Pascal donde se trabajan conceptos básicos de programación: variables, operaciones, uso de div y mod, y estructuras condicionales (if). Incluye resolución de ejercicios prácticos y consejos clave para entender la lógica desde cero 💻"
+    />
+    </Section> 
+      }
+
+
+<Section title='CADP Clases gratis!'> 
+    <YoutubeVideo2
+      id="egUQtNautf8"
+      side="left"
+      title="Practica 1 y 2 CADP Algunos conceptos básicos"
+      description="Clase práctica de CADP en Pascal donde se ven los conceptos básicos del lenguaje: estructura del programa, tipos de datos, uso de div/mod, condicionales y bucles. Incluye resolución de ejercicios de las prácticas 1 y 2 para entender la lógica desde cero 💻"
+    />
+    </Section> 
+      
+      
+  </main>
+<MediumZoom selector=".about-zoom" />
+</PageLayout>
