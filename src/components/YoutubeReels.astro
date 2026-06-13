@@ -1,0 +1,30 @@
+---
+interface Props {
+  title?: string
+  ids: string[]
+}
+
+const { title, ids } = Astro.props
+---
+
+{title && (
+  <h2 class="text-xl font-bold text-yellow-500 text-center mb-6">
+    {title}
+  </h2>
+)}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  {ids.map((id) => (
+    <div class="flex justify-center">
+      <lite-youtube
+        class="relative aspect-[9/16] w-full max-w-xs rounded-xl overflow-hidden shadow-lg"
+        videoid={id}
+        params="controls=1"
+      ></lite-youtube>
+    </div>
+  ))}
+</div>
+
+<script>
+  import "@justinribeiro/lite-youtube";
+</script>

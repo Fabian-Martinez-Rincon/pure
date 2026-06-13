@@ -4,44 +4,39 @@ interface Props {
   description?: string
   id: string
   side?: "left" | "right"
+  format?: "video" | "reel"
 }
 
-// Valor por defecto = "left"
-const { title, description, id, side = "left" } = Astro.props
+const { title, description, id, side = "left", format = "video" } = Astro.props
 
-// Clases dinámicas
 const videoOrder = side === "left" ? "md:order-1" : "md:order-2"
 const textOrder  = side === "left" ? "md:order-2" : "md:order-1"
+
+const aspectClass = format === "reel" ? "aspect-[9/16] max-w-xs mx-auto" : "aspect-video"
 ---
 
-    {title && (
-        <h2 class="text-xl font-bold text-yellow-500 text-center">
-            {title}
-        </h2>
-        )}
+{title && (
+  <h2 class="text-xl font-bold text-yellow-500 text-center">
+    {title}
+  </h2>
+)}
 
-<div class="grid md:grid-cols-2 gap-10 items-center ">
+<div class="grid md:grid-cols-2 gap-10 items-center">
 
-  <!-- VIDEO -->
   <div class={`w-full ${videoOrder}`}>
     <lite-youtube
-      class="relative w-full rounded-xl overflow-hidden aspect-video shadow-lg"
+      class={`relative w-full rounded-xl overflow-hidden shadow-lg ${aspectClass}`}
       videoid={id}
       params="controls=1"
     ></lite-youtube>
   </div>
 
-  <!-- TEXTO -->
   <div class={`flex flex-col gap-4 ${textOrder}`}>
-
-    
-
     {description && (
-      <p class=" text-custom-text opacity-90 leading-relaxed">
+      <p class="text-custom-text opacity-90 leading-relaxed">
         {description}
       </p>
     )}
-
   </div>
 
 </div>
