@@ -1,22 +1,22 @@
-import type { CardListData, Config, IntegrationUserConfig, ThemeUserConfig } from 'astro-pure/types'
+import type { Config, IntegrationUserConfig, ThemeUserConfig } from 'astro-pure/types'
 
 export const theme: ThemeUserConfig = {
   // === Basic configuration ===
   /** Title for your website. Will be used in metadata and as browser tab title. */
   title: 'Fabian Martinez Rincon',
   /** Will be used in index page & copyright declaration */
-  author: 'Data Engineer',
+  author: 'Fabian Martinez Rincon',
   /** Description metadata for your website. Can be used in page metadata. */
-  description: 'Porfolio de Fabian Martinez Rincon',
+  description: 'Fabian Martinez Rincon — Data Engineer | Data Quality & Analytics. Pipelines ETL, calidad de datos y automatizacion en Python.',
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
   favicon: '/favicon/f.svg',
   /** Specify the default language for this site. */
   
   locale: {
-    lang: 'en-US',
-    attrs: 'en_US',
+    lang: 'es-AR',
+    attrs: 'es_AR',
     // Date locale
-    dateLocale: 'en-US',
+    dateLocale: 'es-AR',
     dateOptions: {
       day: 'numeric',
       month: 'short',
@@ -48,10 +48,8 @@ export const theme: ThemeUserConfig = {
   /** Configure the header of your site. */
   header: {
     menu: [
-      { title: 'Blog', link: '/blog' },
       { title: 'Proyectos', link: '/projects' },
-      { title: 'Sobre mi', link: '/about' },
-      { title: 'FaboSistemas', link: '/fabosistemas' },
+      { title: 'Sobre mi', link: '/about' }
     ]
   },
 
@@ -61,22 +59,26 @@ export const theme: ThemeUserConfig = {
     year: `© ${new Date().getFullYear()}`,
     // year: `© 2019 - ${new Date().getFullYear()}`,
     links: [
-      // Registration link
-      {
-        title: 'Instagram',
-        link: 'https://www.instagram.com/fabosistemas/',
-        style: 'text-sm' // Uno/TW CSS class
-      },
       {
         title: 'Github',
         link: 'https://github.com/Fabian-Martinez-Rincon',
+        style: 'text-sm' // Uno/TW CSS class
+      },
+      {
+        title: 'LinkedIn',
+        link: 'https://www.linkedin.com/in/fabian-martinez-rincon/',
+        style: 'text-sm'
+      },
+      {
+        title: 'Curriculum',
+        link: '/fabianmartinezrincon.pdf',
         style: 'text-sm'
       }
     ],
     /** Enable displaying a “Astro & Pure theme powered” link in your site’s footer. */
     credits: false,
     /** Optional details about the social media accounts for this site. */
-    social: { github: 'https://github.com/cworld1/astro-theme-pure' }
+    social: { github: 'https://github.com/Fabian-Martinez-Rincon' }
   },
 
   content: {
@@ -118,7 +120,7 @@ export const integ: IntegrationUserConfig = {
     cacheAvatar: false
   },
   // Enable page search function
-  pagefind: true,
+  pagefind: false,
   // Add a random quote to the footer (default on homepage footer)
   // See: https://astro-pure.js.org/docs/integrations/advanced#web-content-render
   quote: {
@@ -154,7 +156,7 @@ export const integ: IntegrationUserConfig = {
   },
   // Comment system
   waline: {
-    enable: true,
+    enable: false,
     // Server service link
     server: 'https://astro-theme-pure-waline.arthals.ink/',
     // Refer https://waline.js.org/en/guide/features/emoji.html
@@ -171,28 +173,6 @@ export const integ: IntegrationUserConfig = {
       imageUploader: false
     }
   }
-}
-
-export const terms: CardListData = {
-  title: 'Terms content',
-  list: [
-    {
-      title: 'Privacy Policy',
-      link: '/terms/privacy-policy'
-    },
-    {
-      title: 'Terms and Conditions',
-      link: '/terms/terms-and-conditions'
-    },
-    {
-      title: 'Copyright',
-      link: '/terms/copyright'
-    },
-    {
-      title: 'Disclaimer',
-      link: '/terms/disclaimer'
-    }
-  ]
 }
 
 const config = { ...theme, integ } as Config

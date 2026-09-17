@@ -1,4 +1,5 @@
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
+import sitemap from '@astrojs/sitemap'
 import vercel from '@astrojs/vercel'
 import AstroPureIntegration from 'astro-pure'
 import { defineConfig } from 'astro/config'
@@ -47,8 +48,9 @@ export default defineConfig({
   },
 
   integrations: [
-    // astro-pure will automatically add sitemap, mdx & unocss
-    // sitemap(),
+    // astro-pure will automatically add mdx & unocss.
+    // Sitemap declarado aca para dejar el blog/apuntes fuera del indice.
+    sitemap({ filter: (page) => !/\/(blog|tags|archives)(\/|$)/.test(page) }),
     // mdx(),
     AstroPureIntegration(config)
     // @playform/compress have potential build issue with this template

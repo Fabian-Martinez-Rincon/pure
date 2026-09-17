@@ -26,7 +26,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/experiencia/*.{jpeg,jpg,png,gif,avif,webp}"
 )
 
-if (!images[logo]) {
+if (logo && !images[logo]) {
   throw new Error(`"${logo}" no existe en /src/assets/experiencia/`)
 }
 ---

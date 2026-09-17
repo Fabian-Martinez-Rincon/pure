@@ -4,13 +4,6 @@ import config from 'virtual:config'
 import { Icon } from '../user'
 
 const footerConf = config.footer
-let social = footerConf.social || {}
-
-// If the list does not contain rss, add it
-social.rss = {
-  label: 'RSS',
-  url: '/rss.xml'
-}
 
 const footerLink1 = footerConf.links?.filter(({ pos }) => pos === 1) || []
 ---

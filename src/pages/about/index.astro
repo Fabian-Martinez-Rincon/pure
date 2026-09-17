@@ -1,178 +1,92 @@
 ---
 import { Button } from 'astro-pure/user'
 import PageLayout from '@/layouts/CommonPage.astro'
-import Substats from '@/components/about/Substats.astro'
-import { MediumZoom } from "astro-pure/advanced";
+import { MediumZoom } from 'astro-pure/advanced'
 import { StoryCard, HeroSplit } from 'packages/pure/components/pages'
-const headings = [
-  { depth: 2, slug: 'redes', text: 'Redes Sociales' },
-  { depth: 2, slug: 'entrega', text: 'Entrega de diplomas 2025' },
-  { depth: 2, slug: 'bautismo', text: 'Bautismo 2025' },
-  { depth: 2, slug: 'chamba', text: 'En la chamba' },
-  { depth: 2, slug: 'unidea', text: 'Unidea 2023' },
-  { depth: 2, slug: 'pyday_2025', text: 'Pyday 2025' },
-  { depth: 2, slug: 'nota', text: 'Nota de reconocimiento 2023' },
-  { depth: 2, slug: 'space_apps', text: 'Space Apps 2022' },
-  { depth: 2, slug: 'fotos', text: 'Fotitos varias' },
-]
 
+const headings = [
+  { depth: 2, slug: 'pyday_2025', text: 'Pyday 2025' },
+  { depth: 2, slug: 'unidea', text: 'Unidea 2023' },
+  { depth: 2, slug: 'nota', text: 'Reconocimiento del Presidente de la UNLP' },
+  { depth: 2, slug: 'space_apps', text: 'NASA Space Apps 2022' },
+  { depth: 2, slug: 'charlas', text: 'Otras charlas y hackatones' }
+]
 ---
 
 <PageLayout title='Sobre mi' {headings}>
-  
   <p>
-    Para contar un poquito puede que sea mas entretenido con imagenes, asi que la vamos a contar abajo.
+    Analista Programador Universitario (UNLP) y Data Engineer. Ademas del trabajo del dia a dia
+    participo en hackatones, doy charlas en comunidades de Python y fui tutor de acompanamiento de
+    ingresantes en la Facultad de Informatica durante un ciclo lectivo completo. Un resumen de eso:
   </p>
 
-  {/* social-networks */}
-  <h2 id='redes'>Algunas redes sociales</h2>
+  <h2 id='pyday_2025'>Pyday 2025</h2>
   <p>
-    Tengo mi github donde subo proyectos personales y colaboro en otros proyectos de codigo abierto. Tambien
-    tengo un canal de youtube donde subo videos relacionados con programacion y tecnologia. Finalmente, tengo
-    una cuenta de instagram donde comparto fotos y videos de mi vida diaria.
+    Evento de la comunidad de Python en la UTN La Plata, donde di una charla completa sobre mi
+    trabajo con Python.
   </p>
-  <Substats
-    stats={[
-      {
-        platform: 'GitHub',
-        icon: 'github',
-        link: 'https://github.com/Fabian-Martinez-Rincon',
-        text: 'followers',
-        api: 'github/Fabian-Martinez-Rincon'
-      },
-      {
-        platform: 'Youtube',
-        icon: 'youtube',
-        color: '#2ca5e0',
-        link: 'https://www.youtube.com/@FabianMartinezRincon',
-        text: 'subscribers',
-        api: 'youtube/FabianMartinezRincon'
-      },
-      {
-        platform: 'Instagram',
-        icon: 'instagram',
-        color: '#E39C52',
-        link: 'https://www.instagram.com/fabosistemas',
-        text: 'followers',
-      }
-    ]}
-  />
-
-<h2 id='entrega'>Entrega de diplomas 2025 Analista Programador Universitario</h2>
-<p>Fotos de lo que fue la entrega de diplomas, la pase super bien y fue un lindo momento para pasarla con la familia.</p>
   <HeroSplit
     imagePaths={[
-      "/src/assets/yo/entrega/1.jpg",
-      "/src/assets/yo/entrega/2.jpg",
-      "/src/assets/yo/entrega/3.jpg",
-      "/src/assets/yo/entrega/4.jpg",
-      "/src/assets/yo/entrega/5.jpg",
-      "/src/assets/yo/entrega/6.jpeg",
+      '/src/assets/yo/pyday/1.jpg',
+      '/src/assets/yo/pyday/2.jpg',
+      '/src/assets/yo/pyday/3.jpg'
     ]}
   >
-    <Button href="/projects">Ver proyectos</Button>
-</HeroSplit>
+    <Button href='/projects'>Ver proyectos</Button>
+  </HeroSplit>
 
-<h2 id='bautismo'>Bautismo 2025</h2>
-<p>Es una larga historia... Pero esta es mi pagina asi que lo cuento 😂</p>
+  <h2 id='unidea'>Unidea 2023</h2>
+  <p>
+    Competencia entre estudiantes y graduados de varias universidades del pais. Ganamos el primer
+    puesto siendo el equipo con menos experiencia.
+  </p>
   <HeroSplit
     imagePaths={[
-      "/src/assets/yo/bautismo/1.png",
-      "/src/assets/yo/bautismo/2.png",
-      "/src/assets/yo/bautismo/3.png",
+      '/src/assets/yo/unidea/1.jpeg',
+      '/src/assets/yo/unidea/2.jpg',
+      '/src/assets/yo/unidea/3.jpg'
     ]}
   >
-    <Button href="/projects">Ver proyectos</Button>
-</HeroSplit>
+    <Button href='/projects'>Ver proyectos</Button>
+  </HeroSplit>
 
-<h2 id='chamba'>En la chamba</h2>
-<p>Cada tanto vamos a la ofi y aprovechamos para sacar alguna que otra fotito</p>
-  <HeroSplit
-    imagePaths={[
-      "/src/assets/yo/chamba/1.jpg",
-      "/src/assets/yo/chamba/2.png",
-      "/src/assets/yo/chamba/3.jpg",
-    ]}
-  >
-    <Button href="/projects">Ver proyectos</Button>
-</HeroSplit>
+  <h2 id='nota'>Reconocimiento del Presidente de la UNLP</h2>
+  <p>
+    Distincion por actuacion destacada representando a la Universidad tras ganar Unidea. Nos
+    entrevistaron para contar como fue el proceso.
+  </p>
+  <HeroSplit imagePaths={['/src/assets/yo/nota/1.jpg', '/src/assets/yo/nota/2.jpg']}>
+    <Button href='/projects'>Ver proyectos</Button>
+  </HeroSplit>
 
-<h2 id='unidea'>Unidea 2023</h2>
-<p>Evento donde participaron varios estudiantes y graduados de varias universidades del pais. Por suerte ganamos el primer puesto a pesar de ser el equipo con menor experiencia. PD:No dormi durante tres dias y casi me desmayo</p>
-  <HeroSplit
-    imagePaths={[
-      "/src/assets/yo/unidea/1.jpeg",
-      "/src/assets/yo/unidea/2.jpg",
-      "/src/assets/yo/unidea/3.jpg",
-    ]}
-  >
-    <Button href="/projects">Ver proyectos</Button>
-</HeroSplit>
+  <h2 id='space_apps'>NASA Space Apps 2022</h2>
+  <p>
+    Mi primer hackaton, organizado por la NASA. Desarrollamos y presentamos un proyecto en tres
+    dias.
+  </p>
+  <HeroSplit imagePaths={['/src/assets/yo/space_apps/1.jpg', '/src/assets/yo/space_apps/2.jpg']}>
+    <Button href='/projects'>Ver proyectos</Button>
+  </HeroSplit>
 
-<h2 id='pyday_2025'>Pyday 2025</h2>
-<p>Evento de la comunidad de python en la UTN La Plata, por fin me anime a dar una charla completa.</p>
-  <HeroSplit
-    imagePaths={[
-      "/src/assets/yo/pyday/1.jpg",
-      "/src/assets/yo/pyday/2.jpg",
-      "/src/assets/yo/pyday/3.jpg",
-    ]}
-  >
-    <Button href="/projects">Ver proyectos</Button>
-</HeroSplit>
-
-<h2 id='nota'>Nota de reconocimiento 2023</h2>
-<p>Nos hicieron una nota a los estudiantes por haber ganado el evento de Unidea, estuvo bueno comentar como fue todo el proceso.</p>
-  <HeroSplit
-    imagePaths={[
-      "/src/assets/yo/nota/1.jpg",
-      "/src/assets/yo/nota/2.jpg",
-    ]}
-  >
-    <Button href="/projects">Ver proyectos</Button>
-</HeroSplit>
-
-<h2 id='space_apps'>Space Apps 2022</h2>
-<p>Mi primer hackaton, hicimos un proyecto de cartas y despues de 3 largos dias, lo presentamos (El evento fue organizado por la NASA).</p>
-  <HeroSplit
-    imagePaths={[
-      "/src/assets/yo/space_apps/1.jpg",
-      "/src/assets/yo/space_apps/2.jpg",
-    ]}
-  >
-    <Button href="/projects">Ver proyectos</Button>
-</HeroSplit>
-
-
-<h2 id='fotos'>Fotitos varias</h2>
-
-  <div class="mt-6 space-y-6">
-  <StoryCard
-      heading="Hackaton de Acccecibilidad 2023"
-      text="Di una presentación del proyecto en Unidea, este era un software que adaptaba documentos para que personas con dislexia pudieran leerlos mejor."
-      imagePath="/src/assets/yo/hackaton_de_accecibilidad.jpg"
-      
+  <h2 id='charlas'>Otras charlas y hackatones</h2>
+  <div class='mt-6 space-y-6'>
+    <StoryCard
+      heading='Hackaton de Accesibilidad 2023'
+      text='Presente en Unidea un software que adaptaba documentos para que personas con dislexia pudieran leerlos mejor.'
+      imagePath='/src/assets/yo/hackaton_de_accecibilidad.jpg'
     />
     <StoryCard
-      heading="Pyday 2023"
-      text="Durante el evento se dio la posibilidad de dar una charla relampago y aproveche y explique lo que utilizo para tomar notas en markdown."
-      imagePath="/src/assets/yo/pyday.jpg"
+      heading='Pyday 2023'
+      text='Charla relampago sobre el flujo que uso para tomar notas tecnicas en Markdown.'
+      imagePath='/src/assets/yo/pyday.jpg'
       reverse
-    />
-
-  <StoryCard
-      heading="Ada 13 - Dia del programador 2023"
-      text="Esta foto fue full casual en las batallas de codigo."
-      imagePath="/src/assets/yo/ada_13.jpg"
-      
     />
     <StoryCard
-      heading="Entrega de Diplomas 2021"
-      text="Termine la tecnicatura en Electronica. Fueron 7 años de estudio que parecia que no terminaba más jajajaja."
-      imagePath="/src/assets/yo/tengo_en_electronica.jpg"
-      reverse
+      heading='Ada 13 - Dia del programador 2023'
+      text='Batallas de codigo con la comunidad.'
+      imagePath='/src/assets/yo/ada_13.jpg'
     />
-    
+  </div>
 
-<MediumZoom selector=".about-zoom" />
+  <MediumZoom selector='.about-zoom' />
 </PageLayout>

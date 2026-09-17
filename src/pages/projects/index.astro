@@ -27,61 +27,52 @@ const headings = [
   <ProjectSection
     projects={[
       {
-        name: 'Chart IT',
-        description: 'Web con Flask, que permite a los usuarios registrarse, iniciar sesión, donar e intercambiar productos, con roles diferenciados. Usamos SQLAlchemy para la base de datos PostgreSQL, Flask-Bcrypt para la seguridad de contraseñas, Flask-Session para sesiones, Flask-WTF para formularios, y Flask-M',
-        image: 'hopetrade.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Char-IT' },
-        ]
-      },
-      {
-        name: 'Emuti',
-        description: 'Automatización para el ingreso de datos en RNG',
-        image: 'emuti.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/EmuTi' },
-        ]
-      },
-      {
-        name: 'ACL Manager',
-        description: 'Proyecto para poder gestionar ACLs (Access Control List) en un entorno Linux, al tener muchos comandos repetidos basados en un excel se me ocurrio que seria mas comodo poder formater los comandos de forma automatica usando una interfaz "Amigable".',
-        image: 'acl.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/acl-manager' },
-        ]
-      },
-      {
-        name: 'MidFlash',
-        description: 'Automatización de renderizado de imagenes',
-        image: 'midflash.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/MidFlash' },
-        ]
-      },
-      {
-        name: 'Scraping PlutoTV',
-        description: 'Scraping de la pagina Pluto TV usando Python ',
+        name: 'ETL Pluto TV',
+        description: 'Pipeline asincrono que extrae el catalogo completo de una plataforma OTT, con logging estructurado y manejo de reintentos. Selenium, aiohttp, asyncio y BeautifulSoup.',
         image: 'pluto_tv.jpg',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Scraping_PLUTO_TV' },
-        ]
-      },
-      {
-        name: 'SQL Modify',
-        description: '📷 Automatizacion de operaciones que hago para las imagenes individualmente, recortar las imagenes y aumentar las resoluciones de forma automatica',
-        image: 'sqlmodify.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/modify-SQL' },
-        ]
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Scraping_PLUTO_TV' }]
       },
       {
         name: 'Lab-Genetics',
-        description: '“Un laboratorio que centraliza muestras biológicas (de otros laboratorios) para mandarlas a analizarlas al exterior quiere digitalizar su funcionamiento ya que actualmente no cuentan con un soporte digital”',
+        description: 'Sistema de gestion de muestras biologicas con trazabilidad de resultados y control de acceso por rol. Flask, SQLAlchemy y PostgreSQL.',
         image: 'lab-genetics.png',
-        links: [
-          { type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Lab-Genetics' },
-          
-        ]
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Lab-Genetics' }]
+      },
+      {
+        name: 'ACL Manager',
+        description: 'Gestion de permisos (ACL) sobre Linux con interfaz propia: reemplaza la administracion manual de comandos a partir de un Excel. Python, Pandas, Tkinter y Bash.',
+        image: 'acl.png',
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/acl-manager' }]
+      },
+      {
+        name: 'Emuti',
+        description: 'Automatizacion de carga de datos de certificacion en maquinas de juego: de 60 a 5 horas de pruebas, 0% de error. Pandas, PyAutoGUI, PyGetWindow y OpenPyXL.',
+        image: 'emuti.png',
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/EmuTi' }]
+      },
+      {
+        name: 'Hope Trade',
+        description: 'Plataforma web de donaciones e intercambio de productos con roles, sesiones y formularios seguros. Flask, SQLAlchemy, PostgreSQL y Flask-Bcrypt.',
+        image: 'hopetrade.png',
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Ingenieria-de-Software2' }]
+      },
+      {
+        name: 'Chart IT',
+        description: 'Aplicacion web para generar y compartir graficos a partir de datos cargados por el usuario. Flask y JavaScript.',
+        image: 'charit.png',
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/Char-IT' }]
+      },
+      {
+        name: 'MidFlash',
+        description: 'Automatizacion del renderizado de imagenes por lote.',
+        image: 'midflash.png',
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/MidFlash' }]
+      },
+      {
+        name: 'SQL Modify',
+        description: 'Automatizacion de recorte y escalado de imagenes en lote.',
+        image: 'sqlmodify.png',
+        links: [{ type: 'github', href: 'https://github.com/Fabian-Martinez-Rincon/modify-SQL' }]
       }
     ]}
   />
